@@ -14,7 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(TestServerExtension::class)
 internal class SocialAccountServiceTest {
 
-    @Disabled("skipped: tests are disabled for the time being")
+    @Disabled("Prism tests are disabled")
     @Test
     fun retrieve() {
         val client =
@@ -29,7 +29,7 @@ internal class SocialAccountServiceTest {
         socialAccount.validate()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
+    @Disabled("Prism tests are disabled")
     @Test
     fun update() {
         val client =
@@ -51,7 +51,7 @@ internal class SocialAccountServiceTest {
         socialAccount.validate()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
+    @Disabled("Prism tests are disabled")
     @Test
     fun list() {
         val client =
@@ -76,7 +76,7 @@ internal class SocialAccountServiceTest {
         socialAccounts.validate()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
+    @Disabled("Prism tests are disabled")
     @Test
     fun createAuthUrl() {
         val client =
@@ -115,7 +115,7 @@ internal class SocialAccountServiceTest {
         response.validate()
     }
 
-    @Disabled("skipped: tests are disabled for the time being")
+    @Disabled("Prism tests are disabled")
     @Test
     fun disconnect() {
         val client =
