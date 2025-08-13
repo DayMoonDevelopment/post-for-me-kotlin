@@ -494,12 +494,13 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is PlatformData && id == other.id && url == other.url && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is PlatformData &&
+                id == other.id &&
+                url == other.url &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
         private val hashCode: Int by lazy { Objects.hash(id, url, additionalProperties) }
-        /* spotless:on */
 
         override fun hashCode(): Int = hashCode
 
@@ -512,12 +513,29 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialPostResult && id == other.id && details == other.details && error == other.error && platformData == other.platformData && postId == other.postId && socialAccountId == other.socialAccountId && success == other.success && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is SocialPostResult &&
+            id == other.id &&
+            details == other.details &&
+            error == other.error &&
+            platformData == other.platformData &&
+            postId == other.postId &&
+            socialAccountId == other.socialAccountId &&
+            success == other.success &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(id, details, error, platformData, postId, socialAccountId, success, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(
+            id,
+            details,
+            error,
+            platformData,
+            postId,
+            socialAccountId,
+            success,
+            additionalProperties,
+        )
+    }
 
     override fun hashCode(): Int = hashCode
 

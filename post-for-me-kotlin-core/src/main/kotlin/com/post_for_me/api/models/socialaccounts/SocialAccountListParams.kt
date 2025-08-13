@@ -298,10 +298,28 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialAccountListParams && id == other.id && externalId == other.externalId && limit == other.limit && offset == other.offset && platform == other.platform && username == other.username && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is SocialAccountListParams &&
+            id == other.id &&
+            externalId == other.externalId &&
+            limit == other.limit &&
+            offset == other.offset &&
+            platform == other.platform &&
+            username == other.username &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(id, externalId, limit, offset, platform, username, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int =
+        Objects.hash(
+            id,
+            externalId,
+            limit,
+            offset,
+            platform,
+            username,
+            additionalHeaders,
+            additionalQueryParams,
+        )
 
     override fun toString() =
         "SocialAccountListParams{id=$id, externalId=$externalId, limit=$limit, offset=$offset, platform=$platform, username=$username, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

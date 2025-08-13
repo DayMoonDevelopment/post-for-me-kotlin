@@ -1423,7 +1423,7 @@ private constructor(
                         return true
                     }
 
-                    return /* spotless:off */ other is Location && value == other.value /* spotless:on */
+                    return other is Location && value == other.value
                 }
 
                 override fun hashCode() = value.hashCode()
@@ -1436,12 +1436,39 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Configuration && allowComment == other.allowComment && allowDuet == other.allowDuet && allowStitch == other.allowStitch && boardIds == other.boardIds && caption == other.caption && discloseBrandedContent == other.discloseBrandedContent && discloseYourBrand == other.discloseYourBrand && link == other.link && location == other.location && media == other.media && privacyStatus == other.privacyStatus && title == other.title && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Configuration &&
+                    allowComment == other.allowComment &&
+                    allowDuet == other.allowDuet &&
+                    allowStitch == other.allowStitch &&
+                    boardIds == other.boardIds &&
+                    caption == other.caption &&
+                    discloseBrandedContent == other.discloseBrandedContent &&
+                    discloseYourBrand == other.discloseYourBrand &&
+                    link == other.link &&
+                    location == other.location &&
+                    media == other.media &&
+                    privacyStatus == other.privacyStatus &&
+                    title == other.title &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
-            private val hashCode: Int by lazy { Objects.hash(allowComment, allowDuet, allowStitch, boardIds, caption, discloseBrandedContent, discloseYourBrand, link, location, media, privacyStatus, title, additionalProperties) }
-            /* spotless:on */
+            private val hashCode: Int by lazy {
+                Objects.hash(
+                    allowComment,
+                    allowDuet,
+                    allowStitch,
+                    boardIds,
+                    caption,
+                    discloseBrandedContent,
+                    discloseYourBrand,
+                    link,
+                    location,
+                    media,
+                    privacyStatus,
+                    title,
+                    additionalProperties,
+                )
+            }
 
             override fun hashCode(): Int = hashCode
 
@@ -1454,12 +1481,15 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is AccountConfiguration && configuration == other.configuration && socialAccountId == other.socialAccountId && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is AccountConfiguration &&
+                configuration == other.configuration &&
+                socialAccountId == other.socialAccountId &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(configuration, socialAccountId, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(configuration, socialAccountId, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -1641,12 +1671,16 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Media && url == other.url && thumbnailTimestampMs == other.thumbnailTimestampMs && thumbnailUrl == other.thumbnailUrl && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Media &&
+                url == other.url &&
+                thumbnailTimestampMs == other.thumbnailTimestampMs &&
+                thumbnailUrl == other.thumbnailUrl &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(url, thumbnailTimestampMs, thumbnailUrl, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(url, thumbnailTimestampMs, thumbnailUrl, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -2285,12 +2319,13 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Bluesky && caption == other.caption && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Bluesky &&
+                    caption == other.caption &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
             private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
-            /* spotless:on */
 
             override fun hashCode(): Int = hashCode
 
@@ -2459,12 +2494,13 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Facebook && caption == other.caption && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Facebook &&
+                    caption == other.caption &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
             private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
-            /* spotless:on */
 
             override fun hashCode(): Int = hashCode
 
@@ -2633,12 +2669,13 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Instagram && caption == other.caption && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Instagram &&
+                    caption == other.caption &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
             private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
-            /* spotless:on */
 
             override fun hashCode(): Int = hashCode
 
@@ -2807,12 +2844,13 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Linkedin && caption == other.caption && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Linkedin &&
+                    caption == other.caption &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
             private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
-            /* spotless:on */
 
             override fun hashCode(): Int = hashCode
 
@@ -3069,12 +3107,17 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Pinterest && boardIds == other.boardIds && caption == other.caption && link == other.link && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Pinterest &&
+                    boardIds == other.boardIds &&
+                    caption == other.caption &&
+                    link == other.link &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
-            private val hashCode: Int by lazy { Objects.hash(boardIds, caption, link, media, additionalProperties) }
-            /* spotless:on */
+            private val hashCode: Int by lazy {
+                Objects.hash(boardIds, caption, link, media, additionalProperties)
+            }
 
             override fun hashCode(): Int = hashCode
 
@@ -3400,7 +3443,7 @@ private constructor(
                         return true
                     }
 
-                    return /* spotless:off */ other is Location && value == other.value /* spotless:on */
+                    return other is Location && value == other.value
                 }
 
                 override fun hashCode() = value.hashCode()
@@ -3413,12 +3456,16 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Threads && caption == other.caption && location == other.location && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Threads &&
+                    caption == other.caption &&
+                    location == other.location &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
-            private val hashCode: Int by lazy { Objects.hash(caption, location, media, additionalProperties) }
-            /* spotless:on */
+            private val hashCode: Int by lazy {
+                Objects.hash(caption, location, media, additionalProperties)
+            }
 
             override fun hashCode(): Int = hashCode
 
@@ -3587,12 +3634,13 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is X && caption == other.caption && media == other.media && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is X &&
+                    caption == other.caption &&
+                    media == other.media &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
             private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
-            /* spotless:on */
 
             override fun hashCode(): Int = hashCode
 
@@ -3795,12 +3843,16 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Youtube && caption == other.caption && media == other.media && title == other.title && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Youtube &&
+                    caption == other.caption &&
+                    media == other.media &&
+                    title == other.title &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
-            private val hashCode: Int by lazy { Objects.hash(caption, media, title, additionalProperties) }
-            /* spotless:on */
+            private val hashCode: Int by lazy {
+                Objects.hash(caption, media, title, additionalProperties)
+            }
 
             override fun hashCode(): Int = hashCode
 
@@ -3813,12 +3865,35 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is PlatformConfigurations && bluesky == other.bluesky && facebook == other.facebook && instagram == other.instagram && linkedin == other.linkedin && pinterest == other.pinterest && threads == other.threads && tiktok == other.tiktok && tiktokBusiness == other.tiktokBusiness && x == other.x && youtube == other.youtube && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is PlatformConfigurations &&
+                bluesky == other.bluesky &&
+                facebook == other.facebook &&
+                instagram == other.instagram &&
+                linkedin == other.linkedin &&
+                pinterest == other.pinterest &&
+                threads == other.threads &&
+                tiktok == other.tiktok &&
+                tiktokBusiness == other.tiktokBusiness &&
+                x == other.x &&
+                youtube == other.youtube &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(bluesky, facebook, instagram, linkedin, pinterest, threads, tiktok, tiktokBusiness, x, youtube, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(
+                bluesky,
+                facebook,
+                instagram,
+                linkedin,
+                pinterest,
+                threads,
+                tiktok,
+                tiktokBusiness,
+                x,
+                youtube,
+                additionalProperties,
+            )
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -3831,12 +3906,31 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is CreateSocialPost && caption == other.caption && socialAccounts == other.socialAccounts && accountConfigurations == other.accountConfigurations && externalId == other.externalId && isDraft == other.isDraft && media == other.media && platformConfigurations == other.platformConfigurations && scheduledAt == other.scheduledAt && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is CreateSocialPost &&
+            caption == other.caption &&
+            socialAccounts == other.socialAccounts &&
+            accountConfigurations == other.accountConfigurations &&
+            externalId == other.externalId &&
+            isDraft == other.isDraft &&
+            media == other.media &&
+            platformConfigurations == other.platformConfigurations &&
+            scheduledAt == other.scheduledAt &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(caption, socialAccounts, accountConfigurations, externalId, isDraft, media, platformConfigurations, scheduledAt, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(
+            caption,
+            socialAccounts,
+            accountConfigurations,
+            externalId,
+            isDraft,
+            media,
+            platformConfigurations,
+            scheduledAt,
+            additionalProperties,
+        )
+    }
 
     override fun hashCode(): Int = hashCode
 

@@ -465,12 +465,15 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Body && platform == other.platform && platformData == other.platformData && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Body &&
+                platform == other.platform &&
+                platformData == other.platformData &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(platform, platformData, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(platform, platformData, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -830,12 +833,15 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Bluesky && appPassword == other.appPassword && handle == other.handle && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Bluesky &&
+                    appPassword == other.appPassword &&
+                    handle == other.handle &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
-            private val hashCode: Int by lazy { Objects.hash(appPassword, handle, additionalProperties) }
-            /* spotless:on */
+            private val hashCode: Int by lazy {
+                Objects.hash(appPassword, handle, additionalProperties)
+            }
 
             override fun hashCode(): Int = hashCode
 
@@ -1129,7 +1135,7 @@ private constructor(
                         return true
                     }
 
-                    return /* spotless:off */ other is ConnectionType && value == other.value /* spotless:on */
+                    return other is ConnectionType && value == other.value
                 }
 
                 override fun hashCode() = value.hashCode()
@@ -1142,12 +1148,12 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Linkedin && connectionType == other.connectionType && additionalProperties == other.additionalProperties /* spotless:on */
+                return other is Linkedin &&
+                    connectionType == other.connectionType &&
+                    additionalProperties == other.additionalProperties
             }
 
-            /* spotless:off */
             private val hashCode: Int by lazy { Objects.hash(connectionType, additionalProperties) }
-            /* spotless:on */
 
             override fun hashCode(): Int = hashCode
 
@@ -1160,12 +1166,13 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is PlatformData && bluesky == other.bluesky && linkedin == other.linkedin && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is PlatformData &&
+                bluesky == other.bluesky &&
+                linkedin == other.linkedin &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
         private val hashCode: Int by lazy { Objects.hash(bluesky, linkedin, additionalProperties) }
-        /* spotless:on */
 
         override fun hashCode(): Int = hashCode
 
@@ -1178,10 +1185,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialAccountCreateAuthUrlParams && body == other.body && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is SocialAccountCreateAuthUrlParams &&
+            body == other.body &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(body, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(body, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "SocialAccountCreateAuthUrlParams{body=$body, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

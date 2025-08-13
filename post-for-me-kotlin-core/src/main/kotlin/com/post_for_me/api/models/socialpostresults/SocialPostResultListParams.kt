@@ -249,10 +249,17 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialPostResultListParams && limit == other.limit && offset == other.offset && platform == other.platform && postId == other.postId && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is SocialPostResultListParams &&
+            limit == other.limit &&
+            offset == other.offset &&
+            platform == other.platform &&
+            postId == other.postId &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(limit, offset, platform, postId, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int =
+        Objects.hash(limit, offset, platform, postId, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "SocialPostResultListParams{limit=$limit, offset=$offset, platform=$platform, postId=$postId, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

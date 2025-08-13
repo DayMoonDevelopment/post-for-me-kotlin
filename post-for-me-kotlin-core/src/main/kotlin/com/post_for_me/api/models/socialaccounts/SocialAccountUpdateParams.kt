@@ -435,12 +435,15 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Body && externalId == other.externalId && username == other.username && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Body &&
+                externalId == other.externalId &&
+                username == other.username &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(externalId, username, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(externalId, username, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -453,10 +456,14 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialAccountUpdateParams && id == other.id && body == other.body && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is SocialAccountUpdateParams &&
+            id == other.id &&
+            body == other.body &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(id, body, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(id, body, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "SocialAccountUpdateParams{id=$id, body=$body, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
