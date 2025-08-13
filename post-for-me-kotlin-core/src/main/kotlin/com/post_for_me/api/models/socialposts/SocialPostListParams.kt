@@ -424,7 +424,7 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Platform && value == other.value /* spotless:on */
+            return other is Platform && value == other.value
         }
 
         override fun hashCode() = value.hashCode()
@@ -561,7 +561,7 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Status && value == other.value /* spotless:on */
+            return other is Status && value == other.value
         }
 
         override fun hashCode() = value.hashCode()
@@ -574,10 +574,26 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialPostListParams && externalId == other.externalId && limit == other.limit && offset == other.offset && platform == other.platform && status == other.status && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is SocialPostListParams &&
+            externalId == other.externalId &&
+            limit == other.limit &&
+            offset == other.offset &&
+            platform == other.platform &&
+            status == other.status &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(externalId, limit, offset, platform, status, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int =
+        Objects.hash(
+            externalId,
+            limit,
+            offset,
+            platform,
+            status,
+            additionalHeaders,
+            additionalQueryParams,
+        )
 
     override fun toString() =
         "SocialPostListParams{externalId=$externalId, limit=$limit, offset=$offset, platform=$platform, status=$status, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

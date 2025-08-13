@@ -453,12 +453,17 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Meta && limit == other.limit && next == other.next && offset == other.offset && total == other.total && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Meta &&
+                limit == other.limit &&
+                next == other.next &&
+                offset == other.offset &&
+                total == other.total &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(limit, next, offset, total, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(limit, next, offset, total, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -471,12 +476,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SocialPostResultListResponse && data == other.data && meta == other.meta && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is SocialPostResultListResponse &&
+            data == other.data &&
+            meta == other.meta &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
     private val hashCode: Int by lazy { Objects.hash(data, meta, additionalProperties) }
-    /* spotless:on */
 
     override fun hashCode(): Int = hashCode
 

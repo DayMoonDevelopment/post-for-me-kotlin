@@ -492,12 +492,33 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is TiktokConfiguration && allowComment == other.allowComment && allowDuet == other.allowDuet && allowStitch == other.allowStitch && caption == other.caption && discloseBrandedContent == other.discloseBrandedContent && discloseYourBrand == other.discloseYourBrand && media == other.media && privacyStatus == other.privacyStatus && title == other.title && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is TiktokConfiguration &&
+            allowComment == other.allowComment &&
+            allowDuet == other.allowDuet &&
+            allowStitch == other.allowStitch &&
+            caption == other.caption &&
+            discloseBrandedContent == other.discloseBrandedContent &&
+            discloseYourBrand == other.discloseYourBrand &&
+            media == other.media &&
+            privacyStatus == other.privacyStatus &&
+            title == other.title &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(allowComment, allowDuet, allowStitch, caption, discloseBrandedContent, discloseYourBrand, media, privacyStatus, title, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(
+            allowComment,
+            allowDuet,
+            allowStitch,
+            caption,
+            discloseBrandedContent,
+            discloseYourBrand,
+            media,
+            privacyStatus,
+            title,
+            additionalProperties,
+        )
+    }
 
     override fun hashCode(): Int = hashCode
 

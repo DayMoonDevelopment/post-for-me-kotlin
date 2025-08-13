@@ -193,12 +193,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is MediaCreateUploadUrlResponse && mediaUrl == other.mediaUrl && uploadUrl == other.uploadUrl && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is MediaCreateUploadUrlResponse &&
+            mediaUrl == other.mediaUrl &&
+            uploadUrl == other.uploadUrl &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
     private val hashCode: Int by lazy { Objects.hash(mediaUrl, uploadUrl, additionalProperties) }
-    /* spotless:on */
 
     override fun hashCode(): Int = hashCode
 
