@@ -7,13 +7,13 @@
 
 <!-- x-release-please-end -->
 
-The Post For Me Kotlin SDK provides convenient access to the Post For Me REST API from applications written in Kotlin.
+The Post For Me Kotlin SDK provides convenient access to the [Post For Me REST API](https://api.postforme.dev/docs) from applications written in Kotlin.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 <!-- x-release-please-start-version -->
 
-KDocs are available on [javadoc.io](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.0.1-alpha.0).
+The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.0.1-alpha.0).
 
 <!-- x-release-please-end -->
 
@@ -48,14 +48,21 @@ This library requires Java 8 or later.
 ```kotlin
 import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.SocialPost
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()
 
-val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
+    .createSocialPost(CreateSocialPost.builder()
+        .caption("caption")
+        .addSocialAccount("string")
+        .build())
+    .build()
+val socialPost: SocialPost = client.socialPosts().create(params)
 ```
 
 ## Client configuration
@@ -98,10 +105,10 @@ val client: PostForMeClient = PostForMeOkHttpClient.builder()
 
 See this table for the available options:
 
-| Setter    | System property     | Environment variable   | Required | Default value               |
-| --------- | ------------------- | ---------------------- | -------- | --------------------------- |
-| `apiKey`  | `postforme.apiKey`  | `POST_FOR_ME_API_KEY`  | true     | -                           |
-| `baseUrl` | `postforme.baseUrl` | `POST_FOR_ME_BASE_URL` | true     | `"https://api.example.com"` |
+| Setter    | System property     | Environment variable   | Required | Default value                 |
+| --------- | ------------------- | ---------------------- | -------- | ----------------------------- |
+| `apiKey`  | `postforme.apiKey`  | `POST_FOR_ME_API_KEY`  | true     | -                             |
+| `baseUrl` | `postforme.baseUrl` | `POST_FOR_ME_BASE_URL` | true     | `"https://api.postforme.dev"` |
 
 System properties take precedence over environment variables.
 
@@ -128,7 +135,7 @@ The `withOptions()` method does not affect the original client or service.
 
 To send a request to the Post For Me API, build an instance of some `Params` class and pass it to the corresponding client method. When the response is received, it will be deserialized into an instance of a Kotlin class.
 
-For example, `client.media().createUploadUrl(...)` should be called with an instance of `MediaCreateUploadUrlParams`, and it will return an instance of `MediaCreateUploadUrlResponse`.
+For example, `client.socialPosts().create(...)` should be called with an instance of `SocialPostCreateParams`, and it will return an instance of `SocialPost`.
 
 ## Immutability
 
@@ -145,14 +152,21 @@ The default client is synchronous. To switch to asynchronous execution, call the
 ```kotlin
 import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.SocialPost
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()
 
-val response: MediaCreateUploadUrlResponse = client.async().media().createUploadUrl()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
+    .createSocialPost(CreateSocialPost.builder()
+        .caption("caption")
+        .addSocialAccount("string")
+        .build())
+    .build()
+val socialPost: SocialPost = client.async().socialPosts().create(params)
 ```
 
 Or create an asynchronous client from the beginning:
@@ -160,14 +174,21 @@ Or create an asynchronous client from the beginning:
 ```kotlin
 import com.post_for_me.api.client.PostForMeClientAsync
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClientAsync
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.SocialPost
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClientAsync = PostForMeOkHttpClientAsync.fromEnv()
 
-val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
+    .createSocialPost(CreateSocialPost.builder()
+        .caption("caption")
+        .addSocialAccount("string")
+        .build())
+    .build()
+val socialPost: SocialPost = client.socialPosts().create(params)
 ```
 
 The asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).
@@ -181,21 +202,28 @@ To access this data, prefix any HTTP method call on a client or service with `wi
 ```kotlin
 import com.post_for_me.api.core.http.Headers
 import com.post_for_me.api.core.http.HttpResponseFor
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.SocialPost
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
-val response: HttpResponseFor<MediaCreateUploadUrlResponse> = client.media().withRawResponse().createUploadUrl()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
+    .createSocialPost(CreateSocialPost.builder()
+        .caption("caption")
+        .addSocialAccount("string")
+        .build())
+    .build()
+val socialPost: HttpResponseFor<SocialPost> = client.socialPosts().withRawResponse().create(params)
 
-val statusCode: Int = response.statusCode()
-val headers: Headers = response.headers()
+val statusCode: Int = socialPost.statusCode()
+val headers: Headers = socialPost.headers()
 ```
 
 You can still deserialize the response into an instance of a Kotlin class if needed:
 
 ```kotlin
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.SocialPost
 
-val parsedResponse: MediaCreateUploadUrlResponse = response.parse()
+val parsedSocialPost: SocialPost = socialPost.parse()
 ```
 
 ## Error handling
@@ -291,9 +319,11 @@ Requests time out after 1 minute by default.
 To set a custom timeout, configure the method call using the `timeout` method:
 
 ```kotlin
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.SocialPost
 
-val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())
+val socialPost: SocialPost = client.socialPosts().create(
+  params, RequestOptions.builder().timeout(Duration.ofSeconds(30)).build()
+)
 ```
 
 Or configure the default for all method calls at the client level:
@@ -396,9 +426,9 @@ To set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQu
 
 ```kotlin
 import com.post_for_me.api.core.JsonValue
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
-val params: MediaCreateUploadUrlParams = MediaCreateUploadUrlParams.builder()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
     .putAdditionalHeader("Secret-Header", "42")
     .putAdditionalQueryParam("secret_query_param", "42")
     .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))
@@ -410,9 +440,15 @@ These can be accessed on the built object later using the `_additionalHeaders()`
 To set a documented parameter or property to an undocumented or not yet supported _value_, pass a [`JsonValue`](post-for-me-kotlin-core/src/main/kotlin/com/post_for_me/api/core/Values.kt) object to its setter:
 
 ```kotlin
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
+import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
-val params: MediaCreateUploadUrlParams = MediaCreateUploadUrlParams.builder().build()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
+    .createSocialPost(CreateSocialPost.builder()
+        .caption("caption")
+        .addSocialAccount("string")
+        .build())
+    .build()
 ```
 
 The most straightforward way to create a [`JsonValue`](post-for-me-kotlin-core/src/main/kotlin/com/post_for_me/api/core/Values.kt) is using its `from(...)` method:
@@ -456,11 +492,10 @@ To forcibly omit a required parameter or property, pass [`JsonMissing`](post-for
 
 ```kotlin
 import com.post_for_me.api.core.JsonMissing
-import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
-val params: MediaCreateUploadUrlParams = SocialPostCreateParams.builder()
+val params: SocialPostCreateParams = SocialPostCreateParams.builder()
     .createSocialPost(CreateSocialPost.builder()
         .caption("caption")
         .addSocialAccount("string")
@@ -479,7 +514,7 @@ import com.post_for_me.api.core.JsonNull
 import com.post_for_me.api.core.JsonNumber
 import com.post_for_me.api.core.JsonValue
 
-val additionalProperties: Map<String, JsonValue> = client.media().createUploadUrl(params)._additionalProperties()
+val additionalProperties: Map<String, JsonValue> = client.socialPosts().create(params)._additionalProperties()
 val secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")
 
 val result = when (secretPropertyValue) {
@@ -496,7 +531,7 @@ To access a property's raw JSON value, which may be undocumented, call its `_` p
 ```kotlin
 import com.post_for_me.api.core.JsonField
 
-val field: JsonField<Any> = client.media().createUploadUrl(params)._field()
+val field: JsonField<Any> = client.socialPosts().create(params)._field()
 
 if (field.isMissing()) {
   // The property is absent from the JSON response
@@ -521,17 +556,19 @@ By default, the SDK will not throw an exception in this case. It will throw [`Po
 If you would prefer to check that the response is completely well-typed upfront, then either call `validate()`:
 
 ```kotlin
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.SocialPost
 
-val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl(params).validate()
+val socialPost: SocialPost = client.socialPosts().create(params).validate()
 ```
 
 Or configure the method call to validate the response using the `responseValidation` method:
 
 ```kotlin
-import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
+import com.post_for_me.api.models.socialposts.SocialPost
 
-val response: MediaCreateUploadUrlResponse = client.media().createUploadUrl(RequestOptions.builder().responseValidation(true).build())
+val socialPost: SocialPost = client.socialPosts().create(
+  params, RequestOptions.builder().responseValidation(true).build()
+)
 ```
 
 Or configure the default for all method calls at the client level:

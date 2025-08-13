@@ -22,6 +22,10 @@ import com.post_for_me.api.errors.RateLimitException
 import com.post_for_me.api.errors.UnauthorizedException
 import com.post_for_me.api.errors.UnexpectedStatusCodeException
 import com.post_for_me.api.errors.UnprocessableEntityException
+import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.SocialPostCreateParams
+import com.post_for_me.api.models.socialposts.TiktokConfiguration
+import java.time.OffsetDateTime
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.entry
 import org.junit.jupiter.api.BeforeEach
@@ -58,8 +62,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl400() {
-        val mediaService = client.media()
+    fun socialPostsCreate400() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -67,7 +71,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<BadRequestException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<BadRequestException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(400)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -75,8 +221,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl400WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate400WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -84,7 +230,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<BadRequestException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<BadRequestException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(400)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -92,8 +380,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl401() {
-        val mediaService = client.media()
+    fun socialPostsCreate401() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -101,7 +389,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<UnauthorizedException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<UnauthorizedException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(401)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -109,8 +539,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl401WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate401WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -118,7 +548,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<UnauthorizedException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<UnauthorizedException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(401)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -126,8 +698,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl403() {
-        val mediaService = client.media()
+    fun socialPostsCreate403() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -135,7 +707,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<PermissionDeniedException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<PermissionDeniedException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(403)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -143,8 +857,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl403WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate403WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -152,7 +866,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<PermissionDeniedException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<PermissionDeniedException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(403)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -160,8 +1016,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl404() {
-        val mediaService = client.media()
+    fun socialPostsCreate404() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -169,7 +1025,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<NotFoundException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<NotFoundException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(404)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -177,8 +1175,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl404WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate404WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -186,7 +1184,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<NotFoundException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<NotFoundException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(404)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -194,8 +1334,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl422() {
-        val mediaService = client.media()
+    fun socialPostsCreate422() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -203,7 +1343,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<UnprocessableEntityException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<UnprocessableEntityException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(422)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -211,8 +1493,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl422WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate422WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -220,7 +1502,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<UnprocessableEntityException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<UnprocessableEntityException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(422)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -228,8 +1652,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl429() {
-        val mediaService = client.media()
+    fun socialPostsCreate429() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -237,7 +1661,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<RateLimitException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<RateLimitException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(429)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -245,8 +1811,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl429WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate429WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -254,7 +1820,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<RateLimitException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<RateLimitException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(429)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -262,8 +1970,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl500() {
-        val mediaService = client.media()
+    fun socialPostsCreate500() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -271,7 +1979,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<InternalServerException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<InternalServerException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(500)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -279,8 +2129,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl500WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate500WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -288,7 +2138,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<InternalServerException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<InternalServerException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(500)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -296,8 +2288,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl999() {
-        val mediaService = client.media()
+    fun socialPostsCreate999() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -305,7 +2297,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<UnexpectedStatusCodeException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<UnexpectedStatusCodeException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(999)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -313,8 +2447,8 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrl999WithRawResponse() {
-        val mediaService = client.media().withRawResponse()
+    fun socialPostsCreate999WithRawResponse() {
+        val socialPostService = client.socialPosts().withRawResponse()
         stubFor(
             post(anyUrl())
                 .willReturn(
@@ -322,7 +2456,149 @@ internal class ErrorHandlingTest {
                 )
         )
 
-        val e = assertThrows<UnexpectedStatusCodeException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<UnexpectedStatusCodeException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e.statusCode()).isEqualTo(999)
         assertThat(e.headers().toMap()).contains(entry(HEADER_NAME, listOf(HEADER_VALUE)))
@@ -330,14 +2606,156 @@ internal class ErrorHandlingTest {
     }
 
     @Test
-    fun mediaCreateUploadUrlInvalidJsonBody() {
-        val mediaService = client.media()
+    fun socialPostsCreateInvalidJsonBody() {
+        val socialPostService = client.socialPosts()
         stubFor(
             post(anyUrl())
                 .willReturn(status(200).withHeader(HEADER_NAME, HEADER_VALUE).withBody(NOT_JSON))
         )
 
-        val e = assertThrows<PostForMeException> { mediaService.createUploadUrl() }
+        val e =
+            assertThrows<PostForMeException> {
+                socialPostService.create(
+                    SocialPostCreateParams.builder()
+                        .createSocialPost(
+                            CreateSocialPost.builder()
+                                .caption("caption")
+                                .addSocialAccount("string")
+                                .addAccountConfiguration(
+                                    CreateSocialPost.AccountConfiguration.builder()
+                                        .configuration(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .link("link")
+                                                .location(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .socialAccountId("social_account_id")
+                                        .build()
+                                )
+                                .externalId("external_id")
+                                .isDraft(true)
+                                .addMedia(
+                                    CreateSocialPost.Media.builder()
+                                        .url("url")
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .platformConfigurations(
+                                    CreateSocialPost.PlatformConfigurations.builder()
+                                        .bluesky(
+                                            CreateSocialPost.PlatformConfigurations.Bluesky
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .facebook(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .instagram(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .linkedin(
+                                            CreateSocialPost.PlatformConfigurations.Linkedin
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .pinterest(
+                                            CreateSocialPost.PlatformConfigurations.Pinterest
+                                                .builder()
+                                                .addBoardId("string")
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .link("link")
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .threads(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .location(
+                                                    CreateSocialPost.PlatformConfigurations.Threads
+                                                        .Location
+                                                        .REELS
+                                                )
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .tiktok(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .tiktokBusiness(
+                                            TiktokConfiguration.builder()
+                                                .allowComment(true)
+                                                .allowDuet(true)
+                                                .allowStitch(true)
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .discloseBrandedContent(true)
+                                                .discloseYourBrand(true)
+                                                .addMedia("string")
+                                                .privacyStatus("privacy_status")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .x(
+                                            CreateSocialPost.PlatformConfigurations.X.builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .build()
+                                        )
+                                        .youtube(
+                                            CreateSocialPost.PlatformConfigurations.Youtube
+                                                .builder()
+                                                .caption(JsonValue.from(mapOf<String, Any>()))
+                                                .addMedia("string")
+                                                .title("title")
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                                .build()
+                        )
+                        .build()
+                )
+            }
 
         assertThat(e).hasMessage("Error reading response")
     }
