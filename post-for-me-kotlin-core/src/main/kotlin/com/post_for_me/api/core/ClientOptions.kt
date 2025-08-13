@@ -91,7 +91,7 @@ private constructor(
     /**
      * The base URL to use for every request.
      *
-     * Defaults to the production environment: `https://api.example.com`.
+     * Defaults to the production environment: `https://api.postforme.dev`.
      */
     fun baseUrl(): String = baseUrl ?: PRODUCTION_URL
 
@@ -99,7 +99,7 @@ private constructor(
 
     companion object {
 
-        const val PRODUCTION_URL = "https://api.example.com"
+        const val PRODUCTION_URL = "https://api.postforme.dev"
 
         /**
          * Returns a mutable builder for constructing an instance of [ClientOptions].
@@ -189,7 +189,7 @@ private constructor(
         /**
          * The base URL to use for every request.
          *
-         * Defaults to the production environment: `https://api.example.com`.
+         * Defaults to the production environment: `https://api.postforme.dev`.
          */
         fun baseUrl(baseUrl: String?) = apply { this.baseUrl = baseUrl }
 
@@ -326,10 +326,10 @@ private constructor(
          *
          * See this table for the available options:
          *
-         * |Setter   |System property    |Environment variable  |Required|Default value              |
-         * |---------|-------------------|----------------------|--------|---------------------------|
-         * |`apiKey` |`postforme.apiKey` |`POST_FOR_ME_API_KEY` |true    |-                          |
-         * |`baseUrl`|`postforme.baseUrl`|`POST_FOR_ME_BASE_URL`|true    |`"https://api.example.com"`|
+         * |Setter   |System property    |Environment variable  |Required|Default value                |
+         * |---------|-------------------|----------------------|--------|-----------------------------|
+         * |`apiKey` |`postforme.apiKey` |`POST_FOR_ME_API_KEY` |true    |-                            |
+         * |`baseUrl`|`postforme.baseUrl`|`POST_FOR_ME_BASE_URL`|true    |`"https://api.postforme.dev"`|
          *
          * System properties take precedence over environment variables.
          */

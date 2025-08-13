@@ -11,7 +11,7 @@ configure<PublishingExtension> {
             pom {
                 name.set("Post for Me API")
                 description.set("The official API for [Post for Me](https://www.postforme.dev/)")
-                url.set("https://www.github.com/stainless-sdks/post-for-me-kotlin")
+                url.set("https://api.postforme.dev/docs")
 
                 licenses {
                     license {
@@ -22,13 +22,14 @@ configure<PublishingExtension> {
                 developers {
                     developer {
                         name.set("Post For Me")
+                        email.set("postforme@daymoon.dev")
                     }
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/stainless-sdks/post-for-me-kotlin.git")
-                    developerConnection.set("scm:git:git://github.com/stainless-sdks/post-for-me-kotlin.git")
-                    url.set("https://github.com/stainless-sdks/post-for-me-kotlin")
+                    connection.set("scm:git:git://github.com/DayMoonDevelopment/post-for-me-kotlin.git")
+                    developerConnection.set("scm:git:git://github.com/DayMoonDevelopment/post-for-me-kotlin.git")
+                    url.set("https://github.com/DayMoonDevelopment/post-for-me-kotlin")
                 }
 
                 versionMapping {
