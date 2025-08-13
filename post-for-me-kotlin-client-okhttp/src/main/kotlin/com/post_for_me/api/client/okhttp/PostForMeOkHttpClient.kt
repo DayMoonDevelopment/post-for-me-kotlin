@@ -115,7 +115,7 @@ class PostForMeOkHttpClient private constructor() {
         /**
          * The base URL to use for every request.
          *
-         * Defaults to the production environment: `https://api.example.com`.
+         * Defaults to the production environment: `https://api.postforme.dev`.
          */
         fun baseUrl(baseUrl: String?) = apply { clientOptions.baseUrl(baseUrl) }
 
