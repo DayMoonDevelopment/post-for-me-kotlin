@@ -293,7 +293,7 @@ private constructor(
 
             val TIKTOK = of("tiktok")
 
-            val TWITTER = of("twitter")
+            val X = of("x")
 
             val YOUTUBE = of("youtube")
 
@@ -309,7 +309,7 @@ private constructor(
             PINTEREST,
             THREADS,
             TIKTOK,
-            TWITTER,
+            X,
             YOUTUBE,
         }
 
@@ -330,7 +330,7 @@ private constructor(
             PINTEREST,
             THREADS,
             TIKTOK,
-            TWITTER,
+            X,
             YOUTUBE,
             /** An enum member indicating that [Platform] was instantiated with an unknown value. */
             _UNKNOWN,
@@ -352,7 +352,7 @@ private constructor(
                 PINTEREST -> Value.PINTEREST
                 THREADS -> Value.THREADS
                 TIKTOK -> Value.TIKTOK
-                TWITTER -> Value.TWITTER
+                X -> Value.X
                 YOUTUBE -> Value.YOUTUBE
                 else -> Value._UNKNOWN
             }
@@ -375,7 +375,7 @@ private constructor(
                 PINTEREST -> Known.PINTEREST
                 THREADS -> Known.THREADS
                 TIKTOK -> Known.TIKTOK
-                TWITTER -> Known.TWITTER
+                X -> Known.X
                 YOUTUBE -> Known.YOUTUBE
                 else -> throw PostForMeInvalidDataException("Unknown Platform: $value")
             }
