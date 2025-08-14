@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-08-14)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** update via SDK Studio ([fa1def4](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/fa1def48248499d8c0f4b0053d1f18da1fb4976f))
+
+
+### Performance Improvements
+
+* **internal:** make formatting faster ([f67f5ed](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/f67f5ed4e3780196e88cc040f6b216ff088e0303))
+
+
+### Chores
+
+* **internal:** dynamically determine included projects ([a35514e](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/a35514eea82a05dbdf03db31543fe489ca41990c))
+* **internal:** support passing arguments to test script ([40dbe87](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/40dbe87ef7c2b1a24dde5ed1bf0224a76deee013))
+
 ## 0.1.0-alpha.1 (2025-08-13)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
