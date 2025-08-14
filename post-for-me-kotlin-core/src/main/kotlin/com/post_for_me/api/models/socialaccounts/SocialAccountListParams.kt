@@ -37,7 +37,7 @@ private constructor(
     fun offset(): Double? = offset
 
     /**
-     * Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platform=twitter).
+     * Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=x&platform=facebook).
      */
     fun platform(): List<String>? = platform
 
@@ -134,7 +134,7 @@ private constructor(
 
         /**
          * Filter by platform(s). Multiple values imply OR logic (e.g.,
-         * ?platform=x&platform=twitter).
+         * ?platform=x&platform=facebook).
          */
         fun platform(platform: List<String>?) = apply { this.platform = platform?.toMutableList() }
 

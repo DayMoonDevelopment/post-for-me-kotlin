@@ -13,15 +13,22 @@ import com.post_for_me.api.core.JsonMissing
 import com.post_for_me.api.core.JsonValue
 import com.post_for_me.api.core.checkRequired
 import com.post_for_me.api.errors.PostForMeInvalidDataException
+import java.time.OffsetDateTime
 import java.util.Collections
 import java.util.Objects
 
 class SocialAccountDisconnectResponse
 private constructor(
     private val id: JsonField<String>,
+    private val accessToken: JsonField<String>,
+    private val accessTokenExpiresAt: JsonField<OffsetDateTime>,
     private val externalId: JsonField<String>,
+    private val metadata: JsonValue,
     private val platform: JsonField<String>,
+    private val refreshToken: JsonField<String>,
+    private val refreshTokenExpiresAt: JsonField<OffsetDateTime>,
     private val status: JsonField<Status>,
+    private val userId: JsonField<String>,
     private val username: JsonField<String>,
     private val additionalProperties: MutableMap<String, JsonValue>,
 ) {
@@ -29,13 +36,40 @@ private constructor(
     @JsonCreator
     private constructor(
         @JsonProperty("id") @ExcludeMissing id: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("access_token")
+        @ExcludeMissing
+        accessToken: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("access_token_expires_at")
+        @ExcludeMissing
+        accessTokenExpiresAt: JsonField<OffsetDateTime> = JsonMissing.of(),
         @JsonProperty("external_id")
         @ExcludeMissing
         externalId: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("metadata") @ExcludeMissing metadata: JsonValue = JsonMissing.of(),
         @JsonProperty("platform") @ExcludeMissing platform: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("refresh_token")
+        @ExcludeMissing
+        refreshToken: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("refresh_token_expires_at")
+        @ExcludeMissing
+        refreshTokenExpiresAt: JsonField<OffsetDateTime> = JsonMissing.of(),
         @JsonProperty("status") @ExcludeMissing status: JsonField<Status> = JsonMissing.of(),
+        @JsonProperty("user_id") @ExcludeMissing userId: JsonField<String> = JsonMissing.of(),
         @JsonProperty("username") @ExcludeMissing username: JsonField<String> = JsonMissing.of(),
-    ) : this(id, externalId, platform, status, username, mutableMapOf())
+    ) : this(
+        id,
+        accessToken,
+        accessTokenExpiresAt,
+        externalId,
+        metadata,
+        platform,
+        refreshToken,
+        refreshTokenExpiresAt,
+        status,
+        userId,
+        username,
+        mutableMapOf(),
+    )
 
     /**
      * The unique identifier of the social account
@@ -46,12 +80,32 @@ private constructor(
     fun id(): String = id.getRequired("id")
 
     /**
+     * The access token of the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+     *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+     */
+    fun accessToken(): String = accessToken.getRequired("access_token")
+
+    /**
+     * The access token expiration date of the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+     *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+     */
+    fun accessTokenExpiresAt(): OffsetDateTime =
+        accessTokenExpiresAt.getRequired("access_token_expires_at")
+
+    /**
      * The external id of the social account
      *
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
      *   server responded with an unexpected value).
      */
     fun externalId(): String? = externalId.getNullable("external_id")
+
+    /** The metadata of the social account */
+    @JsonProperty("metadata") @ExcludeMissing fun _metadata(): JsonValue = metadata
 
     /**
      * The platform of the social account
@@ -62,12 +116,37 @@ private constructor(
     fun platform(): String = platform.getRequired("platform")
 
     /**
+     * The refresh token of the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun refreshToken(): String? = refreshToken.getNullable("refresh_token")
+
+    /**
+     * The refresh token expiration date of the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun refreshTokenExpiresAt(): OffsetDateTime? =
+        refreshTokenExpiresAt.getNullable("refresh_token_expires_at")
+
+    /**
      * Status of the account
      *
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
      *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
      */
     fun status(): Status = status.getRequired("status")
+
+    /**
+     * The platform's id of the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+     *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+     */
+    fun userId(): String = userId.getRequired("user_id")
 
     /**
      * The platform's username of the social account
@@ -85,6 +164,25 @@ private constructor(
     @JsonProperty("id") @ExcludeMissing fun _id(): JsonField<String> = id
 
     /**
+     * Returns the raw JSON value of [accessToken].
+     *
+     * Unlike [accessToken], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("access_token")
+    @ExcludeMissing
+    fun _accessToken(): JsonField<String> = accessToken
+
+    /**
+     * Returns the raw JSON value of [accessTokenExpiresAt].
+     *
+     * Unlike [accessTokenExpiresAt], this method doesn't throw if the JSON field has an unexpected
+     * type.
+     */
+    @JsonProperty("access_token_expires_at")
+    @ExcludeMissing
+    fun _accessTokenExpiresAt(): JsonField<OffsetDateTime> = accessTokenExpiresAt
+
+    /**
      * Returns the raw JSON value of [externalId].
      *
      * Unlike [externalId], this method doesn't throw if the JSON field has an unexpected type.
@@ -99,11 +197,37 @@ private constructor(
     @JsonProperty("platform") @ExcludeMissing fun _platform(): JsonField<String> = platform
 
     /**
+     * Returns the raw JSON value of [refreshToken].
+     *
+     * Unlike [refreshToken], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("refresh_token")
+    @ExcludeMissing
+    fun _refreshToken(): JsonField<String> = refreshToken
+
+    /**
+     * Returns the raw JSON value of [refreshTokenExpiresAt].
+     *
+     * Unlike [refreshTokenExpiresAt], this method doesn't throw if the JSON field has an unexpected
+     * type.
+     */
+    @JsonProperty("refresh_token_expires_at")
+    @ExcludeMissing
+    fun _refreshTokenExpiresAt(): JsonField<OffsetDateTime> = refreshTokenExpiresAt
+
+    /**
      * Returns the raw JSON value of [status].
      *
      * Unlike [status], this method doesn't throw if the JSON field has an unexpected type.
      */
     @JsonProperty("status") @ExcludeMissing fun _status(): JsonField<Status> = status
+
+    /**
+     * Returns the raw JSON value of [userId].
+     *
+     * Unlike [userId], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("user_id") @ExcludeMissing fun _userId(): JsonField<String> = userId
 
     /**
      * Returns the raw JSON value of [username].
@@ -133,9 +257,15 @@ private constructor(
          * The following fields are required:
          * ```kotlin
          * .id()
+         * .accessToken()
+         * .accessTokenExpiresAt()
          * .externalId()
+         * .metadata()
          * .platform()
+         * .refreshToken()
+         * .refreshTokenExpiresAt()
          * .status()
+         * .userId()
          * .username()
          * ```
          */
@@ -146,18 +276,30 @@ private constructor(
     class Builder internal constructor() {
 
         private var id: JsonField<String>? = null
+        private var accessToken: JsonField<String>? = null
+        private var accessTokenExpiresAt: JsonField<OffsetDateTime>? = null
         private var externalId: JsonField<String>? = null
+        private var metadata: JsonValue? = null
         private var platform: JsonField<String>? = null
+        private var refreshToken: JsonField<String>? = null
+        private var refreshTokenExpiresAt: JsonField<OffsetDateTime>? = null
         private var status: JsonField<Status>? = null
+        private var userId: JsonField<String>? = null
         private var username: JsonField<String>? = null
         private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
         internal fun from(socialAccountDisconnectResponse: SocialAccountDisconnectResponse) =
             apply {
                 id = socialAccountDisconnectResponse.id
+                accessToken = socialAccountDisconnectResponse.accessToken
+                accessTokenExpiresAt = socialAccountDisconnectResponse.accessTokenExpiresAt
                 externalId = socialAccountDisconnectResponse.externalId
+                metadata = socialAccountDisconnectResponse.metadata
                 platform = socialAccountDisconnectResponse.platform
+                refreshToken = socialAccountDisconnectResponse.refreshToken
+                refreshTokenExpiresAt = socialAccountDisconnectResponse.refreshTokenExpiresAt
                 status = socialAccountDisconnectResponse.status
+                userId = socialAccountDisconnectResponse.userId
                 username = socialAccountDisconnectResponse.username
                 additionalProperties =
                     socialAccountDisconnectResponse.additionalProperties.toMutableMap()
@@ -174,6 +316,33 @@ private constructor(
          */
         fun id(id: JsonField<String>) = apply { this.id = id }
 
+        /** The access token of the social account */
+        fun accessToken(accessToken: String) = accessToken(JsonField.of(accessToken))
+
+        /**
+         * Sets [Builder.accessToken] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.accessToken] with a well-typed [String] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun accessToken(accessToken: JsonField<String>) = apply { this.accessToken = accessToken }
+
+        /** The access token expiration date of the social account */
+        fun accessTokenExpiresAt(accessTokenExpiresAt: OffsetDateTime) =
+            accessTokenExpiresAt(JsonField.of(accessTokenExpiresAt))
+
+        /**
+         * Sets [Builder.accessTokenExpiresAt] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.accessTokenExpiresAt] with a well-typed [OffsetDateTime]
+         * value instead. This method is primarily for setting the field to an undocumented or not
+         * yet supported value.
+         */
+        fun accessTokenExpiresAt(accessTokenExpiresAt: JsonField<OffsetDateTime>) = apply {
+            this.accessTokenExpiresAt = accessTokenExpiresAt
+        }
+
         /** The external id of the social account */
         fun externalId(externalId: String?) = externalId(JsonField.ofNullable(externalId))
 
@@ -186,6 +355,9 @@ private constructor(
          */
         fun externalId(externalId: JsonField<String>) = apply { this.externalId = externalId }
 
+        /** The metadata of the social account */
+        fun metadata(metadata: JsonValue) = apply { this.metadata = metadata }
+
         /** The platform of the social account */
         fun platform(platform: String) = platform(JsonField.of(platform))
 
@@ -197,6 +369,35 @@ private constructor(
          */
         fun platform(platform: JsonField<String>) = apply { this.platform = platform }
 
+        /** The refresh token of the social account */
+        fun refreshToken(refreshToken: String?) = refreshToken(JsonField.ofNullable(refreshToken))
+
+        /**
+         * Sets [Builder.refreshToken] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.refreshToken] with a well-typed [String] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun refreshToken(refreshToken: JsonField<String>) = apply {
+            this.refreshToken = refreshToken
+        }
+
+        /** The refresh token expiration date of the social account */
+        fun refreshTokenExpiresAt(refreshTokenExpiresAt: OffsetDateTime?) =
+            refreshTokenExpiresAt(JsonField.ofNullable(refreshTokenExpiresAt))
+
+        /**
+         * Sets [Builder.refreshTokenExpiresAt] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.refreshTokenExpiresAt] with a well-typed
+         * [OffsetDateTime] value instead. This method is primarily for setting the field to an
+         * undocumented or not yet supported value.
+         */
+        fun refreshTokenExpiresAt(refreshTokenExpiresAt: JsonField<OffsetDateTime>) = apply {
+            this.refreshTokenExpiresAt = refreshTokenExpiresAt
+        }
+
         /** Status of the account */
         fun status(status: Status) = status(JsonField.of(status))
 
@@ -207,6 +408,17 @@ private constructor(
          * method is primarily for setting the field to an undocumented or not yet supported value.
          */
         fun status(status: JsonField<Status>) = apply { this.status = status }
+
+        /** The platform's id of the social account */
+        fun userId(userId: String) = userId(JsonField.of(userId))
+
+        /**
+         * Sets [Builder.userId] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.userId] with a well-typed [String] value instead. This
+         * method is primarily for setting the field to an undocumented or not yet supported value.
+         */
+        fun userId(userId: JsonField<String>) = apply { this.userId = userId }
 
         /** The platform's username of the social account */
         fun username(username: String?) = username(JsonField.ofNullable(username))
@@ -246,9 +458,15 @@ private constructor(
          * The following fields are required:
          * ```kotlin
          * .id()
+         * .accessToken()
+         * .accessTokenExpiresAt()
          * .externalId()
+         * .metadata()
          * .platform()
+         * .refreshToken()
+         * .refreshTokenExpiresAt()
          * .status()
+         * .userId()
          * .username()
          * ```
          *
@@ -257,9 +475,15 @@ private constructor(
         fun build(): SocialAccountDisconnectResponse =
             SocialAccountDisconnectResponse(
                 checkRequired("id", id),
+                checkRequired("accessToken", accessToken),
+                checkRequired("accessTokenExpiresAt", accessTokenExpiresAt),
                 checkRequired("externalId", externalId),
+                checkRequired("metadata", metadata),
                 checkRequired("platform", platform),
+                checkRequired("refreshToken", refreshToken),
+                checkRequired("refreshTokenExpiresAt", refreshTokenExpiresAt),
                 checkRequired("status", status),
+                checkRequired("userId", userId),
                 checkRequired("username", username),
                 additionalProperties.toMutableMap(),
             )
@@ -273,9 +497,14 @@ private constructor(
         }
 
         id()
+        accessToken()
+        accessTokenExpiresAt()
         externalId()
         platform()
+        refreshToken()
+        refreshTokenExpiresAt()
         status().validate()
+        userId()
         username()
         validated = true
     }
@@ -295,9 +524,14 @@ private constructor(
      */
     internal fun validity(): Int =
         (if (id.asKnown() == null) 0 else 1) +
+            (if (accessToken.asKnown() == null) 0 else 1) +
+            (if (accessTokenExpiresAt.asKnown() == null) 0 else 1) +
             (if (externalId.asKnown() == null) 0 else 1) +
             (if (platform.asKnown() == null) 0 else 1) +
+            (if (refreshToken.asKnown() == null) 0 else 1) +
+            (if (refreshTokenExpiresAt.asKnown() == null) 0 else 1) +
             (status.asKnown()?.validity() ?: 0) +
+            (if (userId.asKnown() == null) 0 else 1) +
             (if (username.asKnown() == null) 0 else 1)
 
     /** Status of the account */
@@ -427,19 +661,38 @@ private constructor(
 
         return other is SocialAccountDisconnectResponse &&
             id == other.id &&
+            accessToken == other.accessToken &&
+            accessTokenExpiresAt == other.accessTokenExpiresAt &&
             externalId == other.externalId &&
+            metadata == other.metadata &&
             platform == other.platform &&
+            refreshToken == other.refreshToken &&
+            refreshTokenExpiresAt == other.refreshTokenExpiresAt &&
             status == other.status &&
+            userId == other.userId &&
             username == other.username &&
             additionalProperties == other.additionalProperties
     }
 
     private val hashCode: Int by lazy {
-        Objects.hash(id, externalId, platform, status, username, additionalProperties)
+        Objects.hash(
+            id,
+            accessToken,
+            accessTokenExpiresAt,
+            externalId,
+            metadata,
+            platform,
+            refreshToken,
+            refreshTokenExpiresAt,
+            status,
+            userId,
+            username,
+            additionalProperties,
+        )
     }
 
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "SocialAccountDisconnectResponse{id=$id, externalId=$externalId, platform=$platform, status=$status, username=$username, additionalProperties=$additionalProperties}"
+        "SocialAccountDisconnectResponse{id=$id, accessToken=$accessToken, accessTokenExpiresAt=$accessTokenExpiresAt, externalId=$externalId, metadata=$metadata, platform=$platform, refreshToken=$refreshToken, refreshTokenExpiresAt=$refreshTokenExpiresAt, status=$status, userId=$userId, username=$username, additionalProperties=$additionalProperties}"
 }

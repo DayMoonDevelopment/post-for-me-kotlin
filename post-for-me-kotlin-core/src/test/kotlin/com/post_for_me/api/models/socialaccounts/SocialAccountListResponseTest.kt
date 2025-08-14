@@ -3,7 +3,9 @@
 package com.post_for_me.api.models.socialaccounts
 
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import com.post_for_me.api.core.JsonValue
 import com.post_for_me.api.core.jsonMapper
+import java.time.OffsetDateTime
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -16,9 +18,15 @@ internal class SocialAccountListResponseTest {
                 .addData(
                     SocialAccount.builder()
                         .id("id")
+                        .accessToken("access_token")
+                        .accessTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                         .externalId("external_id")
+                        .metadata(JsonValue.from(mapOf<String, Any>()))
                         .platform("platform")
+                        .refreshToken("refresh_token")
+                        .refreshTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                         .status(SocialAccount.Status.CONNECTED)
+                        .userId("user_id")
                         .username("username")
                         .build()
                 )
@@ -36,9 +44,15 @@ internal class SocialAccountListResponseTest {
             .containsExactly(
                 SocialAccount.builder()
                     .id("id")
+                    .accessToken("access_token")
+                    .accessTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                     .externalId("external_id")
+                    .metadata(JsonValue.from(mapOf<String, Any>()))
                     .platform("platform")
+                    .refreshToken("refresh_token")
+                    .refreshTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                     .status(SocialAccount.Status.CONNECTED)
+                    .userId("user_id")
                     .username("username")
                     .build()
             )
@@ -61,9 +75,15 @@ internal class SocialAccountListResponseTest {
                 .addData(
                     SocialAccount.builder()
                         .id("id")
+                        .accessToken("access_token")
+                        .accessTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                         .externalId("external_id")
+                        .metadata(JsonValue.from(mapOf<String, Any>()))
                         .platform("platform")
+                        .refreshToken("refresh_token")
+                        .refreshTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                         .status(SocialAccount.Status.CONNECTED)
+                        .userId("user_id")
                         .username("username")
                         .build()
                 )
