@@ -24,6 +24,7 @@ private constructor(
     private val caption: JsonValue,
     private val discloseBrandedContent: JsonField<Boolean>,
     private val discloseYourBrand: JsonField<Boolean>,
+    private val isAiGenerated: JsonField<Boolean>,
     private val media: JsonField<List<String>>,
     private val privacyStatus: JsonField<String>,
     private val title: JsonField<String>,
@@ -48,6 +49,9 @@ private constructor(
         @JsonProperty("disclose_your_brand")
         @ExcludeMissing
         discloseYourBrand: JsonField<Boolean> = JsonMissing.of(),
+        @JsonProperty("is_ai_generated")
+        @ExcludeMissing
+        isAiGenerated: JsonField<Boolean> = JsonMissing.of(),
         @JsonProperty("media") @ExcludeMissing media: JsonField<List<String>> = JsonMissing.of(),
         @JsonProperty("privacy_status")
         @ExcludeMissing
@@ -60,6 +64,7 @@ private constructor(
         caption,
         discloseBrandedContent,
         discloseYourBrand,
+        isAiGenerated,
         media,
         privacyStatus,
         title,
@@ -109,6 +114,14 @@ private constructor(
      *   server responded with an unexpected value).
      */
     fun discloseYourBrand(): Boolean? = discloseYourBrand.getNullable("disclose_your_brand")
+
+    /**
+     * Flag content as AI generated on TikTok
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun isAiGenerated(): Boolean? = isAiGenerated.getNullable("is_ai_generated")
 
     /**
      * Overrides the `media` from the post
@@ -180,6 +193,15 @@ private constructor(
     fun _discloseYourBrand(): JsonField<Boolean> = discloseYourBrand
 
     /**
+     * Returns the raw JSON value of [isAiGenerated].
+     *
+     * Unlike [isAiGenerated], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("is_ai_generated")
+    @ExcludeMissing
+    fun _isAiGenerated(): JsonField<Boolean> = isAiGenerated
+
+    /**
      * Returns the raw JSON value of [media].
      *
      * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
@@ -229,6 +251,7 @@ private constructor(
         private var caption: JsonValue = JsonMissing.of()
         private var discloseBrandedContent: JsonField<Boolean> = JsonMissing.of()
         private var discloseYourBrand: JsonField<Boolean> = JsonMissing.of()
+        private var isAiGenerated: JsonField<Boolean> = JsonMissing.of()
         private var media: JsonField<MutableList<String>>? = null
         private var privacyStatus: JsonField<String> = JsonMissing.of()
         private var title: JsonField<String> = JsonMissing.of()
@@ -241,6 +264,7 @@ private constructor(
             caption = tiktokConfiguration.caption
             discloseBrandedContent = tiktokConfiguration.discloseBrandedContent
             discloseYourBrand = tiktokConfiguration.discloseYourBrand
+            isAiGenerated = tiktokConfiguration.isAiGenerated
             media = tiktokConfiguration.media.map { it.toMutableList() }
             privacyStatus = tiktokConfiguration.privacyStatus
             title = tiktokConfiguration.title
@@ -355,6 +379,28 @@ private constructor(
             this.discloseYourBrand = discloseYourBrand
         }
 
+        /** Flag content as AI generated on TikTok */
+        fun isAiGenerated(isAiGenerated: Boolean?) =
+            isAiGenerated(JsonField.ofNullable(isAiGenerated))
+
+        /**
+         * Alias for [Builder.isAiGenerated].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun isAiGenerated(isAiGenerated: Boolean) = isAiGenerated(isAiGenerated as Boolean?)
+
+        /**
+         * Sets [Builder.isAiGenerated] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.isAiGenerated] with a well-typed [Boolean] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun isAiGenerated(isAiGenerated: JsonField<Boolean>) = apply {
+            this.isAiGenerated = isAiGenerated
+        }
+
         /** Overrides the `media` from the post */
         fun media(media: List<String>?) = media(JsonField.ofNullable(media))
 
@@ -439,6 +485,7 @@ private constructor(
                 caption,
                 discloseBrandedContent,
                 discloseYourBrand,
+                isAiGenerated,
                 (media ?: JsonMissing.of()).map { it.toImmutable() },
                 privacyStatus,
                 title,
@@ -458,6 +505,7 @@ private constructor(
         allowStitch()
         discloseBrandedContent()
         discloseYourBrand()
+        isAiGenerated()
         media()
         privacyStatus()
         title()
@@ -483,6 +531,7 @@ private constructor(
             (if (allowStitch.asKnown() == null) 0 else 1) +
             (if (discloseBrandedContent.asKnown() == null) 0 else 1) +
             (if (discloseYourBrand.asKnown() == null) 0 else 1) +
+            (if (isAiGenerated.asKnown() == null) 0 else 1) +
             (media.asKnown()?.size ?: 0) +
             (if (privacyStatus.asKnown() == null) 0 else 1) +
             (if (title.asKnown() == null) 0 else 1)
@@ -499,6 +548,7 @@ private constructor(
             caption == other.caption &&
             discloseBrandedContent == other.discloseBrandedContent &&
             discloseYourBrand == other.discloseYourBrand &&
+            isAiGenerated == other.isAiGenerated &&
             media == other.media &&
             privacyStatus == other.privacyStatus &&
             title == other.title &&
@@ -513,6 +563,7 @@ private constructor(
             caption,
             discloseBrandedContent,
             discloseYourBrand,
+            isAiGenerated,
             media,
             privacyStatus,
             title,
@@ -523,5 +574,5 @@ private constructor(
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "TiktokConfiguration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, media=$media, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
+        "TiktokConfiguration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, media=$media, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
 }
