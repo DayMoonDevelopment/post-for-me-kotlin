@@ -2,8 +2,8 @@
 
 <!-- x-release-please-start-version -->
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.post_for_me.api/post-for-me-kotlin)](https://central.sonatype.com/artifact/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.2)
-[![javadoc](https://javadoc.io/badge2/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.2/javadoc.svg)](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.2)
+[![Maven Central](https://img.shields.io/maven-central/v/com.post_for_me.api/post-for-me-kotlin)](https://central.sonatype.com/artifact/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.3)
+[![javadoc](https://javadoc.io/badge2/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.3/javadoc.svg)](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.3)
 
 <!-- x-release-please-end -->
 
@@ -13,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 <!-- x-release-please-start-version -->
 
-The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.2).
+The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.3).
 
 <!-- x-release-please-end -->
 
@@ -24,7 +24,7 @@ The REST API documentation can be found on [api.postforme.dev](https://api.postf
 ### Gradle
 
 ```kotlin
-implementation("com.post_for_me.api:post-for-me-kotlin:0.1.0-alpha.2")
+implementation("com.post_for_me.api:post-for-me-kotlin:0.1.0-alpha.3")
 ```
 
 ### Maven
@@ -33,7 +33,7 @@ implementation("com.post_for_me.api:post-for-me-kotlin:0.1.0-alpha.2")
 <dependency>
   <groupId>com.post_for_me.api</groupId>
   <artifactId>post-for-me-kotlin</artifactId>
-  <version>0.1.0-alpha.2</version>
+  <version>0.1.0-alpha.3</version>
 </dependency>
 ```
 
