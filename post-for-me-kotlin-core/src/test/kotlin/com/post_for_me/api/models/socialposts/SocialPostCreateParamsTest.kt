@@ -28,11 +28,12 @@ internal class SocialPostCreateParamsTest {
                                     .discloseBrandedContent(true)
                                     .discloseYourBrand(true)
                                     .link("link")
-                                    .location(
-                                        CreateSocialPost.AccountConfiguration.Configuration.Location
+                                    .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.AccountConfiguration.Configuration
+                                            .Placement
                                             .REELS
                                     )
-                                    .addMedia("string")
                                     .privacyStatus("privacy_status")
                                     .title("title")
                                     .build()
@@ -61,12 +62,21 @@ internal class SocialPostCreateParamsTest {
                                 CreateSocialPost.PlatformConfigurations.Facebook.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
                                     .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.PlatformConfigurations.Facebook.Placement
+                                            .REELS
+                                    )
                                     .build()
                             )
                             .instagram(
                                 CreateSocialPost.PlatformConfigurations.Instagram.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addCollaborator("string")
                                     .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.PlatformConfigurations.Instagram.Placement
+                                            .REELS
+                                    )
                                     .build()
                             )
                             .linkedin(
@@ -86,11 +96,11 @@ internal class SocialPostCreateParamsTest {
                             .threads(
                                 CreateSocialPost.PlatformConfigurations.Threads.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
-                                    .location(
-                                        CreateSocialPost.PlatformConfigurations.Threads.Location
+                                    .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.PlatformConfigurations.Threads.Placement
                                             .REELS
                                     )
-                                    .addMedia("string")
                                     .build()
                             )
                             .tiktok(
@@ -162,12 +172,12 @@ internal class SocialPostCreateParamsTest {
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .link("link")
-                                        .location(
+                                        .addMedia("string")
+                                        .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
-                                                .Location
+                                                .Placement
                                                 .REELS
                                         )
-                                        .addMedia("string")
                                         .privacyStatus("privacy_status")
                                         .title("title")
                                         .build()
@@ -196,12 +206,23 @@ internal class SocialPostCreateParamsTest {
                                     CreateSocialPost.PlatformConfigurations.Facebook.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addMedia("string")
+                                        .placement(
+                                            CreateSocialPost.PlatformConfigurations.Facebook
+                                                .Placement
+                                                .REELS
+                                        )
                                         .build()
                                 )
                                 .instagram(
                                     CreateSocialPost.PlatformConfigurations.Instagram.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator("string")
                                         .addMedia("string")
+                                        .placement(
+                                            CreateSocialPost.PlatformConfigurations.Instagram
+                                                .Placement
+                                                .REELS
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -221,11 +242,12 @@ internal class SocialPostCreateParamsTest {
                                 .threads(
                                     CreateSocialPost.PlatformConfigurations.Threads.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
-                                        .location(
-                                            CreateSocialPost.PlatformConfigurations.Threads.Location
+                                        .addMedia("string")
+                                        .placement(
+                                            CreateSocialPost.PlatformConfigurations.Threads
+                                                .Placement
                                                 .REELS
                                         )
-                                        .addMedia("string")
                                         .build()
                                 )
                                 .tiktok(
@@ -295,11 +317,12 @@ internal class SocialPostCreateParamsTest {
                                     .discloseBrandedContent(true)
                                     .discloseYourBrand(true)
                                     .link("link")
-                                    .location(
-                                        CreateSocialPost.AccountConfiguration.Configuration.Location
+                                    .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.AccountConfiguration.Configuration
+                                            .Placement
                                             .REELS
                                     )
-                                    .addMedia("string")
                                     .privacyStatus("privacy_status")
                                     .title("title")
                                     .build()
@@ -328,12 +351,21 @@ internal class SocialPostCreateParamsTest {
                                 CreateSocialPost.PlatformConfigurations.Facebook.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
                                     .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.PlatformConfigurations.Facebook.Placement
+                                            .REELS
+                                    )
                                     .build()
                             )
                             .instagram(
                                 CreateSocialPost.PlatformConfigurations.Instagram.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addCollaborator("string")
                                     .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.PlatformConfigurations.Instagram.Placement
+                                            .REELS
+                                    )
                                     .build()
                             )
                             .linkedin(
@@ -353,11 +385,11 @@ internal class SocialPostCreateParamsTest {
                             .threads(
                                 CreateSocialPost.PlatformConfigurations.Threads.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
-                                    .location(
-                                        CreateSocialPost.PlatformConfigurations.Threads.Location
+                                    .addMedia("string")
+                                    .placement(
+                                        CreateSocialPost.PlatformConfigurations.Threads.Placement
                                             .REELS
                                     )
-                                    .addMedia("string")
                                     .build()
                             )
                             .tiktok(
