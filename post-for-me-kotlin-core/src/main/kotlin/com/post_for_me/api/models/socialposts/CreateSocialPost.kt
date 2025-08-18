@@ -693,8 +693,8 @@ private constructor(
             private val discloseBrandedContent: JsonField<Boolean>,
             private val discloseYourBrand: JsonField<Boolean>,
             private val link: JsonField<String>,
-            private val location: JsonField<Location>,
             private val media: JsonField<List<String>>,
+            private val placement: JsonField<Placement>,
             private val privacyStatus: JsonField<String>,
             private val title: JsonField<String>,
             private val additionalProperties: MutableMap<String, JsonValue>,
@@ -722,12 +722,12 @@ private constructor(
                 @ExcludeMissing
                 discloseYourBrand: JsonField<Boolean> = JsonMissing.of(),
                 @JsonProperty("link") @ExcludeMissing link: JsonField<String> = JsonMissing.of(),
-                @JsonProperty("location")
-                @ExcludeMissing
-                location: JsonField<Location> = JsonMissing.of(),
                 @JsonProperty("media")
                 @ExcludeMissing
                 media: JsonField<List<String>> = JsonMissing.of(),
+                @JsonProperty("placement")
+                @ExcludeMissing
+                placement: JsonField<Placement> = JsonMissing.of(),
                 @JsonProperty("privacy_status")
                 @ExcludeMissing
                 privacyStatus: JsonField<String> = JsonMissing.of(),
@@ -741,8 +741,8 @@ private constructor(
                 discloseBrandedContent,
                 discloseYourBrand,
                 link,
-                location,
                 media,
+                placement,
                 privacyStatus,
                 title,
                 mutableMapOf(),
@@ -809,20 +809,20 @@ private constructor(
             fun link(): String? = link.getNullable("link")
 
             /**
-             * Threads post location
-             *
-             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
-             *   if the server responded with an unexpected value).
-             */
-            fun location(): Location? = location.getNullable("location")
-
-            /**
              * Overrides the `media` from the post
              *
              * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
              *   if the server responded with an unexpected value).
              */
             fun media(): List<String>? = media.getNullable("media")
+
+            /**
+             * Post placement for Facebook/Instagram/Threads
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun placement(): Placement? = placement.getNullable("placement")
 
             /**
              * Sets the privacy status for TikTok (private, public)
@@ -908,21 +908,21 @@ private constructor(
             @JsonProperty("link") @ExcludeMissing fun _link(): JsonField<String> = link
 
             /**
-             * Returns the raw JSON value of [location].
-             *
-             * Unlike [location], this method doesn't throw if the JSON field has an unexpected
-             * type.
-             */
-            @JsonProperty("location")
-            @ExcludeMissing
-            fun _location(): JsonField<Location> = location
-
-            /**
              * Returns the raw JSON value of [media].
              *
              * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
              */
             @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<String>> = media
+
+            /**
+             * Returns the raw JSON value of [placement].
+             *
+             * Unlike [placement], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("placement")
+            @ExcludeMissing
+            fun _placement(): JsonField<Placement> = placement
 
             /**
              * Returns the raw JSON value of [privacyStatus].
@@ -970,8 +970,8 @@ private constructor(
                 private var discloseBrandedContent: JsonField<Boolean> = JsonMissing.of()
                 private var discloseYourBrand: JsonField<Boolean> = JsonMissing.of()
                 private var link: JsonField<String> = JsonMissing.of()
-                private var location: JsonField<Location> = JsonMissing.of()
                 private var media: JsonField<MutableList<String>>? = null
+                private var placement: JsonField<Placement> = JsonMissing.of()
                 private var privacyStatus: JsonField<String> = JsonMissing.of()
                 private var title: JsonField<String> = JsonMissing.of()
                 private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
@@ -985,8 +985,8 @@ private constructor(
                     discloseBrandedContent = configuration.discloseBrandedContent
                     discloseYourBrand = configuration.discloseYourBrand
                     link = configuration.link
-                    location = configuration.location
                     media = configuration.media.map { it.toMutableList() }
+                    placement = configuration.placement
                     privacyStatus = configuration.privacyStatus
                     title = configuration.title
                     additionalProperties = configuration.additionalProperties.toMutableMap()
@@ -1142,18 +1142,6 @@ private constructor(
                  */
                 fun link(link: JsonField<String>) = apply { this.link = link }
 
-                /** Threads post location */
-                fun location(location: Location?) = location(JsonField.ofNullable(location))
-
-                /**
-                 * Sets [Builder.location] to an arbitrary JSON value.
-                 *
-                 * You should usually call [Builder.location] with a well-typed [Location] value
-                 * instead. This method is primarily for setting the field to an undocumented or not
-                 * yet supported value.
-                 */
-                fun location(location: JsonField<Location>) = apply { this.location = location }
-
                 /** Overrides the `media` from the post */
                 fun media(media: List<String>?) = media(JsonField.ofNullable(media))
 
@@ -1178,6 +1166,20 @@ private constructor(
                         (this.media ?: JsonField.of(mutableListOf())).also {
                             checkKnown("media", it).add(media)
                         }
+                }
+
+                /** Post placement for Facebook/Instagram/Threads */
+                fun placement(placement: Placement?) = placement(JsonField.ofNullable(placement))
+
+                /**
+                 * Sets [Builder.placement] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.placement] with a well-typed [Placement] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun placement(placement: JsonField<Placement>) = apply {
+                    this.placement = placement
                 }
 
                 /** Sets the privacy status for TikTok (private, public) */
@@ -1244,8 +1246,8 @@ private constructor(
                         discloseBrandedContent,
                         discloseYourBrand,
                         link,
-                        location,
                         (media ?: JsonMissing.of()).map { it.toImmutable() },
+                        placement,
                         privacyStatus,
                         title,
                         additionalProperties.toMutableMap(),
@@ -1266,8 +1268,8 @@ private constructor(
                 discloseBrandedContent()
                 discloseYourBrand()
                 link()
-                location()?.validate()
                 media()
+                placement()?.validate()
                 privacyStatus()
                 title()
                 validated = true
@@ -1295,13 +1297,13 @@ private constructor(
                     (if (discloseBrandedContent.asKnown() == null) 0 else 1) +
                     (if (discloseYourBrand.asKnown() == null) 0 else 1) +
                     (if (link.asKnown() == null) 0 else 1) +
-                    (location.asKnown()?.validity() ?: 0) +
                     (media.asKnown()?.size ?: 0) +
+                    (placement.asKnown()?.validity() ?: 0) +
                     (if (privacyStatus.asKnown() == null) 0 else 1) +
                     (if (title.asKnown() == null) 0 else 1)
 
-            /** Threads post location */
-            class Location @JsonCreator private constructor(private val value: JsonField<String>) :
+            /** Post placement for Facebook/Instagram/Threads */
+            class Placement @JsonCreator private constructor(private val value: JsonField<String>) :
                 Enum {
 
                 /**
@@ -1320,19 +1322,22 @@ private constructor(
 
                     val TIMELINE = of("timeline")
 
-                    fun of(value: String) = Location(JsonField.of(value))
+                    val STORIES = of("stories")
+
+                    fun of(value: String) = Placement(JsonField.of(value))
                 }
 
-                /** An enum containing [Location]'s known values. */
+                /** An enum containing [Placement]'s known values. */
                 enum class Known {
                     REELS,
                     TIMELINE,
+                    STORIES,
                 }
 
                 /**
-                 * An enum containing [Location]'s known values, as well as an [_UNKNOWN] member.
+                 * An enum containing [Placement]'s known values, as well as an [_UNKNOWN] member.
                  *
-                 * An instance of [Location] can contain an unknown value in a couple of cases:
+                 * An instance of [Placement] can contain an unknown value in a couple of cases:
                  * - It was deserialized from data that doesn't match any known member. For example,
                  *   if the SDK is on an older version than the API, then the API may respond with
                  *   new members that the SDK is unaware of.
@@ -1341,8 +1346,9 @@ private constructor(
                 enum class Value {
                     REELS,
                     TIMELINE,
+                    STORIES,
                     /**
-                     * An enum member indicating that [Location] was instantiated with an unknown
+                     * An enum member indicating that [Placement] was instantiated with an unknown
                      * value.
                      */
                     _UNKNOWN,
@@ -1359,6 +1365,7 @@ private constructor(
                     when (this) {
                         REELS -> Value.REELS
                         TIMELINE -> Value.TIMELINE
+                        STORIES -> Value.STORIES
                         else -> Value._UNKNOWN
                     }
 
@@ -1375,7 +1382,8 @@ private constructor(
                     when (this) {
                         REELS -> Known.REELS
                         TIMELINE -> Known.TIMELINE
-                        else -> throw PostForMeInvalidDataException("Unknown Location: $value")
+                        STORIES -> Known.STORIES
+                        else -> throw PostForMeInvalidDataException("Unknown Placement: $value")
                     }
 
                 /**
@@ -1393,7 +1401,7 @@ private constructor(
 
                 private var validated: Boolean = false
 
-                fun validate(): Location = apply {
+                fun validate(): Placement = apply {
                     if (validated) {
                         return@apply
                     }
@@ -1423,7 +1431,7 @@ private constructor(
                         return true
                     }
 
-                    return other is Location && value == other.value
+                    return other is Placement && value == other.value
                 }
 
                 override fun hashCode() = value.hashCode()
@@ -1445,8 +1453,8 @@ private constructor(
                     discloseBrandedContent == other.discloseBrandedContent &&
                     discloseYourBrand == other.discloseYourBrand &&
                     link == other.link &&
-                    location == other.location &&
                     media == other.media &&
+                    placement == other.placement &&
                     privacyStatus == other.privacyStatus &&
                     title == other.title &&
                     additionalProperties == other.additionalProperties
@@ -1462,8 +1470,8 @@ private constructor(
                     discloseBrandedContent,
                     discloseYourBrand,
                     link,
-                    location,
                     media,
+                    placement,
                     privacyStatus,
                     title,
                     additionalProperties,
@@ -1473,7 +1481,7 @@ private constructor(
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, link=$link, location=$location, media=$media, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, link=$link, media=$media, placement=$placement, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
         }
 
         override fun equals(other: Any?): Boolean {
@@ -2338,6 +2346,7 @@ private constructor(
         private constructor(
             private val caption: JsonValue,
             private val media: JsonField<List<String>>,
+            private val placement: JsonField<Placement>,
             private val additionalProperties: MutableMap<String, JsonValue>,
         ) {
 
@@ -2347,7 +2356,10 @@ private constructor(
                 @JsonProperty("media")
                 @ExcludeMissing
                 media: JsonField<List<String>> = JsonMissing.of(),
-            ) : this(caption, media, mutableMapOf())
+                @JsonProperty("placement")
+                @ExcludeMissing
+                placement: JsonField<Placement> = JsonMissing.of(),
+            ) : this(caption, media, placement, mutableMapOf())
 
             /** Overrides the `caption` from the post */
             @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
@@ -2361,11 +2373,29 @@ private constructor(
             fun media(): List<String>? = media.getNullable("media")
 
             /**
+             * Facebook post placement
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun placement(): Placement? = placement.getNullable("placement")
+
+            /**
              * Returns the raw JSON value of [media].
              *
              * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
              */
             @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<String>> = media
+
+            /**
+             * Returns the raw JSON value of [placement].
+             *
+             * Unlike [placement], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("placement")
+            @ExcludeMissing
+            fun _placement(): JsonField<Placement> = placement
 
             @JsonAnySetter
             private fun putAdditionalProperty(key: String, value: JsonValue) {
@@ -2390,11 +2420,13 @@ private constructor(
 
                 private var caption: JsonValue = JsonMissing.of()
                 private var media: JsonField<MutableList<String>>? = null
+                private var placement: JsonField<Placement> = JsonMissing.of()
                 private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
                 internal fun from(facebook: Facebook) = apply {
                     caption = facebook.caption
                     media = facebook.media.map { it.toMutableList() }
+                    placement = facebook.placement
                     additionalProperties = facebook.additionalProperties.toMutableMap()
                 }
 
@@ -2425,6 +2457,20 @@ private constructor(
                         (this.media ?: JsonField.of(mutableListOf())).also {
                             checkKnown("media", it).add(media)
                         }
+                }
+
+                /** Facebook post placement */
+                fun placement(placement: Placement?) = placement(JsonField.ofNullable(placement))
+
+                /**
+                 * Sets [Builder.placement] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.placement] with a well-typed [Placement] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun placement(placement: JsonField<Placement>) = apply {
+                    this.placement = placement
                 }
 
                 fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
@@ -2458,6 +2504,7 @@ private constructor(
                     Facebook(
                         caption,
                         (media ?: JsonMissing.of()).map { it.toImmutable() },
+                        placement,
                         additionalProperties.toMutableMap(),
                     )
             }
@@ -2470,6 +2517,7 @@ private constructor(
                 }
 
                 media()
+                placement()?.validate()
                 validated = true
             }
 
@@ -2487,7 +2535,145 @@ private constructor(
              *
              * Used for best match union deserialization.
              */
-            internal fun validity(): Int = (media.asKnown()?.size ?: 0)
+            internal fun validity(): Int =
+                (media.asKnown()?.size ?: 0) + (placement.asKnown()?.validity() ?: 0)
+
+            /** Facebook post placement */
+            class Placement @JsonCreator private constructor(private val value: JsonField<String>) :
+                Enum {
+
+                /**
+                 * Returns this class instance's raw value.
+                 *
+                 * This is usually only useful if this instance was deserialized from data that
+                 * doesn't match any known member, and you want to know that value. For example, if
+                 * the SDK is on an older version than the API, then the API may respond with new
+                 * members that the SDK is unaware of.
+                 */
+                @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+                companion object {
+
+                    val REELS = of("reels")
+
+                    val STORIES = of("stories")
+
+                    val TIMELINE = of("timeline")
+
+                    fun of(value: String) = Placement(JsonField.of(value))
+                }
+
+                /** An enum containing [Placement]'s known values. */
+                enum class Known {
+                    REELS,
+                    STORIES,
+                    TIMELINE,
+                }
+
+                /**
+                 * An enum containing [Placement]'s known values, as well as an [_UNKNOWN] member.
+                 *
+                 * An instance of [Placement] can contain an unknown value in a couple of cases:
+                 * - It was deserialized from data that doesn't match any known member. For example,
+                 *   if the SDK is on an older version than the API, then the API may respond with
+                 *   new members that the SDK is unaware of.
+                 * - It was constructed with an arbitrary value using the [of] method.
+                 */
+                enum class Value {
+                    REELS,
+                    STORIES,
+                    TIMELINE,
+                    /**
+                     * An enum member indicating that [Placement] was instantiated with an unknown
+                     * value.
+                     */
+                    _UNKNOWN,
+                }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value, or
+                 * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+                 *
+                 * Use the [known] method instead if you're certain the value is always known or if
+                 * you want to throw for the unknown case.
+                 */
+                fun value(): Value =
+                    when (this) {
+                        REELS -> Value.REELS
+                        STORIES -> Value.STORIES
+                        TIMELINE -> Value.TIMELINE
+                        else -> Value._UNKNOWN
+                    }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value.
+                 *
+                 * Use the [value] method instead if you're uncertain the value is always known and
+                 * don't want to throw for the unknown case.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value is a not a
+                 *   known member.
+                 */
+                fun known(): Known =
+                    when (this) {
+                        REELS -> Known.REELS
+                        STORIES -> Known.STORIES
+                        TIMELINE -> Known.TIMELINE
+                        else -> throw PostForMeInvalidDataException("Unknown Placement: $value")
+                    }
+
+                /**
+                 * Returns this class instance's primitive wire representation.
+                 *
+                 * This differs from the [toString] method because that method is primarily for
+                 * debugging and generally doesn't throw.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value does not
+                 *   have the expected primitive type.
+                 */
+                fun asString(): String =
+                    _value().asString()
+                        ?: throw PostForMeInvalidDataException("Value is not a String")
+
+                private var validated: Boolean = false
+
+                fun validate(): Placement = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    known()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is Placement && value == other.value
+                }
+
+                override fun hashCode() = value.hashCode()
+
+                override fun toString() = value.toString()
+            }
 
             override fun equals(other: Any?): Boolean {
                 if (this === other) {
@@ -2497,35 +2683,54 @@ private constructor(
                 return other is Facebook &&
                     caption == other.caption &&
                     media == other.media &&
+                    placement == other.placement &&
                     additionalProperties == other.additionalProperties
             }
 
-            private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
+            private val hashCode: Int by lazy {
+                Objects.hash(caption, media, placement, additionalProperties)
+            }
 
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Facebook{caption=$caption, media=$media, additionalProperties=$additionalProperties}"
+                "Facebook{caption=$caption, media=$media, placement=$placement, additionalProperties=$additionalProperties}"
         }
 
         /** Instagram configuration */
         class Instagram
         private constructor(
             private val caption: JsonValue,
+            private val collaborators: JsonField<List<String>>,
             private val media: JsonField<List<String>>,
+            private val placement: JsonField<Placement>,
             private val additionalProperties: MutableMap<String, JsonValue>,
         ) {
 
             @JsonCreator
             private constructor(
                 @JsonProperty("caption") @ExcludeMissing caption: JsonValue = JsonMissing.of(),
+                @JsonProperty("collaborators")
+                @ExcludeMissing
+                collaborators: JsonField<List<String>> = JsonMissing.of(),
                 @JsonProperty("media")
                 @ExcludeMissing
                 media: JsonField<List<String>> = JsonMissing.of(),
-            ) : this(caption, media, mutableMapOf())
+                @JsonProperty("placement")
+                @ExcludeMissing
+                placement: JsonField<Placement> = JsonMissing.of(),
+            ) : this(caption, collaborators, media, placement, mutableMapOf())
 
             /** Overrides the `caption` from the post */
             @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
+
+            /**
+             * Instagram usernames to be tagged as a collaborator
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun collaborators(): List<String>? = collaborators.getNullable("collaborators")
 
             /**
              * Overrides the `media` from the post
@@ -2536,11 +2741,39 @@ private constructor(
             fun media(): List<String>? = media.getNullable("media")
 
             /**
+             * Instagram post placement
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun placement(): Placement? = placement.getNullable("placement")
+
+            /**
+             * Returns the raw JSON value of [collaborators].
+             *
+             * Unlike [collaborators], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("collaborators")
+            @ExcludeMissing
+            fun _collaborators(): JsonField<List<String>> = collaborators
+
+            /**
              * Returns the raw JSON value of [media].
              *
              * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
              */
             @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<String>> = media
+
+            /**
+             * Returns the raw JSON value of [placement].
+             *
+             * Unlike [placement], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("placement")
+            @ExcludeMissing
+            fun _placement(): JsonField<Placement> = placement
 
             @JsonAnySetter
             private fun putAdditionalProperty(key: String, value: JsonValue) {
@@ -2564,17 +2797,48 @@ private constructor(
             class Builder internal constructor() {
 
                 private var caption: JsonValue = JsonMissing.of()
+                private var collaborators: JsonField<MutableList<String>>? = null
                 private var media: JsonField<MutableList<String>>? = null
+                private var placement: JsonField<Placement> = JsonMissing.of()
                 private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
                 internal fun from(instagram: Instagram) = apply {
                     caption = instagram.caption
+                    collaborators = instagram.collaborators.map { it.toMutableList() }
                     media = instagram.media.map { it.toMutableList() }
+                    placement = instagram.placement
                     additionalProperties = instagram.additionalProperties.toMutableMap()
                 }
 
                 /** Overrides the `caption` from the post */
                 fun caption(caption: JsonValue) = apply { this.caption = caption }
+
+                /** Instagram usernames to be tagged as a collaborator */
+                fun collaborators(collaborators: List<String>?) =
+                    collaborators(JsonField.ofNullable(collaborators))
+
+                /**
+                 * Sets [Builder.collaborators] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.collaborators] with a well-typed `List<String>`
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun collaborators(collaborators: JsonField<List<String>>) = apply {
+                    this.collaborators = collaborators.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [String] to [collaborators].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addCollaborator(collaborator: String) = apply {
+                    collaborators =
+                        (collaborators ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("collaborators", it).add(collaborator)
+                        }
+                }
 
                 /** Overrides the `media` from the post */
                 fun media(media: List<String>?) = media(JsonField.ofNullable(media))
@@ -2600,6 +2864,20 @@ private constructor(
                         (this.media ?: JsonField.of(mutableListOf())).also {
                             checkKnown("media", it).add(media)
                         }
+                }
+
+                /** Instagram post placement */
+                fun placement(placement: Placement?) = placement(JsonField.ofNullable(placement))
+
+                /**
+                 * Sets [Builder.placement] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.placement] with a well-typed [Placement] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun placement(placement: JsonField<Placement>) = apply {
+                    this.placement = placement
                 }
 
                 fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
@@ -2632,7 +2910,9 @@ private constructor(
                 fun build(): Instagram =
                     Instagram(
                         caption,
+                        (collaborators ?: JsonMissing.of()).map { it.toImmutable() },
                         (media ?: JsonMissing.of()).map { it.toImmutable() },
+                        placement,
                         additionalProperties.toMutableMap(),
                     )
             }
@@ -2644,7 +2924,9 @@ private constructor(
                     return@apply
                 }
 
+                collaborators()
                 media()
+                placement()?.validate()
                 validated = true
             }
 
@@ -2662,7 +2944,147 @@ private constructor(
              *
              * Used for best match union deserialization.
              */
-            internal fun validity(): Int = (media.asKnown()?.size ?: 0)
+            internal fun validity(): Int =
+                (collaborators.asKnown()?.size ?: 0) +
+                    (media.asKnown()?.size ?: 0) +
+                    (placement.asKnown()?.validity() ?: 0)
+
+            /** Instagram post placement */
+            class Placement @JsonCreator private constructor(private val value: JsonField<String>) :
+                Enum {
+
+                /**
+                 * Returns this class instance's raw value.
+                 *
+                 * This is usually only useful if this instance was deserialized from data that
+                 * doesn't match any known member, and you want to know that value. For example, if
+                 * the SDK is on an older version than the API, then the API may respond with new
+                 * members that the SDK is unaware of.
+                 */
+                @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+                companion object {
+
+                    val REELS = of("reels")
+
+                    val STORIES = of("stories")
+
+                    val TIMELINE = of("timeline")
+
+                    fun of(value: String) = Placement(JsonField.of(value))
+                }
+
+                /** An enum containing [Placement]'s known values. */
+                enum class Known {
+                    REELS,
+                    STORIES,
+                    TIMELINE,
+                }
+
+                /**
+                 * An enum containing [Placement]'s known values, as well as an [_UNKNOWN] member.
+                 *
+                 * An instance of [Placement] can contain an unknown value in a couple of cases:
+                 * - It was deserialized from data that doesn't match any known member. For example,
+                 *   if the SDK is on an older version than the API, then the API may respond with
+                 *   new members that the SDK is unaware of.
+                 * - It was constructed with an arbitrary value using the [of] method.
+                 */
+                enum class Value {
+                    REELS,
+                    STORIES,
+                    TIMELINE,
+                    /**
+                     * An enum member indicating that [Placement] was instantiated with an unknown
+                     * value.
+                     */
+                    _UNKNOWN,
+                }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value, or
+                 * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+                 *
+                 * Use the [known] method instead if you're certain the value is always known or if
+                 * you want to throw for the unknown case.
+                 */
+                fun value(): Value =
+                    when (this) {
+                        REELS -> Value.REELS
+                        STORIES -> Value.STORIES
+                        TIMELINE -> Value.TIMELINE
+                        else -> Value._UNKNOWN
+                    }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value.
+                 *
+                 * Use the [value] method instead if you're uncertain the value is always known and
+                 * don't want to throw for the unknown case.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value is a not a
+                 *   known member.
+                 */
+                fun known(): Known =
+                    when (this) {
+                        REELS -> Known.REELS
+                        STORIES -> Known.STORIES
+                        TIMELINE -> Known.TIMELINE
+                        else -> throw PostForMeInvalidDataException("Unknown Placement: $value")
+                    }
+
+                /**
+                 * Returns this class instance's primitive wire representation.
+                 *
+                 * This differs from the [toString] method because that method is primarily for
+                 * debugging and generally doesn't throw.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value does not
+                 *   have the expected primitive type.
+                 */
+                fun asString(): String =
+                    _value().asString()
+                        ?: throw PostForMeInvalidDataException("Value is not a String")
+
+                private var validated: Boolean = false
+
+                fun validate(): Placement = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    known()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is Placement && value == other.value
+                }
+
+                override fun hashCode() = value.hashCode()
+
+                override fun toString() = value.toString()
+            }
 
             override fun equals(other: Any?): Boolean {
                 if (this === other) {
@@ -2671,16 +3093,20 @@ private constructor(
 
                 return other is Instagram &&
                     caption == other.caption &&
+                    collaborators == other.collaborators &&
                     media == other.media &&
+                    placement == other.placement &&
                     additionalProperties == other.additionalProperties
             }
 
-            private val hashCode: Int by lazy { Objects.hash(caption, media, additionalProperties) }
+            private val hashCode: Int by lazy {
+                Objects.hash(caption, collaborators, media, placement, additionalProperties)
+            }
 
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Instagram{caption=$caption, media=$media, additionalProperties=$additionalProperties}"
+                "Instagram{caption=$caption, collaborators=$collaborators, media=$media, placement=$placement, additionalProperties=$additionalProperties}"
         }
 
         /** LinkedIn configuration */
@@ -3129,32 +3555,24 @@ private constructor(
         class Threads
         private constructor(
             private val caption: JsonValue,
-            private val location: JsonField<Location>,
             private val media: JsonField<List<String>>,
+            private val placement: JsonField<Placement>,
             private val additionalProperties: MutableMap<String, JsonValue>,
         ) {
 
             @JsonCreator
             private constructor(
                 @JsonProperty("caption") @ExcludeMissing caption: JsonValue = JsonMissing.of(),
-                @JsonProperty("location")
-                @ExcludeMissing
-                location: JsonField<Location> = JsonMissing.of(),
                 @JsonProperty("media")
                 @ExcludeMissing
                 media: JsonField<List<String>> = JsonMissing.of(),
-            ) : this(caption, location, media, mutableMapOf())
+                @JsonProperty("placement")
+                @ExcludeMissing
+                placement: JsonField<Placement> = JsonMissing.of(),
+            ) : this(caption, media, placement, mutableMapOf())
 
             /** Overrides the `caption` from the post */
             @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
-
-            /**
-             * Threads post location
-             *
-             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
-             *   if the server responded with an unexpected value).
-             */
-            fun location(): Location? = location.getNullable("location")
 
             /**
              * Overrides the `media` from the post
@@ -3165,14 +3583,12 @@ private constructor(
             fun media(): List<String>? = media.getNullable("media")
 
             /**
-             * Returns the raw JSON value of [location].
+             * Threads post placement
              *
-             * Unlike [location], this method doesn't throw if the JSON field has an unexpected
-             * type.
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
              */
-            @JsonProperty("location")
-            @ExcludeMissing
-            fun _location(): JsonField<Location> = location
+            fun placement(): Placement? = placement.getNullable("placement")
 
             /**
              * Returns the raw JSON value of [media].
@@ -3180,6 +3596,16 @@ private constructor(
              * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
              */
             @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<String>> = media
+
+            /**
+             * Returns the raw JSON value of [placement].
+             *
+             * Unlike [placement], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("placement")
+            @ExcludeMissing
+            fun _placement(): JsonField<Placement> = placement
 
             @JsonAnySetter
             private fun putAdditionalProperty(key: String, value: JsonValue) {
@@ -3203,31 +3629,19 @@ private constructor(
             class Builder internal constructor() {
 
                 private var caption: JsonValue = JsonMissing.of()
-                private var location: JsonField<Location> = JsonMissing.of()
                 private var media: JsonField<MutableList<String>>? = null
+                private var placement: JsonField<Placement> = JsonMissing.of()
                 private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
                 internal fun from(threads: Threads) = apply {
                     caption = threads.caption
-                    location = threads.location
                     media = threads.media.map { it.toMutableList() }
+                    placement = threads.placement
                     additionalProperties = threads.additionalProperties.toMutableMap()
                 }
 
                 /** Overrides the `caption` from the post */
                 fun caption(caption: JsonValue) = apply { this.caption = caption }
-
-                /** Threads post location */
-                fun location(location: Location?) = location(JsonField.ofNullable(location))
-
-                /**
-                 * Sets [Builder.location] to an arbitrary JSON value.
-                 *
-                 * You should usually call [Builder.location] with a well-typed [Location] value
-                 * instead. This method is primarily for setting the field to an undocumented or not
-                 * yet supported value.
-                 */
-                fun location(location: JsonField<Location>) = apply { this.location = location }
 
                 /** Overrides the `media` from the post */
                 fun media(media: List<String>?) = media(JsonField.ofNullable(media))
@@ -3253,6 +3667,20 @@ private constructor(
                         (this.media ?: JsonField.of(mutableListOf())).also {
                             checkKnown("media", it).add(media)
                         }
+                }
+
+                /** Threads post placement */
+                fun placement(placement: Placement?) = placement(JsonField.ofNullable(placement))
+
+                /**
+                 * Sets [Builder.placement] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.placement] with a well-typed [Placement] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun placement(placement: JsonField<Placement>) = apply {
+                    this.placement = placement
                 }
 
                 fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
@@ -3285,8 +3713,8 @@ private constructor(
                 fun build(): Threads =
                     Threads(
                         caption,
-                        location,
                         (media ?: JsonMissing.of()).map { it.toImmutable() },
+                        placement,
                         additionalProperties.toMutableMap(),
                     )
             }
@@ -3298,8 +3726,8 @@ private constructor(
                     return@apply
                 }
 
-                location()?.validate()
                 media()
+                placement()?.validate()
                 validated = true
             }
 
@@ -3318,10 +3746,10 @@ private constructor(
              * Used for best match union deserialization.
              */
             internal fun validity(): Int =
-                (location.asKnown()?.validity() ?: 0) + (media.asKnown()?.size ?: 0)
+                (media.asKnown()?.size ?: 0) + (placement.asKnown()?.validity() ?: 0)
 
-            /** Threads post location */
-            class Location @JsonCreator private constructor(private val value: JsonField<String>) :
+            /** Threads post placement */
+            class Placement @JsonCreator private constructor(private val value: JsonField<String>) :
                 Enum {
 
                 /**
@@ -3340,19 +3768,19 @@ private constructor(
 
                     val TIMELINE = of("timeline")
 
-                    fun of(value: String) = Location(JsonField.of(value))
+                    fun of(value: String) = Placement(JsonField.of(value))
                 }
 
-                /** An enum containing [Location]'s known values. */
+                /** An enum containing [Placement]'s known values. */
                 enum class Known {
                     REELS,
                     TIMELINE,
                 }
 
                 /**
-                 * An enum containing [Location]'s known values, as well as an [_UNKNOWN] member.
+                 * An enum containing [Placement]'s known values, as well as an [_UNKNOWN] member.
                  *
-                 * An instance of [Location] can contain an unknown value in a couple of cases:
+                 * An instance of [Placement] can contain an unknown value in a couple of cases:
                  * - It was deserialized from data that doesn't match any known member. For example,
                  *   if the SDK is on an older version than the API, then the API may respond with
                  *   new members that the SDK is unaware of.
@@ -3362,7 +3790,7 @@ private constructor(
                     REELS,
                     TIMELINE,
                     /**
-                     * An enum member indicating that [Location] was instantiated with an unknown
+                     * An enum member indicating that [Placement] was instantiated with an unknown
                      * value.
                      */
                     _UNKNOWN,
@@ -3395,7 +3823,7 @@ private constructor(
                     when (this) {
                         REELS -> Known.REELS
                         TIMELINE -> Known.TIMELINE
-                        else -> throw PostForMeInvalidDataException("Unknown Location: $value")
+                        else -> throw PostForMeInvalidDataException("Unknown Placement: $value")
                     }
 
                 /**
@@ -3413,7 +3841,7 @@ private constructor(
 
                 private var validated: Boolean = false
 
-                fun validate(): Location = apply {
+                fun validate(): Placement = apply {
                     if (validated) {
                         return@apply
                     }
@@ -3443,7 +3871,7 @@ private constructor(
                         return true
                     }
 
-                    return other is Location && value == other.value
+                    return other is Placement && value == other.value
                 }
 
                 override fun hashCode() = value.hashCode()
@@ -3458,19 +3886,19 @@ private constructor(
 
                 return other is Threads &&
                     caption == other.caption &&
-                    location == other.location &&
                     media == other.media &&
+                    placement == other.placement &&
                     additionalProperties == other.additionalProperties
             }
 
             private val hashCode: Int by lazy {
-                Objects.hash(caption, location, media, additionalProperties)
+                Objects.hash(caption, media, placement, additionalProperties)
             }
 
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Threads{caption=$caption, location=$location, media=$media, additionalProperties=$additionalProperties}"
+                "Threads{caption=$caption, media=$media, placement=$placement, additionalProperties=$additionalProperties}"
         }
 
         /** Twitter configuration */
