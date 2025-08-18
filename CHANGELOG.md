@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-08-18)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** api update ([ce27aaf](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/ce27aafdddf4ab8c11bea21e291f412678ea2e2d))
+* **api:** api update ([f2ed346](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/f2ed346e3607cdcf6c36c33883912eb504dfd1ac))
+* **api:** api update ([b36cb72](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/b36cb7260d4dde4d71ea5098f42abf82bb622339))
+
+
+### Chores
+
+* **ci:** add build job ([e383308](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/e3833086642763b9701e9887a917931039282f99))
+
 ## 0.1.0-alpha.2 (2025-08-14)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
