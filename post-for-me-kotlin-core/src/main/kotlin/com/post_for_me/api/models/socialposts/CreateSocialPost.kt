@@ -692,6 +692,8 @@ private constructor(
             private val caption: JsonValue,
             private val discloseBrandedContent: JsonField<Boolean>,
             private val discloseYourBrand: JsonField<Boolean>,
+            private val isAiGenerated: JsonField<Boolean>,
+            private val isDraft: JsonField<Boolean>,
             private val link: JsonField<String>,
             private val media: JsonField<List<String>>,
             private val placement: JsonField<Placement>,
@@ -721,6 +723,12 @@ private constructor(
                 @JsonProperty("disclose_your_brand")
                 @ExcludeMissing
                 discloseYourBrand: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("is_ai_generated")
+                @ExcludeMissing
+                isAiGenerated: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("is_draft")
+                @ExcludeMissing
+                isDraft: JsonField<Boolean> = JsonMissing.of(),
                 @JsonProperty("link") @ExcludeMissing link: JsonField<String> = JsonMissing.of(),
                 @JsonProperty("media")
                 @ExcludeMissing
@@ -740,6 +748,8 @@ private constructor(
                 caption,
                 discloseBrandedContent,
                 discloseYourBrand,
+                isAiGenerated,
+                isDraft,
                 link,
                 media,
                 placement,
@@ -799,6 +809,23 @@ private constructor(
              *   if the server responded with an unexpected value).
              */
             fun discloseYourBrand(): Boolean? = discloseYourBrand.getNullable("disclose_your_brand")
+
+            /**
+             * Flag content as AI generated on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun isAiGenerated(): Boolean? = isAiGenerated.getNullable("is_ai_generated")
+
+            /**
+             * Will create a draft upload to TikTok, posting will need to be completed from within
+             * the app
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun isDraft(): Boolean? = isDraft.getNullable("is_draft")
 
             /**
              * Pinterest post link
@@ -901,6 +928,23 @@ private constructor(
             fun _discloseYourBrand(): JsonField<Boolean> = discloseYourBrand
 
             /**
+             * Returns the raw JSON value of [isAiGenerated].
+             *
+             * Unlike [isAiGenerated], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("is_ai_generated")
+            @ExcludeMissing
+            fun _isAiGenerated(): JsonField<Boolean> = isAiGenerated
+
+            /**
+             * Returns the raw JSON value of [isDraft].
+             *
+             * Unlike [isDraft], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("is_draft") @ExcludeMissing fun _isDraft(): JsonField<Boolean> = isDraft
+
+            /**
              * Returns the raw JSON value of [link].
              *
              * Unlike [link], this method doesn't throw if the JSON field has an unexpected type.
@@ -969,6 +1013,8 @@ private constructor(
                 private var caption: JsonValue = JsonMissing.of()
                 private var discloseBrandedContent: JsonField<Boolean> = JsonMissing.of()
                 private var discloseYourBrand: JsonField<Boolean> = JsonMissing.of()
+                private var isAiGenerated: JsonField<Boolean> = JsonMissing.of()
+                private var isDraft: JsonField<Boolean> = JsonMissing.of()
                 private var link: JsonField<String> = JsonMissing.of()
                 private var media: JsonField<MutableList<String>>? = null
                 private var placement: JsonField<Placement> = JsonMissing.of()
@@ -984,6 +1030,8 @@ private constructor(
                     caption = configuration.caption
                     discloseBrandedContent = configuration.discloseBrandedContent
                     discloseYourBrand = configuration.discloseYourBrand
+                    isAiGenerated = configuration.isAiGenerated
+                    isDraft = configuration.isDraft
                     link = configuration.link
                     media = configuration.media.map { it.toMutableList() }
                     placement = configuration.placement
@@ -1130,6 +1178,50 @@ private constructor(
                     this.discloseYourBrand = discloseYourBrand
                 }
 
+                /** Flag content as AI generated on TikTok */
+                fun isAiGenerated(isAiGenerated: Boolean?) =
+                    isAiGenerated(JsonField.ofNullable(isAiGenerated))
+
+                /**
+                 * Alias for [Builder.isAiGenerated].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun isAiGenerated(isAiGenerated: Boolean) = isAiGenerated(isAiGenerated as Boolean?)
+
+                /**
+                 * Sets [Builder.isAiGenerated] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.isAiGenerated] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun isAiGenerated(isAiGenerated: JsonField<Boolean>) = apply {
+                    this.isAiGenerated = isAiGenerated
+                }
+
+                /**
+                 * Will create a draft upload to TikTok, posting will need to be completed from
+                 * within the app
+                 */
+                fun isDraft(isDraft: Boolean?) = isDraft(JsonField.ofNullable(isDraft))
+
+                /**
+                 * Alias for [Builder.isDraft].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun isDraft(isDraft: Boolean) = isDraft(isDraft as Boolean?)
+
+                /**
+                 * Sets [Builder.isDraft] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.isDraft] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun isDraft(isDraft: JsonField<Boolean>) = apply { this.isDraft = isDraft }
+
                 /** Pinterest post link */
                 fun link(link: String?) = link(JsonField.ofNullable(link))
 
@@ -1245,6 +1337,8 @@ private constructor(
                         caption,
                         discloseBrandedContent,
                         discloseYourBrand,
+                        isAiGenerated,
+                        isDraft,
                         link,
                         (media ?: JsonMissing.of()).map { it.toImmutable() },
                         placement,
@@ -1267,6 +1361,8 @@ private constructor(
                 boardIds()
                 discloseBrandedContent()
                 discloseYourBrand()
+                isAiGenerated()
+                isDraft()
                 link()
                 media()
                 placement()?.validate()
@@ -1296,6 +1392,8 @@ private constructor(
                     (boardIds.asKnown()?.size ?: 0) +
                     (if (discloseBrandedContent.asKnown() == null) 0 else 1) +
                     (if (discloseYourBrand.asKnown() == null) 0 else 1) +
+                    (if (isAiGenerated.asKnown() == null) 0 else 1) +
+                    (if (isDraft.asKnown() == null) 0 else 1) +
                     (if (link.asKnown() == null) 0 else 1) +
                     (media.asKnown()?.size ?: 0) +
                     (placement.asKnown()?.validity() ?: 0) +
@@ -1452,6 +1550,8 @@ private constructor(
                     caption == other.caption &&
                     discloseBrandedContent == other.discloseBrandedContent &&
                     discloseYourBrand == other.discloseYourBrand &&
+                    isAiGenerated == other.isAiGenerated &&
+                    isDraft == other.isDraft &&
                     link == other.link &&
                     media == other.media &&
                     placement == other.placement &&
@@ -1469,6 +1569,8 @@ private constructor(
                     caption,
                     discloseBrandedContent,
                     discloseYourBrand,
+                    isAiGenerated,
+                    isDraft,
                     link,
                     media,
                     placement,
@@ -1481,7 +1583,7 @@ private constructor(
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, link=$link, media=$media, placement=$placement, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, media=$media, placement=$placement, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
         }
 
         override fun equals(other: Any?): Boolean {
