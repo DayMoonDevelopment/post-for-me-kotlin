@@ -59,7 +59,7 @@ class PostForMeClientImpl(private val clientOptions: ClientOptions) : PostForMeC
 
     override fun socialAccounts(): SocialAccountService = socialAccounts
 
-    override fun close() = clientOptions.httpClient.close()
+    override fun close() = clientOptions.close()
 
     class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
         PostForMeClient.WithRawResponse {
