@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-08-22)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** api update ([056cb07](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/056cb07fdfcc454a799b43d51e8ec678d38c58d9))
+
+
+### Chores
+
+* **ci:** reduce log noise ([f72c01c](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/f72c01c73c390ac3502ccbae74ee1687af1bb5b9))
+* **client:** refactor closing / shutdown ([8ac8192](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/8ac8192aa904f3b9943954c23a2a9a93720fa70a))
+* **internal:** support running ktfmt directly ([11ec302](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/11ec302f2c9e9441d5d4d956648e8d7e0920c7e6))
+
 ## 0.1.0-alpha.3 (2025-08-18)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
