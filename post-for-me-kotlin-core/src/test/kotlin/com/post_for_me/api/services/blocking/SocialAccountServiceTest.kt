@@ -90,6 +90,7 @@ internal class SocialAccountServiceTest {
             socialAccountService.createAuthUrl(
                 SocialAccountCreateAuthUrlParams.builder()
                     .platform("platform")
+                    .externalId("external_id")
                     .platformData(
                         SocialAccountCreateAuthUrlParams.PlatformData.builder()
                             .bluesky(

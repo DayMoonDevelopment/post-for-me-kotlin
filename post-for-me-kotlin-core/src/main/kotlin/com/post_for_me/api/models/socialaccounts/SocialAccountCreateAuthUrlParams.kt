@@ -40,6 +40,14 @@ private constructor(
     fun platform(): String = body.platform()
 
     /**
+     * Your unique identifier for the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun externalId(): String? = body.externalId()
+
+    /**
      * Additional data needed for the provider
      *
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
@@ -53,6 +61,13 @@ private constructor(
      * Unlike [platform], this method doesn't throw if the JSON field has an unexpected type.
      */
     fun _platform(): JsonField<String> = body._platform()
+
+    /**
+     * Returns the raw JSON value of [externalId].
+     *
+     * Unlike [externalId], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    fun _externalId(): JsonField<String> = body._externalId()
 
     /**
      * Returns the raw JSON value of [platformData].
@@ -106,6 +121,7 @@ private constructor(
          * This is generally only useful if you are already constructing the body separately.
          * Otherwise, it's more convenient to use the top-level setters instead:
          * - [platform]
+         * - [externalId]
          * - [platformData]
          */
         fun body(body: Body) = apply { this.body = body.toBuilder() }
@@ -120,6 +136,18 @@ private constructor(
          * method is primarily for setting the field to an undocumented or not yet supported value.
          */
         fun platform(platform: JsonField<String>) = apply { body.platform(platform) }
+
+        /** Your unique identifier for the social account */
+        fun externalId(externalId: String) = apply { body.externalId(externalId) }
+
+        /**
+         * Sets [Builder.externalId] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.externalId] with a well-typed [String] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun externalId(externalId: JsonField<String>) = apply { body.externalId(externalId) }
 
         /** Additional data needed for the provider */
         fun platformData(platformData: PlatformData) = apply { body.platformData(platformData) }
@@ -281,6 +309,7 @@ private constructor(
     class Body
     private constructor(
         private val platform: JsonField<String>,
+        private val externalId: JsonField<String>,
         private val platformData: JsonField<PlatformData>,
         private val additionalProperties: MutableMap<String, JsonValue>,
     ) {
@@ -290,10 +319,13 @@ private constructor(
             @JsonProperty("platform")
             @ExcludeMissing
             platform: JsonField<String> = JsonMissing.of(),
+            @JsonProperty("external_id")
+            @ExcludeMissing
+            externalId: JsonField<String> = JsonMissing.of(),
             @JsonProperty("platform_data")
             @ExcludeMissing
             platformData: JsonField<PlatformData> = JsonMissing.of(),
-        ) : this(platform, platformData, mutableMapOf())
+        ) : this(platform, externalId, platformData, mutableMapOf())
 
         /**
          * The social account provider
@@ -302,6 +334,14 @@ private constructor(
          *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
          */
         fun platform(): String = platform.getRequired("platform")
+
+        /**
+         * Your unique identifier for the social account
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if
+         *   the server responded with an unexpected value).
+         */
+        fun externalId(): String? = externalId.getNullable("external_id")
 
         /**
          * Additional data needed for the provider
@@ -317,6 +357,15 @@ private constructor(
          * Unlike [platform], this method doesn't throw if the JSON field has an unexpected type.
          */
         @JsonProperty("platform") @ExcludeMissing fun _platform(): JsonField<String> = platform
+
+        /**
+         * Returns the raw JSON value of [externalId].
+         *
+         * Unlike [externalId], this method doesn't throw if the JSON field has an unexpected type.
+         */
+        @JsonProperty("external_id")
+        @ExcludeMissing
+        fun _externalId(): JsonField<String> = externalId
 
         /**
          * Returns the raw JSON value of [platformData].
@@ -357,11 +406,13 @@ private constructor(
         class Builder internal constructor() {
 
             private var platform: JsonField<String>? = null
+            private var externalId: JsonField<String> = JsonMissing.of()
             private var platformData: JsonField<PlatformData> = JsonMissing.of()
             private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
             internal fun from(body: Body) = apply {
                 platform = body.platform
+                externalId = body.externalId
                 platformData = body.platformData
                 additionalProperties = body.additionalProperties.toMutableMap()
             }
@@ -377,6 +428,18 @@ private constructor(
              * supported value.
              */
             fun platform(platform: JsonField<String>) = apply { this.platform = platform }
+
+            /** Your unique identifier for the social account */
+            fun externalId(externalId: String) = externalId(JsonField.of(externalId))
+
+            /**
+             * Sets [Builder.externalId] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.externalId] with a well-typed [String] value
+             * instead. This method is primarily for setting the field to an undocumented or not yet
+             * supported value.
+             */
+            fun externalId(externalId: JsonField<String>) = apply { this.externalId = externalId }
 
             /** Additional data needed for the provider */
             fun platformData(platformData: PlatformData) = platformData(JsonField.of(platformData))
@@ -426,6 +489,7 @@ private constructor(
             fun build(): Body =
                 Body(
                     checkRequired("platform", platform),
+                    externalId,
                     platformData,
                     additionalProperties.toMutableMap(),
                 )
@@ -439,6 +503,7 @@ private constructor(
             }
 
             platform()
+            externalId()
             platformData()?.validate()
             validated = true
         }
@@ -458,7 +523,9 @@ private constructor(
          * Used for best match union deserialization.
          */
         internal fun validity(): Int =
-            (if (platform.asKnown() == null) 0 else 1) + (platformData.asKnown()?.validity() ?: 0)
+            (if (platform.asKnown() == null) 0 else 1) +
+                (if (externalId.asKnown() == null) 0 else 1) +
+                (platformData.asKnown()?.validity() ?: 0)
 
         override fun equals(other: Any?): Boolean {
             if (this === other) {
@@ -467,18 +534,19 @@ private constructor(
 
             return other is Body &&
                 platform == other.platform &&
+                externalId == other.externalId &&
                 platformData == other.platformData &&
                 additionalProperties == other.additionalProperties
         }
 
         private val hashCode: Int by lazy {
-            Objects.hash(platform, platformData, additionalProperties)
+            Objects.hash(platform, externalId, platformData, additionalProperties)
         }
 
         override fun hashCode(): Int = hashCode
 
         override fun toString() =
-            "Body{platform=$platform, platformData=$platformData, additionalProperties=$additionalProperties}"
+            "Body{platform=$platform, externalId=$externalId, platformData=$platformData, additionalProperties=$additionalProperties}"
     }
 
     /** Additional data needed for the provider */

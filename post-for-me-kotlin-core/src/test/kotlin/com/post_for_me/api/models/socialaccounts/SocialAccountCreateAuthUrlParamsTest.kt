@@ -11,6 +11,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
     fun create() {
         SocialAccountCreateAuthUrlParams.builder()
             .platform("platform")
+            .externalId("external_id")
             .platformData(
                 SocialAccountCreateAuthUrlParams.PlatformData.builder()
                     .bluesky(
@@ -38,6 +39,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
         val params =
             SocialAccountCreateAuthUrlParams.builder()
                 .platform("platform")
+                .externalId("external_id")
                 .platformData(
                     SocialAccountCreateAuthUrlParams.PlatformData.builder()
                         .bluesky(
@@ -62,6 +64,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
         val body = params._body()
 
         assertThat(body.platform()).isEqualTo("platform")
+        assertThat(body.externalId()).isEqualTo("external_id")
         assertThat(body.platformData())
             .isEqualTo(
                 SocialAccountCreateAuthUrlParams.PlatformData.builder()
