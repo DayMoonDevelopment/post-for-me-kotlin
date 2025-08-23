@@ -5,11 +5,20 @@ package com.post_for_me.api.services.async
 import com.post_for_me.api.TestServerExtension
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClientAsync
 import com.post_for_me.api.core.JsonValue
+import com.post_for_me.api.models.socialposts.BlueskyConfigurationDto
 import com.post_for_me.api.models.socialposts.CreateSocialPost
+import com.post_for_me.api.models.socialposts.FacebookConfigurationDto
+import com.post_for_me.api.models.socialposts.InstagramConfigurationDto
+import com.post_for_me.api.models.socialposts.LinkedinConfigurationDto
+import com.post_for_me.api.models.socialposts.PinterestConfigurationDto
+import com.post_for_me.api.models.socialposts.PlatformConfigurationsDto
 import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 import com.post_for_me.api.models.socialposts.SocialPostListParams
 import com.post_for_me.api.models.socialposts.SocialPostUpdateParams
+import com.post_for_me.api.models.socialposts.ThreadsConfigurationDto
 import com.post_for_me.api.models.socialposts.TiktokConfiguration
+import com.post_for_me.api.models.socialposts.TwitterConfigurationDto
+import com.post_for_me.api.models.socialposts.YoutubeConfigurationDto
 import java.time.OffsetDateTime
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
@@ -73,44 +82,36 @@ internal class SocialPostServiceAsyncTest {
                                     .build()
                             )
                             .platformConfigurations(
-                                CreateSocialPost.PlatformConfigurations.builder()
+                                PlatformConfigurationsDto.builder()
                                     .bluesky(
-                                        CreateSocialPost.PlatformConfigurations.Bluesky.builder()
+                                        BlueskyConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .build()
                                     )
                                     .facebook(
-                                        CreateSocialPost.PlatformConfigurations.Facebook.builder()
+                                        FacebookConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.PlatformConfigurations.Facebook
-                                                    .Placement
-                                                    .REELS
-                                            )
+                                            .placement(FacebookConfigurationDto.Placement.REELS)
                                             .build()
                                     )
                                     .instagram(
-                                        CreateSocialPost.PlatformConfigurations.Instagram.builder()
+                                        InstagramConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addCollaborator("string")
                                             .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.PlatformConfigurations.Instagram
-                                                    .Placement
-                                                    .REELS
-                                            )
+                                            .placement(InstagramConfigurationDto.Placement.REELS)
                                             .build()
                                     )
                                     .linkedin(
-                                        CreateSocialPost.PlatformConfigurations.Linkedin.builder()
+                                        LinkedinConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .build()
                                     )
                                     .pinterest(
-                                        CreateSocialPost.PlatformConfigurations.Pinterest.builder()
+                                        PinterestConfigurationDto.builder()
                                             .addBoardId("string")
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .link("link")
@@ -118,14 +119,10 @@ internal class SocialPostServiceAsyncTest {
                                             .build()
                                     )
                                     .threads(
-                                        CreateSocialPost.PlatformConfigurations.Threads.builder()
+                                        ThreadsConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.PlatformConfigurations.Threads
-                                                    .Placement
-                                                    .REELS
-                                            )
+                                            .placement(ThreadsConfigurationDto.Placement.REELS)
                                             .build()
                                     )
                                     .tiktok(
@@ -159,13 +156,13 @@ internal class SocialPostServiceAsyncTest {
                                             .build()
                                     )
                                     .x(
-                                        CreateSocialPost.PlatformConfigurations.X.builder()
+                                        TwitterConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .build()
                                     )
                                     .youtube(
-                                        CreateSocialPost.PlatformConfigurations.Youtube.builder()
+                                        YoutubeConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .title("title")
@@ -253,44 +250,36 @@ internal class SocialPostServiceAsyncTest {
                                     .build()
                             )
                             .platformConfigurations(
-                                CreateSocialPost.PlatformConfigurations.builder()
+                                PlatformConfigurationsDto.builder()
                                     .bluesky(
-                                        CreateSocialPost.PlatformConfigurations.Bluesky.builder()
+                                        BlueskyConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .build()
                                     )
                                     .facebook(
-                                        CreateSocialPost.PlatformConfigurations.Facebook.builder()
+                                        FacebookConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.PlatformConfigurations.Facebook
-                                                    .Placement
-                                                    .REELS
-                                            )
+                                            .placement(FacebookConfigurationDto.Placement.REELS)
                                             .build()
                                     )
                                     .instagram(
-                                        CreateSocialPost.PlatformConfigurations.Instagram.builder()
+                                        InstagramConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addCollaborator("string")
                                             .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.PlatformConfigurations.Instagram
-                                                    .Placement
-                                                    .REELS
-                                            )
+                                            .placement(InstagramConfigurationDto.Placement.REELS)
                                             .build()
                                     )
                                     .linkedin(
-                                        CreateSocialPost.PlatformConfigurations.Linkedin.builder()
+                                        LinkedinConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .build()
                                     )
                                     .pinterest(
-                                        CreateSocialPost.PlatformConfigurations.Pinterest.builder()
+                                        PinterestConfigurationDto.builder()
                                             .addBoardId("string")
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .link("link")
@@ -298,14 +287,10 @@ internal class SocialPostServiceAsyncTest {
                                             .build()
                                     )
                                     .threads(
-                                        CreateSocialPost.PlatformConfigurations.Threads.builder()
+                                        ThreadsConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.PlatformConfigurations.Threads
-                                                    .Placement
-                                                    .REELS
-                                            )
+                                            .placement(ThreadsConfigurationDto.Placement.REELS)
                                             .build()
                                     )
                                     .tiktok(
@@ -339,13 +324,13 @@ internal class SocialPostServiceAsyncTest {
                                             .build()
                                     )
                                     .x(
-                                        CreateSocialPost.PlatformConfigurations.X.builder()
+                                        TwitterConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .build()
                                     )
                                     .youtube(
-                                        CreateSocialPost.PlatformConfigurations.Youtube.builder()
+                                        YoutubeConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
                                             .addMedia("string")
                                             .title("title")

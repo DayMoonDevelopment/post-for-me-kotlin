@@ -1,0 +1,301 @@
+// File generated from our OpenAPI spec by Stainless.
+
+package com.post_for_me.api.models.socialposts
+
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import com.post_for_me.api.core.JsonValue
+import com.post_for_me.api.core.jsonMapper
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class PlatformConfigurationsDtoTest {
+
+    @Test
+    fun create() {
+        val platformConfigurationsDto =
+            PlatformConfigurationsDto.builder()
+                .bluesky(
+                    BlueskyConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .build()
+                )
+                .facebook(
+                    FacebookConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .placement(FacebookConfigurationDto.Placement.REELS)
+                        .build()
+                )
+                .instagram(
+                    InstagramConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addCollaborator("string")
+                        .addMedia("string")
+                        .placement(InstagramConfigurationDto.Placement.REELS)
+                        .build()
+                )
+                .linkedin(
+                    LinkedinConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .build()
+                )
+                .pinterest(
+                    PinterestConfigurationDto.builder()
+                        .addBoardId("string")
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .link("link")
+                        .addMedia("string")
+                        .build()
+                )
+                .threads(
+                    ThreadsConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .placement(ThreadsConfigurationDto.Placement.REELS)
+                        .build()
+                )
+                .tiktok(
+                    TiktokConfiguration.builder()
+                        .allowComment(true)
+                        .allowDuet(true)
+                        .allowStitch(true)
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .discloseBrandedContent(true)
+                        .discloseYourBrand(true)
+                        .isAiGenerated(true)
+                        .isDraft(true)
+                        .addMedia("string")
+                        .privacyStatus("privacy_status")
+                        .title("title")
+                        .build()
+                )
+                .tiktokBusiness(
+                    TiktokConfiguration.builder()
+                        .allowComment(true)
+                        .allowDuet(true)
+                        .allowStitch(true)
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .discloseBrandedContent(true)
+                        .discloseYourBrand(true)
+                        .isAiGenerated(true)
+                        .isDraft(true)
+                        .addMedia("string")
+                        .privacyStatus("privacy_status")
+                        .title("title")
+                        .build()
+                )
+                .x(
+                    TwitterConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .build()
+                )
+                .youtube(
+                    YoutubeConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .title("title")
+                        .build()
+                )
+                .build()
+
+        assertThat(platformConfigurationsDto.bluesky())
+            .isEqualTo(
+                BlueskyConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addMedia("string")
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.facebook())
+            .isEqualTo(
+                FacebookConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addMedia("string")
+                    .placement(FacebookConfigurationDto.Placement.REELS)
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.instagram())
+            .isEqualTo(
+                InstagramConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addCollaborator("string")
+                    .addMedia("string")
+                    .placement(InstagramConfigurationDto.Placement.REELS)
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.linkedin())
+            .isEqualTo(
+                LinkedinConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addMedia("string")
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.pinterest())
+            .isEqualTo(
+                PinterestConfigurationDto.builder()
+                    .addBoardId("string")
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .link("link")
+                    .addMedia("string")
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.threads())
+            .isEqualTo(
+                ThreadsConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addMedia("string")
+                    .placement(ThreadsConfigurationDto.Placement.REELS)
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.tiktok())
+            .isEqualTo(
+                TiktokConfiguration.builder()
+                    .allowComment(true)
+                    .allowDuet(true)
+                    .allowStitch(true)
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .discloseBrandedContent(true)
+                    .discloseYourBrand(true)
+                    .isAiGenerated(true)
+                    .isDraft(true)
+                    .addMedia("string")
+                    .privacyStatus("privacy_status")
+                    .title("title")
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.tiktokBusiness())
+            .isEqualTo(
+                TiktokConfiguration.builder()
+                    .allowComment(true)
+                    .allowDuet(true)
+                    .allowStitch(true)
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .discloseBrandedContent(true)
+                    .discloseYourBrand(true)
+                    .isAiGenerated(true)
+                    .isDraft(true)
+                    .addMedia("string")
+                    .privacyStatus("privacy_status")
+                    .title("title")
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.x())
+            .isEqualTo(
+                TwitterConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addMedia("string")
+                    .build()
+            )
+        assertThat(platformConfigurationsDto.youtube())
+            .isEqualTo(
+                YoutubeConfigurationDto.builder()
+                    .caption(JsonValue.from(mapOf<String, Any>()))
+                    .addMedia("string")
+                    .title("title")
+                    .build()
+            )
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val platformConfigurationsDto =
+            PlatformConfigurationsDto.builder()
+                .bluesky(
+                    BlueskyConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .build()
+                )
+                .facebook(
+                    FacebookConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .placement(FacebookConfigurationDto.Placement.REELS)
+                        .build()
+                )
+                .instagram(
+                    InstagramConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addCollaborator("string")
+                        .addMedia("string")
+                        .placement(InstagramConfigurationDto.Placement.REELS)
+                        .build()
+                )
+                .linkedin(
+                    LinkedinConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .build()
+                )
+                .pinterest(
+                    PinterestConfigurationDto.builder()
+                        .addBoardId("string")
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .link("link")
+                        .addMedia("string")
+                        .build()
+                )
+                .threads(
+                    ThreadsConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .placement(ThreadsConfigurationDto.Placement.REELS)
+                        .build()
+                )
+                .tiktok(
+                    TiktokConfiguration.builder()
+                        .allowComment(true)
+                        .allowDuet(true)
+                        .allowStitch(true)
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .discloseBrandedContent(true)
+                        .discloseYourBrand(true)
+                        .isAiGenerated(true)
+                        .isDraft(true)
+                        .addMedia("string")
+                        .privacyStatus("privacy_status")
+                        .title("title")
+                        .build()
+                )
+                .tiktokBusiness(
+                    TiktokConfiguration.builder()
+                        .allowComment(true)
+                        .allowDuet(true)
+                        .allowStitch(true)
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .discloseBrandedContent(true)
+                        .discloseYourBrand(true)
+                        .isAiGenerated(true)
+                        .isDraft(true)
+                        .addMedia("string")
+                        .privacyStatus("privacy_status")
+                        .title("title")
+                        .build()
+                )
+                .x(
+                    TwitterConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .build()
+                )
+                .youtube(
+                    YoutubeConfigurationDto.builder()
+                        .caption(JsonValue.from(mapOf<String, Any>()))
+                        .addMedia("string")
+                        .title("title")
+                        .build()
+                )
+                .build()
+
+        val roundtrippedPlatformConfigurationsDto =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(platformConfigurationsDto),
+                jacksonTypeRef<PlatformConfigurationsDto>(),
+            )
+
+        assertThat(roundtrippedPlatformConfigurationsDto).isEqualTo(platformConfigurationsDto)
+    }
+}
