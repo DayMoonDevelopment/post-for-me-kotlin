@@ -15,20 +15,21 @@ import com.post_for_me.api.core.checkKnown
 import com.post_for_me.api.core.checkRequired
 import com.post_for_me.api.core.toImmutable
 import com.post_for_me.api.errors.PostForMeInvalidDataException
+import com.post_for_me.api.models.socialaccounts.SocialAccount
 import java.util.Collections
 import java.util.Objects
 
 class SocialPost
 private constructor(
     private val id: JsonField<String>,
-    private val accountConfigurations: JsonField<List<JsonValue>>,
+    private val accountConfigurations: JsonField<List<AccountConfiguration>>,
     private val caption: JsonField<String>,
     private val createdAt: JsonField<String>,
     private val externalId: JsonField<String>,
-    private val media: JsonValue,
-    private val platformConfigurations: JsonValue,
+    private val media: JsonField<List<Media>>,
+    private val platformConfigurations: JsonField<PlatformConfigurationsDto>,
     private val scheduledAt: JsonField<String>,
-    private val socialAccounts: JsonField<List<String>>,
+    private val socialAccounts: JsonField<List<SocialAccount>>,
     private val status: JsonField<Status>,
     private val updatedAt: JsonField<String>,
     private val additionalProperties: MutableMap<String, JsonValue>,
@@ -39,22 +40,22 @@ private constructor(
         @JsonProperty("id") @ExcludeMissing id: JsonField<String> = JsonMissing.of(),
         @JsonProperty("account_configurations")
         @ExcludeMissing
-        accountConfigurations: JsonField<List<JsonValue>> = JsonMissing.of(),
+        accountConfigurations: JsonField<List<AccountConfiguration>> = JsonMissing.of(),
         @JsonProperty("caption") @ExcludeMissing caption: JsonField<String> = JsonMissing.of(),
         @JsonProperty("created_at") @ExcludeMissing createdAt: JsonField<String> = JsonMissing.of(),
         @JsonProperty("external_id")
         @ExcludeMissing
         externalId: JsonField<String> = JsonMissing.of(),
-        @JsonProperty("media") @ExcludeMissing media: JsonValue = JsonMissing.of(),
+        @JsonProperty("media") @ExcludeMissing media: JsonField<List<Media>> = JsonMissing.of(),
         @JsonProperty("platform_configurations")
         @ExcludeMissing
-        platformConfigurations: JsonValue = JsonMissing.of(),
+        platformConfigurations: JsonField<PlatformConfigurationsDto> = JsonMissing.of(),
         @JsonProperty("scheduled_at")
         @ExcludeMissing
         scheduledAt: JsonField<String> = JsonMissing.of(),
         @JsonProperty("social_accounts")
         @ExcludeMissing
-        socialAccounts: JsonField<List<String>> = JsonMissing.of(),
+        socialAccounts: JsonField<List<SocialAccount>> = JsonMissing.of(),
         @JsonProperty("status") @ExcludeMissing status: JsonField<Status> = JsonMissing.of(),
         @JsonProperty("updated_at") @ExcludeMissing updatedAt: JsonField<String> = JsonMissing.of(),
     ) : this(
@@ -86,7 +87,7 @@ private constructor(
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
      *   server responded with an unexpected value).
      */
-    fun accountConfigurations(): List<JsonValue>? =
+    fun accountConfigurations(): List<AccountConfiguration>? =
         accountConfigurations.getNullable("account_configurations")
 
     /**
@@ -113,13 +114,22 @@ private constructor(
      */
     fun externalId(): String? = externalId.getNullable("external_id")
 
-    /** Array of media URLs associated with the post */
-    @JsonProperty("media") @ExcludeMissing fun _media(): JsonValue = media
+    /**
+     * Array of media URLs associated with the post
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun media(): List<Media>? = media.getNullable("media")
 
-    /** Platform-specific configurations for the post */
-    @JsonProperty("platform_configurations")
-    @ExcludeMissing
-    fun _platformConfigurations(): JsonValue = platformConfigurations
+    /**
+     * Platform-specific configurations for the post
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun platformConfigurations(): PlatformConfigurationsDto? =
+        platformConfigurations.getNullable("platform_configurations")
 
     /**
      * Scheduled date and time for the post
@@ -135,7 +145,7 @@ private constructor(
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
      *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
      */
-    fun socialAccounts(): List<String> = socialAccounts.getRequired("social_accounts")
+    fun socialAccounts(): List<SocialAccount> = socialAccounts.getRequired("social_accounts")
 
     /**
      * Current status of the post: draft, processed, scheduled, or processing
@@ -168,7 +178,7 @@ private constructor(
      */
     @JsonProperty("account_configurations")
     @ExcludeMissing
-    fun _accountConfigurations(): JsonField<List<JsonValue>> = accountConfigurations
+    fun _accountConfigurations(): JsonField<List<AccountConfiguration>> = accountConfigurations
 
     /**
      * Returns the raw JSON value of [caption].
@@ -192,6 +202,23 @@ private constructor(
     @JsonProperty("external_id") @ExcludeMissing fun _externalId(): JsonField<String> = externalId
 
     /**
+     * Returns the raw JSON value of [media].
+     *
+     * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<Media>> = media
+
+    /**
+     * Returns the raw JSON value of [platformConfigurations].
+     *
+     * Unlike [platformConfigurations], this method doesn't throw if the JSON field has an
+     * unexpected type.
+     */
+    @JsonProperty("platform_configurations")
+    @ExcludeMissing
+    fun _platformConfigurations(): JsonField<PlatformConfigurationsDto> = platformConfigurations
+
+    /**
      * Returns the raw JSON value of [scheduledAt].
      *
      * Unlike [scheduledAt], this method doesn't throw if the JSON field has an unexpected type.
@@ -207,7 +234,7 @@ private constructor(
      */
     @JsonProperty("social_accounts")
     @ExcludeMissing
-    fun _socialAccounts(): JsonField<List<String>> = socialAccounts
+    fun _socialAccounts(): JsonField<List<SocialAccount>> = socialAccounts
 
     /**
      * Returns the raw JSON value of [status].
@@ -262,14 +289,14 @@ private constructor(
     class Builder internal constructor() {
 
         private var id: JsonField<String>? = null
-        private var accountConfigurations: JsonField<MutableList<JsonValue>>? = null
+        private var accountConfigurations: JsonField<MutableList<AccountConfiguration>>? = null
         private var caption: JsonField<String>? = null
         private var createdAt: JsonField<String>? = null
         private var externalId: JsonField<String>? = null
-        private var media: JsonValue? = null
-        private var platformConfigurations: JsonValue? = null
+        private var media: JsonField<MutableList<Media>>? = null
+        private var platformConfigurations: JsonField<PlatformConfigurationsDto>? = null
         private var scheduledAt: JsonField<String>? = null
-        private var socialAccounts: JsonField<MutableList<String>>? = null
+        private var socialAccounts: JsonField<MutableList<SocialAccount>>? = null
         private var status: JsonField<Status>? = null
         private var updatedAt: JsonField<String>? = null
         private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
@@ -280,7 +307,7 @@ private constructor(
             caption = socialPost.caption
             createdAt = socialPost.createdAt
             externalId = socialPost.externalId
-            media = socialPost.media
+            media = socialPost.media.map { it.toMutableList() }
             platformConfigurations = socialPost.platformConfigurations
             scheduledAt = socialPost.scheduledAt
             socialAccounts = socialPost.socialAccounts.map { it.toMutableList() }
@@ -301,26 +328,27 @@ private constructor(
         fun id(id: JsonField<String>) = apply { this.id = id }
 
         /** Account-specific configurations for the post */
-        fun accountConfigurations(accountConfigurations: List<JsonValue>?) =
+        fun accountConfigurations(accountConfigurations: List<AccountConfiguration>?) =
             accountConfigurations(JsonField.ofNullable(accountConfigurations))
 
         /**
          * Sets [Builder.accountConfigurations] to an arbitrary JSON value.
          *
          * You should usually call [Builder.accountConfigurations] with a well-typed
-         * `List<JsonValue>` value instead. This method is primarily for setting the field to an
-         * undocumented or not yet supported value.
+         * `List<AccountConfiguration>` value instead. This method is primarily for setting the
+         * field to an undocumented or not yet supported value.
          */
-        fun accountConfigurations(accountConfigurations: JsonField<List<JsonValue>>) = apply {
-            this.accountConfigurations = accountConfigurations.map { it.toMutableList() }
-        }
+        fun accountConfigurations(accountConfigurations: JsonField<List<AccountConfiguration>>) =
+            apply {
+                this.accountConfigurations = accountConfigurations.map { it.toMutableList() }
+            }
 
         /**
-         * Adds a single [JsonValue] to [accountConfigurations].
+         * Adds a single [AccountConfiguration] to [accountConfigurations].
          *
          * @throws IllegalStateException if the field was previously set to a non-list.
          */
-        fun addAccountConfiguration(accountConfiguration: JsonValue) = apply {
+        fun addAccountConfiguration(accountConfiguration: AccountConfiguration) = apply {
             accountConfigurations =
                 (accountConfigurations ?: JsonField.of(mutableListOf())).also {
                     checkKnown("accountConfigurations", it).add(accountConfiguration)
@@ -363,12 +391,46 @@ private constructor(
         fun externalId(externalId: JsonField<String>) = apply { this.externalId = externalId }
 
         /** Array of media URLs associated with the post */
-        fun media(media: JsonValue) = apply { this.media = media }
+        fun media(media: List<Media>?) = media(JsonField.ofNullable(media))
+
+        /**
+         * Sets [Builder.media] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.media] with a well-typed `List<Media>` value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun media(media: JsonField<List<Media>>) = apply {
+            this.media = media.map { it.toMutableList() }
+        }
+
+        /**
+         * Adds a single [Media] to [Builder.media].
+         *
+         * @throws IllegalStateException if the field was previously set to a non-list.
+         */
+        fun addMedia(media: Media) = apply {
+            this.media =
+                (this.media ?: JsonField.of(mutableListOf())).also {
+                    checkKnown("media", it).add(media)
+                }
+        }
 
         /** Platform-specific configurations for the post */
-        fun platformConfigurations(platformConfigurations: JsonValue) = apply {
-            this.platformConfigurations = platformConfigurations
-        }
+        fun platformConfigurations(platformConfigurations: PlatformConfigurationsDto?) =
+            platformConfigurations(JsonField.ofNullable(platformConfigurations))
+
+        /**
+         * Sets [Builder.platformConfigurations] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.platformConfigurations] with a well-typed
+         * [PlatformConfigurationsDto] value instead. This method is primarily for setting the field
+         * to an undocumented or not yet supported value.
+         */
+        fun platformConfigurations(platformConfigurations: JsonField<PlatformConfigurationsDto>) =
+            apply {
+                this.platformConfigurations = platformConfigurations
+            }
 
         /** Scheduled date and time for the post */
         fun scheduledAt(scheduledAt: String?) = scheduledAt(JsonField.ofNullable(scheduledAt))
@@ -383,26 +445,26 @@ private constructor(
         fun scheduledAt(scheduledAt: JsonField<String>) = apply { this.scheduledAt = scheduledAt }
 
         /** Array of social account IDs for posting */
-        fun socialAccounts(socialAccounts: List<String>) =
+        fun socialAccounts(socialAccounts: List<SocialAccount>) =
             socialAccounts(JsonField.of(socialAccounts))
 
         /**
          * Sets [Builder.socialAccounts] to an arbitrary JSON value.
          *
-         * You should usually call [Builder.socialAccounts] with a well-typed `List<String>` value
-         * instead. This method is primarily for setting the field to an undocumented or not yet
-         * supported value.
+         * You should usually call [Builder.socialAccounts] with a well-typed `List<SocialAccount>`
+         * value instead. This method is primarily for setting the field to an undocumented or not
+         * yet supported value.
          */
-        fun socialAccounts(socialAccounts: JsonField<List<String>>) = apply {
+        fun socialAccounts(socialAccounts: JsonField<List<SocialAccount>>) = apply {
             this.socialAccounts = socialAccounts.map { it.toMutableList() }
         }
 
         /**
-         * Adds a single [String] to [socialAccounts].
+         * Adds a single [SocialAccount] to [socialAccounts].
          *
          * @throws IllegalStateException if the field was previously set to a non-list.
          */
-        fun addSocialAccount(socialAccount: String) = apply {
+        fun addSocialAccount(socialAccount: SocialAccount) = apply {
             socialAccounts =
                 (socialAccounts ?: JsonField.of(mutableListOf())).also {
                     checkKnown("socialAccounts", it).add(socialAccount)
@@ -482,7 +544,7 @@ private constructor(
                 checkRequired("caption", caption),
                 checkRequired("createdAt", createdAt),
                 checkRequired("externalId", externalId),
-                checkRequired("media", media),
+                checkRequired("media", media).map { it.toImmutable() },
                 checkRequired("platformConfigurations", platformConfigurations),
                 checkRequired("scheduledAt", scheduledAt),
                 checkRequired("socialAccounts", socialAccounts).map { it.toImmutable() },
@@ -500,12 +562,14 @@ private constructor(
         }
 
         id()
-        accountConfigurations()
+        accountConfigurations()?.forEach { it.validate() }
         caption()
         createdAt()
         externalId()
+        media()?.forEach { it.validate() }
+        platformConfigurations()?.validate()
         scheduledAt()
-        socialAccounts()
+        socialAccounts().forEach { it.validate() }
         status().validate()
         updatedAt()
         validated = true
@@ -526,14 +590,1324 @@ private constructor(
      */
     internal fun validity(): Int =
         (if (id.asKnown() == null) 0 else 1) +
-            (accountConfigurations.asKnown()?.size ?: 0) +
+            (accountConfigurations.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
             (if (caption.asKnown() == null) 0 else 1) +
             (if (createdAt.asKnown() == null) 0 else 1) +
             (if (externalId.asKnown() == null) 0 else 1) +
+            (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+            (platformConfigurations.asKnown()?.validity() ?: 0) +
             (if (scheduledAt.asKnown() == null) 0 else 1) +
-            (socialAccounts.asKnown()?.size ?: 0) +
+            (socialAccounts.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
             (status.asKnown()?.validity() ?: 0) +
             (if (updatedAt.asKnown() == null) 0 else 1)
+
+    class AccountConfiguration
+    private constructor(
+        private val configuration: JsonField<Configuration>,
+        private val socialAccountId: JsonField<String>,
+        private val additionalProperties: MutableMap<String, JsonValue>,
+    ) {
+
+        @JsonCreator
+        private constructor(
+            @JsonProperty("configuration")
+            @ExcludeMissing
+            configuration: JsonField<Configuration> = JsonMissing.of(),
+            @JsonProperty("social_account_id")
+            @ExcludeMissing
+            socialAccountId: JsonField<String> = JsonMissing.of(),
+        ) : this(configuration, socialAccountId, mutableMapOf())
+
+        /**
+         * Configuration for the social account
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+         *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+         */
+        fun configuration(): Configuration = configuration.getRequired("configuration")
+
+        /**
+         * ID of the social account, you want to apply the configuration to
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+         *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+         */
+        fun socialAccountId(): String = socialAccountId.getRequired("social_account_id")
+
+        /**
+         * Returns the raw JSON value of [configuration].
+         *
+         * Unlike [configuration], this method doesn't throw if the JSON field has an unexpected
+         * type.
+         */
+        @JsonProperty("configuration")
+        @ExcludeMissing
+        fun _configuration(): JsonField<Configuration> = configuration
+
+        /**
+         * Returns the raw JSON value of [socialAccountId].
+         *
+         * Unlike [socialAccountId], this method doesn't throw if the JSON field has an unexpected
+         * type.
+         */
+        @JsonProperty("social_account_id")
+        @ExcludeMissing
+        fun _socialAccountId(): JsonField<String> = socialAccountId
+
+        @JsonAnySetter
+        private fun putAdditionalProperty(key: String, value: JsonValue) {
+            additionalProperties.put(key, value)
+        }
+
+        @JsonAnyGetter
+        @ExcludeMissing
+        fun _additionalProperties(): Map<String, JsonValue> =
+            Collections.unmodifiableMap(additionalProperties)
+
+        fun toBuilder() = Builder().from(this)
+
+        companion object {
+
+            /**
+             * Returns a mutable builder for constructing an instance of [AccountConfiguration].
+             *
+             * The following fields are required:
+             * ```kotlin
+             * .configuration()
+             * .socialAccountId()
+             * ```
+             */
+            fun builder() = Builder()
+        }
+
+        /** A builder for [AccountConfiguration]. */
+        class Builder internal constructor() {
+
+            private var configuration: JsonField<Configuration>? = null
+            private var socialAccountId: JsonField<String>? = null
+            private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+            internal fun from(accountConfiguration: AccountConfiguration) = apply {
+                configuration = accountConfiguration.configuration
+                socialAccountId = accountConfiguration.socialAccountId
+                additionalProperties = accountConfiguration.additionalProperties.toMutableMap()
+            }
+
+            /** Configuration for the social account */
+            fun configuration(configuration: Configuration) =
+                configuration(JsonField.of(configuration))
+
+            /**
+             * Sets [Builder.configuration] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.configuration] with a well-typed [Configuration]
+             * value instead. This method is primarily for setting the field to an undocumented or
+             * not yet supported value.
+             */
+            fun configuration(configuration: JsonField<Configuration>) = apply {
+                this.configuration = configuration
+            }
+
+            /** ID of the social account, you want to apply the configuration to */
+            fun socialAccountId(socialAccountId: String) =
+                socialAccountId(JsonField.of(socialAccountId))
+
+            /**
+             * Sets [Builder.socialAccountId] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.socialAccountId] with a well-typed [String] value
+             * instead. This method is primarily for setting the field to an undocumented or not yet
+             * supported value.
+             */
+            fun socialAccountId(socialAccountId: JsonField<String>) = apply {
+                this.socialAccountId = socialAccountId
+            }
+
+            fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                this.additionalProperties.clear()
+                putAllAdditionalProperties(additionalProperties)
+            }
+
+            fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                additionalProperties.put(key, value)
+            }
+
+            fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                this.additionalProperties.putAll(additionalProperties)
+            }
+
+            fun removeAdditionalProperty(key: String) = apply { additionalProperties.remove(key) }
+
+            fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                keys.forEach(::removeAdditionalProperty)
+            }
+
+            /**
+             * Returns an immutable instance of [AccountConfiguration].
+             *
+             * Further updates to this [Builder] will not mutate the returned instance.
+             *
+             * The following fields are required:
+             * ```kotlin
+             * .configuration()
+             * .socialAccountId()
+             * ```
+             *
+             * @throws IllegalStateException if any required field is unset.
+             */
+            fun build(): AccountConfiguration =
+                AccountConfiguration(
+                    checkRequired("configuration", configuration),
+                    checkRequired("socialAccountId", socialAccountId),
+                    additionalProperties.toMutableMap(),
+                )
+        }
+
+        private var validated: Boolean = false
+
+        fun validate(): AccountConfiguration = apply {
+            if (validated) {
+                return@apply
+            }
+
+            configuration().validate()
+            socialAccountId()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: PostForMeInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        internal fun validity(): Int =
+            (configuration.asKnown()?.validity() ?: 0) +
+                (if (socialAccountId.asKnown() == null) 0 else 1)
+
+        /** Configuration for the social account */
+        class Configuration
+        private constructor(
+            private val allowComment: JsonField<Boolean>,
+            private val allowDuet: JsonField<Boolean>,
+            private val allowStitch: JsonField<Boolean>,
+            private val boardIds: JsonField<List<String>>,
+            private val caption: JsonValue,
+            private val discloseBrandedContent: JsonField<Boolean>,
+            private val discloseYourBrand: JsonField<Boolean>,
+            private val isAiGenerated: JsonField<Boolean>,
+            private val isDraft: JsonField<Boolean>,
+            private val link: JsonField<String>,
+            private val media: JsonField<List<String>>,
+            private val placement: JsonField<Placement>,
+            private val privacyStatus: JsonField<String>,
+            private val title: JsonField<String>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("allow_comment")
+                @ExcludeMissing
+                allowComment: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("allow_duet")
+                @ExcludeMissing
+                allowDuet: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("allow_stitch")
+                @ExcludeMissing
+                allowStitch: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("board_ids")
+                @ExcludeMissing
+                boardIds: JsonField<List<String>> = JsonMissing.of(),
+                @JsonProperty("caption") @ExcludeMissing caption: JsonValue = JsonMissing.of(),
+                @JsonProperty("disclose_branded_content")
+                @ExcludeMissing
+                discloseBrandedContent: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("disclose_your_brand")
+                @ExcludeMissing
+                discloseYourBrand: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("is_ai_generated")
+                @ExcludeMissing
+                isAiGenerated: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("is_draft")
+                @ExcludeMissing
+                isDraft: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("link") @ExcludeMissing link: JsonField<String> = JsonMissing.of(),
+                @JsonProperty("media")
+                @ExcludeMissing
+                media: JsonField<List<String>> = JsonMissing.of(),
+                @JsonProperty("placement")
+                @ExcludeMissing
+                placement: JsonField<Placement> = JsonMissing.of(),
+                @JsonProperty("privacy_status")
+                @ExcludeMissing
+                privacyStatus: JsonField<String> = JsonMissing.of(),
+                @JsonProperty("title") @ExcludeMissing title: JsonField<String> = JsonMissing.of(),
+            ) : this(
+                allowComment,
+                allowDuet,
+                allowStitch,
+                boardIds,
+                caption,
+                discloseBrandedContent,
+                discloseYourBrand,
+                isAiGenerated,
+                isDraft,
+                link,
+                media,
+                placement,
+                privacyStatus,
+                title,
+                mutableMapOf(),
+            )
+
+            /**
+             * Allow comments on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun allowComment(): Boolean? = allowComment.getNullable("allow_comment")
+
+            /**
+             * Allow duets on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun allowDuet(): Boolean? = allowDuet.getNullable("allow_duet")
+
+            /**
+             * Allow stitch on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun allowStitch(): Boolean? = allowStitch.getNullable("allow_stitch")
+
+            /**
+             * Pinterest board IDs
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun boardIds(): List<String>? = boardIds.getNullable("board_ids")
+
+            /** Overrides the `caption` from the post */
+            @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
+
+            /**
+             * Disclose branded content on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun discloseBrandedContent(): Boolean? =
+                discloseBrandedContent.getNullable("disclose_branded_content")
+
+            /**
+             * Disclose your brand on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun discloseYourBrand(): Boolean? = discloseYourBrand.getNullable("disclose_your_brand")
+
+            /**
+             * Flag content as AI generated on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun isAiGenerated(): Boolean? = isAiGenerated.getNullable("is_ai_generated")
+
+            /**
+             * Will create a draft upload to TikTok, posting will need to be completed from within
+             * the app
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun isDraft(): Boolean? = isDraft.getNullable("is_draft")
+
+            /**
+             * Pinterest post link
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun link(): String? = link.getNullable("link")
+
+            /**
+             * Overrides the `media` from the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun media(): List<String>? = media.getNullable("media")
+
+            /**
+             * Post placement for Facebook/Instagram/Threads
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun placement(): Placement? = placement.getNullable("placement")
+
+            /**
+             * Sets the privacy status for TikTok (private, public)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun privacyStatus(): String? = privacyStatus.getNullable("privacy_status")
+
+            /**
+             * Overrides the `title` from the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun title(): String? = title.getNullable("title")
+
+            /**
+             * Returns the raw JSON value of [allowComment].
+             *
+             * Unlike [allowComment], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("allow_comment")
+            @ExcludeMissing
+            fun _allowComment(): JsonField<Boolean> = allowComment
+
+            /**
+             * Returns the raw JSON value of [allowDuet].
+             *
+             * Unlike [allowDuet], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("allow_duet")
+            @ExcludeMissing
+            fun _allowDuet(): JsonField<Boolean> = allowDuet
+
+            /**
+             * Returns the raw JSON value of [allowStitch].
+             *
+             * Unlike [allowStitch], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("allow_stitch")
+            @ExcludeMissing
+            fun _allowStitch(): JsonField<Boolean> = allowStitch
+
+            /**
+             * Returns the raw JSON value of [boardIds].
+             *
+             * Unlike [boardIds], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("board_ids")
+            @ExcludeMissing
+            fun _boardIds(): JsonField<List<String>> = boardIds
+
+            /**
+             * Returns the raw JSON value of [discloseBrandedContent].
+             *
+             * Unlike [discloseBrandedContent], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("disclose_branded_content")
+            @ExcludeMissing
+            fun _discloseBrandedContent(): JsonField<Boolean> = discloseBrandedContent
+
+            /**
+             * Returns the raw JSON value of [discloseYourBrand].
+             *
+             * Unlike [discloseYourBrand], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("disclose_your_brand")
+            @ExcludeMissing
+            fun _discloseYourBrand(): JsonField<Boolean> = discloseYourBrand
+
+            /**
+             * Returns the raw JSON value of [isAiGenerated].
+             *
+             * Unlike [isAiGenerated], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("is_ai_generated")
+            @ExcludeMissing
+            fun _isAiGenerated(): JsonField<Boolean> = isAiGenerated
+
+            /**
+             * Returns the raw JSON value of [isDraft].
+             *
+             * Unlike [isDraft], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("is_draft") @ExcludeMissing fun _isDraft(): JsonField<Boolean> = isDraft
+
+            /**
+             * Returns the raw JSON value of [link].
+             *
+             * Unlike [link], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("link") @ExcludeMissing fun _link(): JsonField<String> = link
+
+            /**
+             * Returns the raw JSON value of [media].
+             *
+             * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<String>> = media
+
+            /**
+             * Returns the raw JSON value of [placement].
+             *
+             * Unlike [placement], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("placement")
+            @ExcludeMissing
+            fun _placement(): JsonField<Placement> = placement
+
+            /**
+             * Returns the raw JSON value of [privacyStatus].
+             *
+             * Unlike [privacyStatus], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("privacy_status")
+            @ExcludeMissing
+            fun _privacyStatus(): JsonField<String> = privacyStatus
+
+            /**
+             * Returns the raw JSON value of [title].
+             *
+             * Unlike [title], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("title") @ExcludeMissing fun _title(): JsonField<String> = title
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /** Returns a mutable builder for constructing an instance of [Configuration]. */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [Configuration]. */
+            class Builder internal constructor() {
+
+                private var allowComment: JsonField<Boolean> = JsonMissing.of()
+                private var allowDuet: JsonField<Boolean> = JsonMissing.of()
+                private var allowStitch: JsonField<Boolean> = JsonMissing.of()
+                private var boardIds: JsonField<MutableList<String>>? = null
+                private var caption: JsonValue = JsonMissing.of()
+                private var discloseBrandedContent: JsonField<Boolean> = JsonMissing.of()
+                private var discloseYourBrand: JsonField<Boolean> = JsonMissing.of()
+                private var isAiGenerated: JsonField<Boolean> = JsonMissing.of()
+                private var isDraft: JsonField<Boolean> = JsonMissing.of()
+                private var link: JsonField<String> = JsonMissing.of()
+                private var media: JsonField<MutableList<String>>? = null
+                private var placement: JsonField<Placement> = JsonMissing.of()
+                private var privacyStatus: JsonField<String> = JsonMissing.of()
+                private var title: JsonField<String> = JsonMissing.of()
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(configuration: Configuration) = apply {
+                    allowComment = configuration.allowComment
+                    allowDuet = configuration.allowDuet
+                    allowStitch = configuration.allowStitch
+                    boardIds = configuration.boardIds.map { it.toMutableList() }
+                    caption = configuration.caption
+                    discloseBrandedContent = configuration.discloseBrandedContent
+                    discloseYourBrand = configuration.discloseYourBrand
+                    isAiGenerated = configuration.isAiGenerated
+                    isDraft = configuration.isDraft
+                    link = configuration.link
+                    media = configuration.media.map { it.toMutableList() }
+                    placement = configuration.placement
+                    privacyStatus = configuration.privacyStatus
+                    title = configuration.title
+                    additionalProperties = configuration.additionalProperties.toMutableMap()
+                }
+
+                /** Allow comments on TikTok */
+                fun allowComment(allowComment: Boolean?) =
+                    allowComment(JsonField.ofNullable(allowComment))
+
+                /**
+                 * Alias for [Builder.allowComment].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun allowComment(allowComment: Boolean) = allowComment(allowComment as Boolean?)
+
+                /**
+                 * Sets [Builder.allowComment] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.allowComment] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun allowComment(allowComment: JsonField<Boolean>) = apply {
+                    this.allowComment = allowComment
+                }
+
+                /** Allow duets on TikTok */
+                fun allowDuet(allowDuet: Boolean?) = allowDuet(JsonField.ofNullable(allowDuet))
+
+                /**
+                 * Alias for [Builder.allowDuet].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun allowDuet(allowDuet: Boolean) = allowDuet(allowDuet as Boolean?)
+
+                /**
+                 * Sets [Builder.allowDuet] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.allowDuet] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun allowDuet(allowDuet: JsonField<Boolean>) = apply { this.allowDuet = allowDuet }
+
+                /** Allow stitch on TikTok */
+                fun allowStitch(allowStitch: Boolean?) =
+                    allowStitch(JsonField.ofNullable(allowStitch))
+
+                /**
+                 * Alias for [Builder.allowStitch].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun allowStitch(allowStitch: Boolean) = allowStitch(allowStitch as Boolean?)
+
+                /**
+                 * Sets [Builder.allowStitch] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.allowStitch] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun allowStitch(allowStitch: JsonField<Boolean>) = apply {
+                    this.allowStitch = allowStitch
+                }
+
+                /** Pinterest board IDs */
+                fun boardIds(boardIds: List<String>?) = boardIds(JsonField.ofNullable(boardIds))
+
+                /**
+                 * Sets [Builder.boardIds] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.boardIds] with a well-typed `List<String>` value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun boardIds(boardIds: JsonField<List<String>>) = apply {
+                    this.boardIds = boardIds.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [String] to [boardIds].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addBoardId(boardId: String) = apply {
+                    boardIds =
+                        (boardIds ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("boardIds", it).add(boardId)
+                        }
+                }
+
+                /** Overrides the `caption` from the post */
+                fun caption(caption: JsonValue) = apply { this.caption = caption }
+
+                /** Disclose branded content on TikTok */
+                fun discloseBrandedContent(discloseBrandedContent: Boolean?) =
+                    discloseBrandedContent(JsonField.ofNullable(discloseBrandedContent))
+
+                /**
+                 * Alias for [Builder.discloseBrandedContent].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun discloseBrandedContent(discloseBrandedContent: Boolean) =
+                    discloseBrandedContent(discloseBrandedContent as Boolean?)
+
+                /**
+                 * Sets [Builder.discloseBrandedContent] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.discloseBrandedContent] with a well-typed
+                 * [Boolean] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun discloseBrandedContent(discloseBrandedContent: JsonField<Boolean>) = apply {
+                    this.discloseBrandedContent = discloseBrandedContent
+                }
+
+                /** Disclose your brand on TikTok */
+                fun discloseYourBrand(discloseYourBrand: Boolean?) =
+                    discloseYourBrand(JsonField.ofNullable(discloseYourBrand))
+
+                /**
+                 * Alias for [Builder.discloseYourBrand].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun discloseYourBrand(discloseYourBrand: Boolean) =
+                    discloseYourBrand(discloseYourBrand as Boolean?)
+
+                /**
+                 * Sets [Builder.discloseYourBrand] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.discloseYourBrand] with a well-typed [Boolean]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun discloseYourBrand(discloseYourBrand: JsonField<Boolean>) = apply {
+                    this.discloseYourBrand = discloseYourBrand
+                }
+
+                /** Flag content as AI generated on TikTok */
+                fun isAiGenerated(isAiGenerated: Boolean?) =
+                    isAiGenerated(JsonField.ofNullable(isAiGenerated))
+
+                /**
+                 * Alias for [Builder.isAiGenerated].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun isAiGenerated(isAiGenerated: Boolean) = isAiGenerated(isAiGenerated as Boolean?)
+
+                /**
+                 * Sets [Builder.isAiGenerated] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.isAiGenerated] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun isAiGenerated(isAiGenerated: JsonField<Boolean>) = apply {
+                    this.isAiGenerated = isAiGenerated
+                }
+
+                /**
+                 * Will create a draft upload to TikTok, posting will need to be completed from
+                 * within the app
+                 */
+                fun isDraft(isDraft: Boolean?) = isDraft(JsonField.ofNullable(isDraft))
+
+                /**
+                 * Alias for [Builder.isDraft].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun isDraft(isDraft: Boolean) = isDraft(isDraft as Boolean?)
+
+                /**
+                 * Sets [Builder.isDraft] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.isDraft] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun isDraft(isDraft: JsonField<Boolean>) = apply { this.isDraft = isDraft }
+
+                /** Pinterest post link */
+                fun link(link: String?) = link(JsonField.ofNullable(link))
+
+                /**
+                 * Sets [Builder.link] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.link] with a well-typed [String] value instead.
+                 * This method is primarily for setting the field to an undocumented or not yet
+                 * supported value.
+                 */
+                fun link(link: JsonField<String>) = apply { this.link = link }
+
+                /** Overrides the `media` from the post */
+                fun media(media: List<String>?) = media(JsonField.ofNullable(media))
+
+                /**
+                 * Sets [Builder.media] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.media] with a well-typed `List<String>` value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun media(media: JsonField<List<String>>) = apply {
+                    this.media = media.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [String] to [Builder.media].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addMedia(media: String) = apply {
+                    this.media =
+                        (this.media ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("media", it).add(media)
+                        }
+                }
+
+                /** Post placement for Facebook/Instagram/Threads */
+                fun placement(placement: Placement?) = placement(JsonField.ofNullable(placement))
+
+                /**
+                 * Sets [Builder.placement] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.placement] with a well-typed [Placement] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun placement(placement: JsonField<Placement>) = apply {
+                    this.placement = placement
+                }
+
+                /** Sets the privacy status for TikTok (private, public) */
+                fun privacyStatus(privacyStatus: String?) =
+                    privacyStatus(JsonField.ofNullable(privacyStatus))
+
+                /**
+                 * Sets [Builder.privacyStatus] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.privacyStatus] with a well-typed [String] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun privacyStatus(privacyStatus: JsonField<String>) = apply {
+                    this.privacyStatus = privacyStatus
+                }
+
+                /** Overrides the `title` from the post */
+                fun title(title: String?) = title(JsonField.ofNullable(title))
+
+                /**
+                 * Sets [Builder.title] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.title] with a well-typed [String] value instead.
+                 * This method is primarily for setting the field to an undocumented or not yet
+                 * supported value.
+                 */
+                fun title(title: JsonField<String>) = apply { this.title = title }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [Configuration].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 */
+                fun build(): Configuration =
+                    Configuration(
+                        allowComment,
+                        allowDuet,
+                        allowStitch,
+                        (boardIds ?: JsonMissing.of()).map { it.toImmutable() },
+                        caption,
+                        discloseBrandedContent,
+                        discloseYourBrand,
+                        isAiGenerated,
+                        isDraft,
+                        link,
+                        (media ?: JsonMissing.of()).map { it.toImmutable() },
+                        placement,
+                        privacyStatus,
+                        title,
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): Configuration = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                allowComment()
+                allowDuet()
+                allowStitch()
+                boardIds()
+                discloseBrandedContent()
+                discloseYourBrand()
+                isAiGenerated()
+                isDraft()
+                link()
+                media()
+                placement()?.validate()
+                privacyStatus()
+                title()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (if (allowComment.asKnown() == null) 0 else 1) +
+                    (if (allowDuet.asKnown() == null) 0 else 1) +
+                    (if (allowStitch.asKnown() == null) 0 else 1) +
+                    (boardIds.asKnown()?.size ?: 0) +
+                    (if (discloseBrandedContent.asKnown() == null) 0 else 1) +
+                    (if (discloseYourBrand.asKnown() == null) 0 else 1) +
+                    (if (isAiGenerated.asKnown() == null) 0 else 1) +
+                    (if (isDraft.asKnown() == null) 0 else 1) +
+                    (if (link.asKnown() == null) 0 else 1) +
+                    (media.asKnown()?.size ?: 0) +
+                    (placement.asKnown()?.validity() ?: 0) +
+                    (if (privacyStatus.asKnown() == null) 0 else 1) +
+                    (if (title.asKnown() == null) 0 else 1)
+
+            /** Post placement for Facebook/Instagram/Threads */
+            class Placement @JsonCreator private constructor(private val value: JsonField<String>) :
+                Enum {
+
+                /**
+                 * Returns this class instance's raw value.
+                 *
+                 * This is usually only useful if this instance was deserialized from data that
+                 * doesn't match any known member, and you want to know that value. For example, if
+                 * the SDK is on an older version than the API, then the API may respond with new
+                 * members that the SDK is unaware of.
+                 */
+                @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+                companion object {
+
+                    val REELS = of("reels")
+
+                    val TIMELINE = of("timeline")
+
+                    val STORIES = of("stories")
+
+                    fun of(value: String) = Placement(JsonField.of(value))
+                }
+
+                /** An enum containing [Placement]'s known values. */
+                enum class Known {
+                    REELS,
+                    TIMELINE,
+                    STORIES,
+                }
+
+                /**
+                 * An enum containing [Placement]'s known values, as well as an [_UNKNOWN] member.
+                 *
+                 * An instance of [Placement] can contain an unknown value in a couple of cases:
+                 * - It was deserialized from data that doesn't match any known member. For example,
+                 *   if the SDK is on an older version than the API, then the API may respond with
+                 *   new members that the SDK is unaware of.
+                 * - It was constructed with an arbitrary value using the [of] method.
+                 */
+                enum class Value {
+                    REELS,
+                    TIMELINE,
+                    STORIES,
+                    /**
+                     * An enum member indicating that [Placement] was instantiated with an unknown
+                     * value.
+                     */
+                    _UNKNOWN,
+                }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value, or
+                 * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+                 *
+                 * Use the [known] method instead if you're certain the value is always known or if
+                 * you want to throw for the unknown case.
+                 */
+                fun value(): Value =
+                    when (this) {
+                        REELS -> Value.REELS
+                        TIMELINE -> Value.TIMELINE
+                        STORIES -> Value.STORIES
+                        else -> Value._UNKNOWN
+                    }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value.
+                 *
+                 * Use the [value] method instead if you're uncertain the value is always known and
+                 * don't want to throw for the unknown case.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value is a not a
+                 *   known member.
+                 */
+                fun known(): Known =
+                    when (this) {
+                        REELS -> Known.REELS
+                        TIMELINE -> Known.TIMELINE
+                        STORIES -> Known.STORIES
+                        else -> throw PostForMeInvalidDataException("Unknown Placement: $value")
+                    }
+
+                /**
+                 * Returns this class instance's primitive wire representation.
+                 *
+                 * This differs from the [toString] method because that method is primarily for
+                 * debugging and generally doesn't throw.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value does not
+                 *   have the expected primitive type.
+                 */
+                fun asString(): String =
+                    _value().asString()
+                        ?: throw PostForMeInvalidDataException("Value is not a String")
+
+                private var validated: Boolean = false
+
+                fun validate(): Placement = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    known()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is Placement && value == other.value
+                }
+
+                override fun hashCode() = value.hashCode()
+
+                override fun toString() = value.toString()
+            }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is Configuration &&
+                    allowComment == other.allowComment &&
+                    allowDuet == other.allowDuet &&
+                    allowStitch == other.allowStitch &&
+                    boardIds == other.boardIds &&
+                    caption == other.caption &&
+                    discloseBrandedContent == other.discloseBrandedContent &&
+                    discloseYourBrand == other.discloseYourBrand &&
+                    isAiGenerated == other.isAiGenerated &&
+                    isDraft == other.isDraft &&
+                    link == other.link &&
+                    media == other.media &&
+                    placement == other.placement &&
+                    privacyStatus == other.privacyStatus &&
+                    title == other.title &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(
+                    allowComment,
+                    allowDuet,
+                    allowStitch,
+                    boardIds,
+                    caption,
+                    discloseBrandedContent,
+                    discloseYourBrand,
+                    isAiGenerated,
+                    isDraft,
+                    link,
+                    media,
+                    placement,
+                    privacyStatus,
+                    title,
+                    additionalProperties,
+                )
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, media=$media, placement=$placement, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
+        }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is AccountConfiguration &&
+                configuration == other.configuration &&
+                socialAccountId == other.socialAccountId &&
+                additionalProperties == other.additionalProperties
+        }
+
+        private val hashCode: Int by lazy {
+            Objects.hash(configuration, socialAccountId, additionalProperties)
+        }
+
+        override fun hashCode(): Int = hashCode
+
+        override fun toString() =
+            "AccountConfiguration{configuration=$configuration, socialAccountId=$socialAccountId, additionalProperties=$additionalProperties}"
+    }
+
+    class Media
+    private constructor(
+        private val url: JsonField<String>,
+        private val thumbnailTimestampMs: JsonValue,
+        private val thumbnailUrl: JsonValue,
+        private val additionalProperties: MutableMap<String, JsonValue>,
+    ) {
+
+        @JsonCreator
+        private constructor(
+            @JsonProperty("url") @ExcludeMissing url: JsonField<String> = JsonMissing.of(),
+            @JsonProperty("thumbnail_timestamp_ms")
+            @ExcludeMissing
+            thumbnailTimestampMs: JsonValue = JsonMissing.of(),
+            @JsonProperty("thumbnail_url")
+            @ExcludeMissing
+            thumbnailUrl: JsonValue = JsonMissing.of(),
+        ) : this(url, thumbnailTimestampMs, thumbnailUrl, mutableMapOf())
+
+        /**
+         * Public URL of the media
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+         *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+         */
+        fun url(): String = url.getRequired("url")
+
+        /** Timestamp in milliseconds of frame to use as thumbnail for the media */
+        @JsonProperty("thumbnail_timestamp_ms")
+        @ExcludeMissing
+        fun _thumbnailTimestampMs(): JsonValue = thumbnailTimestampMs
+
+        /** Public URL of the thumbnail for the media */
+        @JsonProperty("thumbnail_url") @ExcludeMissing fun _thumbnailUrl(): JsonValue = thumbnailUrl
+
+        /**
+         * Returns the raw JSON value of [url].
+         *
+         * Unlike [url], this method doesn't throw if the JSON field has an unexpected type.
+         */
+        @JsonProperty("url") @ExcludeMissing fun _url(): JsonField<String> = url
+
+        @JsonAnySetter
+        private fun putAdditionalProperty(key: String, value: JsonValue) {
+            additionalProperties.put(key, value)
+        }
+
+        @JsonAnyGetter
+        @ExcludeMissing
+        fun _additionalProperties(): Map<String, JsonValue> =
+            Collections.unmodifiableMap(additionalProperties)
+
+        fun toBuilder() = Builder().from(this)
+
+        companion object {
+
+            /**
+             * Returns a mutable builder for constructing an instance of [Media].
+             *
+             * The following fields are required:
+             * ```kotlin
+             * .url()
+             * ```
+             */
+            fun builder() = Builder()
+        }
+
+        /** A builder for [Media]. */
+        class Builder internal constructor() {
+
+            private var url: JsonField<String>? = null
+            private var thumbnailTimestampMs: JsonValue = JsonMissing.of()
+            private var thumbnailUrl: JsonValue = JsonMissing.of()
+            private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+            internal fun from(media: Media) = apply {
+                url = media.url
+                thumbnailTimestampMs = media.thumbnailTimestampMs
+                thumbnailUrl = media.thumbnailUrl
+                additionalProperties = media.additionalProperties.toMutableMap()
+            }
+
+            /** Public URL of the media */
+            fun url(url: String) = url(JsonField.of(url))
+
+            /**
+             * Sets [Builder.url] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.url] with a well-typed [String] value instead. This
+             * method is primarily for setting the field to an undocumented or not yet supported
+             * value.
+             */
+            fun url(url: JsonField<String>) = apply { this.url = url }
+
+            /** Timestamp in milliseconds of frame to use as thumbnail for the media */
+            fun thumbnailTimestampMs(thumbnailTimestampMs: JsonValue) = apply {
+                this.thumbnailTimestampMs = thumbnailTimestampMs
+            }
+
+            /** Public URL of the thumbnail for the media */
+            fun thumbnailUrl(thumbnailUrl: JsonValue) = apply { this.thumbnailUrl = thumbnailUrl }
+
+            fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                this.additionalProperties.clear()
+                putAllAdditionalProperties(additionalProperties)
+            }
+
+            fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                additionalProperties.put(key, value)
+            }
+
+            fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                this.additionalProperties.putAll(additionalProperties)
+            }
+
+            fun removeAdditionalProperty(key: String) = apply { additionalProperties.remove(key) }
+
+            fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                keys.forEach(::removeAdditionalProperty)
+            }
+
+            /**
+             * Returns an immutable instance of [Media].
+             *
+             * Further updates to this [Builder] will not mutate the returned instance.
+             *
+             * The following fields are required:
+             * ```kotlin
+             * .url()
+             * ```
+             *
+             * @throws IllegalStateException if any required field is unset.
+             */
+            fun build(): Media =
+                Media(
+                    checkRequired("url", url),
+                    thumbnailTimestampMs,
+                    thumbnailUrl,
+                    additionalProperties.toMutableMap(),
+                )
+        }
+
+        private var validated: Boolean = false
+
+        fun validate(): Media = apply {
+            if (validated) {
+                return@apply
+            }
+
+            url()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: PostForMeInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        internal fun validity(): Int = (if (url.asKnown() == null) 0 else 1)
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Media &&
+                url == other.url &&
+                thumbnailTimestampMs == other.thumbnailTimestampMs &&
+                thumbnailUrl == other.thumbnailUrl &&
+                additionalProperties == other.additionalProperties
+        }
+
+        private val hashCode: Int by lazy {
+            Objects.hash(url, thumbnailTimestampMs, thumbnailUrl, additionalProperties)
+        }
+
+        override fun hashCode(): Int = hashCode
+
+        override fun toString() =
+            "Media{url=$url, thumbnailTimestampMs=$thumbnailTimestampMs, thumbnailUrl=$thumbnailUrl, additionalProperties=$additionalProperties}"
+    }
 
     /** Current status of the post: draft, processed, scheduled, or processing */
     class Status @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
