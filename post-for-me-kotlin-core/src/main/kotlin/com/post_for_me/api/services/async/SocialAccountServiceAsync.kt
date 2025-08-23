@@ -9,6 +9,7 @@ import com.post_for_me.api.core.http.HttpResponseFor
 import com.post_for_me.api.models.socialaccounts.SocialAccount
 import com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlParams
 import com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlResponse
+import com.post_for_me.api.models.socialaccounts.SocialAccountCreateParams
 import com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectParams
 import com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectResponse
 import com.post_for_me.api.models.socialaccounts.SocialAccountListParams
@@ -29,6 +30,15 @@ interface SocialAccountServiceAsync {
      * The original service is not modified.
      */
     fun withOptions(modifier: (ClientOptions.Builder) -> Unit): SocialAccountServiceAsync
+
+    /**
+     * If a social account with the same platform and user_id already exists, it will be updated. If
+     * not, a new social account will be created.
+     */
+    suspend fun create(
+        params: SocialAccountCreateParams,
+        requestOptions: RequestOptions = RequestOptions.none(),
+    ): SocialAccount
 
     /** Get social account by ID */
     suspend fun retrieve(
@@ -123,6 +133,16 @@ interface SocialAccountServiceAsync {
         fun withOptions(
             modifier: (ClientOptions.Builder) -> Unit
         ): SocialAccountServiceAsync.WithRawResponse
+
+        /**
+         * Returns a raw HTTP response for `post /v1/social-accounts`, but is otherwise the same as
+         * [SocialAccountServiceAsync.create].
+         */
+        @MustBeClosed
+        suspend fun create(
+            params: SocialAccountCreateParams,
+            requestOptions: RequestOptions = RequestOptions.none(),
+        ): HttpResponseFor<SocialAccount>
 
         /**
          * Returns a raw HTTP response for `get /v1/social-accounts/{id}`, but is otherwise the same
