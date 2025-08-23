@@ -19,6 +19,7 @@ import com.post_for_me.api.core.prepare
 import com.post_for_me.api.models.socialaccounts.SocialAccount
 import com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlParams
 import com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlResponse
+import com.post_for_me.api.models.socialaccounts.SocialAccountCreateParams
 import com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectParams
 import com.post_for_me.api.models.socialaccounts.SocialAccountDisconnectResponse
 import com.post_for_me.api.models.socialaccounts.SocialAccountListParams
@@ -37,6 +38,13 @@ class SocialAccountServiceImpl internal constructor(private val clientOptions: C
 
     override fun withOptions(modifier: (ClientOptions.Builder) -> Unit): SocialAccountService =
         SocialAccountServiceImpl(clientOptions.toBuilder().apply(modifier).build())
+
+    override fun create(
+        params: SocialAccountCreateParams,
+        requestOptions: RequestOptions,
+    ): SocialAccount =
+        // post /v1/social-accounts
+        withRawResponse().create(params, requestOptions).parse()
 
     override fun retrieve(
         params: SocialAccountRetrieveParams,
@@ -85,6 +93,34 @@ class SocialAccountServiceImpl internal constructor(private val clientOptions: C
             SocialAccountServiceImpl.WithRawResponseImpl(
                 clientOptions.toBuilder().apply(modifier).build()
             )
+
+        private val createHandler: Handler<SocialAccount> =
+            jsonHandler<SocialAccount>(clientOptions.jsonMapper)
+
+        override fun create(
+            params: SocialAccountCreateParams,
+            requestOptions: RequestOptions,
+        ): HttpResponseFor<SocialAccount> {
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.POST)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("v1", "social-accounts")
+                    .body(json(clientOptions.jsonMapper, params._body()))
+                    .build()
+                    .prepare(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            val response = clientOptions.httpClient.execute(request, requestOptions)
+            return errorHandler.handle(response).parseable {
+                response
+                    .use { createHandler.handle(it) }
+                    .also {
+                        if (requestOptions.responseValidation!!) {
+                            it.validate()
+                        }
+                    }
+            }
+        }
 
         private val retrieveHandler: Handler<SocialAccount> =
             jsonHandler<SocialAccount>(clientOptions.jsonMapper)
