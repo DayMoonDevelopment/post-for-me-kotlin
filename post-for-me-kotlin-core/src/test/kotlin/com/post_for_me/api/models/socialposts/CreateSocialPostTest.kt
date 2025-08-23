@@ -53,41 +53,36 @@ internal class CreateSocialPostTest {
                         .build()
                 )
                 .platformConfigurations(
-                    CreateSocialPost.PlatformConfigurations.builder()
+                    PlatformConfigurationsDto.builder()
                         .bluesky(
-                            CreateSocialPost.PlatformConfigurations.Bluesky.builder()
+                            BlueskyConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .build()
                         )
                         .facebook(
-                            CreateSocialPost.PlatformConfigurations.Facebook.builder()
+                            FacebookConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
-                                .placement(
-                                    CreateSocialPost.PlatformConfigurations.Facebook.Placement.REELS
-                                )
+                                .placement(FacebookConfigurationDto.Placement.REELS)
                                 .build()
                         )
                         .instagram(
-                            CreateSocialPost.PlatformConfigurations.Instagram.builder()
+                            InstagramConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addCollaborator("string")
                                 .addMedia("string")
-                                .placement(
-                                    CreateSocialPost.PlatformConfigurations.Instagram.Placement
-                                        .REELS
-                                )
+                                .placement(InstagramConfigurationDto.Placement.REELS)
                                 .build()
                         )
                         .linkedin(
-                            CreateSocialPost.PlatformConfigurations.Linkedin.builder()
+                            LinkedinConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .build()
                         )
                         .pinterest(
-                            CreateSocialPost.PlatformConfigurations.Pinterest.builder()
+                            PinterestConfigurationDto.builder()
                                 .addBoardId("string")
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .link("link")
@@ -95,12 +90,10 @@ internal class CreateSocialPostTest {
                                 .build()
                         )
                         .threads(
-                            CreateSocialPost.PlatformConfigurations.Threads.builder()
+                            ThreadsConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
-                                .placement(
-                                    CreateSocialPost.PlatformConfigurations.Threads.Placement.REELS
-                                )
+                                .placement(ThreadsConfigurationDto.Placement.REELS)
                                 .build()
                         )
                         .tiktok(
@@ -134,13 +127,13 @@ internal class CreateSocialPostTest {
                                 .build()
                         )
                         .x(
-                            CreateSocialPost.PlatformConfigurations.X.builder()
+                            TwitterConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .build()
                         )
                         .youtube(
-                            CreateSocialPost.PlatformConfigurations.Youtube.builder()
+                            YoutubeConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .title("title")
@@ -191,40 +184,36 @@ internal class CreateSocialPostTest {
             )
         assertThat(createSocialPost.platformConfigurations())
             .isEqualTo(
-                CreateSocialPost.PlatformConfigurations.builder()
+                PlatformConfigurationsDto.builder()
                     .bluesky(
-                        CreateSocialPost.PlatformConfigurations.Bluesky.builder()
+                        BlueskyConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addMedia("string")
                             .build()
                     )
                     .facebook(
-                        CreateSocialPost.PlatformConfigurations.Facebook.builder()
+                        FacebookConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addMedia("string")
-                            .placement(
-                                CreateSocialPost.PlatformConfigurations.Facebook.Placement.REELS
-                            )
+                            .placement(FacebookConfigurationDto.Placement.REELS)
                             .build()
                     )
                     .instagram(
-                        CreateSocialPost.PlatformConfigurations.Instagram.builder()
+                        InstagramConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addCollaborator("string")
                             .addMedia("string")
-                            .placement(
-                                CreateSocialPost.PlatformConfigurations.Instagram.Placement.REELS
-                            )
+                            .placement(InstagramConfigurationDto.Placement.REELS)
                             .build()
                     )
                     .linkedin(
-                        CreateSocialPost.PlatformConfigurations.Linkedin.builder()
+                        LinkedinConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addMedia("string")
                             .build()
                     )
                     .pinterest(
-                        CreateSocialPost.PlatformConfigurations.Pinterest.builder()
+                        PinterestConfigurationDto.builder()
                             .addBoardId("string")
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .link("link")
@@ -232,12 +221,10 @@ internal class CreateSocialPostTest {
                             .build()
                     )
                     .threads(
-                        CreateSocialPost.PlatformConfigurations.Threads.builder()
+                        ThreadsConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addMedia("string")
-                            .placement(
-                                CreateSocialPost.PlatformConfigurations.Threads.Placement.REELS
-                            )
+                            .placement(ThreadsConfigurationDto.Placement.REELS)
                             .build()
                     )
                     .tiktok(
@@ -271,13 +258,13 @@ internal class CreateSocialPostTest {
                             .build()
                     )
                     .x(
-                        CreateSocialPost.PlatformConfigurations.X.builder()
+                        TwitterConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addMedia("string")
                             .build()
                     )
                     .youtube(
-                        CreateSocialPost.PlatformConfigurations.Youtube.builder()
+                        YoutubeConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addMedia("string")
                             .title("title")
@@ -332,41 +319,36 @@ internal class CreateSocialPostTest {
                         .build()
                 )
                 .platformConfigurations(
-                    CreateSocialPost.PlatformConfigurations.builder()
+                    PlatformConfigurationsDto.builder()
                         .bluesky(
-                            CreateSocialPost.PlatformConfigurations.Bluesky.builder()
+                            BlueskyConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .build()
                         )
                         .facebook(
-                            CreateSocialPost.PlatformConfigurations.Facebook.builder()
+                            FacebookConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
-                                .placement(
-                                    CreateSocialPost.PlatformConfigurations.Facebook.Placement.REELS
-                                )
+                                .placement(FacebookConfigurationDto.Placement.REELS)
                                 .build()
                         )
                         .instagram(
-                            CreateSocialPost.PlatformConfigurations.Instagram.builder()
+                            InstagramConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addCollaborator("string")
                                 .addMedia("string")
-                                .placement(
-                                    CreateSocialPost.PlatformConfigurations.Instagram.Placement
-                                        .REELS
-                                )
+                                .placement(InstagramConfigurationDto.Placement.REELS)
                                 .build()
                         )
                         .linkedin(
-                            CreateSocialPost.PlatformConfigurations.Linkedin.builder()
+                            LinkedinConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .build()
                         )
                         .pinterest(
-                            CreateSocialPost.PlatformConfigurations.Pinterest.builder()
+                            PinterestConfigurationDto.builder()
                                 .addBoardId("string")
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .link("link")
@@ -374,12 +356,10 @@ internal class CreateSocialPostTest {
                                 .build()
                         )
                         .threads(
-                            CreateSocialPost.PlatformConfigurations.Threads.builder()
+                            ThreadsConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
-                                .placement(
-                                    CreateSocialPost.PlatformConfigurations.Threads.Placement.REELS
-                                )
+                                .placement(ThreadsConfigurationDto.Placement.REELS)
                                 .build()
                         )
                         .tiktok(
@@ -413,13 +393,13 @@ internal class CreateSocialPostTest {
                                 .build()
                         )
                         .x(
-                            CreateSocialPost.PlatformConfigurations.X.builder()
+                            TwitterConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .build()
                         )
                         .youtube(
-                            CreateSocialPost.PlatformConfigurations.Youtube.builder()
+                            YoutubeConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addMedia("string")
                                 .title("title")
