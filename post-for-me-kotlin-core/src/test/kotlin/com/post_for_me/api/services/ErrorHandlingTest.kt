@@ -131,13 +131,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -145,7 +165,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -154,7 +184,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -162,13 +202,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -182,7 +242,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -197,7 +267,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -205,13 +285,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -290,13 +390,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -304,7 +424,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -313,7 +443,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -321,13 +461,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -341,7 +501,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -356,7 +526,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -364,13 +544,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -449,13 +649,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -463,7 +683,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -472,7 +702,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -480,13 +720,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -500,7 +760,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -515,7 +785,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -523,13 +803,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -608,13 +908,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -622,7 +942,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -631,7 +961,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -639,13 +979,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -659,7 +1019,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -674,7 +1044,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -682,13 +1062,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -767,13 +1167,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -781,7 +1201,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -790,7 +1220,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -798,13 +1238,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -818,7 +1278,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -833,7 +1303,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -841,13 +1321,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -926,13 +1426,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -940,7 +1460,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -949,7 +1479,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -957,13 +1497,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -977,7 +1537,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -992,7 +1562,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1000,13 +1580,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -1085,13 +1685,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1099,7 +1719,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -1108,7 +1738,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -1116,13 +1756,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1136,7 +1796,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1151,7 +1821,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1159,13 +1839,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -1244,13 +1944,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1258,7 +1978,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -1267,7 +1997,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -1275,13 +2015,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1295,7 +2055,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1310,7 +2080,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1318,13 +2098,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -1403,13 +2203,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1417,7 +2237,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -1426,7 +2256,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -1434,13 +2274,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1454,7 +2314,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1469,7 +2339,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1477,13 +2357,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -1562,13 +2462,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1576,7 +2496,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -1585,7 +2515,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -1593,13 +2533,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1613,7 +2573,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1628,7 +2598,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1636,13 +2616,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -1721,13 +2721,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1735,7 +2755,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -1744,7 +2774,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -1752,13 +2792,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1772,7 +2832,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1787,7 +2857,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1795,13 +2875,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -1880,13 +2980,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1894,7 +3014,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -1903,7 +3033,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -1911,13 +3051,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -1931,7 +3091,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1946,7 +3116,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -1954,13 +3134,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -2039,13 +3239,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2053,7 +3273,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -2062,7 +3292,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -2070,13 +3310,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2090,7 +3350,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2105,7 +3375,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2113,13 +3393,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -2198,13 +3498,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2212,7 +3532,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -2221,7 +3551,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -2229,13 +3569,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2249,7 +3609,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2264,7 +3634,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2272,13 +3652,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -2357,13 +3757,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2371,7 +3791,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -2380,7 +3810,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -2388,13 +3828,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2408,7 +3868,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2423,7 +3893,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2431,13 +3911,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -2516,13 +4016,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2530,7 +4050,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -2539,7 +4069,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -2547,13 +4087,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2567,7 +4127,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2582,7 +4152,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2590,13 +4170,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )
@@ -2673,13 +4273,33 @@ internal class ErrorHandlingTest {
                                         .bluesky(
                                             BlueskyConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    BlueskyConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .facebook(
                                             FacebookConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    FacebookConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(FacebookConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2687,7 +4307,17 @@ internal class ErrorHandlingTest {
                                             InstagramConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .addCollaborator("string")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    InstagramConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(
                                                     InstagramConfigurationDto.Placement.REELS
                                                 )
@@ -2696,7 +4326,17 @@ internal class ErrorHandlingTest {
                                         .linkedin(
                                             LinkedinConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    LinkedinConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .pinterest(
@@ -2704,13 +4344,33 @@ internal class ErrorHandlingTest {
                                                 .addBoardId("string")
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                                 .link("link")
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    PinterestConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .threads(
                                             ThreadsConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    ThreadsConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                                 .build()
                                         )
@@ -2724,7 +4384,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2739,7 +4409,17 @@ internal class ErrorHandlingTest {
                                                 .discloseYourBrand(true)
                                                 .isAiGenerated(true)
                                                 .isDraft(true)
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TiktokConfiguration.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .privacyStatus("privacy_status")
                                                 .title("title")
                                                 .build()
@@ -2747,13 +4427,33 @@ internal class ErrorHandlingTest {
                                         .x(
                                             TwitterConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    TwitterConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .build()
                                         )
                                         .youtube(
                                             YoutubeConfigurationDto.builder()
                                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                                .addMedia("string")
+                                                .addMedia(
+                                                    YoutubeConfigurationDto.Media.builder()
+                                                        .url("url")
+                                                        .thumbnailTimestampMs(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .thumbnailUrl(
+                                                            JsonValue.from(mapOf<String, Any>())
+                                                        )
+                                                        .build()
+                                                )
                                                 .title("title")
                                                 .build()
                                         )

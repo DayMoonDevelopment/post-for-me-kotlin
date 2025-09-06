@@ -17,14 +17,27 @@ internal class PinterestConfigurationDtoTest {
                 .addBoardId("string")
                 .caption(JsonValue.from(mapOf<String, Any>()))
                 .link("link")
-                .addMedia("string")
+                .addMedia(
+                    PinterestConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         assertThat(pinterestConfigurationDto.boardIds()).containsExactly("string")
         assertThat(pinterestConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
         assertThat(pinterestConfigurationDto.link()).isEqualTo("link")
-        assertThat(pinterestConfigurationDto.media()).containsExactly("string")
+        assertThat(pinterestConfigurationDto.media())
+            .containsExactly(
+                PinterestConfigurationDto.Media.builder()
+                    .url("url")
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
     }
 
     @Test
@@ -35,7 +48,13 @@ internal class PinterestConfigurationDtoTest {
                 .addBoardId("string")
                 .caption(JsonValue.from(mapOf<String, Any>()))
                 .link("link")
-                .addMedia("string")
+                .addMedia(
+                    PinterestConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         val roundtrippedPinterestConfigurationDto =
