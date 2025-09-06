@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-09-06)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** api update ([ed427c0](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/ed427c0c9e5a10615f355842d89a37ab04593ff2))
+
+
+### Bug Fixes
+
+* **ci:** use java-version 21 for publish step ([fa45aa2](https://github.com/DayMoonDevelopment/post-for-me-kotlin/commit/fa45aa20be8cb5f7a365b55331ff133c9c7e34b0))
+
 ## 0.1.0-alpha.4 (2025-08-23)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/DayMoonDevelopment/post-for-me-kotlin/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
