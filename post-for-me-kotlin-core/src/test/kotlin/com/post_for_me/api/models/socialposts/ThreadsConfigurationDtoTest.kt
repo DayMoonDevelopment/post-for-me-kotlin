@@ -15,13 +15,26 @@ internal class ThreadsConfigurationDtoTest {
         val threadsConfigurationDto =
             ThreadsConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    ThreadsConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .placement(ThreadsConfigurationDto.Placement.REELS)
                 .build()
 
         assertThat(threadsConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
-        assertThat(threadsConfigurationDto.media()).containsExactly("string")
+        assertThat(threadsConfigurationDto.media())
+            .containsExactly(
+                ThreadsConfigurationDto.Media.builder()
+                    .url("url")
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
         assertThat(threadsConfigurationDto.placement())
             .isEqualTo(ThreadsConfigurationDto.Placement.REELS)
     }
@@ -32,7 +45,13 @@ internal class ThreadsConfigurationDtoTest {
         val threadsConfigurationDto =
             ThreadsConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    ThreadsConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .placement(ThreadsConfigurationDto.Placement.REELS)
                 .build()
 

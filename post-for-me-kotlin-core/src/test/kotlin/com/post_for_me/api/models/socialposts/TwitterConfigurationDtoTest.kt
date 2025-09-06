@@ -15,12 +15,25 @@ internal class TwitterConfigurationDtoTest {
         val twitterConfigurationDto =
             TwitterConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    TwitterConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         assertThat(twitterConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
-        assertThat(twitterConfigurationDto.media()).containsExactly("string")
+        assertThat(twitterConfigurationDto.media())
+            .containsExactly(
+                TwitterConfigurationDto.Media.builder()
+                    .url("url")
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
     }
 
     @Test
@@ -29,7 +42,13 @@ internal class TwitterConfigurationDtoTest {
         val twitterConfigurationDto =
             TwitterConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    TwitterConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         val roundtrippedTwitterConfigurationDto =
