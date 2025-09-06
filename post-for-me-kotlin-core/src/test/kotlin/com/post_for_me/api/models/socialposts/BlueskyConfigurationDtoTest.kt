@@ -15,12 +15,25 @@ internal class BlueskyConfigurationDtoTest {
         val blueskyConfigurationDto =
             BlueskyConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    BlueskyConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         assertThat(blueskyConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
-        assertThat(blueskyConfigurationDto.media()).containsExactly("string")
+        assertThat(blueskyConfigurationDto.media())
+            .containsExactly(
+                BlueskyConfigurationDto.Media.builder()
+                    .url("url")
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
     }
 
     @Test
@@ -29,7 +42,13 @@ internal class BlueskyConfigurationDtoTest {
         val blueskyConfigurationDto =
             BlueskyConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    BlueskyConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         val roundtrippedBlueskyConfigurationDto =

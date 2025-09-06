@@ -15,13 +15,26 @@ internal class FacebookConfigurationDtoTest {
         val facebookConfigurationDto =
             FacebookConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    FacebookConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .placement(FacebookConfigurationDto.Placement.REELS)
                 .build()
 
         assertThat(facebookConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
-        assertThat(facebookConfigurationDto.media()).containsExactly("string")
+        assertThat(facebookConfigurationDto.media())
+            .containsExactly(
+                FacebookConfigurationDto.Media.builder()
+                    .url("url")
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
         assertThat(facebookConfigurationDto.placement())
             .isEqualTo(FacebookConfigurationDto.Placement.REELS)
     }
@@ -32,7 +45,13 @@ internal class FacebookConfigurationDtoTest {
         val facebookConfigurationDto =
             FacebookConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    FacebookConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .placement(FacebookConfigurationDto.Placement.REELS)
                 .build()
 

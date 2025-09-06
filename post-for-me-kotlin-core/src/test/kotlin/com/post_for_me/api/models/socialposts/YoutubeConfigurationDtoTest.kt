@@ -15,13 +15,26 @@ internal class YoutubeConfigurationDtoTest {
         val youtubeConfigurationDto =
             YoutubeConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    YoutubeConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .title("title")
                 .build()
 
         assertThat(youtubeConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
-        assertThat(youtubeConfigurationDto.media()).containsExactly("string")
+        assertThat(youtubeConfigurationDto.media())
+            .containsExactly(
+                YoutubeConfigurationDto.Media.builder()
+                    .url("url")
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
         assertThat(youtubeConfigurationDto.title()).isEqualTo("title")
     }
 
@@ -31,7 +44,13 @@ internal class YoutubeConfigurationDtoTest {
         val youtubeConfigurationDto =
             YoutubeConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    YoutubeConfigurationDto.Media.builder()
+                        .url("url")
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .title("title")
                 .build()
 
