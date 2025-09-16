@@ -22,6 +22,7 @@ private constructor(
     private val allowComment: JsonField<Boolean>,
     private val allowDuet: JsonField<Boolean>,
     private val allowStitch: JsonField<Boolean>,
+    private val autoAddMusic: JsonField<Boolean>,
     private val caption: JsonValue,
     private val discloseBrandedContent: JsonField<Boolean>,
     private val discloseYourBrand: JsonField<Boolean>,
@@ -44,6 +45,9 @@ private constructor(
         @JsonProperty("allow_stitch")
         @ExcludeMissing
         allowStitch: JsonField<Boolean> = JsonMissing.of(),
+        @JsonProperty("auto_add_music")
+        @ExcludeMissing
+        autoAddMusic: JsonField<Boolean> = JsonMissing.of(),
         @JsonProperty("caption") @ExcludeMissing caption: JsonValue = JsonMissing.of(),
         @JsonProperty("disclose_branded_content")
         @ExcludeMissing
@@ -64,6 +68,7 @@ private constructor(
         allowComment,
         allowDuet,
         allowStitch,
+        autoAddMusic,
         caption,
         discloseBrandedContent,
         discloseYourBrand,
@@ -98,6 +103,14 @@ private constructor(
      *   server responded with an unexpected value).
      */
     fun allowStitch(): Boolean? = allowStitch.getNullable("allow_stitch")
+
+    /**
+     * Will automatically add music to photo posts
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun autoAddMusic(): Boolean? = autoAddMusic.getNullable("auto_add_music")
 
     /** Overrides the `caption` from the post */
     @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
@@ -185,6 +198,15 @@ private constructor(
     fun _allowStitch(): JsonField<Boolean> = allowStitch
 
     /**
+     * Returns the raw JSON value of [autoAddMusic].
+     *
+     * Unlike [autoAddMusic], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("auto_add_music")
+    @ExcludeMissing
+    fun _autoAddMusic(): JsonField<Boolean> = autoAddMusic
+
+    /**
      * Returns the raw JSON value of [discloseBrandedContent].
      *
      * Unlike [discloseBrandedContent], this method doesn't throw if the JSON field has an
@@ -267,6 +289,7 @@ private constructor(
         private var allowComment: JsonField<Boolean> = JsonMissing.of()
         private var allowDuet: JsonField<Boolean> = JsonMissing.of()
         private var allowStitch: JsonField<Boolean> = JsonMissing.of()
+        private var autoAddMusic: JsonField<Boolean> = JsonMissing.of()
         private var caption: JsonValue = JsonMissing.of()
         private var discloseBrandedContent: JsonField<Boolean> = JsonMissing.of()
         private var discloseYourBrand: JsonField<Boolean> = JsonMissing.of()
@@ -281,6 +304,7 @@ private constructor(
             allowComment = tiktokConfiguration.allowComment
             allowDuet = tiktokConfiguration.allowDuet
             allowStitch = tiktokConfiguration.allowStitch
+            autoAddMusic = tiktokConfiguration.autoAddMusic
             caption = tiktokConfiguration.caption
             discloseBrandedContent = tiktokConfiguration.discloseBrandedContent
             discloseYourBrand = tiktokConfiguration.discloseYourBrand
@@ -350,6 +374,27 @@ private constructor(
          * value.
          */
         fun allowStitch(allowStitch: JsonField<Boolean>) = apply { this.allowStitch = allowStitch }
+
+        /** Will automatically add music to photo posts */
+        fun autoAddMusic(autoAddMusic: Boolean?) = autoAddMusic(JsonField.ofNullable(autoAddMusic))
+
+        /**
+         * Alias for [Builder.autoAddMusic].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun autoAddMusic(autoAddMusic: Boolean) = autoAddMusic(autoAddMusic as Boolean?)
+
+        /**
+         * Sets [Builder.autoAddMusic] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.autoAddMusic] with a well-typed [Boolean] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun autoAddMusic(autoAddMusic: JsonField<Boolean>) = apply {
+            this.autoAddMusic = autoAddMusic
+        }
 
         /** Overrides the `caption` from the post */
         fun caption(caption: JsonValue) = apply { this.caption = caption }
@@ -524,6 +569,7 @@ private constructor(
                 allowComment,
                 allowDuet,
                 allowStitch,
+                autoAddMusic,
                 caption,
                 discloseBrandedContent,
                 discloseYourBrand,
@@ -546,6 +592,7 @@ private constructor(
         allowComment()
         allowDuet()
         allowStitch()
+        autoAddMusic()
         discloseBrandedContent()
         discloseYourBrand()
         isAiGenerated()
@@ -573,6 +620,7 @@ private constructor(
         (if (allowComment.asKnown() == null) 0 else 1) +
             (if (allowDuet.asKnown() == null) 0 else 1) +
             (if (allowStitch.asKnown() == null) 0 else 1) +
+            (if (autoAddMusic.asKnown() == null) 0 else 1) +
             (if (discloseBrandedContent.asKnown() == null) 0 else 1) +
             (if (discloseYourBrand.asKnown() == null) 0 else 1) +
             (if (isAiGenerated.asKnown() == null) 0 else 1) +
@@ -781,6 +829,7 @@ private constructor(
             allowComment == other.allowComment &&
             allowDuet == other.allowDuet &&
             allowStitch == other.allowStitch &&
+            autoAddMusic == other.autoAddMusic &&
             caption == other.caption &&
             discloseBrandedContent == other.discloseBrandedContent &&
             discloseYourBrand == other.discloseYourBrand &&
@@ -797,6 +846,7 @@ private constructor(
             allowComment,
             allowDuet,
             allowStitch,
+            autoAddMusic,
             caption,
             discloseBrandedContent,
             discloseYourBrand,
@@ -812,5 +862,5 @@ private constructor(
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "TiktokConfiguration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, media=$media, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
+        "TiktokConfiguration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, media=$media, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
 }

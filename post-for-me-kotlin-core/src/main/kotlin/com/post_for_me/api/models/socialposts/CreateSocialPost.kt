@@ -688,6 +688,7 @@ private constructor(
             private val allowComment: JsonField<Boolean>,
             private val allowDuet: JsonField<Boolean>,
             private val allowStitch: JsonField<Boolean>,
+            private val autoAddMusic: JsonField<Boolean>,
             private val boardIds: JsonField<List<String>>,
             private val caption: JsonValue,
             private val discloseBrandedContent: JsonField<Boolean>,
@@ -713,6 +714,9 @@ private constructor(
                 @JsonProperty("allow_stitch")
                 @ExcludeMissing
                 allowStitch: JsonField<Boolean> = JsonMissing.of(),
+                @JsonProperty("auto_add_music")
+                @ExcludeMissing
+                autoAddMusic: JsonField<Boolean> = JsonMissing.of(),
                 @JsonProperty("board_ids")
                 @ExcludeMissing
                 boardIds: JsonField<List<String>> = JsonMissing.of(),
@@ -744,6 +748,7 @@ private constructor(
                 allowComment,
                 allowDuet,
                 allowStitch,
+                autoAddMusic,
                 boardIds,
                 caption,
                 discloseBrandedContent,
@@ -781,6 +786,14 @@ private constructor(
              *   if the server responded with an unexpected value).
              */
             fun allowStitch(): Boolean? = allowStitch.getNullable("allow_stitch")
+
+            /**
+             * Will automatically add music to photo posts on TikTok
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun autoAddMusic(): Boolean? = autoAddMusic.getNullable("auto_add_music")
 
             /**
              * Pinterest board IDs
@@ -898,6 +911,16 @@ private constructor(
             fun _allowStitch(): JsonField<Boolean> = allowStitch
 
             /**
+             * Returns the raw JSON value of [autoAddMusic].
+             *
+             * Unlike [autoAddMusic], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("auto_add_music")
+            @ExcludeMissing
+            fun _autoAddMusic(): JsonField<Boolean> = autoAddMusic
+
+            /**
              * Returns the raw JSON value of [boardIds].
              *
              * Unlike [boardIds], this method doesn't throw if the JSON field has an unexpected
@@ -1009,6 +1032,7 @@ private constructor(
                 private var allowComment: JsonField<Boolean> = JsonMissing.of()
                 private var allowDuet: JsonField<Boolean> = JsonMissing.of()
                 private var allowStitch: JsonField<Boolean> = JsonMissing.of()
+                private var autoAddMusic: JsonField<Boolean> = JsonMissing.of()
                 private var boardIds: JsonField<MutableList<String>>? = null
                 private var caption: JsonValue = JsonMissing.of()
                 private var discloseBrandedContent: JsonField<Boolean> = JsonMissing.of()
@@ -1026,6 +1050,7 @@ private constructor(
                     allowComment = configuration.allowComment
                     allowDuet = configuration.allowDuet
                     allowStitch = configuration.allowStitch
+                    autoAddMusic = configuration.autoAddMusic
                     boardIds = configuration.boardIds.map { it.toMutableList() }
                     caption = configuration.caption
                     discloseBrandedContent = configuration.discloseBrandedContent
@@ -1101,6 +1126,28 @@ private constructor(
                  */
                 fun allowStitch(allowStitch: JsonField<Boolean>) = apply {
                     this.allowStitch = allowStitch
+                }
+
+                /** Will automatically add music to photo posts on TikTok */
+                fun autoAddMusic(autoAddMusic: Boolean?) =
+                    autoAddMusic(JsonField.ofNullable(autoAddMusic))
+
+                /**
+                 * Alias for [Builder.autoAddMusic].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun autoAddMusic(autoAddMusic: Boolean) = autoAddMusic(autoAddMusic as Boolean?)
+
+                /**
+                 * Sets [Builder.autoAddMusic] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.autoAddMusic] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun autoAddMusic(autoAddMusic: JsonField<Boolean>) = apply {
+                    this.autoAddMusic = autoAddMusic
                 }
 
                 /** Pinterest board IDs */
@@ -1333,6 +1380,7 @@ private constructor(
                         allowComment,
                         allowDuet,
                         allowStitch,
+                        autoAddMusic,
                         (boardIds ?: JsonMissing.of()).map { it.toImmutable() },
                         caption,
                         discloseBrandedContent,
@@ -1358,6 +1406,7 @@ private constructor(
                 allowComment()
                 allowDuet()
                 allowStitch()
+                autoAddMusic()
                 boardIds()
                 discloseBrandedContent()
                 discloseYourBrand()
@@ -1389,6 +1438,7 @@ private constructor(
                 (if (allowComment.asKnown() == null) 0 else 1) +
                     (if (allowDuet.asKnown() == null) 0 else 1) +
                     (if (allowStitch.asKnown() == null) 0 else 1) +
+                    (if (autoAddMusic.asKnown() == null) 0 else 1) +
                     (boardIds.asKnown()?.size ?: 0) +
                     (if (discloseBrandedContent.asKnown() == null) 0 else 1) +
                     (if (discloseYourBrand.asKnown() == null) 0 else 1) +
@@ -1546,6 +1596,7 @@ private constructor(
                     allowComment == other.allowComment &&
                     allowDuet == other.allowDuet &&
                     allowStitch == other.allowStitch &&
+                    autoAddMusic == other.autoAddMusic &&
                     boardIds == other.boardIds &&
                     caption == other.caption &&
                     discloseBrandedContent == other.discloseBrandedContent &&
@@ -1565,6 +1616,7 @@ private constructor(
                     allowComment,
                     allowDuet,
                     allowStitch,
+                    autoAddMusic,
                     boardIds,
                     caption,
                     discloseBrandedContent,
@@ -1583,7 +1635,7 @@ private constructor(
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, media=$media, placement=$placement, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, media=$media, placement=$placement, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
         }
 
         override fun equals(other: Any?): Boolean {
