@@ -56,11 +56,9 @@ import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: SocialPost = client.socialPosts().create(params)
 ```
@@ -160,11 +158,9 @@ import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: SocialPost = client.async().socialPosts().create(params)
 ```
@@ -182,11 +178,9 @@ import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClientAsync = PostForMeOkHttpClientAsync.fromEnv()
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: SocialPost = client.socialPosts().create(params)
 ```
@@ -206,11 +200,9 @@ import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
 import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: HttpResponseFor<SocialPost> = client.socialPosts().withRawResponse().create(params)
 

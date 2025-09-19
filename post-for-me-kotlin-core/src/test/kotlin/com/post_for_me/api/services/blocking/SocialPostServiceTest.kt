@@ -12,7 +12,6 @@ import com.post_for_me.api.models.socialposts.InstagramConfigurationDto
 import com.post_for_me.api.models.socialposts.LinkedinConfigurationDto
 import com.post_for_me.api.models.socialposts.PinterestConfigurationDto
 import com.post_for_me.api.models.socialposts.PlatformConfigurationsDto
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 import com.post_for_me.api.models.socialposts.SocialPostListParams
 import com.post_for_me.api.models.socialposts.SocialPostUpdateParams
 import com.post_for_me.api.models.socialposts.ThreadsConfigurationDto
@@ -39,243 +38,218 @@ internal class SocialPostServiceTest {
 
         val socialPost =
             socialPostService.create(
-                SocialPostCreateParams.builder()
-                    .createSocialPost(
-                        CreateSocialPost.builder()
-                            .caption("caption")
-                            .addSocialAccount("string")
-                            .addAccountConfiguration(
-                                CreateSocialPost.AccountConfiguration.builder()
-                                    .configuration(
+                CreateSocialPost.builder()
+                    .caption("caption")
+                    .addSocialAccount("string")
+                    .addAccountConfiguration(
+                        CreateSocialPost.AccountConfiguration.builder()
+                            .configuration(
+                                CreateSocialPost.AccountConfiguration.Configuration.builder()
+                                    .allowComment(true)
+                                    .allowDuet(true)
+                                    .allowStitch(true)
+                                    .autoAddMusic(true)
+                                    .addBoardId("string")
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .discloseBrandedContent(true)
+                                    .discloseYourBrand(true)
+                                    .isAiGenerated(true)
+                                    .isDraft(true)
+                                    .link("link")
+                                    .addMedia("string")
+                                    .placement(
                                         CreateSocialPost.AccountConfiguration.Configuration
-                                            .builder()
-                                            .allowComment(true)
-                                            .allowDuet(true)
-                                            .allowStitch(true)
-                                            .autoAddMusic(true)
-                                            .addBoardId("string")
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .discloseBrandedContent(true)
-                                            .discloseYourBrand(true)
-                                            .isAiGenerated(true)
-                                            .isDraft(true)
-                                            .link("link")
-                                            .addMedia("string")
-                                            .placement(
-                                                CreateSocialPost.AccountConfiguration.Configuration
-                                                    .Placement
-                                                    .REELS
-                                            )
-                                            .privacyStatus("privacy_status")
-                                            .title("title")
-                                            .build()
+                                            .Placement
+                                            .REELS
                                     )
-                                    .socialAccountId("social_account_id")
+                                    .privacyStatus("privacy_status")
+                                    .title("title")
                                     .build()
                             )
-                            .externalId("external_id")
-                            .isDraft(true)
-                            .addMedia(
-                                CreateSocialPost.Media.builder()
-                                    .url("url")
-                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
-                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
-                                    .build()
-                            )
-                            .platformConfigurations(
-                                PlatformConfigurationsDto.builder()
-                                    .bluesky(
-                                        BlueskyConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addMedia(
-                                                BlueskyConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .build()
-                                    )
-                                    .facebook(
-                                        FacebookConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addMedia(
-                                                FacebookConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .placement(FacebookConfigurationDto.Placement.REELS)
-                                            .build()
-                                    )
-                                    .instagram(
-                                        InstagramConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addCollaborator("string")
-                                            .addMedia(
-                                                InstagramConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .placement(InstagramConfigurationDto.Placement.REELS)
-                                            .build()
-                                    )
-                                    .linkedin(
-                                        LinkedinConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addMedia(
-                                                LinkedinConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .build()
-                                    )
-                                    .pinterest(
-                                        PinterestConfigurationDto.builder()
-                                            .addBoardId("string")
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .link("link")
-                                            .addMedia(
-                                                PinterestConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .build()
-                                    )
-                                    .threads(
-                                        ThreadsConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addMedia(
-                                                ThreadsConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .placement(ThreadsConfigurationDto.Placement.REELS)
-                                            .build()
-                                    )
-                                    .tiktok(
-                                        TiktokConfiguration.builder()
-                                            .allowComment(true)
-                                            .allowDuet(true)
-                                            .allowStitch(true)
-                                            .autoAddMusic(true)
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .discloseBrandedContent(true)
-                                            .discloseYourBrand(true)
-                                            .isAiGenerated(true)
-                                            .isDraft(true)
-                                            .addMedia(
-                                                TiktokConfiguration.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .privacyStatus("privacy_status")
-                                            .title("title")
-                                            .build()
-                                    )
-                                    .tiktokBusiness(
-                                        TiktokConfiguration.builder()
-                                            .allowComment(true)
-                                            .allowDuet(true)
-                                            .allowStitch(true)
-                                            .autoAddMusic(true)
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .discloseBrandedContent(true)
-                                            .discloseYourBrand(true)
-                                            .isAiGenerated(true)
-                                            .isDraft(true)
-                                            .addMedia(
-                                                TiktokConfiguration.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .privacyStatus("privacy_status")
-                                            .title("title")
-                                            .build()
-                                    )
-                                    .x(
-                                        TwitterConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addMedia(
-                                                TwitterConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .build()
-                                    )
-                                    .youtube(
-                                        YoutubeConfigurationDto.builder()
-                                            .caption(JsonValue.from(mapOf<String, Any>()))
-                                            .addMedia(
-                                                YoutubeConfigurationDto.Media.builder()
-                                                    .url("url")
-                                                    .thumbnailTimestampMs(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .thumbnailUrl(
-                                                        JsonValue.from(mapOf<String, Any>())
-                                                    )
-                                                    .build()
-                                            )
-                                            .title("title")
-                                            .build()
-                                    )
-                                    .build()
-                            )
-                            .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
+                            .socialAccountId("social_account_id")
                             .build()
                     )
+                    .externalId("external_id")
+                    .isDraft(true)
+                    .addMedia(
+                        CreateSocialPost.Media.builder()
+                            .url("url")
+                            .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                            .build()
+                    )
+                    .platformConfigurations(
+                        PlatformConfigurationsDto.builder()
+                            .bluesky(
+                                BlueskyConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addMedia(
+                                        BlueskyConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .build()
+                            )
+                            .facebook(
+                                FacebookConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addMedia(
+                                        FacebookConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .placement(FacebookConfigurationDto.Placement.REELS)
+                                    .build()
+                            )
+                            .instagram(
+                                InstagramConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addCollaborator("string")
+                                    .addMedia(
+                                        InstagramConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .placement(InstagramConfigurationDto.Placement.REELS)
+                                    .build()
+                            )
+                            .linkedin(
+                                LinkedinConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addMedia(
+                                        LinkedinConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .build()
+                            )
+                            .pinterest(
+                                PinterestConfigurationDto.builder()
+                                    .addBoardId("string")
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .link("link")
+                                    .addMedia(
+                                        PinterestConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .build()
+                            )
+                            .threads(
+                                ThreadsConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addMedia(
+                                        ThreadsConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .placement(ThreadsConfigurationDto.Placement.REELS)
+                                    .build()
+                            )
+                            .tiktok(
+                                TiktokConfiguration.builder()
+                                    .allowComment(true)
+                                    .allowDuet(true)
+                                    .allowStitch(true)
+                                    .autoAddMusic(true)
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .discloseBrandedContent(true)
+                                    .discloseYourBrand(true)
+                                    .isAiGenerated(true)
+                                    .isDraft(true)
+                                    .addMedia(
+                                        TiktokConfiguration.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .privacyStatus("privacy_status")
+                                    .title("title")
+                                    .build()
+                            )
+                            .tiktokBusiness(
+                                TiktokConfiguration.builder()
+                                    .allowComment(true)
+                                    .allowDuet(true)
+                                    .allowStitch(true)
+                                    .autoAddMusic(true)
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .discloseBrandedContent(true)
+                                    .discloseYourBrand(true)
+                                    .isAiGenerated(true)
+                                    .isDraft(true)
+                                    .addMedia(
+                                        TiktokConfiguration.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .privacyStatus("privacy_status")
+                                    .title("title")
+                                    .build()
+                            )
+                            .x(
+                                TwitterConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addMedia(
+                                        TwitterConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .build()
+                            )
+                            .youtube(
+                                YoutubeConfigurationDto.builder()
+                                    .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .addMedia(
+                                        YoutubeConfigurationDto.Media.builder()
+                                            .url("url")
+                                            .thumbnailTimestampMs(
+                                                JsonValue.from(mapOf<String, Any>())
+                                            )
+                                            .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                            .build()
+                                    )
+                                    .title("title")
+                                    .build()
+                            )
+                            .build()
+                    )
+                    .scheduledAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                     .build()
             )
 
