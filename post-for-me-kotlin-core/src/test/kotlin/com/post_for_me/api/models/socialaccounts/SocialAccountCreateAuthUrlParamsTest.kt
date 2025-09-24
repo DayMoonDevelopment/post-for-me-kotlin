@@ -20,6 +20,15 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                             .handle("handle")
                             .build()
                     )
+                    .instagram(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Instagram.builder()
+                            .connectionType(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Instagram
+                                    .ConnectionType
+                                    .INSTAGRAM
+                            )
+                            .build()
+                    )
                     .linkedin(
                         SocialAccountCreateAuthUrlParams.PlatformData.Linkedin.builder()
                             .connectionType(
@@ -48,6 +57,15 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                 .handle("handle")
                                 .build()
                         )
+                        .instagram(
+                            SocialAccountCreateAuthUrlParams.PlatformData.Instagram.builder()
+                                .connectionType(
+                                    SocialAccountCreateAuthUrlParams.PlatformData.Instagram
+                                        .ConnectionType
+                                        .INSTAGRAM
+                                )
+                                .build()
+                        )
                         .linkedin(
                             SocialAccountCreateAuthUrlParams.PlatformData.Linkedin.builder()
                                 .connectionType(
@@ -72,6 +90,15 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                         SocialAccountCreateAuthUrlParams.PlatformData.Bluesky.builder()
                             .appPassword("app_password")
                             .handle("handle")
+                            .build()
+                    )
+                    .instagram(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Instagram.builder()
+                            .connectionType(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Instagram
+                                    .ConnectionType
+                                    .INSTAGRAM
+                            )
                             .build()
                     )
                     .linkedin(
