@@ -553,6 +553,7 @@ private constructor(
     class PlatformData
     private constructor(
         private val bluesky: JsonField<Bluesky>,
+        private val instagram: JsonField<Instagram>,
         private val linkedin: JsonField<Linkedin>,
         private val additionalProperties: MutableMap<String, JsonValue>,
     ) {
@@ -560,10 +561,13 @@ private constructor(
         @JsonCreator
         private constructor(
             @JsonProperty("bluesky") @ExcludeMissing bluesky: JsonField<Bluesky> = JsonMissing.of(),
+            @JsonProperty("instagram")
+            @ExcludeMissing
+            instagram: JsonField<Instagram> = JsonMissing.of(),
             @JsonProperty("linkedin")
             @ExcludeMissing
             linkedin: JsonField<Linkedin> = JsonMissing.of(),
-        ) : this(bluesky, linkedin, mutableMapOf())
+        ) : this(bluesky, instagram, linkedin, mutableMapOf())
 
         /**
          * Additional data needed for connecting bluesky accounts
@@ -572,6 +576,14 @@ private constructor(
          *   the server responded with an unexpected value).
          */
         fun bluesky(): Bluesky? = bluesky.getNullable("bluesky")
+
+        /**
+         * Additional data for connecting instagram accounts
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if
+         *   the server responded with an unexpected value).
+         */
+        fun instagram(): Instagram? = instagram.getNullable("instagram")
 
         /**
          * Additional data for connecting linkedin accounts
@@ -587,6 +599,15 @@ private constructor(
          * Unlike [bluesky], this method doesn't throw if the JSON field has an unexpected type.
          */
         @JsonProperty("bluesky") @ExcludeMissing fun _bluesky(): JsonField<Bluesky> = bluesky
+
+        /**
+         * Returns the raw JSON value of [instagram].
+         *
+         * Unlike [instagram], this method doesn't throw if the JSON field has an unexpected type.
+         */
+        @JsonProperty("instagram")
+        @ExcludeMissing
+        fun _instagram(): JsonField<Instagram> = instagram
 
         /**
          * Returns the raw JSON value of [linkedin].
@@ -617,11 +638,13 @@ private constructor(
         class Builder internal constructor() {
 
             private var bluesky: JsonField<Bluesky> = JsonMissing.of()
+            private var instagram: JsonField<Instagram> = JsonMissing.of()
             private var linkedin: JsonField<Linkedin> = JsonMissing.of()
             private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
             internal fun from(platformData: PlatformData) = apply {
                 bluesky = platformData.bluesky
+                instagram = platformData.instagram
                 linkedin = platformData.linkedin
                 additionalProperties = platformData.additionalProperties.toMutableMap()
             }
@@ -637,6 +660,18 @@ private constructor(
              * supported value.
              */
             fun bluesky(bluesky: JsonField<Bluesky>) = apply { this.bluesky = bluesky }
+
+            /** Additional data for connecting instagram accounts */
+            fun instagram(instagram: Instagram) = instagram(JsonField.of(instagram))
+
+            /**
+             * Sets [Builder.instagram] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.instagram] with a well-typed [Instagram] value
+             * instead. This method is primarily for setting the field to an undocumented or not yet
+             * supported value.
+             */
+            fun instagram(instagram: JsonField<Instagram>) = apply { this.instagram = instagram }
 
             /** Additional data for connecting linkedin accounts */
             fun linkedin(linkedin: Linkedin) = linkedin(JsonField.of(linkedin))
@@ -675,7 +710,7 @@ private constructor(
              * Further updates to this [Builder] will not mutate the returned instance.
              */
             fun build(): PlatformData =
-                PlatformData(bluesky, linkedin, additionalProperties.toMutableMap())
+                PlatformData(bluesky, instagram, linkedin, additionalProperties.toMutableMap())
         }
 
         private var validated: Boolean = false
@@ -686,6 +721,7 @@ private constructor(
             }
 
             bluesky()?.validate()
+            instagram()?.validate()
             linkedin()?.validate()
             validated = true
         }
@@ -705,7 +741,9 @@ private constructor(
          * Used for best match union deserialization.
          */
         internal fun validity(): Int =
-            (bluesky.asKnown()?.validity() ?: 0) + (linkedin.asKnown()?.validity() ?: 0)
+            (bluesky.asKnown()?.validity() ?: 0) +
+                (instagram.asKnown()?.validity() ?: 0) +
+                (linkedin.asKnown()?.validity() ?: 0)
 
         /** Additional data needed for connecting bluesky accounts */
         class Bluesky
@@ -915,6 +953,318 @@ private constructor(
 
             override fun toString() =
                 "Bluesky{appPassword=$appPassword, handle=$handle, additionalProperties=$additionalProperties}"
+        }
+
+        /** Additional data for connecting instagram accounts */
+        class Instagram
+        private constructor(
+            private val connectionType: JsonField<ConnectionType>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("connection_type")
+                @ExcludeMissing
+                connectionType: JsonField<ConnectionType> = JsonMissing.of()
+            ) : this(connectionType, mutableMapOf())
+
+            /**
+             * The type of connection; instagram for using login with instagram, facebook for using
+             * login with facebook.
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun connectionType(): ConnectionType = connectionType.getRequired("connection_type")
+
+            /**
+             * Returns the raw JSON value of [connectionType].
+             *
+             * Unlike [connectionType], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("connection_type")
+            @ExcludeMissing
+            fun _connectionType(): JsonField<ConnectionType> = connectionType
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of [Instagram].
+                 *
+                 * The following fields are required:
+                 * ```kotlin
+                 * .connectionType()
+                 * ```
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [Instagram]. */
+            class Builder internal constructor() {
+
+                private var connectionType: JsonField<ConnectionType>? = null
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(instagram: Instagram) = apply {
+                    connectionType = instagram.connectionType
+                    additionalProperties = instagram.additionalProperties.toMutableMap()
+                }
+
+                /**
+                 * The type of connection; instagram for using login with instagram, facebook for
+                 * using login with facebook.
+                 */
+                fun connectionType(connectionType: ConnectionType) =
+                    connectionType(JsonField.of(connectionType))
+
+                /**
+                 * Sets [Builder.connectionType] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.connectionType] with a well-typed
+                 * [ConnectionType] value instead. This method is primarily for setting the field to
+                 * an undocumented or not yet supported value.
+                 */
+                fun connectionType(connectionType: JsonField<ConnectionType>) = apply {
+                    this.connectionType = connectionType
+                }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [Instagram].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 *
+                 * The following fields are required:
+                 * ```kotlin
+                 * .connectionType()
+                 * ```
+                 *
+                 * @throws IllegalStateException if any required field is unset.
+                 */
+                fun build(): Instagram =
+                    Instagram(
+                        checkRequired("connectionType", connectionType),
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): Instagram = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                connectionType().validate()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int = (connectionType.asKnown()?.validity() ?: 0)
+
+            /**
+             * The type of connection; instagram for using login with instagram, facebook for using
+             * login with facebook.
+             */
+            class ConnectionType
+            @JsonCreator
+            private constructor(private val value: JsonField<String>) : Enum {
+
+                /**
+                 * Returns this class instance's raw value.
+                 *
+                 * This is usually only useful if this instance was deserialized from data that
+                 * doesn't match any known member, and you want to know that value. For example, if
+                 * the SDK is on an older version than the API, then the API may respond with new
+                 * members that the SDK is unaware of.
+                 */
+                @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+                companion object {
+
+                    val INSTAGRAM = of("instagram")
+
+                    val FACEBOOK = of("facebook")
+
+                    fun of(value: String) = ConnectionType(JsonField.of(value))
+                }
+
+                /** An enum containing [ConnectionType]'s known values. */
+                enum class Known {
+                    INSTAGRAM,
+                    FACEBOOK,
+                }
+
+                /**
+                 * An enum containing [ConnectionType]'s known values, as well as an [_UNKNOWN]
+                 * member.
+                 *
+                 * An instance of [ConnectionType] can contain an unknown value in a couple of
+                 * cases:
+                 * - It was deserialized from data that doesn't match any known member. For example,
+                 *   if the SDK is on an older version than the API, then the API may respond with
+                 *   new members that the SDK is unaware of.
+                 * - It was constructed with an arbitrary value using the [of] method.
+                 */
+                enum class Value {
+                    INSTAGRAM,
+                    FACEBOOK,
+                    /**
+                     * An enum member indicating that [ConnectionType] was instantiated with an
+                     * unknown value.
+                     */
+                    _UNKNOWN,
+                }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value, or
+                 * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+                 *
+                 * Use the [known] method instead if you're certain the value is always known or if
+                 * you want to throw for the unknown case.
+                 */
+                fun value(): Value =
+                    when (this) {
+                        INSTAGRAM -> Value.INSTAGRAM
+                        FACEBOOK -> Value.FACEBOOK
+                        else -> Value._UNKNOWN
+                    }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value.
+                 *
+                 * Use the [value] method instead if you're uncertain the value is always known and
+                 * don't want to throw for the unknown case.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value is a not a
+                 *   known member.
+                 */
+                fun known(): Known =
+                    when (this) {
+                        INSTAGRAM -> Known.INSTAGRAM
+                        FACEBOOK -> Known.FACEBOOK
+                        else ->
+                            throw PostForMeInvalidDataException("Unknown ConnectionType: $value")
+                    }
+
+                /**
+                 * Returns this class instance's primitive wire representation.
+                 *
+                 * This differs from the [toString] method because that method is primarily for
+                 * debugging and generally doesn't throw.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value does not
+                 *   have the expected primitive type.
+                 */
+                fun asString(): String =
+                    _value().asString()
+                        ?: throw PostForMeInvalidDataException("Value is not a String")
+
+                private var validated: Boolean = false
+
+                fun validate(): ConnectionType = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    known()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is ConnectionType && value == other.value
+                }
+
+                override fun hashCode() = value.hashCode()
+
+                override fun toString() = value.toString()
+            }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is Instagram &&
+                    connectionType == other.connectionType &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy { Objects.hash(connectionType, additionalProperties) }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "Instagram{connectionType=$connectionType, additionalProperties=$additionalProperties}"
         }
 
         /** Additional data for connecting linkedin accounts */
@@ -1236,16 +1586,19 @@ private constructor(
 
             return other is PlatformData &&
                 bluesky == other.bluesky &&
+                instagram == other.instagram &&
                 linkedin == other.linkedin &&
                 additionalProperties == other.additionalProperties
         }
 
-        private val hashCode: Int by lazy { Objects.hash(bluesky, linkedin, additionalProperties) }
+        private val hashCode: Int by lazy {
+            Objects.hash(bluesky, instagram, linkedin, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
         override fun toString() =
-            "PlatformData{bluesky=$bluesky, linkedin=$linkedin, additionalProperties=$additionalProperties}"
+            "PlatformData{bluesky=$bluesky, instagram=$instagram, linkedin=$linkedin, additionalProperties=$additionalProperties}"
     }
 
     override fun equals(other: Any?): Boolean {

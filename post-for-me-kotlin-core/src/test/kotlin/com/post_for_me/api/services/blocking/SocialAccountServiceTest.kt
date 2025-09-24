@@ -130,6 +130,15 @@ internal class SocialAccountServiceTest {
                                     .handle("handle")
                                     .build()
                             )
+                            .instagram(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Instagram.builder()
+                                    .connectionType(
+                                        SocialAccountCreateAuthUrlParams.PlatformData.Instagram
+                                            .ConnectionType
+                                            .INSTAGRAM
+                                    )
+                                    .build()
+                            )
                             .linkedin(
                                 SocialAccountCreateAuthUrlParams.PlatformData.Linkedin.builder()
                                     .connectionType(
