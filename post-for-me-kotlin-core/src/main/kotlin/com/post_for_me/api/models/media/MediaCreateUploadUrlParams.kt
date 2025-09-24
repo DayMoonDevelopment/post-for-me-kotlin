@@ -23,34 +23,31 @@ import java.util.Objects
  *
  * **Request an upload URL**
  *
- * ```js
- * // Step 1: Request an upload URL from your API
- * const response = await fetch(
- *   "https://api.postforme.dev/v1/media/create-upload-url",
- *   {
- *     method: "POST",
- *     headers: {
- *       "Content-Type": "application/json",
- *     },
- *   }
- * );
+ *    ```js
+ *    // Step 1: Request an upload URL from your API
+ *    const response = await fetch('https://api.postforme.dev/v1/media/create-upload-url', {
+ *      method: 'POST',
+ *      headers: {
+ *        'Content-Type': 'application/json'
+ *      }
+ *    });
  *
- * const { media_url, upload_url } = await response.json();
- * ```
+ *    const { media_url, upload_url } = await response.json();
+ *    ```
  *
  * **Upload your file to the signed URL**
  *
- * ```js
- * // Step 2: Upload your file to the signed URL
- * const file = &#47;* your File or Blob object, e.g., from an <input type="file"> *&#47;;
- * await fetch(upload_url, {
- *   method: 'PUT',
- *   headers: {
- *     'Content-Type': 'image/jpeg'
- *   },
- *   body: file
- * });
- * ```
+ *    ```js
+ *    // Step 2: Upload your file to the signed URL
+ *    const file = &#47;* your File or Blob object, e.g., from an <input type="file"> *&#47;;
+ *    await fetch(upload_url, {
+ *      method: 'PUT',
+ *      headers: {
+ *        'Content-Type': 'image/jpeg'
+ *      },
+ *      body: file
+ *    });
+ *    ```
  *
  * **Use the `media_url` when creating your post**
  *
