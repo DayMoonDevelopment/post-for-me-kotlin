@@ -19,6 +19,7 @@ import java.util.Collections
 import java.util.Objects
 
 class FacebookConfigurationDto
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val caption: JsonValue,
     private val media: JsonField<List<Media>>,
@@ -205,6 +206,7 @@ private constructor(
             (placement.asKnown()?.validity() ?: 0)
 
     class Media
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
         private val thumbnailTimestampMs: JsonValue,

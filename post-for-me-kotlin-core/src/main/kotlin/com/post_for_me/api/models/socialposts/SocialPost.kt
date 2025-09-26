@@ -20,6 +20,7 @@ import java.util.Collections
 import java.util.Objects
 
 class SocialPost
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val id: JsonField<String>,
     private val accountConfigurations: JsonField<List<AccountConfiguration>>,
@@ -602,6 +603,7 @@ private constructor(
             (if (updatedAt.asKnown() == null) 0 else 1)
 
     class AccountConfiguration
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val configuration: JsonField<Configuration>,
         private val socialAccountId: JsonField<String>,
@@ -795,6 +797,7 @@ private constructor(
 
         /** Configuration for the social account */
         class Configuration
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
         private constructor(
             private val allowComment: JsonField<Boolean>,
             private val allowDuet: JsonField<Boolean>,
@@ -1771,6 +1774,7 @@ private constructor(
     }
 
     class Media
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
         private val thumbnailTimestampMs: JsonValue,

@@ -18,6 +18,7 @@ import java.util.Collections
 import java.util.Objects
 
 class PinterestConfigurationDto
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val boardIds: JsonField<List<String>>,
     private val caption: JsonValue,
@@ -253,6 +254,7 @@ private constructor(
             (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0)
 
     class Media
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
         private val thumbnailTimestampMs: JsonValue,

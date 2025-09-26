@@ -272,6 +272,7 @@ private constructor(
     override fun _queryParams(): QueryParams = additionalQueryParams
 
     class Body
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val externalId: JsonField<String>,
         private val username: JsonField<String>,

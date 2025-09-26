@@ -463,6 +463,7 @@ private constructor(
     override fun _queryParams(): QueryParams = additionalQueryParams
 
     class Body
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val accessToken: JsonField<String>,
         private val accessTokenExpiresAt: JsonField<OffsetDateTime>,

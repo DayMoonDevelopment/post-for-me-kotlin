@@ -18,6 +18,7 @@ import java.util.Collections
 import java.util.Objects
 
 class BlueskyConfigurationDto
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val caption: JsonValue,
     private val media: JsonField<List<Media>>,
@@ -167,6 +168,7 @@ private constructor(
     internal fun validity(): Int = (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0)
 
     class Media
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
         private val thumbnailTimestampMs: JsonValue,

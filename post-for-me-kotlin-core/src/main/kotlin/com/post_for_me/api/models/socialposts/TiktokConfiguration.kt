@@ -18,6 +18,7 @@ import java.util.Collections
 import java.util.Objects
 
 class TiktokConfiguration
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val allowComment: JsonField<Boolean>,
     private val allowDuet: JsonField<Boolean>,
@@ -630,6 +631,7 @@ private constructor(
             (if (title.asKnown() == null) 0 else 1)
 
     class Media
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
         private val thumbnailTimestampMs: JsonValue,
