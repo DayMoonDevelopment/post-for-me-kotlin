@@ -16,6 +16,7 @@ import java.util.Collections
 import java.util.Objects
 
 class MediaCreateUploadUrlResponse
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val mediaUrl: JsonField<String>,
     private val uploadUrl: JsonField<String>,

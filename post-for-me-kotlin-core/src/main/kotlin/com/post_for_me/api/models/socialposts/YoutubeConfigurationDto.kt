@@ -18,6 +18,7 @@ import java.util.Collections
 import java.util.Objects
 
 class YoutubeConfigurationDto
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val caption: JsonValue,
     private val media: JsonField<List<Media>>,
@@ -201,6 +202,7 @@ private constructor(
             (if (title.asKnown() == null) 0 else 1)
 
     class Media
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
         private val thumbnailTimestampMs: JsonValue,

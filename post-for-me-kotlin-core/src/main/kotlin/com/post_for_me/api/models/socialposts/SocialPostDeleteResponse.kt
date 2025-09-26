@@ -16,6 +16,7 @@ import java.util.Collections
 import java.util.Objects
 
 class SocialPostDeleteResponse
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val success: JsonField<Boolean>,
     private val additionalProperties: MutableMap<String, JsonValue>,

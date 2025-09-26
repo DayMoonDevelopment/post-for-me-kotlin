@@ -16,6 +16,7 @@ import java.util.Collections
 import java.util.Objects
 
 class SocialPostResult
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val id: JsonField<String>,
     private val details: JsonValue,
@@ -336,6 +337,7 @@ private constructor(
 
     /** Platform-specific data */
     class PlatformData
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val id: JsonField<String>,
         private val url: JsonField<String>,

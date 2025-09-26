@@ -307,6 +307,7 @@ private constructor(
     override fun _queryParams(): QueryParams = additionalQueryParams
 
     class Body
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val platform: JsonField<String>,
         private val externalId: JsonField<String>,
@@ -551,6 +552,7 @@ private constructor(
 
     /** Additional data needed for the provider */
     class PlatformData
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val bluesky: JsonField<Bluesky>,
         private val instagram: JsonField<Instagram>,
@@ -747,6 +749,7 @@ private constructor(
 
         /** Additional data needed for connecting bluesky accounts */
         class Bluesky
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
         private constructor(
             private val appPassword: JsonField<String>,
             private val handle: JsonField<String>,
@@ -957,6 +960,7 @@ private constructor(
 
         /** Additional data for connecting instagram accounts */
         class Instagram
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
         private constructor(
             private val connectionType: JsonField<ConnectionType>,
             private val additionalProperties: MutableMap<String, JsonValue>,
@@ -1269,6 +1273,7 @@ private constructor(
 
         /** Additional data for connecting linkedin accounts */
         class Linkedin
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
         private constructor(
             private val connectionType: JsonField<ConnectionType>,
             private val additionalProperties: MutableMap<String, JsonValue>,

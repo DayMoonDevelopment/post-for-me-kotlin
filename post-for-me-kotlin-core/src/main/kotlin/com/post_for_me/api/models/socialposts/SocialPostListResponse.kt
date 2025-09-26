@@ -18,6 +18,7 @@ import java.util.Collections
 import java.util.Objects
 
 class SocialPostListResponse
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val data: JsonField<List<SocialPost>>,
     private val meta: JsonField<Meta>,
@@ -199,6 +200,7 @@ private constructor(
         (data.asKnown()?.sumOf { it.validity().toInt() } ?: 0) + (meta.asKnown()?.validity() ?: 0)
 
     class Meta
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val limit: JsonField<Double>,
         private val next: JsonField<String>,
