@@ -18,6 +18,15 @@ internal class LinkedinConfigurationDtoTest {
                 .addMedia(
                     LinkedinConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            LinkedinConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -30,6 +39,15 @@ internal class LinkedinConfigurationDtoTest {
             .containsExactly(
                 LinkedinConfigurationDto.Media.builder()
                     .url("url")
+                    .addTag(
+                        LinkedinConfigurationDto.Media.Tag.builder()
+                            .id("id")
+                            .platform(LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                            .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
                     .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
@@ -45,6 +63,15 @@ internal class LinkedinConfigurationDtoTest {
                 .addMedia(
                     LinkedinConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            LinkedinConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()

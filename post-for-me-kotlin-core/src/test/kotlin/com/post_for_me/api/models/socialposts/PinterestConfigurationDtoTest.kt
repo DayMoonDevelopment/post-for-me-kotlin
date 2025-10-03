@@ -20,6 +20,15 @@ internal class PinterestConfigurationDtoTest {
                 .addMedia(
                     PinterestConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            PinterestConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(PinterestConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(PinterestConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -34,6 +43,15 @@ internal class PinterestConfigurationDtoTest {
             .containsExactly(
                 PinterestConfigurationDto.Media.builder()
                     .url("url")
+                    .addTag(
+                        PinterestConfigurationDto.Media.Tag.builder()
+                            .id("id")
+                            .platform(PinterestConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                            .type(PinterestConfigurationDto.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
                     .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
@@ -51,6 +69,15 @@ internal class PinterestConfigurationDtoTest {
                 .addMedia(
                     PinterestConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            PinterestConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(PinterestConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(PinterestConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()

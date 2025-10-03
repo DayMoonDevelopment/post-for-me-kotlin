@@ -18,6 +18,15 @@ internal class ThreadsConfigurationDtoTest {
                 .addMedia(
                     ThreadsConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            ThreadsConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(ThreadsConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(ThreadsConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -31,6 +40,15 @@ internal class ThreadsConfigurationDtoTest {
             .containsExactly(
                 ThreadsConfigurationDto.Media.builder()
                     .url("url")
+                    .addTag(
+                        ThreadsConfigurationDto.Media.Tag.builder()
+                            .id("id")
+                            .platform(ThreadsConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                            .type(ThreadsConfigurationDto.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
                     .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
@@ -48,6 +66,15 @@ internal class ThreadsConfigurationDtoTest {
                 .addMedia(
                     ThreadsConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            ThreadsConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(ThreadsConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(ThreadsConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
