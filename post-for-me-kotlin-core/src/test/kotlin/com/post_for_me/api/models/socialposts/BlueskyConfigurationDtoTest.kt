@@ -18,6 +18,15 @@ internal class BlueskyConfigurationDtoTest {
                 .addMedia(
                     BlueskyConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            BlueskyConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(BlueskyConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(BlueskyConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -30,6 +39,15 @@ internal class BlueskyConfigurationDtoTest {
             .containsExactly(
                 BlueskyConfigurationDto.Media.builder()
                     .url("url")
+                    .addTag(
+                        BlueskyConfigurationDto.Media.Tag.builder()
+                            .id("id")
+                            .platform(BlueskyConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                            .type(BlueskyConfigurationDto.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
                     .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
@@ -45,6 +63,15 @@ internal class BlueskyConfigurationDtoTest {
                 .addMedia(
                     BlueskyConfigurationDto.Media.builder()
                         .url("url")
+                        .addTag(
+                            BlueskyConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(BlueskyConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(BlueskyConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()

@@ -26,6 +26,15 @@ internal class TiktokConfigurationTest {
                 .addMedia(
                     TiktokConfiguration.Media.builder()
                         .url("url")
+                        .addTag(
+                            TiktokConfiguration.Media.Tag.builder()
+                                .id("id")
+                                .platform(TiktokConfiguration.Media.Tag.Platform.FACEBOOK)
+                                .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -47,6 +56,15 @@ internal class TiktokConfigurationTest {
             .containsExactly(
                 TiktokConfiguration.Media.builder()
                     .url("url")
+                    .addTag(
+                        TiktokConfiguration.Media.Tag.builder()
+                            .id("id")
+                            .platform(TiktokConfiguration.Media.Tag.Platform.FACEBOOK)
+                            .type(TiktokConfiguration.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
                     .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
@@ -72,6 +90,15 @@ internal class TiktokConfigurationTest {
                 .addMedia(
                     TiktokConfiguration.Media.builder()
                         .url("url")
+                        .addTag(
+                            TiktokConfiguration.Media.Tag.builder()
+                                .id("id")
+                                .platform(TiktokConfiguration.Media.Tag.Platform.FACEBOOK)
+                                .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()

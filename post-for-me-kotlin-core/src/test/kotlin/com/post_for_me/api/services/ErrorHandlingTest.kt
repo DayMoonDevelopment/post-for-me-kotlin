@@ -95,18 +95,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -118,6 +144,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -130,6 +165,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -141,9 +192,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -157,9 +228,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -167,6 +255,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -175,6 +264,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -191,6 +296,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -205,6 +326,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -228,6 +365,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -252,6 +403,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -265,14 +430,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -282,6 +478,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -329,18 +541,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -352,6 +590,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -364,6 +611,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -375,9 +638,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -391,9 +674,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -401,6 +701,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -409,6 +710,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -425,6 +742,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -439,6 +772,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -462,6 +811,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -486,6 +849,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -499,14 +876,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -516,6 +924,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -563,18 +987,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -586,6 +1036,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -598,6 +1057,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -609,9 +1084,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -625,9 +1120,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -635,6 +1147,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -643,6 +1156,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -659,6 +1188,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -673,6 +1218,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -696,6 +1257,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -720,6 +1295,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -733,14 +1322,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -750,6 +1370,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -797,18 +1433,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -820,6 +1482,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -832,6 +1503,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -843,9 +1530,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -859,9 +1566,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -869,6 +1593,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -877,6 +1602,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -893,6 +1634,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -907,6 +1664,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -930,6 +1703,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -954,6 +1741,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -967,14 +1768,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -984,6 +1816,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1031,18 +1879,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -1054,6 +1928,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -1066,6 +1949,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1077,9 +1976,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1093,9 +2012,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1103,6 +2039,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -1111,6 +2048,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1127,6 +2080,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1141,6 +2110,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1164,6 +2149,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1188,6 +2187,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1201,14 +2214,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -1218,6 +2262,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1265,18 +2325,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -1288,6 +2374,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -1300,6 +2395,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1311,9 +2422,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1327,9 +2458,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1337,6 +2485,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -1345,6 +2494,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1361,6 +2526,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1375,6 +2556,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1398,6 +2595,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1422,6 +2633,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1435,14 +2660,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -1452,6 +2708,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1499,18 +2771,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -1522,6 +2820,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -1534,6 +2841,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1545,9 +2868,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1561,9 +2904,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1571,6 +2931,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -1579,6 +2940,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1595,6 +2972,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1609,6 +3002,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1632,6 +3041,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1656,6 +3079,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1669,14 +3106,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -1686,6 +3154,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1733,18 +3217,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -1756,6 +3266,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -1768,6 +3287,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1779,9 +3314,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1795,9 +3350,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1805,6 +3377,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -1813,6 +3386,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1829,6 +3418,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1843,6 +3448,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1866,6 +3487,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1890,6 +3525,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1903,14 +3552,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -1920,6 +3600,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -1967,18 +3663,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -1990,6 +3712,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -2002,6 +3733,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2013,9 +3760,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2029,9 +3796,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2039,6 +3823,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -2047,6 +3832,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2063,6 +3864,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2077,6 +3894,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2100,6 +3933,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2124,6 +3971,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2137,14 +3998,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -2154,6 +4046,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2201,18 +4109,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -2224,6 +4158,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -2236,6 +4179,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2247,9 +4206,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2263,9 +4242,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2273,6 +4269,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -2281,6 +4278,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2297,6 +4310,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2311,6 +4340,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2334,6 +4379,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2358,6 +4417,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2371,14 +4444,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -2388,6 +4492,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2435,18 +4555,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -2458,6 +4604,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -2470,6 +4625,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2481,9 +4652,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2497,9 +4688,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2507,6 +4715,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -2515,6 +4724,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2531,6 +4756,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2545,6 +4786,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2568,6 +4825,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2592,6 +4863,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2605,14 +4890,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -2622,6 +4938,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2669,18 +5001,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -2692,6 +5050,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -2704,6 +5071,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2715,9 +5098,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2731,9 +5134,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2741,6 +5161,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -2749,6 +5170,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2765,6 +5202,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2779,6 +5232,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2802,6 +5271,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2826,6 +5309,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2839,14 +5336,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -2856,6 +5384,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2903,18 +5447,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -2926,6 +5496,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -2938,6 +5517,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2949,9 +5544,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2965,9 +5580,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2975,6 +5607,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -2983,6 +5616,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -2999,6 +5648,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3013,6 +5678,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3036,6 +5717,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3060,6 +5755,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3073,14 +5782,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -3090,6 +5830,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3137,18 +5893,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -3160,6 +5942,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -3172,6 +5963,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3183,9 +5990,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3199,9 +6026,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3209,6 +6053,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -3217,6 +6062,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3233,6 +6094,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3247,6 +6124,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3270,6 +6163,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3294,6 +6201,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3307,14 +6228,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -3324,6 +6276,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3371,18 +6339,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -3394,6 +6388,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -3406,6 +6409,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3417,9 +6436,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3433,9 +6472,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3443,6 +6499,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -3451,6 +6508,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3467,6 +6540,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3481,6 +6570,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3504,6 +6609,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3528,6 +6647,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3541,14 +6674,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -3558,6 +6722,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3605,18 +6785,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -3628,6 +6834,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -3640,6 +6855,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3651,9 +6882,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3667,9 +6918,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3677,6 +6945,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -3685,6 +6954,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3701,6 +6986,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3715,6 +7016,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3738,6 +7055,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3762,6 +7093,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3775,14 +7120,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -3792,6 +7168,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3837,18 +7229,44 @@ internal class ErrorHandlingTest {
                                         .autoAddMusic(true)
                                         .addBoardId("string")
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .communityId("community_id")
                                         .discloseBrandedContent(true)
                                         .discloseYourBrand(true)
                                         .isAiGenerated(true)
                                         .isDraft(true)
                                         .link("link")
+                                        .location("location")
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
                                                 .Placement
                                                 .REELS
                                         )
+                                        .poll(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Poll
+                                                        .ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
                                         .privacyStatus("privacy_status")
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .shareToFeed(true)
                                         .title("title")
                                         .build()
                                 )
@@ -3860,6 +7278,15 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .addTag(
+                                    CreateSocialPost.Media.Tag.builder()
+                                        .id("id")
+                                        .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                        .type(CreateSocialPost.Media.Tag.Type.USER)
+                                        .x(0.0)
+                                        .y(0.0)
+                                        .build()
+                                )
                                 .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
@@ -3872,6 +7299,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    BlueskyConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            BlueskyConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            BlueskyConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3883,9 +7326,29 @@ internal class ErrorHandlingTest {
                                 .facebook(
                                     FacebookConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .addCollaborator(
+                                            listOf(JsonValue.from(mapOf<String, Any>()))
+                                        )
+                                        .location("location")
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    FacebookConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            FacebookConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            FacebookConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3899,9 +7362,26 @@ internal class ErrorHandlingTest {
                                     InstagramConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
                                         .addCollaborator("string")
+                                        .location("location")
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    InstagramConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            InstagramConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            InstagramConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3909,6 +7389,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
+                                        .shareToFeed(true)
                                         .build()
                                 )
                                 .linkedin(
@@ -3917,6 +7398,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    LinkedinConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            LinkedinConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            LinkedinConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3933,6 +7430,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    PinterestConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            PinterestConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            PinterestConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3947,6 +7460,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    ThreadsConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            ThreadsConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            ThreadsConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3970,6 +7499,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -3994,6 +7537,20 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TiktokConfiguration.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TiktokConfiguration.Media.Tag.Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TiktokConfiguration.Media.Tag.Type.USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
@@ -4007,14 +7564,45 @@ internal class ErrorHandlingTest {
                                 .x(
                                     TwitterConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .communityId("community_id")
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    TwitterConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            TwitterConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            TwitterConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
+                                        )
+                                        .poll(
+                                            TwitterConfigurationDto.Poll.builder()
+                                                .durationMinutes(0.0)
+                                                .addOption("string")
+                                                .replySettings(
+                                                    TwitterConfigurationDto.Poll.ReplySettings
+                                                        .FOLLOWING
+                                                )
+                                                .build()
+                                        )
+                                        .quoteTweetId("quote_tweet_id")
+                                        .replySettings(
+                                            TwitterConfigurationDto.ReplySettings.FOLLOWING
                                         )
                                         .build()
                                 )
@@ -4024,6 +7612,22 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .addTag(
+                                                    YoutubeConfigurationDto.Media.Tag.builder()
+                                                        .id("id")
+                                                        .platform(
+                                                            YoutubeConfigurationDto.Media.Tag
+                                                                .Platform
+                                                                .FACEBOOK
+                                                        )
+                                                        .type(
+                                                            YoutubeConfigurationDto.Media.Tag.Type
+                                                                .USER
+                                                        )
+                                                        .x(0.0)
+                                                        .y(0.0)
+                                                        .build()
+                                                )
                                                 .thumbnailTimestampMs(
                                                     JsonValue.from(mapOf<String, Any>())
                                                 )
