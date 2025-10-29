@@ -26,6 +26,7 @@ private constructor(
     private val externalId: JsonField<String>,
     private val metadata: JsonValue,
     private val platform: JsonField<String>,
+    private val profilePhotoUrl: JsonField<String>,
     private val refreshToken: JsonField<String>,
     private val refreshTokenExpiresAt: JsonField<OffsetDateTime>,
     private val status: JsonField<Status>,
@@ -48,6 +49,9 @@ private constructor(
         externalId: JsonField<String> = JsonMissing.of(),
         @JsonProperty("metadata") @ExcludeMissing metadata: JsonValue = JsonMissing.of(),
         @JsonProperty("platform") @ExcludeMissing platform: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("profile_photo_url")
+        @ExcludeMissing
+        profilePhotoUrl: JsonField<String> = JsonMissing.of(),
         @JsonProperty("refresh_token")
         @ExcludeMissing
         refreshToken: JsonField<String> = JsonMissing.of(),
@@ -64,6 +68,7 @@ private constructor(
         externalId,
         metadata,
         platform,
+        profilePhotoUrl,
         refreshToken,
         refreshTokenExpiresAt,
         status,
@@ -115,6 +120,14 @@ private constructor(
      *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
      */
     fun platform(): String = platform.getRequired("platform")
+
+    /**
+     * The platform's profile photo of the social account
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun profilePhotoUrl(): String? = profilePhotoUrl.getNullable("profile_photo_url")
 
     /**
      * The refresh token of the social account
@@ -198,6 +211,15 @@ private constructor(
     @JsonProperty("platform") @ExcludeMissing fun _platform(): JsonField<String> = platform
 
     /**
+     * Returns the raw JSON value of [profilePhotoUrl].
+     *
+     * Unlike [profilePhotoUrl], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("profile_photo_url")
+    @ExcludeMissing
+    fun _profilePhotoUrl(): JsonField<String> = profilePhotoUrl
+
+    /**
      * Returns the raw JSON value of [refreshToken].
      *
      * Unlike [refreshToken], this method doesn't throw if the JSON field has an unexpected type.
@@ -262,6 +284,7 @@ private constructor(
          * .externalId()
          * .metadata()
          * .platform()
+         * .profilePhotoUrl()
          * .refreshToken()
          * .refreshTokenExpiresAt()
          * .status()
@@ -281,6 +304,7 @@ private constructor(
         private var externalId: JsonField<String>? = null
         private var metadata: JsonValue? = null
         private var platform: JsonField<String>? = null
+        private var profilePhotoUrl: JsonField<String>? = null
         private var refreshToken: JsonField<String>? = null
         private var refreshTokenExpiresAt: JsonField<OffsetDateTime>? = null
         private var status: JsonField<Status>? = null
@@ -295,6 +319,7 @@ private constructor(
             externalId = socialAccount.externalId
             metadata = socialAccount.metadata
             platform = socialAccount.platform
+            profilePhotoUrl = socialAccount.profilePhotoUrl
             refreshToken = socialAccount.refreshToken
             refreshTokenExpiresAt = socialAccount.refreshTokenExpiresAt
             status = socialAccount.status
@@ -366,6 +391,21 @@ private constructor(
          * method is primarily for setting the field to an undocumented or not yet supported value.
          */
         fun platform(platform: JsonField<String>) = apply { this.platform = platform }
+
+        /** The platform's profile photo of the social account */
+        fun profilePhotoUrl(profilePhotoUrl: String?) =
+            profilePhotoUrl(JsonField.ofNullable(profilePhotoUrl))
+
+        /**
+         * Sets [Builder.profilePhotoUrl] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.profilePhotoUrl] with a well-typed [String] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun profilePhotoUrl(profilePhotoUrl: JsonField<String>) = apply {
+            this.profilePhotoUrl = profilePhotoUrl
+        }
 
         /** The refresh token of the social account */
         fun refreshToken(refreshToken: String?) = refreshToken(JsonField.ofNullable(refreshToken))
@@ -461,6 +501,7 @@ private constructor(
          * .externalId()
          * .metadata()
          * .platform()
+         * .profilePhotoUrl()
          * .refreshToken()
          * .refreshTokenExpiresAt()
          * .status()
@@ -478,6 +519,7 @@ private constructor(
                 checkRequired("externalId", externalId),
                 checkRequired("metadata", metadata),
                 checkRequired("platform", platform),
+                checkRequired("profilePhotoUrl", profilePhotoUrl),
                 checkRequired("refreshToken", refreshToken),
                 checkRequired("refreshTokenExpiresAt", refreshTokenExpiresAt),
                 checkRequired("status", status),
@@ -499,6 +541,7 @@ private constructor(
         accessTokenExpiresAt()
         externalId()
         platform()
+        profilePhotoUrl()
         refreshToken()
         refreshTokenExpiresAt()
         status().validate()
@@ -526,6 +569,7 @@ private constructor(
             (if (accessTokenExpiresAt.asKnown() == null) 0 else 1) +
             (if (externalId.asKnown() == null) 0 else 1) +
             (if (platform.asKnown() == null) 0 else 1) +
+            (if (profilePhotoUrl.asKnown() == null) 0 else 1) +
             (if (refreshToken.asKnown() == null) 0 else 1) +
             (if (refreshTokenExpiresAt.asKnown() == null) 0 else 1) +
             (status.asKnown()?.validity() ?: 0) +
@@ -670,6 +714,7 @@ private constructor(
             externalId == other.externalId &&
             metadata == other.metadata &&
             platform == other.platform &&
+            profilePhotoUrl == other.profilePhotoUrl &&
             refreshToken == other.refreshToken &&
             refreshTokenExpiresAt == other.refreshTokenExpiresAt &&
             status == other.status &&
@@ -686,6 +731,7 @@ private constructor(
             externalId,
             metadata,
             platform,
+            profilePhotoUrl,
             refreshToken,
             refreshTokenExpiresAt,
             status,
@@ -698,5 +744,5 @@ private constructor(
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "SocialAccount{id=$id, accessToken=$accessToken, accessTokenExpiresAt=$accessTokenExpiresAt, externalId=$externalId, metadata=$metadata, platform=$platform, refreshToken=$refreshToken, refreshTokenExpiresAt=$refreshTokenExpiresAt, status=$status, userId=$userId, username=$username, additionalProperties=$additionalProperties}"
+        "SocialAccount{id=$id, accessToken=$accessToken, accessTokenExpiresAt=$accessTokenExpiresAt, externalId=$externalId, metadata=$metadata, platform=$platform, profilePhotoUrl=$profilePhotoUrl, refreshToken=$refreshToken, refreshTokenExpiresAt=$refreshTokenExpiresAt, status=$status, userId=$userId, username=$username, additionalProperties=$additionalProperties}"
 }

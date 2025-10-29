@@ -449,6 +449,7 @@ internal class SocialPostListResponseTest {
                                 .externalId("external_id")
                                 .metadata(JsonValue.from(mapOf<String, Any>()))
                                 .platform("platform")
+                                .profilePhotoUrl("profile_photo_url")
                                 .refreshToken("refresh_token")
                                 .refreshTokenExpiresAt(
                                     OffsetDateTime.parse("2019-12-27T18:11:19.117Z")
@@ -876,6 +877,7 @@ internal class SocialPostListResponseTest {
                             .externalId("external_id")
                             .metadata(JsonValue.from(mapOf<String, Any>()))
                             .platform("platform")
+                            .profilePhotoUrl("profile_photo_url")
                             .refreshToken("refresh_token")
                             .refreshTokenExpiresAt(OffsetDateTime.parse("2019-12-27T18:11:19.117Z"))
                             .status(SocialAccount.Status.CONNECTED)
@@ -1336,6 +1338,7 @@ internal class SocialPostListResponseTest {
                                 .externalId("external_id")
                                 .metadata(JsonValue.from(mapOf<String, Any>()))
                                 .platform("platform")
+                                .profilePhotoUrl("profile_photo_url")
                                 .refreshToken("refresh_token")
                                 .refreshTokenExpiresAt(
                                     OffsetDateTime.parse("2019-12-27T18:11:19.117Z")
