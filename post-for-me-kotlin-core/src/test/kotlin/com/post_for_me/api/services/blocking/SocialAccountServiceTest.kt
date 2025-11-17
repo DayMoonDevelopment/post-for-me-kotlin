@@ -150,6 +150,7 @@ internal class SocialAccountServiceTest {
                             )
                             .build()
                     )
+                    .redirectUrlOverride("redirect_url_override")
                     .build()
             )
 

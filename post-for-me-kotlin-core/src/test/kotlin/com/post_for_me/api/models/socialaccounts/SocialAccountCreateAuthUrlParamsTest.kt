@@ -40,6 +40,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                     )
                     .build()
             )
+            .redirectUrlOverride("redirect_url_override")
             .build()
     }
 
@@ -77,6 +78,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                         )
                         .build()
                 )
+                .redirectUrlOverride("redirect_url_override")
                 .build()
 
         val body = params._body()
@@ -112,6 +114,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                     )
                     .build()
             )
+        assertThat(body.redirectUrlOverride()).isEqualTo("redirect_url_override")
     }
 
     @Test
