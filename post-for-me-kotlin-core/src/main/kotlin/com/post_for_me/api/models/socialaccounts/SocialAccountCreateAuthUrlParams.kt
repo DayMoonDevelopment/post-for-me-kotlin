@@ -56,6 +56,16 @@ private constructor(
     fun platformData(): PlatformData? = body.platformData()
 
     /**
+     * Override the default redirect URL for the OAuth flow. If provided, this URL will be used
+     * instead of our redirect URL. Make sure this URL is included in your app's authorized redirect
+     * urls. This override will not work when using our system credientals.
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun redirectUrlOverride(): String? = body.redirectUrlOverride()
+
+    /**
      * Returns the raw JSON value of [platform].
      *
      * Unlike [platform], this method doesn't throw if the JSON field has an unexpected type.
@@ -75,6 +85,14 @@ private constructor(
      * Unlike [platformData], this method doesn't throw if the JSON field has an unexpected type.
      */
     fun _platformData(): JsonField<PlatformData> = body._platformData()
+
+    /**
+     * Returns the raw JSON value of [redirectUrlOverride].
+     *
+     * Unlike [redirectUrlOverride], this method doesn't throw if the JSON field has an unexpected
+     * type.
+     */
+    fun _redirectUrlOverride(): JsonField<String> = body._redirectUrlOverride()
 
     fun _additionalBodyProperties(): Map<String, JsonValue> = body._additionalProperties()
 
@@ -123,6 +141,7 @@ private constructor(
          * - [platform]
          * - [externalId]
          * - [platformData]
+         * - [redirectUrlOverride]
          */
         fun body(body: Body) = apply { this.body = body.toBuilder() }
 
@@ -161,6 +180,26 @@ private constructor(
          */
         fun platformData(platformData: JsonField<PlatformData>) = apply {
             body.platformData(platformData)
+        }
+
+        /**
+         * Override the default redirect URL for the OAuth flow. If provided, this URL will be used
+         * instead of our redirect URL. Make sure this URL is included in your app's authorized
+         * redirect urls. This override will not work when using our system credientals.
+         */
+        fun redirectUrlOverride(redirectUrlOverride: String) = apply {
+            body.redirectUrlOverride(redirectUrlOverride)
+        }
+
+        /**
+         * Sets [Builder.redirectUrlOverride] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.redirectUrlOverride] with a well-typed [String] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun redirectUrlOverride(redirectUrlOverride: JsonField<String>) = apply {
+            body.redirectUrlOverride(redirectUrlOverride)
         }
 
         fun additionalBodyProperties(additionalBodyProperties: Map<String, JsonValue>) = apply {
@@ -312,6 +351,7 @@ private constructor(
         private val platform: JsonField<String>,
         private val externalId: JsonField<String>,
         private val platformData: JsonField<PlatformData>,
+        private val redirectUrlOverride: JsonField<String>,
         private val additionalProperties: MutableMap<String, JsonValue>,
     ) {
 
@@ -326,7 +366,10 @@ private constructor(
             @JsonProperty("platform_data")
             @ExcludeMissing
             platformData: JsonField<PlatformData> = JsonMissing.of(),
-        ) : this(platform, externalId, platformData, mutableMapOf())
+            @JsonProperty("redirect_url_override")
+            @ExcludeMissing
+            redirectUrlOverride: JsonField<String> = JsonMissing.of(),
+        ) : this(platform, externalId, platformData, redirectUrlOverride, mutableMapOf())
 
         /**
          * The social account provider
@@ -353,6 +396,17 @@ private constructor(
         fun platformData(): PlatformData? = platformData.getNullable("platform_data")
 
         /**
+         * Override the default redirect URL for the OAuth flow. If provided, this URL will be used
+         * instead of our redirect URL. Make sure this URL is included in your app's authorized
+         * redirect urls. This override will not work when using our system credientals.
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if
+         *   the server responded with an unexpected value).
+         */
+        fun redirectUrlOverride(): String? =
+            redirectUrlOverride.getNullable("redirect_url_override")
+
+        /**
          * Returns the raw JSON value of [platform].
          *
          * Unlike [platform], this method doesn't throw if the JSON field has an unexpected type.
@@ -377,6 +431,16 @@ private constructor(
         @JsonProperty("platform_data")
         @ExcludeMissing
         fun _platformData(): JsonField<PlatformData> = platformData
+
+        /**
+         * Returns the raw JSON value of [redirectUrlOverride].
+         *
+         * Unlike [redirectUrlOverride], this method doesn't throw if the JSON field has an
+         * unexpected type.
+         */
+        @JsonProperty("redirect_url_override")
+        @ExcludeMissing
+        fun _redirectUrlOverride(): JsonField<String> = redirectUrlOverride
 
         @JsonAnySetter
         private fun putAdditionalProperty(key: String, value: JsonValue) {
@@ -409,12 +473,14 @@ private constructor(
             private var platform: JsonField<String>? = null
             private var externalId: JsonField<String> = JsonMissing.of()
             private var platformData: JsonField<PlatformData> = JsonMissing.of()
+            private var redirectUrlOverride: JsonField<String> = JsonMissing.of()
             private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
             internal fun from(body: Body) = apply {
                 platform = body.platform
                 externalId = body.externalId
                 platformData = body.platformData
+                redirectUrlOverride = body.redirectUrlOverride
                 additionalProperties = body.additionalProperties.toMutableMap()
             }
 
@@ -456,6 +522,26 @@ private constructor(
                 this.platformData = platformData
             }
 
+            /**
+             * Override the default redirect URL for the OAuth flow. If provided, this URL will be
+             * used instead of our redirect URL. Make sure this URL is included in your app's
+             * authorized redirect urls. This override will not work when using our system
+             * credientals.
+             */
+            fun redirectUrlOverride(redirectUrlOverride: String) =
+                redirectUrlOverride(JsonField.of(redirectUrlOverride))
+
+            /**
+             * Sets [Builder.redirectUrlOverride] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.redirectUrlOverride] with a well-typed [String]
+             * value instead. This method is primarily for setting the field to an undocumented or
+             * not yet supported value.
+             */
+            fun redirectUrlOverride(redirectUrlOverride: JsonField<String>) = apply {
+                this.redirectUrlOverride = redirectUrlOverride
+            }
+
             fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
                 this.additionalProperties.clear()
                 putAllAdditionalProperties(additionalProperties)
@@ -492,6 +578,7 @@ private constructor(
                     checkRequired("platform", platform),
                     externalId,
                     platformData,
+                    redirectUrlOverride,
                     additionalProperties.toMutableMap(),
                 )
         }
@@ -506,6 +593,7 @@ private constructor(
             platform()
             externalId()
             platformData()?.validate()
+            redirectUrlOverride()
             validated = true
         }
 
@@ -526,7 +614,8 @@ private constructor(
         internal fun validity(): Int =
             (if (platform.asKnown() == null) 0 else 1) +
                 (if (externalId.asKnown() == null) 0 else 1) +
-                (platformData.asKnown()?.validity() ?: 0)
+                (platformData.asKnown()?.validity() ?: 0) +
+                (if (redirectUrlOverride.asKnown() == null) 0 else 1)
 
         override fun equals(other: Any?): Boolean {
             if (this === other) {
@@ -537,17 +626,24 @@ private constructor(
                 platform == other.platform &&
                 externalId == other.externalId &&
                 platformData == other.platformData &&
+                redirectUrlOverride == other.redirectUrlOverride &&
                 additionalProperties == other.additionalProperties
         }
 
         private val hashCode: Int by lazy {
-            Objects.hash(platform, externalId, platformData, additionalProperties)
+            Objects.hash(
+                platform,
+                externalId,
+                platformData,
+                redirectUrlOverride,
+                additionalProperties,
+            )
         }
 
         override fun hashCode(): Int = hashCode
 
         override fun toString() =
-            "Body{platform=$platform, externalId=$externalId, platformData=$platformData, additionalProperties=$additionalProperties}"
+            "Body{platform=$platform, externalId=$externalId, platformData=$platformData, redirectUrlOverride=$redirectUrlOverride, additionalProperties=$additionalProperties}"
     }
 
     /** Additional data needed for the provider */
