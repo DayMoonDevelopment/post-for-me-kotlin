@@ -1383,8 +1383,9 @@ private constructor(
             ) : this(connectionType, mutableMapOf())
 
             /**
-             * The type of connection; personal for posting on behalf of the user only, organization
-             * for posting on behalf of both an organization and the user
+             * The type of connection; If using our provided credentials always use "organization".
+             * If using your own crednetials then only use "organization" if you are using the
+             * Community API
              *
              * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
              *   unexpectedly missing or null (e.g. if the server responded with an unexpected
@@ -1439,8 +1440,9 @@ private constructor(
                 }
 
                 /**
-                 * The type of connection; personal for posting on behalf of the user only,
-                 * organization for posting on behalf of both an organization and the user
+                 * The type of connection; If using our provided credentials always use
+                 * "organization". If using your own crednetials then only use "organization" if you
+                 * are using the Community API
                  */
                 fun connectionType(connectionType: ConnectionType) =
                     connectionType(JsonField.of(connectionType))
@@ -1525,8 +1527,9 @@ private constructor(
             internal fun validity(): Int = (connectionType.asKnown()?.validity() ?: 0)
 
             /**
-             * The type of connection; personal for posting on behalf of the user only, organization
-             * for posting on behalf of both an organization and the user
+             * The type of connection; If using our provided credentials always use "organization".
+             * If using your own crednetials then only use "organization" if you are using the
+             * Community API
              */
             class ConnectionType
             @JsonCreator
