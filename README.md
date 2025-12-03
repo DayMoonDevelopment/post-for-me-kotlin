@@ -250,13 +250,13 @@ The SDK uses the standard [OkHttp logging interceptor](https://github.com/square
 Enable logging by setting the `POST_FOR_ME_LOG` environment variable to `info`:
 
 ```sh
-$ export POST_FOR_ME_LOG=info
+export POST_FOR_ME_LOG=info
 ```
 
 Or to `debug` for more verbose logging:
 
 ```sh
-$ export POST_FOR_ME_LOG=debug
+export POST_FOR_ME_LOG=debug
 ```
 
 ## ProGuard and R8
