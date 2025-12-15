@@ -2,6 +2,7 @@
 
 package com.post_for_me.api.models.socialaccounts
 
+import com.post_for_me.api.core.JsonValue
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -12,12 +13,19 @@ internal class SocialAccountCreateAuthUrlParamsTest {
         SocialAccountCreateAuthUrlParams.builder()
             .platform("platform")
             .externalId("external_id")
+            .addPermission(SocialAccountCreateAuthUrlParams.Permission.POSTS)
+            .addPermission(SocialAccountCreateAuthUrlParams.Permission.FEEDS)
             .platformData(
                 SocialAccountCreateAuthUrlParams.PlatformData.builder()
                     .bluesky(
                         SocialAccountCreateAuthUrlParams.PlatformData.Bluesky.builder()
                             .appPassword("app_password")
                             .handle("handle")
+                            .build()
+                    )
+                    .facebook(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Facebook.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                             .build()
                     )
                     .instagram(
@@ -27,6 +35,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                     .ConnectionType
                                     .INSTAGRAM
                             )
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                             .build()
                     )
                     .linkedin(
@@ -36,6 +45,32 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                     .ConnectionType
                                     .PERSONAL
                             )
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .pinterest(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Pinterest.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .threads(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Threads.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .tiktok(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Tiktok.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .tiktokBusiness(
+                        SocialAccountCreateAuthUrlParams.PlatformData.TiktokBusiness.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .youtube(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Youtube.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                             .build()
                     )
                     .build()
@@ -50,12 +85,19 @@ internal class SocialAccountCreateAuthUrlParamsTest {
             SocialAccountCreateAuthUrlParams.builder()
                 .platform("platform")
                 .externalId("external_id")
+                .addPermission(SocialAccountCreateAuthUrlParams.Permission.POSTS)
+                .addPermission(SocialAccountCreateAuthUrlParams.Permission.FEEDS)
                 .platformData(
                     SocialAccountCreateAuthUrlParams.PlatformData.builder()
                         .bluesky(
                             SocialAccountCreateAuthUrlParams.PlatformData.Bluesky.builder()
                                 .appPassword("app_password")
                                 .handle("handle")
+                                .build()
+                        )
+                        .facebook(
+                            SocialAccountCreateAuthUrlParams.PlatformData.Facebook.builder()
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                                 .build()
                         )
                         .instagram(
@@ -65,6 +107,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                         .ConnectionType
                                         .INSTAGRAM
                                 )
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                                 .build()
                         )
                         .linkedin(
@@ -74,6 +117,32 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                         .ConnectionType
                                         .PERSONAL
                                 )
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .build()
+                        )
+                        .pinterest(
+                            SocialAccountCreateAuthUrlParams.PlatformData.Pinterest.builder()
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .build()
+                        )
+                        .threads(
+                            SocialAccountCreateAuthUrlParams.PlatformData.Threads.builder()
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .build()
+                        )
+                        .tiktok(
+                            SocialAccountCreateAuthUrlParams.PlatformData.Tiktok.builder()
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .build()
+                        )
+                        .tiktokBusiness(
+                            SocialAccountCreateAuthUrlParams.PlatformData.TiktokBusiness.builder()
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .build()
+                        )
+                        .youtube(
+                            SocialAccountCreateAuthUrlParams.PlatformData.Youtube.builder()
+                                .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                                 .build()
                         )
                         .build()
@@ -85,6 +154,11 @@ internal class SocialAccountCreateAuthUrlParamsTest {
 
         assertThat(body.platform()).isEqualTo("platform")
         assertThat(body.externalId()).isEqualTo("external_id")
+        assertThat(body.permissions())
+            .containsExactly(
+                SocialAccountCreateAuthUrlParams.Permission.POSTS,
+                SocialAccountCreateAuthUrlParams.Permission.FEEDS,
+            )
         assertThat(body.platformData())
             .isEqualTo(
                 SocialAccountCreateAuthUrlParams.PlatformData.builder()
@@ -94,6 +168,11 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                             .handle("handle")
                             .build()
                     )
+                    .facebook(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Facebook.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
                     .instagram(
                         SocialAccountCreateAuthUrlParams.PlatformData.Instagram.builder()
                             .connectionType(
@@ -101,6 +180,7 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                     .ConnectionType
                                     .INSTAGRAM
                             )
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                             .build()
                     )
                     .linkedin(
@@ -110,6 +190,32 @@ internal class SocialAccountCreateAuthUrlParamsTest {
                                     .ConnectionType
                                     .PERSONAL
                             )
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .pinterest(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Pinterest.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .threads(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Threads.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .tiktok(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Tiktok.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .tiktokBusiness(
+                        SocialAccountCreateAuthUrlParams.PlatformData.TiktokBusiness.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .build()
+                    )
+                    .youtube(
+                        SocialAccountCreateAuthUrlParams.PlatformData.Youtube.builder()
+                            .addPermissionOverride(listOf(JsonValue.from(mapOf<String, Any>())))
                             .build()
                     )
                     .build()

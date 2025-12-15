@@ -122,12 +122,21 @@ internal class SocialAccountServiceAsyncTest {
                 SocialAccountCreateAuthUrlParams.builder()
                     .platform("platform")
                     .externalId("external_id")
+                    .addPermission(SocialAccountCreateAuthUrlParams.Permission.POSTS)
+                    .addPermission(SocialAccountCreateAuthUrlParams.Permission.FEEDS)
                     .platformData(
                         SocialAccountCreateAuthUrlParams.PlatformData.builder()
                             .bluesky(
                                 SocialAccountCreateAuthUrlParams.PlatformData.Bluesky.builder()
                                     .appPassword("app_password")
                                     .handle("handle")
+                                    .build()
+                            )
+                            .facebook(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Facebook.builder()
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
                                     .build()
                             )
                             .instagram(
@@ -137,6 +146,9 @@ internal class SocialAccountServiceAsyncTest {
                                             .ConnectionType
                                             .INSTAGRAM
                                     )
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
                                     .build()
                             )
                             .linkedin(
@@ -145,6 +157,45 @@ internal class SocialAccountServiceAsyncTest {
                                         SocialAccountCreateAuthUrlParams.PlatformData.Linkedin
                                             .ConnectionType
                                             .PERSONAL
+                                    )
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
+                                    .build()
+                            )
+                            .pinterest(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Pinterest.builder()
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
+                                    .build()
+                            )
+                            .threads(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Threads.builder()
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
+                                    .build()
+                            )
+                            .tiktok(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Tiktok.builder()
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
+                                    .build()
+                            )
+                            .tiktokBusiness(
+                                SocialAccountCreateAuthUrlParams.PlatformData.TiktokBusiness
+                                    .builder()
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
+                                    )
+                                    .build()
+                            )
+                            .youtube(
+                                SocialAccountCreateAuthUrlParams.PlatformData.Youtube.builder()
+                                    .addPermissionOverride(
+                                        listOf(JsonValue.from(mapOf<String, Any>()))
                                     )
                                     .build()
                             )
