@@ -54,6 +54,7 @@ internal class ProGuardCompatibilityTest {
         assertThat(client.socialPosts()).isNotNull()
         assertThat(client.socialPostResults()).isNotNull()
         assertThat(client.socialAccounts()).isNotNull()
+        assertThat(client.socialAccountFeeds()).isNotNull()
     }
 
     @Test

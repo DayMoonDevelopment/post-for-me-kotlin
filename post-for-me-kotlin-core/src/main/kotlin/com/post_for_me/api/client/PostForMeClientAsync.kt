@@ -4,6 +4,7 @@ package com.post_for_me.api.client
 
 import com.post_for_me.api.core.ClientOptions
 import com.post_for_me.api.services.async.MediaServiceAsync
+import com.post_for_me.api.services.async.SocialAccountFeedServiceAsync
 import com.post_for_me.api.services.async.SocialAccountServiceAsync
 import com.post_for_me.api.services.async.SocialPostResultServiceAsync
 import com.post_for_me.api.services.async.SocialPostServiceAsync
@@ -52,6 +53,8 @@ interface PostForMeClientAsync {
 
     fun socialAccounts(): SocialAccountServiceAsync
 
+    fun socialAccountFeeds(): SocialAccountFeedServiceAsync
+
     /**
      * Closes this client, relinquishing any underlying resources.
      *
@@ -86,5 +89,7 @@ interface PostForMeClientAsync {
         fun socialPostResults(): SocialPostResultServiceAsync.WithRawResponse
 
         fun socialAccounts(): SocialAccountServiceAsync.WithRawResponse
+
+        fun socialAccountFeeds(): SocialAccountFeedServiceAsync.WithRawResponse
     }
 }

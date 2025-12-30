@@ -6,6 +6,8 @@ import com.post_for_me.api.core.ClientOptions
 import com.post_for_me.api.core.getPackageVersion
 import com.post_for_me.api.services.async.MediaServiceAsync
 import com.post_for_me.api.services.async.MediaServiceAsyncImpl
+import com.post_for_me.api.services.async.SocialAccountFeedServiceAsync
+import com.post_for_me.api.services.async.SocialAccountFeedServiceAsyncImpl
 import com.post_for_me.api.services.async.SocialAccountServiceAsync
 import com.post_for_me.api.services.async.SocialAccountServiceAsyncImpl
 import com.post_for_me.api.services.async.SocialPostResultServiceAsync
@@ -46,6 +48,10 @@ class PostForMeClientAsyncImpl(private val clientOptions: ClientOptions) : PostF
         SocialAccountServiceAsyncImpl(clientOptionsWithUserAgent)
     }
 
+    private val socialAccountFeeds: SocialAccountFeedServiceAsync by lazy {
+        SocialAccountFeedServiceAsyncImpl(clientOptionsWithUserAgent)
+    }
+
     override fun sync(): PostForMeClient = sync
 
     override fun withRawResponse(): PostForMeClientAsync.WithRawResponse = withRawResponse
@@ -60,6 +66,8 @@ class PostForMeClientAsyncImpl(private val clientOptions: ClientOptions) : PostF
     override fun socialPostResults(): SocialPostResultServiceAsync = socialPostResults
 
     override fun socialAccounts(): SocialAccountServiceAsync = socialAccounts
+
+    override fun socialAccountFeeds(): SocialAccountFeedServiceAsync = socialAccountFeeds
 
     override fun close() = clientOptions.close()
 
@@ -82,6 +90,10 @@ class PostForMeClientAsyncImpl(private val clientOptions: ClientOptions) : PostF
             SocialAccountServiceAsyncImpl.WithRawResponseImpl(clientOptions)
         }
 
+        private val socialAccountFeeds: SocialAccountFeedServiceAsync.WithRawResponse by lazy {
+            SocialAccountFeedServiceAsyncImpl.WithRawResponseImpl(clientOptions)
+        }
+
         override fun withOptions(
             modifier: (ClientOptions.Builder) -> Unit
         ): PostForMeClientAsync.WithRawResponse =
@@ -97,5 +109,8 @@ class PostForMeClientAsyncImpl(private val clientOptions: ClientOptions) : PostF
             socialPostResults
 
         override fun socialAccounts(): SocialAccountServiceAsync.WithRawResponse = socialAccounts
+
+        override fun socialAccountFeeds(): SocialAccountFeedServiceAsync.WithRawResponse =
+            socialAccountFeeds
     }
 }
