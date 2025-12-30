@@ -4,6 +4,7 @@ package com.post_for_me.api.client
 
 import com.post_for_me.api.core.ClientOptions
 import com.post_for_me.api.services.blocking.MediaService
+import com.post_for_me.api.services.blocking.SocialAccountFeedService
 import com.post_for_me.api.services.blocking.SocialAccountService
 import com.post_for_me.api.services.blocking.SocialPostResultService
 import com.post_for_me.api.services.blocking.SocialPostService
@@ -52,6 +53,8 @@ interface PostForMeClient {
 
     fun socialAccounts(): SocialAccountService
 
+    fun socialAccountFeeds(): SocialAccountFeedService
+
     /**
      * Closes this client, relinquishing any underlying resources.
      *
@@ -82,5 +85,7 @@ interface PostForMeClient {
         fun socialPostResults(): SocialPostResultService.WithRawResponse
 
         fun socialAccounts(): SocialAccountService.WithRawResponse
+
+        fun socialAccountFeeds(): SocialAccountFeedService.WithRawResponse
     }
 }

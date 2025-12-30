@@ -6,6 +6,8 @@ import com.post_for_me.api.core.ClientOptions
 import com.post_for_me.api.core.getPackageVersion
 import com.post_for_me.api.services.blocking.MediaService
 import com.post_for_me.api.services.blocking.MediaServiceImpl
+import com.post_for_me.api.services.blocking.SocialAccountFeedService
+import com.post_for_me.api.services.blocking.SocialAccountFeedServiceImpl
 import com.post_for_me.api.services.blocking.SocialAccountService
 import com.post_for_me.api.services.blocking.SocialAccountServiceImpl
 import com.post_for_me.api.services.blocking.SocialPostResultService
@@ -44,6 +46,10 @@ class PostForMeClientImpl(private val clientOptions: ClientOptions) : PostForMeC
         SocialAccountServiceImpl(clientOptionsWithUserAgent)
     }
 
+    private val socialAccountFeeds: SocialAccountFeedService by lazy {
+        SocialAccountFeedServiceImpl(clientOptionsWithUserAgent)
+    }
+
     override fun async(): PostForMeClientAsync = async
 
     override fun withRawResponse(): PostForMeClient.WithRawResponse = withRawResponse
@@ -58,6 +64,8 @@ class PostForMeClientImpl(private val clientOptions: ClientOptions) : PostForMeC
     override fun socialPostResults(): SocialPostResultService = socialPostResults
 
     override fun socialAccounts(): SocialAccountService = socialAccounts
+
+    override fun socialAccountFeeds(): SocialAccountFeedService = socialAccountFeeds
 
     override fun close() = clientOptions.close()
 
@@ -80,6 +88,10 @@ class PostForMeClientImpl(private val clientOptions: ClientOptions) : PostForMeC
             SocialAccountServiceImpl.WithRawResponseImpl(clientOptions)
         }
 
+        private val socialAccountFeeds: SocialAccountFeedService.WithRawResponse by lazy {
+            SocialAccountFeedServiceImpl.WithRawResponseImpl(clientOptions)
+        }
+
         override fun withOptions(
             modifier: (ClientOptions.Builder) -> Unit
         ): PostForMeClient.WithRawResponse =
@@ -95,5 +107,8 @@ class PostForMeClientImpl(private val clientOptions: ClientOptions) : PostForMeC
             socialPostResults
 
         override fun socialAccounts(): SocialAccountService.WithRawResponse = socialAccounts
+
+        override fun socialAccountFeeds(): SocialAccountFeedService.WithRawResponse =
+            socialAccountFeeds
     }
 }
