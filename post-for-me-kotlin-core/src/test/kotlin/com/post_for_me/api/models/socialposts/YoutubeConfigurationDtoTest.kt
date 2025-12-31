@@ -15,6 +15,7 @@ internal class YoutubeConfigurationDtoTest {
         val youtubeConfigurationDto =
             YoutubeConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
+                .madeForKids(true)
                 .addMedia(
                     YoutubeConfigurationDto.Media.builder()
                         .url("url")
@@ -31,11 +32,13 @@ internal class YoutubeConfigurationDtoTest {
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
                 )
+                .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                 .title("title")
                 .build()
 
         assertThat(youtubeConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
+        assertThat(youtubeConfigurationDto.madeForKids()).isEqualTo(true)
         assertThat(youtubeConfigurationDto.media())
             .containsExactly(
                 YoutubeConfigurationDto.Media.builder()
@@ -53,6 +56,8 @@ internal class YoutubeConfigurationDtoTest {
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
             )
+        assertThat(youtubeConfigurationDto.privacyStatus())
+            .isEqualTo(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
         assertThat(youtubeConfigurationDto.title()).isEqualTo("title")
     }
 
@@ -62,6 +67,7 @@ internal class YoutubeConfigurationDtoTest {
         val youtubeConfigurationDto =
             YoutubeConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
+                .madeForKids(true)
                 .addMedia(
                     YoutubeConfigurationDto.Media.builder()
                         .url("url")
@@ -78,6 +84,7 @@ internal class YoutubeConfigurationDtoTest {
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
                 )
+                .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                 .title("title")
                 .build()
 

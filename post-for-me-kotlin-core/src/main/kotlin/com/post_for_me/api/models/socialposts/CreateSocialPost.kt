@@ -702,10 +702,11 @@ private constructor(
             private val isDraft: JsonField<Boolean>,
             private val link: JsonField<String>,
             private val location: JsonField<String>,
+            private val madeForKids: JsonField<Boolean>,
             private val media: JsonField<List<String>>,
             private val placement: JsonField<Placement>,
             private val poll: JsonField<Poll>,
-            private val privacyStatus: JsonField<String>,
+            private val privacyStatus: JsonField<PrivacyStatus>,
             private val quoteTweetId: JsonField<String>,
             private val replySettings: JsonField<ReplySettings>,
             private val shareToFeed: JsonField<Boolean>,
@@ -753,6 +754,9 @@ private constructor(
                 @JsonProperty("location")
                 @ExcludeMissing
                 location: JsonField<String> = JsonMissing.of(),
+                @JsonProperty("made_for_kids")
+                @ExcludeMissing
+                madeForKids: JsonField<Boolean> = JsonMissing.of(),
                 @JsonProperty("media")
                 @ExcludeMissing
                 media: JsonField<List<String>> = JsonMissing.of(),
@@ -762,7 +766,7 @@ private constructor(
                 @JsonProperty("poll") @ExcludeMissing poll: JsonField<Poll> = JsonMissing.of(),
                 @JsonProperty("privacy_status")
                 @ExcludeMissing
-                privacyStatus: JsonField<String> = JsonMissing.of(),
+                privacyStatus: JsonField<PrivacyStatus> = JsonMissing.of(),
                 @JsonProperty("quote_tweet_id")
                 @ExcludeMissing
                 quoteTweetId: JsonField<String> = JsonMissing.of(),
@@ -788,6 +792,7 @@ private constructor(
                 isDraft,
                 link,
                 location,
+                madeForKids,
                 media,
                 placement,
                 poll,
@@ -911,6 +916,14 @@ private constructor(
             fun location(): String? = location.getNullable("location")
 
             /**
+             * If true will notify YouTube the video is intended for kids, defaults to false
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun madeForKids(): Boolean? = madeForKids.getNullable("made_for_kids")
+
+            /**
              * Overrides the `media` from the post
              *
              * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
@@ -935,12 +948,13 @@ private constructor(
             fun poll(): Poll? = poll.getNullable("poll")
 
             /**
-             * Sets the privacy status for TikTok (private, public)
+             * Sets the privacy status for TikTok (private, public), or YouTube (private, public,
+             * unlisted)
              *
              * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
              *   if the server responded with an unexpected value).
              */
-            fun privacyStatus(): String? = privacyStatus.getNullable("privacy_status")
+            fun privacyStatus(): PrivacyStatus? = privacyStatus.getNullable("privacy_status")
 
             /**
              * Id of the tweet you want to quote
@@ -1097,6 +1111,16 @@ private constructor(
             @JsonProperty("location") @ExcludeMissing fun _location(): JsonField<String> = location
 
             /**
+             * Returns the raw JSON value of [madeForKids].
+             *
+             * Unlike [madeForKids], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("made_for_kids")
+            @ExcludeMissing
+            fun _madeForKids(): JsonField<Boolean> = madeForKids
+
+            /**
              * Returns the raw JSON value of [media].
              *
              * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
@@ -1128,7 +1152,7 @@ private constructor(
              */
             @JsonProperty("privacy_status")
             @ExcludeMissing
-            fun _privacyStatus(): JsonField<String> = privacyStatus
+            fun _privacyStatus(): JsonField<PrivacyStatus> = privacyStatus
 
             /**
              * Returns the raw JSON value of [quoteTweetId].
@@ -1202,10 +1226,11 @@ private constructor(
                 private var isDraft: JsonField<Boolean> = JsonMissing.of()
                 private var link: JsonField<String> = JsonMissing.of()
                 private var location: JsonField<String> = JsonMissing.of()
+                private var madeForKids: JsonField<Boolean> = JsonMissing.of()
                 private var media: JsonField<MutableList<String>>? = null
                 private var placement: JsonField<Placement> = JsonMissing.of()
                 private var poll: JsonField<Poll> = JsonMissing.of()
-                private var privacyStatus: JsonField<String> = JsonMissing.of()
+                private var privacyStatus: JsonField<PrivacyStatus> = JsonMissing.of()
                 private var quoteTweetId: JsonField<String> = JsonMissing.of()
                 private var replySettings: JsonField<ReplySettings> = JsonMissing.of()
                 private var shareToFeed: JsonField<Boolean> = JsonMissing.of()
@@ -1227,6 +1252,7 @@ private constructor(
                     isDraft = configuration.isDraft
                     link = configuration.link
                     location = configuration.location
+                    madeForKids = configuration.madeForKids
                     media = configuration.media.map { it.toMutableList() }
                     placement = configuration.placement
                     poll = configuration.poll
@@ -1513,6 +1539,28 @@ private constructor(
                  */
                 fun location(location: JsonField<String>) = apply { this.location = location }
 
+                /** If true will notify YouTube the video is intended for kids, defaults to false */
+                fun madeForKids(madeForKids: Boolean?) =
+                    madeForKids(JsonField.ofNullable(madeForKids))
+
+                /**
+                 * Alias for [Builder.madeForKids].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun madeForKids(madeForKids: Boolean) = madeForKids(madeForKids as Boolean?)
+
+                /**
+                 * Sets [Builder.madeForKids] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.madeForKids] with a well-typed [Boolean] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun madeForKids(madeForKids: JsonField<Boolean>) = apply {
+                    this.madeForKids = madeForKids
+                }
+
                 /** Overrides the `media` from the post */
                 fun media(media: List<String>?) = media(JsonField.ofNullable(media))
 
@@ -1565,18 +1613,21 @@ private constructor(
                  */
                 fun poll(poll: JsonField<Poll>) = apply { this.poll = poll }
 
-                /** Sets the privacy status for TikTok (private, public) */
-                fun privacyStatus(privacyStatus: String?) =
+                /**
+                 * Sets the privacy status for TikTok (private, public), or YouTube (private,
+                 * public, unlisted)
+                 */
+                fun privacyStatus(privacyStatus: PrivacyStatus?) =
                     privacyStatus(JsonField.ofNullable(privacyStatus))
 
                 /**
                  * Sets [Builder.privacyStatus] to an arbitrary JSON value.
                  *
-                 * You should usually call [Builder.privacyStatus] with a well-typed [String] value
-                 * instead. This method is primarily for setting the field to an undocumented or not
-                 * yet supported value.
+                 * You should usually call [Builder.privacyStatus] with a well-typed [PrivacyStatus]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
                  */
-                fun privacyStatus(privacyStatus: JsonField<String>) = apply {
+                fun privacyStatus(privacyStatus: JsonField<PrivacyStatus>) = apply {
                     this.privacyStatus = privacyStatus
                 }
 
@@ -1686,6 +1737,7 @@ private constructor(
                         isDraft,
                         link,
                         location,
+                        madeForKids,
                         (media ?: JsonMissing.of()).map { it.toImmutable() },
                         placement,
                         poll,
@@ -1718,10 +1770,11 @@ private constructor(
                 isDraft()
                 link()
                 location()
+                madeForKids()
                 media()
                 placement()?.validate()
                 poll()?.validate()
-                privacyStatus()
+                privacyStatus()?.validate()
                 quoteTweetId()
                 replySettings()?.validate()
                 shareToFeed()
@@ -1757,10 +1810,11 @@ private constructor(
                     (if (isDraft.asKnown() == null) 0 else 1) +
                     (if (link.asKnown() == null) 0 else 1) +
                     (if (location.asKnown() == null) 0 else 1) +
+                    (if (madeForKids.asKnown() == null) 0 else 1) +
                     (media.asKnown()?.size ?: 0) +
                     (placement.asKnown()?.validity() ?: 0) +
                     (poll.asKnown()?.validity() ?: 0) +
-                    (if (privacyStatus.asKnown() == null) 0 else 1) +
+                    (privacyStatus.asKnown()?.validity() ?: 0) +
                     (if (quoteTweetId.asKnown() == null) 0 else 1) +
                     (replySettings.asKnown()?.validity() ?: 0) +
                     (if (shareToFeed.asKnown() == null) 0 else 1) +
@@ -2325,6 +2379,148 @@ private constructor(
                     "Poll{durationMinutes=$durationMinutes, options=$options, replySettings=$replySettings, additionalProperties=$additionalProperties}"
             }
 
+            /**
+             * Sets the privacy status for TikTok (private, public), or YouTube (private, public,
+             * unlisted)
+             */
+            class PrivacyStatus
+            @JsonCreator
+            private constructor(private val value: JsonField<String>) : Enum {
+
+                /**
+                 * Returns this class instance's raw value.
+                 *
+                 * This is usually only useful if this instance was deserialized from data that
+                 * doesn't match any known member, and you want to know that value. For example, if
+                 * the SDK is on an older version than the API, then the API may respond with new
+                 * members that the SDK is unaware of.
+                 */
+                @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+                companion object {
+
+                    val PUBLIC = of("public")
+
+                    val PRIVATE = of("private")
+
+                    val UNLISTED = of("unlisted")
+
+                    fun of(value: String) = PrivacyStatus(JsonField.of(value))
+                }
+
+                /** An enum containing [PrivacyStatus]'s known values. */
+                enum class Known {
+                    PUBLIC,
+                    PRIVATE,
+                    UNLISTED,
+                }
+
+                /**
+                 * An enum containing [PrivacyStatus]'s known values, as well as an [_UNKNOWN]
+                 * member.
+                 *
+                 * An instance of [PrivacyStatus] can contain an unknown value in a couple of cases:
+                 * - It was deserialized from data that doesn't match any known member. For example,
+                 *   if the SDK is on an older version than the API, then the API may respond with
+                 *   new members that the SDK is unaware of.
+                 * - It was constructed with an arbitrary value using the [of] method.
+                 */
+                enum class Value {
+                    PUBLIC,
+                    PRIVATE,
+                    UNLISTED,
+                    /**
+                     * An enum member indicating that [PrivacyStatus] was instantiated with an
+                     * unknown value.
+                     */
+                    _UNKNOWN,
+                }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value, or
+                 * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+                 *
+                 * Use the [known] method instead if you're certain the value is always known or if
+                 * you want to throw for the unknown case.
+                 */
+                fun value(): Value =
+                    when (this) {
+                        PUBLIC -> Value.PUBLIC
+                        PRIVATE -> Value.PRIVATE
+                        UNLISTED -> Value.UNLISTED
+                        else -> Value._UNKNOWN
+                    }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value.
+                 *
+                 * Use the [value] method instead if you're uncertain the value is always known and
+                 * don't want to throw for the unknown case.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value is a not a
+                 *   known member.
+                 */
+                fun known(): Known =
+                    when (this) {
+                        PUBLIC -> Known.PUBLIC
+                        PRIVATE -> Known.PRIVATE
+                        UNLISTED -> Known.UNLISTED
+                        else -> throw PostForMeInvalidDataException("Unknown PrivacyStatus: $value")
+                    }
+
+                /**
+                 * Returns this class instance's primitive wire representation.
+                 *
+                 * This differs from the [toString] method because that method is primarily for
+                 * debugging and generally doesn't throw.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value does not
+                 *   have the expected primitive type.
+                 */
+                fun asString(): String =
+                    _value().asString()
+                        ?: throw PostForMeInvalidDataException("Value is not a String")
+
+                private var validated: Boolean = false
+
+                fun validate(): PrivacyStatus = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    known()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is PrivacyStatus && value == other.value
+                }
+
+                override fun hashCode() = value.hashCode()
+
+                override fun toString() = value.toString()
+            }
+
             /** Who can reply to the tweet */
             class ReplySettings
             @JsonCreator
@@ -2490,6 +2686,7 @@ private constructor(
                     isDraft == other.isDraft &&
                     link == other.link &&
                     location == other.location &&
+                    madeForKids == other.madeForKids &&
                     media == other.media &&
                     placement == other.placement &&
                     poll == other.poll &&
@@ -2517,6 +2714,7 @@ private constructor(
                     isDraft,
                     link,
                     location,
+                    madeForKids,
                     media,
                     placement,
                     poll,
@@ -2532,7 +2730,7 @@ private constructor(
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, collaborators=$collaborators, communityId=$communityId, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, location=$location, media=$media, placement=$placement, poll=$poll, privacyStatus=$privacyStatus, quoteTweetId=$quoteTweetId, replySettings=$replySettings, shareToFeed=$shareToFeed, title=$title, additionalProperties=$additionalProperties}"
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, collaborators=$collaborators, communityId=$communityId, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, location=$location, madeForKids=$madeForKids, media=$media, placement=$placement, poll=$poll, privacyStatus=$privacyStatus, quoteTweetId=$quoteTweetId, replySettings=$replySettings, shareToFeed=$shareToFeed, title=$title, additionalProperties=$additionalProperties}"
         }
 
         override fun equals(other: Any?): Boolean {

@@ -260,6 +260,7 @@ internal class PlatformConfigurationsDtoTest {
                 .youtube(
                     YoutubeConfigurationDto.builder()
                         .caption(JsonValue.from(mapOf<String, Any>()))
+                        .madeForKids(true)
                         .addMedia(
                             YoutubeConfigurationDto.Media.builder()
                                 .url("url")
@@ -278,6 +279,7 @@ internal class PlatformConfigurationsDtoTest {
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
                         )
+                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                         .title("title")
                         .build()
                 )
@@ -525,6 +527,7 @@ internal class PlatformConfigurationsDtoTest {
             .isEqualTo(
                 YoutubeConfigurationDto.builder()
                     .caption(JsonValue.from(mapOf<String, Any>()))
+                    .madeForKids(true)
                     .addMedia(
                         YoutubeConfigurationDto.Media.builder()
                             .url("url")
@@ -541,6 +544,7 @@ internal class PlatformConfigurationsDtoTest {
                             .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                             .build()
                     )
+                    .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                     .title("title")
                     .build()
             )
@@ -797,6 +801,7 @@ internal class PlatformConfigurationsDtoTest {
                 .youtube(
                     YoutubeConfigurationDto.builder()
                         .caption(JsonValue.from(mapOf<String, Any>()))
+                        .madeForKids(true)
                         .addMedia(
                             YoutubeConfigurationDto.Media.builder()
                                 .url("url")
@@ -815,6 +820,7 @@ internal class PlatformConfigurationsDtoTest {
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
                         )
+                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                         .title("title")
                         .build()
                 )

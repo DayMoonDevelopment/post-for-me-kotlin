@@ -35,6 +35,7 @@ internal class SocialPostTest {
                                 .isDraft(true)
                                 .link("link")
                                 .location("location")
+                                .madeForKids(true)
                                 .addMedia("string")
                                 .placement(
                                     SocialPost.AccountConfiguration.Configuration.Placement.REELS
@@ -50,7 +51,10 @@ internal class SocialPostTest {
                                         )
                                         .build()
                                 )
-                                .privacyStatus("privacy_status")
+                                .privacyStatus(
+                                    SocialPost.AccountConfiguration.Configuration.PrivacyStatus
+                                        .PUBLIC
+                                )
                                 .quoteTweetId("quote_tweet_id")
                                 .replySettings(
                                     SocialPost.AccountConfiguration.Configuration.ReplySettings
@@ -343,6 +347,7 @@ internal class SocialPostTest {
                         .youtube(
                             YoutubeConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
+                                .madeForKids(true)
                                 .addMedia(
                                     YoutubeConfigurationDto.Media.builder()
                                         .url("url")
@@ -362,6 +367,7 @@ internal class SocialPostTest {
                                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                         .build()
                                 )
+                                .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                 .title("title")
                                 .build()
                         )
@@ -408,6 +414,7 @@ internal class SocialPostTest {
                             .isDraft(true)
                             .link("link")
                             .location("location")
+                            .madeForKids(true)
                             .addMedia("string")
                             .placement(
                                 SocialPost.AccountConfiguration.Configuration.Placement.REELS
@@ -423,7 +430,9 @@ internal class SocialPostTest {
                                     )
                                     .build()
                             )
-                            .privacyStatus("privacy_status")
+                            .privacyStatus(
+                                SocialPost.AccountConfiguration.Configuration.PrivacyStatus.PUBLIC
+                            )
                             .quoteTweetId("quote_tweet_id")
                             .replySettings(
                                 SocialPost.AccountConfiguration.Configuration.ReplySettings
@@ -713,6 +722,7 @@ internal class SocialPostTest {
                     .youtube(
                         YoutubeConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
+                            .madeForKids(true)
                             .addMedia(
                                 YoutubeConfigurationDto.Media.builder()
                                     .url("url")
@@ -731,6 +741,7 @@ internal class SocialPostTest {
                                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                     .build()
                             )
+                            .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                             .title("title")
                             .build()
                     )
@@ -782,6 +793,7 @@ internal class SocialPostTest {
                                 .isDraft(true)
                                 .link("link")
                                 .location("location")
+                                .madeForKids(true)
                                 .addMedia("string")
                                 .placement(
                                     SocialPost.AccountConfiguration.Configuration.Placement.REELS
@@ -797,7 +809,10 @@ internal class SocialPostTest {
                                         )
                                         .build()
                                 )
-                                .privacyStatus("privacy_status")
+                                .privacyStatus(
+                                    SocialPost.AccountConfiguration.Configuration.PrivacyStatus
+                                        .PUBLIC
+                                )
                                 .quoteTweetId("quote_tweet_id")
                                 .replySettings(
                                     SocialPost.AccountConfiguration.Configuration.ReplySettings
@@ -1090,6 +1105,7 @@ internal class SocialPostTest {
                         .youtube(
                             YoutubeConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
+                                .madeForKids(true)
                                 .addMedia(
                                     YoutubeConfigurationDto.Media.builder()
                                         .url("url")
@@ -1109,6 +1125,7 @@ internal class SocialPostTest {
                                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                         .build()
                                 )
+                                .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                 .title("title")
                                 .build()
                         )
