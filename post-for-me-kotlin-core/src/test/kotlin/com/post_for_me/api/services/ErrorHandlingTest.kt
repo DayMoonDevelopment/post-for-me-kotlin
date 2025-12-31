@@ -105,6 +105,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -125,7 +126,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -475,6 +480,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -500,6 +506,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -551,6 +558,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -571,7 +579,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -921,6 +933,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -946,6 +959,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -997,6 +1011,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -1017,7 +1032,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -1367,6 +1386,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -1392,6 +1412,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -1443,6 +1464,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -1463,7 +1485,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -1813,6 +1839,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -1838,6 +1865,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -1889,6 +1917,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -1909,7 +1938,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -2259,6 +2292,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -2284,6 +2318,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -2335,6 +2370,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -2355,7 +2391,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -2705,6 +2745,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -2730,6 +2771,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -2781,6 +2823,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -2801,7 +2844,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -3151,6 +3198,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -3176,6 +3224,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -3227,6 +3276,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -3247,7 +3297,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -3597,6 +3651,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -3622,6 +3677,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -3673,6 +3729,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -3693,7 +3750,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -4043,6 +4104,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -4068,6 +4130,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -4119,6 +4182,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -4139,7 +4203,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -4489,6 +4557,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -4514,6 +4583,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -4565,6 +4635,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -4585,7 +4656,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -4935,6 +5010,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -4960,6 +5036,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -5011,6 +5088,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -5031,7 +5109,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -5381,6 +5463,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -5406,6 +5489,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -5457,6 +5541,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -5477,7 +5562,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -5827,6 +5916,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -5852,6 +5942,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -5903,6 +5994,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -5923,7 +6015,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -6273,6 +6369,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -6298,6 +6395,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -6349,6 +6447,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -6369,7 +6468,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -6719,6 +6822,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -6744,6 +6848,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -6795,6 +6900,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -6815,7 +6921,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -7165,6 +7275,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -7190,6 +7301,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )
@@ -7239,6 +7351,7 @@ internal class ErrorHandlingTest {
                                         .isDraft(true)
                                         .link("link")
                                         .location("location")
+                                        .madeForKids(true)
                                         .addMedia("string")
                                         .placement(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -7259,7 +7372,11 @@ internal class ErrorHandlingTest {
                                                 )
                                                 .build()
                                         )
-                                        .privacyStatus("privacy_status")
+                                        .privacyStatus(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .PrivacyStatus
+                                                .PUBLIC
+                                        )
                                         .quoteTweetId("quote_tweet_id")
                                         .replySettings(
                                             CreateSocialPost.AccountConfiguration.Configuration
@@ -7609,6 +7726,7 @@ internal class ErrorHandlingTest {
                                 .youtube(
                                     YoutubeConfigurationDto.builder()
                                         .caption(JsonValue.from(mapOf<String, Any>()))
+                                        .madeForKids(true)
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
@@ -7634,6 +7752,7 @@ internal class ErrorHandlingTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                         .title("title")
                                         .build()
                                 )

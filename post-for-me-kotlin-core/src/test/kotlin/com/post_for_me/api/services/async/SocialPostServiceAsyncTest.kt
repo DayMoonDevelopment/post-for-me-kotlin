@@ -59,6 +59,7 @@ internal class SocialPostServiceAsyncTest {
                                     .isDraft(true)
                                     .link("link")
                                     .location("location")
+                                    .madeForKids(true)
                                     .addMedia("string")
                                     .placement(
                                         CreateSocialPost.AccountConfiguration.Configuration
@@ -78,7 +79,11 @@ internal class SocialPostServiceAsyncTest {
                                             )
                                             .build()
                                     )
-                                    .privacyStatus("privacy_status")
+                                    .privacyStatus(
+                                        CreateSocialPost.AccountConfiguration.Configuration
+                                            .PrivacyStatus
+                                            .PUBLIC
+                                    )
                                     .quoteTweetId("quote_tweet_id")
                                     .replySettings(
                                         CreateSocialPost.AccountConfiguration.Configuration
@@ -407,6 +412,7 @@ internal class SocialPostServiceAsyncTest {
                             .youtube(
                                 YoutubeConfigurationDto.builder()
                                     .caption(JsonValue.from(mapOf<String, Any>()))
+                                    .madeForKids(true)
                                     .addMedia(
                                         YoutubeConfigurationDto.Media.builder()
                                             .url("url")
@@ -430,6 +436,7 @@ internal class SocialPostServiceAsyncTest {
                                             .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                             .build()
                                     )
+                                    .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                     .title("title")
                                     .build()
                             )
@@ -496,6 +503,7 @@ internal class SocialPostServiceAsyncTest {
                                             .isDraft(true)
                                             .link("link")
                                             .location("location")
+                                            .madeForKids(true)
                                             .addMedia("string")
                                             .placement(
                                                 CreateSocialPost.AccountConfiguration.Configuration
@@ -517,7 +525,11 @@ internal class SocialPostServiceAsyncTest {
                                                     )
                                                     .build()
                                             )
-                                            .privacyStatus("privacy_status")
+                                            .privacyStatus(
+                                                CreateSocialPost.AccountConfiguration.Configuration
+                                                    .PrivacyStatus
+                                                    .PUBLIC
+                                            )
                                             .quoteTweetId("quote_tweet_id")
                                             .replySettings(
                                                 CreateSocialPost.AccountConfiguration.Configuration
@@ -898,6 +910,7 @@ internal class SocialPostServiceAsyncTest {
                                     .youtube(
                                         YoutubeConfigurationDto.builder()
                                             .caption(JsonValue.from(mapOf<String, Any>()))
+                                            .madeForKids(true)
                                             .addMedia(
                                                 YoutubeConfigurationDto.Media.builder()
                                                     .url("url")
@@ -925,6 +938,9 @@ internal class SocialPostServiceAsyncTest {
                                                         JsonValue.from(mapOf<String, Any>())
                                                     )
                                                     .build()
+                                            )
+                                            .privacyStatus(
+                                                YoutubeConfigurationDto.PrivacyStatus.PUBLIC
                                             )
                                             .title("title")
                                             .build()

@@ -22,7 +22,9 @@ class YoutubeConfigurationDto
 @JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val caption: JsonValue,
+    private val madeForKids: JsonField<Boolean>,
     private val media: JsonField<List<Media>>,
+    private val privacyStatus: JsonField<PrivacyStatus>,
     private val title: JsonField<String>,
     private val additionalProperties: MutableMap<String, JsonValue>,
 ) {
@@ -30,12 +32,26 @@ private constructor(
     @JsonCreator
     private constructor(
         @JsonProperty("caption") @ExcludeMissing caption: JsonValue = JsonMissing.of(),
+        @JsonProperty("made_for_kids")
+        @ExcludeMissing
+        madeForKids: JsonField<Boolean> = JsonMissing.of(),
         @JsonProperty("media") @ExcludeMissing media: JsonField<List<Media>> = JsonMissing.of(),
+        @JsonProperty("privacy_status")
+        @ExcludeMissing
+        privacyStatus: JsonField<PrivacyStatus> = JsonMissing.of(),
         @JsonProperty("title") @ExcludeMissing title: JsonField<String> = JsonMissing.of(),
-    ) : this(caption, media, title, mutableMapOf())
+    ) : this(caption, madeForKids, media, privacyStatus, title, mutableMapOf())
 
     /** Overrides the `caption` from the post */
     @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
+
+    /**
+     * If true will notify YouTube the video is intended for kids, defaults to false
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun madeForKids(): Boolean? = madeForKids.getNullable("made_for_kids")
 
     /**
      * Overrides the `media` from the post
@@ -46,6 +62,14 @@ private constructor(
     fun media(): List<Media>? = media.getNullable("media")
 
     /**
+     * Sets the privacy status of the video, will default to public
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun privacyStatus(): PrivacyStatus? = privacyStatus.getNullable("privacy_status")
+
+    /**
      * Overrides the `title` from the post
      *
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
@@ -54,11 +78,29 @@ private constructor(
     fun title(): String? = title.getNullable("title")
 
     /**
+     * Returns the raw JSON value of [madeForKids].
+     *
+     * Unlike [madeForKids], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("made_for_kids")
+    @ExcludeMissing
+    fun _madeForKids(): JsonField<Boolean> = madeForKids
+
+    /**
      * Returns the raw JSON value of [media].
      *
      * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
      */
     @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<Media>> = media
+
+    /**
+     * Returns the raw JSON value of [privacyStatus].
+     *
+     * Unlike [privacyStatus], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("privacy_status")
+    @ExcludeMissing
+    fun _privacyStatus(): JsonField<PrivacyStatus> = privacyStatus
 
     /**
      * Returns the raw JSON value of [title].
@@ -89,19 +131,42 @@ private constructor(
     class Builder internal constructor() {
 
         private var caption: JsonValue = JsonMissing.of()
+        private var madeForKids: JsonField<Boolean> = JsonMissing.of()
         private var media: JsonField<MutableList<Media>>? = null
+        private var privacyStatus: JsonField<PrivacyStatus> = JsonMissing.of()
         private var title: JsonField<String> = JsonMissing.of()
         private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
         internal fun from(youtubeConfigurationDto: YoutubeConfigurationDto) = apply {
             caption = youtubeConfigurationDto.caption
+            madeForKids = youtubeConfigurationDto.madeForKids
             media = youtubeConfigurationDto.media.map { it.toMutableList() }
+            privacyStatus = youtubeConfigurationDto.privacyStatus
             title = youtubeConfigurationDto.title
             additionalProperties = youtubeConfigurationDto.additionalProperties.toMutableMap()
         }
 
         /** Overrides the `caption` from the post */
         fun caption(caption: JsonValue) = apply { this.caption = caption }
+
+        /** If true will notify YouTube the video is intended for kids, defaults to false */
+        fun madeForKids(madeForKids: Boolean?) = madeForKids(JsonField.ofNullable(madeForKids))
+
+        /**
+         * Alias for [Builder.madeForKids].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun madeForKids(madeForKids: Boolean) = madeForKids(madeForKids as Boolean?)
+
+        /**
+         * Sets [Builder.madeForKids] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.madeForKids] with a well-typed [Boolean] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun madeForKids(madeForKids: JsonField<Boolean>) = apply { this.madeForKids = madeForKids }
 
         /** Overrides the `media` from the post */
         fun media(media: List<Media>?) = media(JsonField.ofNullable(media))
@@ -127,6 +192,21 @@ private constructor(
                 (this.media ?: JsonField.of(mutableListOf())).also {
                     checkKnown("media", it).add(media)
                 }
+        }
+
+        /** Sets the privacy status of the video, will default to public */
+        fun privacyStatus(privacyStatus: PrivacyStatus?) =
+            privacyStatus(JsonField.ofNullable(privacyStatus))
+
+        /**
+         * Sets [Builder.privacyStatus] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.privacyStatus] with a well-typed [PrivacyStatus] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun privacyStatus(privacyStatus: JsonField<PrivacyStatus>) = apply {
+            this.privacyStatus = privacyStatus
         }
 
         /** Overrides the `title` from the post */
@@ -167,7 +247,9 @@ private constructor(
         fun build(): YoutubeConfigurationDto =
             YoutubeConfigurationDto(
                 caption,
+                madeForKids,
                 (media ?: JsonMissing.of()).map { it.toImmutable() },
+                privacyStatus,
                 title,
                 additionalProperties.toMutableMap(),
             )
@@ -180,7 +262,9 @@ private constructor(
             return@apply
         }
 
+        madeForKids()
         media()?.forEach { it.validate() }
+        privacyStatus()?.validate()
         title()
         validated = true
     }
@@ -199,7 +283,9 @@ private constructor(
      * Used for best match union deserialization.
      */
     internal fun validity(): Int =
-        (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+        (if (madeForKids.asKnown() == null) 0 else 1) +
+            (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+            (privacyStatus.asKnown()?.validity() ?: 0) +
             (if (title.asKnown() == null) 0 else 1)
 
     class Media
@@ -1032,6 +1118,142 @@ private constructor(
             "Media{url=$url, tags=$tags, thumbnailTimestampMs=$thumbnailTimestampMs, thumbnailUrl=$thumbnailUrl, additionalProperties=$additionalProperties}"
     }
 
+    /** Sets the privacy status of the video, will default to public */
+    class PrivacyStatus @JsonCreator private constructor(private val value: JsonField<String>) :
+        Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            val PUBLIC = of("public")
+
+            val PRIVATE = of("private")
+
+            val UNLISTED = of("unlisted")
+
+            fun of(value: String) = PrivacyStatus(JsonField.of(value))
+        }
+
+        /** An enum containing [PrivacyStatus]'s known values. */
+        enum class Known {
+            PUBLIC,
+            PRIVATE,
+            UNLISTED,
+        }
+
+        /**
+         * An enum containing [PrivacyStatus]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [PrivacyStatus] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            PUBLIC,
+            PRIVATE,
+            UNLISTED,
+            /**
+             * An enum member indicating that [PrivacyStatus] was instantiated with an unknown
+             * value.
+             */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                PUBLIC -> Value.PUBLIC
+                PRIVATE -> Value.PRIVATE
+                UNLISTED -> Value.UNLISTED
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws PostForMeInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                PUBLIC -> Known.PUBLIC
+                PRIVATE -> Known.PRIVATE
+                UNLISTED -> Known.UNLISTED
+                else -> throw PostForMeInvalidDataException("Unknown PrivacyStatus: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws PostForMeInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString() ?: throw PostForMeInvalidDataException("Value is not a String")
+
+        private var validated: Boolean = false
+
+        fun validate(): PrivacyStatus = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: PostForMeInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is PrivacyStatus && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
@@ -1039,15 +1261,19 @@ private constructor(
 
         return other is YoutubeConfigurationDto &&
             caption == other.caption &&
+            madeForKids == other.madeForKids &&
             media == other.media &&
+            privacyStatus == other.privacyStatus &&
             title == other.title &&
             additionalProperties == other.additionalProperties
     }
 
-    private val hashCode: Int by lazy { Objects.hash(caption, media, title, additionalProperties) }
+    private val hashCode: Int by lazy {
+        Objects.hash(caption, madeForKids, media, privacyStatus, title, additionalProperties)
+    }
 
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "YoutubeConfigurationDto{caption=$caption, media=$media, title=$title, additionalProperties=$additionalProperties}"
+        "YoutubeConfigurationDto{caption=$caption, madeForKids=$madeForKids, media=$media, privacyStatus=$privacyStatus, title=$title, additionalProperties=$additionalProperties}"
 }
