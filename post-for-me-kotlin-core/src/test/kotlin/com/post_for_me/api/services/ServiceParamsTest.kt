@@ -75,7 +75,40 @@ internal class ServiceParamsTest {
                                 .link("link")
                                 .location("location")
                                 .madeForKids(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    CreateSocialPost.AccountConfiguration.Configuration.Media
+                                        .builder()
+                                        .url("url")
+                                        .addTag(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .Media
+                                                .Tag
+                                                .builder()
+                                                .id("id")
+                                                .platform(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Type
+                                                        .USER
+                                                )
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(
                                     CreateSocialPost.AccountConfiguration.Configuration.Placement
                                         .REELS

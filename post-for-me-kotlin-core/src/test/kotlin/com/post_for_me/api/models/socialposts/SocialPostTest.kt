@@ -36,7 +36,35 @@ internal class SocialPostTest {
                                 .link("link")
                                 .location("location")
                                 .madeForKids(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    SocialPost.AccountConfiguration.Configuration.Media.builder()
+                                        .url("url")
+                                        .addTag(
+                                            SocialPost.AccountConfiguration.Configuration.Media.Tag
+                                                .builder()
+                                                .id("id")
+                                                .platform(
+                                                    SocialPost.AccountConfiguration.Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(
+                                                    SocialPost.AccountConfiguration.Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Type
+                                                        .USER
+                                                )
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(
                                     SocialPost.AccountConfiguration.Configuration.Placement.REELS
                                 )
@@ -415,7 +443,33 @@ internal class SocialPostTest {
                             .link("link")
                             .location("location")
                             .madeForKids(true)
-                            .addMedia("string")
+                            .addMedia(
+                                SocialPost.AccountConfiguration.Configuration.Media.builder()
+                                    .url("url")
+                                    .addTag(
+                                        SocialPost.AccountConfiguration.Configuration.Media.Tag
+                                            .builder()
+                                            .id("id")
+                                            .platform(
+                                                SocialPost.AccountConfiguration.Configuration.Media
+                                                    .Tag
+                                                    .Platform
+                                                    .FACEBOOK
+                                            )
+                                            .type(
+                                                SocialPost.AccountConfiguration.Configuration.Media
+                                                    .Tag
+                                                    .Type
+                                                    .USER
+                                            )
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .placement(
                                 SocialPost.AccountConfiguration.Configuration.Placement.REELS
                             )
@@ -794,7 +848,35 @@ internal class SocialPostTest {
                                 .link("link")
                                 .location("location")
                                 .madeForKids(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    SocialPost.AccountConfiguration.Configuration.Media.builder()
+                                        .url("url")
+                                        .addTag(
+                                            SocialPost.AccountConfiguration.Configuration.Media.Tag
+                                                .builder()
+                                                .id("id")
+                                                .platform(
+                                                    SocialPost.AccountConfiguration.Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(
+                                                    SocialPost.AccountConfiguration.Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Type
+                                                        .USER
+                                                )
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(
                                     SocialPost.AccountConfiguration.Configuration.Placement.REELS
                                 )
