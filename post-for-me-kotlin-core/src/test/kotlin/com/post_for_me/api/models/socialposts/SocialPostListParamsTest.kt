@@ -15,6 +15,7 @@ internal class SocialPostListParamsTest {
             .limit(0.0)
             .offset(0.0)
             .addPlatform(SocialPostListParams.Platform.BLUESKY)
+            .addSocialAccountId("string")
             .addStatus(SocialPostListParams.Status.DRAFT)
             .build()
     }
@@ -27,6 +28,7 @@ internal class SocialPostListParamsTest {
                 .limit(0.0)
                 .offset(0.0)
                 .addPlatform(SocialPostListParams.Platform.BLUESKY)
+                .addSocialAccountId("string")
                 .addStatus(SocialPostListParams.Status.DRAFT)
                 .build()
 
@@ -39,6 +41,7 @@ internal class SocialPostListParamsTest {
                     .put("limit", "0.0")
                     .put("offset", "0.0")
                     .put("platform", listOf("bluesky").joinToString(","))
+                    .put("social_account_id", listOf("string").joinToString(","))
                     .put("status", listOf("draft").joinToString(","))
                     .build()
             )

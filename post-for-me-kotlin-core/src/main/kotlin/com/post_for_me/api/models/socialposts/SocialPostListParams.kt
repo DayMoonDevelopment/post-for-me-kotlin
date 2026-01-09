@@ -19,6 +19,7 @@ private constructor(
     private val limit: Double?,
     private val offset: Double?,
     private val platform: List<Platform>?,
+    private val socialAccountId: List<String>?,
     private val status: List<Status>?,
     private val additionalHeaders: Headers,
     private val additionalQueryParams: QueryParams,
@@ -35,6 +36,9 @@ private constructor(
 
     /** Filter by platforms. Multiple values imply OR logic. */
     fun platform(): List<Platform>? = platform
+
+    /** Filter by social account ID. Multiple values imply OR logic. */
+    fun socialAccountId(): List<String>? = socialAccountId
 
     /** Filter by post status. Multiple values imply OR logic. */
     fun status(): List<Status>? = status
@@ -62,6 +66,7 @@ private constructor(
         private var limit: Double? = null
         private var offset: Double? = null
         private var platform: MutableList<Platform>? = null
+        private var socialAccountId: MutableList<String>? = null
         private var status: MutableList<Status>? = null
         private var additionalHeaders: Headers.Builder = Headers.builder()
         private var additionalQueryParams: QueryParams.Builder = QueryParams.builder()
@@ -71,6 +76,7 @@ private constructor(
             limit = socialPostListParams.limit
             offset = socialPostListParams.offset
             platform = socialPostListParams.platform?.toMutableList()
+            socialAccountId = socialPostListParams.socialAccountId?.toMutableList()
             status = socialPostListParams.status?.toMutableList()
             additionalHeaders = socialPostListParams.additionalHeaders.toBuilder()
             additionalQueryParams = socialPostListParams.additionalQueryParams.toBuilder()
@@ -122,6 +128,21 @@ private constructor(
          */
         fun addPlatform(platform: Platform) = apply {
             this.platform = (this.platform ?: mutableListOf()).apply { add(platform) }
+        }
+
+        /** Filter by social account ID. Multiple values imply OR logic. */
+        fun socialAccountId(socialAccountId: List<String>?) = apply {
+            this.socialAccountId = socialAccountId?.toMutableList()
+        }
+
+        /**
+         * Adds a single [String] to [Builder.socialAccountId].
+         *
+         * @throws IllegalStateException if the field was previously set to a non-list.
+         */
+        fun addSocialAccountId(socialAccountId: String) = apply {
+            this.socialAccountId =
+                (this.socialAccountId ?: mutableListOf()).apply { add(socialAccountId) }
         }
 
         /** Filter by post status. Multiple values imply OR logic. */
@@ -245,6 +266,7 @@ private constructor(
                 limit,
                 offset,
                 platform?.toImmutable(),
+                socialAccountId?.toImmutable(),
                 status?.toImmutable(),
                 additionalHeaders.build(),
                 additionalQueryParams.build(),
@@ -260,6 +282,7 @@ private constructor(
                 limit?.let { put("limit", it.toString()) }
                 offset?.let { put("offset", it.toString()) }
                 platform?.let { put("platform", it.joinToString(",") { it.toString() }) }
+                socialAccountId?.let { put("social_account_id", it.joinToString(",")) }
                 status?.let { put("status", it.joinToString(",") { it.toString() }) }
                 putAll(additionalQueryParams)
             }
@@ -579,6 +602,7 @@ private constructor(
             limit == other.limit &&
             offset == other.offset &&
             platform == other.platform &&
+            socialAccountId == other.socialAccountId &&
             status == other.status &&
             additionalHeaders == other.additionalHeaders &&
             additionalQueryParams == other.additionalQueryParams
@@ -590,11 +614,12 @@ private constructor(
             limit,
             offset,
             platform,
+            socialAccountId,
             status,
             additionalHeaders,
             additionalQueryParams,
         )
 
     override fun toString() =
-        "SocialPostListParams{externalId=$externalId, limit=$limit, offset=$offset, platform=$platform, status=$status, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
+        "SocialPostListParams{externalId=$externalId, limit=$limit, offset=$offset, platform=$platform, socialAccountId=$socialAccountId, status=$status, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
 }
