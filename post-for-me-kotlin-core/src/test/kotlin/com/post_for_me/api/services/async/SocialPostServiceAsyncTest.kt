@@ -1049,6 +1049,7 @@ internal class SocialPostServiceAsyncTest {
                     .limit(0.0)
                     .offset(0.0)
                     .addPlatform(SocialPostListParams.Platform.BLUESKY)
+                    .addSocialAccountId("string")
                     .addStatus(SocialPostListParams.Status.DRAFT)
                     .build()
             )

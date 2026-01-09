@@ -44,6 +44,7 @@ internal class SocialPostResultServiceAsyncTest {
                     .offset(0.0)
                     .addPlatform("string")
                     .addPostId("string")
+                    .addSocialAccountId("string")
                     .build()
             )
 
