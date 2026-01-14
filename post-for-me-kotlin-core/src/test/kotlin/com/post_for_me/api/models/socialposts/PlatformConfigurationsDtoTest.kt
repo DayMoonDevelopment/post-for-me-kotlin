@@ -88,6 +88,7 @@ internal class PlatformConfigurationsDtoTest {
                         )
                         .placement(InstagramConfigurationDto.Placement.REELS)
                         .shareToFeed(true)
+                        .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                         .build()
                 )
                 .linkedin(
@@ -356,6 +357,7 @@ internal class PlatformConfigurationsDtoTest {
                     )
                     .placement(InstagramConfigurationDto.Placement.REELS)
                     .shareToFeed(true)
+                    .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                     .build()
             )
         assertThat(platformConfigurationsDto.linkedin())
@@ -629,6 +631,7 @@ internal class PlatformConfigurationsDtoTest {
                         )
                         .placement(InstagramConfigurationDto.Placement.REELS)
                         .shareToFeed(true)
+                        .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                         .build()
                 )
                 .linkedin(

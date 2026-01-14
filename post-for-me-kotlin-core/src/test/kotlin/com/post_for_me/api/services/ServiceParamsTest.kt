@@ -138,6 +138,11 @@ internal class ServiceParamsTest {
                                 )
                                 .shareToFeed(true)
                                 .title("title")
+                                .trialReelType(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .TrialReelType
+                                        .MANUAL
+                                )
                                 .build()
                         )
                         .socialAccountId("social_account_id")
@@ -240,6 +245,7 @@ internal class ServiceParamsTest {
                                 )
                                 .placement(InstagramConfigurationDto.Placement.REELS)
                                 .shareToFeed(true)
+                                .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                                 .build()
                         )
                         .linkedin(

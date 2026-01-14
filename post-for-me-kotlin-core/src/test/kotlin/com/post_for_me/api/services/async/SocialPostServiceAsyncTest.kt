@@ -127,6 +127,11 @@ internal class SocialPostServiceAsyncTest {
                                     )
                                     .shareToFeed(true)
                                     .title("title")
+                                    .trialReelType(
+                                        CreateSocialPost.AccountConfiguration.Configuration
+                                            .TrialReelType
+                                            .MANUAL
+                                    )
                                     .build()
                             )
                             .socialAccountId("social_account_id")
@@ -242,6 +247,7 @@ internal class SocialPostServiceAsyncTest {
                                     )
                                     .placement(InstagramConfigurationDto.Placement.REELS)
                                     .shareToFeed(true)
+                                    .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                                     .build()
                             )
                             .linkedin(
@@ -614,6 +620,11 @@ internal class SocialPostServiceAsyncTest {
                                             )
                                             .shareToFeed(true)
                                             .title("title")
+                                            .trialReelType(
+                                                CreateSocialPost.AccountConfiguration.Configuration
+                                                    .TrialReelType
+                                                    .MANUAL
+                                            )
                                             .build()
                                     )
                                     .socialAccountId("social_account_id")
@@ -746,6 +757,9 @@ internal class SocialPostServiceAsyncTest {
                                             )
                                             .placement(InstagramConfigurationDto.Placement.REELS)
                                             .shareToFeed(true)
+                                            .trialReelType(
+                                                InstagramConfigurationDto.TrialReelType.MANUAL
+                                            )
                                             .build()
                                     )
                                     .linkedin(

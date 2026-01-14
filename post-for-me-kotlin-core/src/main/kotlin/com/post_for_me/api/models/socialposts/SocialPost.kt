@@ -822,6 +822,7 @@ private constructor(
             private val replySettings: JsonField<ReplySettings>,
             private val shareToFeed: JsonField<Boolean>,
             private val title: JsonField<String>,
+            private val trialReelType: JsonField<TrialReelType>,
             private val additionalProperties: MutableMap<String, JsonValue>,
         ) {
 
@@ -888,6 +889,9 @@ private constructor(
                 @ExcludeMissing
                 shareToFeed: JsonField<Boolean> = JsonMissing.of(),
                 @JsonProperty("title") @ExcludeMissing title: JsonField<String> = JsonMissing.of(),
+                @JsonProperty("trial_reel_type")
+                @ExcludeMissing
+                trialReelType: JsonField<TrialReelType> = JsonMissing.of(),
             ) : this(
                 allowComment,
                 allowDuet,
@@ -912,6 +916,7 @@ private constructor(
                 replySettings,
                 shareToFeed,
                 title,
+                trialReelType,
                 mutableMapOf(),
             )
 
@@ -1098,6 +1103,16 @@ private constructor(
              *   if the server responded with an unexpected value).
              */
             fun title(): String? = title.getNullable("title")
+
+            /**
+             * Instagram trial reel type, when passed will be created as a trial reel. If manual the
+             * trial reel can be manually graduated in the native app. If perfomance the trial reel
+             * will be automatically graduated if the trial reel performs well.
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun trialReelType(): TrialReelType? = trialReelType.getNullable("trial_reel_type")
 
             /**
              * Returns the raw JSON value of [allowComment].
@@ -1302,6 +1317,16 @@ private constructor(
              */
             @JsonProperty("title") @ExcludeMissing fun _title(): JsonField<String> = title
 
+            /**
+             * Returns the raw JSON value of [trialReelType].
+             *
+             * Unlike [trialReelType], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("trial_reel_type")
+            @ExcludeMissing
+            fun _trialReelType(): JsonField<TrialReelType> = trialReelType
+
             @JsonAnySetter
             private fun putAdditionalProperty(key: String, value: JsonValue) {
                 additionalProperties.put(key, value)
@@ -1346,6 +1371,7 @@ private constructor(
                 private var replySettings: JsonField<ReplySettings> = JsonMissing.of()
                 private var shareToFeed: JsonField<Boolean> = JsonMissing.of()
                 private var title: JsonField<String> = JsonMissing.of()
+                private var trialReelType: JsonField<TrialReelType> = JsonMissing.of()
                 private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
                 internal fun from(configuration: Configuration) = apply {
@@ -1372,6 +1398,7 @@ private constructor(
                     replySettings = configuration.replySettings
                     shareToFeed = configuration.shareToFeed
                     title = configuration.title
+                    trialReelType = configuration.trialReelType
                     additionalProperties = configuration.additionalProperties.toMutableMap()
                 }
 
@@ -1805,6 +1832,25 @@ private constructor(
                  */
                 fun title(title: JsonField<String>) = apply { this.title = title }
 
+                /**
+                 * Instagram trial reel type, when passed will be created as a trial reel. If manual
+                 * the trial reel can be manually graduated in the native app. If perfomance the
+                 * trial reel will be automatically graduated if the trial reel performs well.
+                 */
+                fun trialReelType(trialReelType: TrialReelType?) =
+                    trialReelType(JsonField.ofNullable(trialReelType))
+
+                /**
+                 * Sets [Builder.trialReelType] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.trialReelType] with a well-typed [TrialReelType]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun trialReelType(trialReelType: JsonField<TrialReelType>) = apply {
+                    this.trialReelType = trialReelType
+                }
+
                 fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
                     this.additionalProperties.clear()
                     putAllAdditionalProperties(additionalProperties)
@@ -1857,6 +1903,7 @@ private constructor(
                         replySettings,
                         shareToFeed,
                         title,
+                        trialReelType,
                         additionalProperties.toMutableMap(),
                     )
             }
@@ -1890,6 +1937,7 @@ private constructor(
                 replySettings()?.validate()
                 shareToFeed()
                 title()
+                trialReelType()?.validate()
                 validated = true
             }
 
@@ -1929,7 +1977,8 @@ private constructor(
                     (if (quoteTweetId.asKnown() == null) 0 else 1) +
                     (replySettings.asKnown()?.validity() ?: 0) +
                     (if (shareToFeed.asKnown() == null) 0 else 1) +
-                    (if (title.asKnown() == null) 0 else 1)
+                    (if (title.asKnown() == null) 0 else 1) +
+                    (trialReelType.asKnown()?.validity() ?: 0)
 
             class Media
             @JsonCreator(mode = JsonCreator.Mode.DISABLED)
@@ -3648,6 +3697,143 @@ private constructor(
                 override fun toString() = value.toString()
             }
 
+            /**
+             * Instagram trial reel type, when passed will be created as a trial reel. If manual the
+             * trial reel can be manually graduated in the native app. If perfomance the trial reel
+             * will be automatically graduated if the trial reel performs well.
+             */
+            class TrialReelType
+            @JsonCreator
+            private constructor(private val value: JsonField<String>) : Enum {
+
+                /**
+                 * Returns this class instance's raw value.
+                 *
+                 * This is usually only useful if this instance was deserialized from data that
+                 * doesn't match any known member, and you want to know that value. For example, if
+                 * the SDK is on an older version than the API, then the API may respond with new
+                 * members that the SDK is unaware of.
+                 */
+                @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+                companion object {
+
+                    val MANUAL = of("manual")
+
+                    val PERFORMANCE = of("performance")
+
+                    fun of(value: String) = TrialReelType(JsonField.of(value))
+                }
+
+                /** An enum containing [TrialReelType]'s known values. */
+                enum class Known {
+                    MANUAL,
+                    PERFORMANCE,
+                }
+
+                /**
+                 * An enum containing [TrialReelType]'s known values, as well as an [_UNKNOWN]
+                 * member.
+                 *
+                 * An instance of [TrialReelType] can contain an unknown value in a couple of cases:
+                 * - It was deserialized from data that doesn't match any known member. For example,
+                 *   if the SDK is on an older version than the API, then the API may respond with
+                 *   new members that the SDK is unaware of.
+                 * - It was constructed with an arbitrary value using the [of] method.
+                 */
+                enum class Value {
+                    MANUAL,
+                    PERFORMANCE,
+                    /**
+                     * An enum member indicating that [TrialReelType] was instantiated with an
+                     * unknown value.
+                     */
+                    _UNKNOWN,
+                }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value, or
+                 * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+                 *
+                 * Use the [known] method instead if you're certain the value is always known or if
+                 * you want to throw for the unknown case.
+                 */
+                fun value(): Value =
+                    when (this) {
+                        MANUAL -> Value.MANUAL
+                        PERFORMANCE -> Value.PERFORMANCE
+                        else -> Value._UNKNOWN
+                    }
+
+                /**
+                 * Returns an enum member corresponding to this class instance's value.
+                 *
+                 * Use the [value] method instead if you're uncertain the value is always known and
+                 * don't want to throw for the unknown case.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value is a not a
+                 *   known member.
+                 */
+                fun known(): Known =
+                    when (this) {
+                        MANUAL -> Known.MANUAL
+                        PERFORMANCE -> Known.PERFORMANCE
+                        else -> throw PostForMeInvalidDataException("Unknown TrialReelType: $value")
+                    }
+
+                /**
+                 * Returns this class instance's primitive wire representation.
+                 *
+                 * This differs from the [toString] method because that method is primarily for
+                 * debugging and generally doesn't throw.
+                 *
+                 * @throws PostForMeInvalidDataException if this class instance's value does not
+                 *   have the expected primitive type.
+                 */
+                fun asString(): String =
+                    _value().asString()
+                        ?: throw PostForMeInvalidDataException("Value is not a String")
+
+                private var validated: Boolean = false
+
+                fun validate(): TrialReelType = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    known()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is TrialReelType && value == other.value
+                }
+
+                override fun hashCode() = value.hashCode()
+
+                override fun toString() = value.toString()
+            }
+
             override fun equals(other: Any?): Boolean {
                 if (this === other) {
                     return true
@@ -3677,6 +3863,7 @@ private constructor(
                     replySettings == other.replySettings &&
                     shareToFeed == other.shareToFeed &&
                     title == other.title &&
+                    trialReelType == other.trialReelType &&
                     additionalProperties == other.additionalProperties
             }
 
@@ -3705,6 +3892,7 @@ private constructor(
                     replySettings,
                     shareToFeed,
                     title,
+                    trialReelType,
                     additionalProperties,
                 )
             }
@@ -3712,7 +3900,7 @@ private constructor(
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, collaborators=$collaborators, communityId=$communityId, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, location=$location, madeForKids=$madeForKids, media=$media, placement=$placement, poll=$poll, privacyStatus=$privacyStatus, quoteTweetId=$quoteTweetId, replySettings=$replySettings, shareToFeed=$shareToFeed, title=$title, additionalProperties=$additionalProperties}"
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, collaborators=$collaborators, communityId=$communityId, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, location=$location, madeForKids=$madeForKids, media=$media, placement=$placement, poll=$poll, privacyStatus=$privacyStatus, quoteTweetId=$quoteTweetId, replySettings=$replySettings, shareToFeed=$shareToFeed, title=$title, trialReelType=$trialReelType, additionalProperties=$additionalProperties}"
         }
 
         override fun equals(other: Any?): Boolean {

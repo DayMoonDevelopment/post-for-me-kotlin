@@ -27,6 +27,7 @@ private constructor(
     private val media: JsonField<List<Media>>,
     private val placement: JsonField<Placement>,
     private val shareToFeed: JsonField<Boolean>,
+    private val trialReelType: JsonField<TrialReelType>,
     private val additionalProperties: MutableMap<String, JsonValue>,
 ) {
 
@@ -44,7 +45,19 @@ private constructor(
         @JsonProperty("share_to_feed")
         @ExcludeMissing
         shareToFeed: JsonField<Boolean> = JsonMissing.of(),
-    ) : this(caption, collaborators, location, media, placement, shareToFeed, mutableMapOf())
+        @JsonProperty("trial_reel_type")
+        @ExcludeMissing
+        trialReelType: JsonField<TrialReelType> = JsonMissing.of(),
+    ) : this(
+        caption,
+        collaborators,
+        location,
+        media,
+        placement,
+        shareToFeed,
+        trialReelType,
+        mutableMapOf(),
+    )
 
     /** Overrides the `caption` from the post */
     @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
@@ -90,6 +103,16 @@ private constructor(
     fun shareToFeed(): Boolean? = shareToFeed.getNullable("share_to_feed")
 
     /**
+     * Instagram trial reel type, when passed will be created as a trial reel. If manual the trial
+     * reel can be manually graduated in the native app. If perfomance the trial reel will be
+     * automatically graduated if the trial reel performs well.
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun trialReelType(): TrialReelType? = trialReelType.getNullable("trial_reel_type")
+
+    /**
      * Returns the raw JSON value of [collaborators].
      *
      * Unlike [collaborators], this method doesn't throw if the JSON field has an unexpected type.
@@ -128,6 +151,15 @@ private constructor(
     @ExcludeMissing
     fun _shareToFeed(): JsonField<Boolean> = shareToFeed
 
+    /**
+     * Returns the raw JSON value of [trialReelType].
+     *
+     * Unlike [trialReelType], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("trial_reel_type")
+    @ExcludeMissing
+    fun _trialReelType(): JsonField<TrialReelType> = trialReelType
+
     @JsonAnySetter
     private fun putAdditionalProperty(key: String, value: JsonValue) {
         additionalProperties.put(key, value)
@@ -157,6 +189,7 @@ private constructor(
         private var media: JsonField<MutableList<Media>>? = null
         private var placement: JsonField<Placement> = JsonMissing.of()
         private var shareToFeed: JsonField<Boolean> = JsonMissing.of()
+        private var trialReelType: JsonField<TrialReelType> = JsonMissing.of()
         private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
         internal fun from(instagramConfigurationDto: InstagramConfigurationDto) = apply {
@@ -166,6 +199,7 @@ private constructor(
             media = instagramConfigurationDto.media.map { it.toMutableList() }
             placement = instagramConfigurationDto.placement
             shareToFeed = instagramConfigurationDto.shareToFeed
+            trialReelType = instagramConfigurationDto.trialReelType
             additionalProperties = instagramConfigurationDto.additionalProperties.toMutableMap()
         }
 
@@ -267,6 +301,25 @@ private constructor(
          */
         fun shareToFeed(shareToFeed: JsonField<Boolean>) = apply { this.shareToFeed = shareToFeed }
 
+        /**
+         * Instagram trial reel type, when passed will be created as a trial reel. If manual the
+         * trial reel can be manually graduated in the native app. If perfomance the trial reel will
+         * be automatically graduated if the trial reel performs well.
+         */
+        fun trialReelType(trialReelType: TrialReelType?) =
+            trialReelType(JsonField.ofNullable(trialReelType))
+
+        /**
+         * Sets [Builder.trialReelType] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.trialReelType] with a well-typed [TrialReelType] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun trialReelType(trialReelType: JsonField<TrialReelType>) = apply {
+            this.trialReelType = trialReelType
+        }
+
         fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
             this.additionalProperties.clear()
             putAllAdditionalProperties(additionalProperties)
@@ -299,6 +352,7 @@ private constructor(
                 (media ?: JsonMissing.of()).map { it.toImmutable() },
                 placement,
                 shareToFeed,
+                trialReelType,
                 additionalProperties.toMutableMap(),
             )
     }
@@ -315,6 +369,7 @@ private constructor(
         media()?.forEach { it.validate() }
         placement()?.validate()
         shareToFeed()
+        trialReelType()?.validate()
         validated = true
     }
 
@@ -336,7 +391,8 @@ private constructor(
             (if (location.asKnown() == null) 0 else 1) +
             (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
             (placement.asKnown()?.validity() ?: 0) +
-            (if (shareToFeed.asKnown() == null) 0 else 1)
+            (if (shareToFeed.asKnown() == null) 0 else 1) +
+            (trialReelType.asKnown()?.validity() ?: 0)
 
     class Media
     @JsonCreator(mode = JsonCreator.Mode.DISABLED)
@@ -1302,6 +1358,140 @@ private constructor(
         override fun toString() = value.toString()
     }
 
+    /**
+     * Instagram trial reel type, when passed will be created as a trial reel. If manual the trial
+     * reel can be manually graduated in the native app. If perfomance the trial reel will be
+     * automatically graduated if the trial reel performs well.
+     */
+    class TrialReelType @JsonCreator private constructor(private val value: JsonField<String>) :
+        Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            val MANUAL = of("manual")
+
+            val PERFORMANCE = of("performance")
+
+            fun of(value: String) = TrialReelType(JsonField.of(value))
+        }
+
+        /** An enum containing [TrialReelType]'s known values. */
+        enum class Known {
+            MANUAL,
+            PERFORMANCE,
+        }
+
+        /**
+         * An enum containing [TrialReelType]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [TrialReelType] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            MANUAL,
+            PERFORMANCE,
+            /**
+             * An enum member indicating that [TrialReelType] was instantiated with an unknown
+             * value.
+             */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                MANUAL -> Value.MANUAL
+                PERFORMANCE -> Value.PERFORMANCE
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws PostForMeInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                MANUAL -> Known.MANUAL
+                PERFORMANCE -> Known.PERFORMANCE
+                else -> throw PostForMeInvalidDataException("Unknown TrialReelType: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws PostForMeInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString() ?: throw PostForMeInvalidDataException("Value is not a String")
+
+        private var validated: Boolean = false
+
+        fun validate(): TrialReelType = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: PostForMeInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is TrialReelType && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
@@ -1314,6 +1504,7 @@ private constructor(
             media == other.media &&
             placement == other.placement &&
             shareToFeed == other.shareToFeed &&
+            trialReelType == other.trialReelType &&
             additionalProperties == other.additionalProperties
     }
 
@@ -1325,6 +1516,7 @@ private constructor(
             media,
             placement,
             shareToFeed,
+            trialReelType,
             additionalProperties,
         )
     }
@@ -1332,5 +1524,5 @@ private constructor(
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "InstagramConfigurationDto{caption=$caption, collaborators=$collaborators, location=$location, media=$media, placement=$placement, shareToFeed=$shareToFeed, additionalProperties=$additionalProperties}"
+        "InstagramConfigurationDto{caption=$caption, collaborators=$collaborators, location=$location, media=$media, placement=$placement, shareToFeed=$shareToFeed, trialReelType=$trialReelType, additionalProperties=$additionalProperties}"
 }
