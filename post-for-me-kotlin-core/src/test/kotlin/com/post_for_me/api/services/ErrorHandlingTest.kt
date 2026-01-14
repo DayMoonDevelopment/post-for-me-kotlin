@@ -176,6 +176,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -298,6 +303,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -666,6 +674,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -788,6 +801,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -1156,6 +1172,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -1278,6 +1299,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -1646,6 +1670,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -1768,6 +1797,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -2136,6 +2168,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -2258,6 +2295,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -2626,6 +2666,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -2748,6 +2793,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -3116,6 +3164,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -3238,6 +3291,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -3606,6 +3662,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -3728,6 +3789,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -4096,6 +4160,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -4218,6 +4287,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -4586,6 +4658,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -4708,6 +4785,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -5076,6 +5156,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -5198,6 +5283,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -5566,6 +5654,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -5688,6 +5781,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -6056,6 +6152,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -6178,6 +6279,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -6546,6 +6650,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -6668,6 +6777,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -7036,6 +7148,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -7158,6 +7275,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -7526,6 +7646,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -7648,6 +7773,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(
@@ -8014,6 +8142,11 @@ internal class ErrorHandlingTest {
                                         )
                                         .shareToFeed(true)
                                         .title("title")
+                                        .trialReelType(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .TrialReelType
+                                                .MANUAL
+                                        )
                                         .build()
                                 )
                                 .socialAccountId("social_account_id")
@@ -8136,6 +8269,9 @@ internal class ErrorHandlingTest {
                                         )
                                         .placement(InstagramConfigurationDto.Placement.REELS)
                                         .shareToFeed(true)
+                                        .trialReelType(
+                                            InstagramConfigurationDto.TrialReelType.MANUAL
+                                        )
                                         .build()
                                 )
                                 .linkedin(

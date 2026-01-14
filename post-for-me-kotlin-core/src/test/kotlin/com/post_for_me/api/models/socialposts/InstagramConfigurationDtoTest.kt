@@ -35,6 +35,7 @@ internal class InstagramConfigurationDtoTest {
                 )
                 .placement(InstagramConfigurationDto.Placement.REELS)
                 .shareToFeed(true)
+                .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                 .build()
 
         assertThat(instagramConfigurationDto._caption())
@@ -61,6 +62,8 @@ internal class InstagramConfigurationDtoTest {
         assertThat(instagramConfigurationDto.placement())
             .isEqualTo(InstagramConfigurationDto.Placement.REELS)
         assertThat(instagramConfigurationDto.shareToFeed()).isEqualTo(true)
+        assertThat(instagramConfigurationDto.trialReelType())
+            .isEqualTo(InstagramConfigurationDto.TrialReelType.MANUAL)
     }
 
     @Test
@@ -89,6 +92,7 @@ internal class InstagramConfigurationDtoTest {
                 )
                 .placement(InstagramConfigurationDto.Placement.REELS)
                 .shareToFeed(true)
+                .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                 .build()
 
         val roundtrippedInstagramConfigurationDto =
