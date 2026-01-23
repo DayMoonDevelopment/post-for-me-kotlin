@@ -110,7 +110,14 @@ private constructor(
      */
     fun externalId(): String? = externalId.getNullable("external_id")
 
-    /** The metadata of the social account */
+    /**
+     * The metadata of the social account
+     *
+     * This arbitrary value can be deserialized into a custom type using the `convert` method:
+     * ```kotlin
+     * val myObject: MyClass = socialAccount.metadata().convert(MyClass::class.java)
+     * ```
+     */
     @JsonProperty("metadata") @ExcludeMissing fun _metadata(): JsonValue = metadata
 
     /**

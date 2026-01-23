@@ -36,7 +36,14 @@ private constructor(
         placement: JsonField<Placement> = JsonMissing.of(),
     ) : this(caption, media, placement, mutableMapOf())
 
-    /** Overrides the `caption` from the post */
+    /**
+     * Overrides the `caption` from the post
+     *
+     * This arbitrary value can be deserialized into a custom type using the `convert` method:
+     * ```kotlin
+     * val myObject: MyClass = threadsConfigurationDto.caption().convert(MyClass::class.java)
+     * ```
+     */
     @JsonProperty("caption") @ExcludeMissing fun _caption(): JsonValue = caption
 
     /**
@@ -243,12 +250,26 @@ private constructor(
          */
         fun tags(): List<Tag>? = tags.getNullable("tags")
 
-        /** Timestamp in milliseconds of frame to use as thumbnail for the media */
+        /**
+         * Timestamp in milliseconds of frame to use as thumbnail for the media
+         *
+         * This arbitrary value can be deserialized into a custom type using the `convert` method:
+         * ```kotlin
+         * val myObject: MyClass = media.thumbnailTimestampMs().convert(MyClass::class.java)
+         * ```
+         */
         @JsonProperty("thumbnail_timestamp_ms")
         @ExcludeMissing
         fun _thumbnailTimestampMs(): JsonValue = thumbnailTimestampMs
 
-        /** Public URL of the thumbnail for the media */
+        /**
+         * Public URL of the thumbnail for the media
+         *
+         * This arbitrary value can be deserialized into a custom type using the `convert` method:
+         * ```kotlin
+         * val myObject: MyClass = media.thumbnailUrl().convert(MyClass::class.java)
+         * ```
+         */
         @JsonProperty("thumbnail_url") @ExcludeMissing fun _thumbnailUrl(): JsonValue = thumbnailUrl
 
         /**

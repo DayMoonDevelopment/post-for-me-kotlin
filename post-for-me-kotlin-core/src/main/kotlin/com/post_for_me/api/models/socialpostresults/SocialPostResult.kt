@@ -51,10 +51,24 @@ private constructor(
      */
     fun id(): String = id.getRequired("id")
 
-    /** Detailed logs from the post */
+    /**
+     * Detailed logs from the post
+     *
+     * This arbitrary value can be deserialized into a custom type using the `convert` method:
+     * ```kotlin
+     * val myObject: MyClass = socialPostResult.details().convert(MyClass::class.java)
+     * ```
+     */
     @JsonProperty("details") @ExcludeMissing fun _details(): JsonValue = details
 
-    /** Error message if the post failed */
+    /**
+     * Error message if the post failed
+     *
+     * This arbitrary value can be deserialized into a custom type using the `convert` method:
+     * ```kotlin
+     * val myObject: MyClass = socialPostResult.error().convert(MyClass::class.java)
+     * ```
+     */
     @JsonProperty("error") @ExcludeMissing fun _error(): JsonValue = error
 
     /**
