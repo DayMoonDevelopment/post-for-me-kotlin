@@ -552,6 +552,30 @@ private constructor(
         fun metrics(youTubePostMetricsDto: Metrics.YouTubePostMetricsDto) =
             metrics(Metrics.ofYouTubePostMetricsDto(youTubePostMetricsDto))
 
+        /**
+         * Alias for calling [metrics] with
+         * `Metrics.ofFacebookPostMetricsDto(facebookPostMetricsDto)`.
+         */
+        fun metrics(facebookPostMetricsDto: Metrics.FacebookPostMetricsDto) =
+            metrics(Metrics.ofFacebookPostMetricsDto(facebookPostMetricsDto))
+
+        /**
+         * Alias for calling [metrics] with
+         * `Metrics.ofTwitterPostMetricsDto(twitterPostMetricsDto)`.
+         */
+        fun metrics(twitterPostMetricsDto: Metrics.TwitterPostMetricsDto) =
+            metrics(Metrics.ofTwitterPostMetricsDto(twitterPostMetricsDto))
+
+        /**
+         * Alias for calling [metrics] with
+         * `Metrics.ofThreadsPostMetricsDto(threadsPostMetricsDto)`.
+         */
+        fun metrics(threadsPostMetricsDto: Metrics.ThreadsPostMetricsDto) =
+            metrics(Metrics.ofThreadsPostMetricsDto(threadsPostMetricsDto))
+
+        /** Alias for calling [metrics] with `Metrics.ofJsonValue(jsonValue)`. */
+        fun metrics(jsonValue: JsonValue) = metrics(Metrics.ofJsonValue(jsonValue))
+
         /** Date the post was published */
         fun postedAt(postedAt: OffsetDateTime) = postedAt(JsonField.of(postedAt))
 
@@ -709,6 +733,10 @@ private constructor(
         private val tikTokPostMetricsDto: TikTokPostMetricsDto? = null,
         private val instagramPostMetricsDto: InstagramPostMetricsDto? = null,
         private val youTubePostMetricsDto: YouTubePostMetricsDto? = null,
+        private val facebookPostMetricsDto: FacebookPostMetricsDto? = null,
+        private val twitterPostMetricsDto: TwitterPostMetricsDto? = null,
+        private val threadsPostMetricsDto: ThreadsPostMetricsDto? = null,
+        private val jsonValue: JsonValue? = null,
         private val _json: JsonValue? = null,
     ) {
 
@@ -720,6 +748,14 @@ private constructor(
 
         fun youTubePostMetricsDto(): YouTubePostMetricsDto? = youTubePostMetricsDto
 
+        fun facebookPostMetricsDto(): FacebookPostMetricsDto? = facebookPostMetricsDto
+
+        fun twitterPostMetricsDto(): TwitterPostMetricsDto? = twitterPostMetricsDto
+
+        fun threadsPostMetricsDto(): ThreadsPostMetricsDto? = threadsPostMetricsDto
+
+        fun jsonValue(): JsonValue? = jsonValue
+
         fun isTikTokBusinessMetricsDto(): Boolean = tikTokBusinessMetricsDto != null
 
         fun isTikTokPostMetricsDto(): Boolean = tikTokPostMetricsDto != null
@@ -727,6 +763,14 @@ private constructor(
         fun isInstagramPostMetricsDto(): Boolean = instagramPostMetricsDto != null
 
         fun isYouTubePostMetricsDto(): Boolean = youTubePostMetricsDto != null
+
+        fun isFacebookPostMetricsDto(): Boolean = facebookPostMetricsDto != null
+
+        fun isTwitterPostMetricsDto(): Boolean = twitterPostMetricsDto != null
+
+        fun isThreadsPostMetricsDto(): Boolean = threadsPostMetricsDto != null
+
+        fun isJsonValue(): Boolean = jsonValue != null
 
         fun asTikTokBusinessMetricsDto(): TikTokBusinessMetricsDto =
             tikTokBusinessMetricsDto.getOrThrow("tikTokBusinessMetricsDto")
@@ -740,6 +784,17 @@ private constructor(
         fun asYouTubePostMetricsDto(): YouTubePostMetricsDto =
             youTubePostMetricsDto.getOrThrow("youTubePostMetricsDto")
 
+        fun asFacebookPostMetricsDto(): FacebookPostMetricsDto =
+            facebookPostMetricsDto.getOrThrow("facebookPostMetricsDto")
+
+        fun asTwitterPostMetricsDto(): TwitterPostMetricsDto =
+            twitterPostMetricsDto.getOrThrow("twitterPostMetricsDto")
+
+        fun asThreadsPostMetricsDto(): ThreadsPostMetricsDto =
+            threadsPostMetricsDto.getOrThrow("threadsPostMetricsDto")
+
+        fun asJsonValue(): JsonValue = jsonValue.getOrThrow("jsonValue")
+
         fun _json(): JsonValue? = _json
 
         fun <T> accept(visitor: Visitor<T>): T =
@@ -752,6 +807,13 @@ private constructor(
                     visitor.visitInstagramPostMetricsDto(instagramPostMetricsDto)
                 youTubePostMetricsDto != null ->
                     visitor.visitYouTubePostMetricsDto(youTubePostMetricsDto)
+                facebookPostMetricsDto != null ->
+                    visitor.visitFacebookPostMetricsDto(facebookPostMetricsDto)
+                twitterPostMetricsDto != null ->
+                    visitor.visitTwitterPostMetricsDto(twitterPostMetricsDto)
+                threadsPostMetricsDto != null ->
+                    visitor.visitThreadsPostMetricsDto(threadsPostMetricsDto)
+                jsonValue != null -> visitor.visitJsonValue(jsonValue)
                 else -> visitor.unknown(_json)
             }
 
@@ -787,6 +849,26 @@ private constructor(
                     ) {
                         youTubePostMetricsDto.validate()
                     }
+
+                    override fun visitFacebookPostMetricsDto(
+                        facebookPostMetricsDto: FacebookPostMetricsDto
+                    ) {
+                        facebookPostMetricsDto.validate()
+                    }
+
+                    override fun visitTwitterPostMetricsDto(
+                        twitterPostMetricsDto: TwitterPostMetricsDto
+                    ) {
+                        twitterPostMetricsDto.validate()
+                    }
+
+                    override fun visitThreadsPostMetricsDto(
+                        threadsPostMetricsDto: ThreadsPostMetricsDto
+                    ) {
+                        threadsPostMetricsDto.validate()
+                    }
+
+                    override fun visitJsonValue(jsonValue: JsonValue) {}
                 }
             )
             validated = true
@@ -825,6 +907,20 @@ private constructor(
                         youTubePostMetricsDto: YouTubePostMetricsDto
                     ) = youTubePostMetricsDto.validity()
 
+                    override fun visitFacebookPostMetricsDto(
+                        facebookPostMetricsDto: FacebookPostMetricsDto
+                    ) = facebookPostMetricsDto.validity()
+
+                    override fun visitTwitterPostMetricsDto(
+                        twitterPostMetricsDto: TwitterPostMetricsDto
+                    ) = twitterPostMetricsDto.validity()
+
+                    override fun visitThreadsPostMetricsDto(
+                        threadsPostMetricsDto: ThreadsPostMetricsDto
+                    ) = threadsPostMetricsDto.validity()
+
+                    override fun visitJsonValue(jsonValue: JsonValue) = 1
+
                     override fun unknown(json: JsonValue?) = 0
                 }
             )
@@ -838,7 +934,11 @@ private constructor(
                 tikTokBusinessMetricsDto == other.tikTokBusinessMetricsDto &&
                 tikTokPostMetricsDto == other.tikTokPostMetricsDto &&
                 instagramPostMetricsDto == other.instagramPostMetricsDto &&
-                youTubePostMetricsDto == other.youTubePostMetricsDto
+                youTubePostMetricsDto == other.youTubePostMetricsDto &&
+                facebookPostMetricsDto == other.facebookPostMetricsDto &&
+                twitterPostMetricsDto == other.twitterPostMetricsDto &&
+                threadsPostMetricsDto == other.threadsPostMetricsDto &&
+                jsonValue == other.jsonValue
         }
 
         override fun hashCode(): Int =
@@ -847,6 +947,10 @@ private constructor(
                 tikTokPostMetricsDto,
                 instagramPostMetricsDto,
                 youTubePostMetricsDto,
+                facebookPostMetricsDto,
+                twitterPostMetricsDto,
+                threadsPostMetricsDto,
+                jsonValue,
             )
 
         override fun toString(): String =
@@ -859,6 +963,13 @@ private constructor(
                     "Metrics{instagramPostMetricsDto=$instagramPostMetricsDto}"
                 youTubePostMetricsDto != null ->
                     "Metrics{youTubePostMetricsDto=$youTubePostMetricsDto}"
+                facebookPostMetricsDto != null ->
+                    "Metrics{facebookPostMetricsDto=$facebookPostMetricsDto}"
+                twitterPostMetricsDto != null ->
+                    "Metrics{twitterPostMetricsDto=$twitterPostMetricsDto}"
+                threadsPostMetricsDto != null ->
+                    "Metrics{threadsPostMetricsDto=$threadsPostMetricsDto}"
+                jsonValue != null -> "Metrics{jsonValue=$jsonValue}"
                 _json != null -> "Metrics{_unknown=$_json}"
                 else -> throw IllegalStateException("Invalid Metrics")
             }
@@ -876,6 +987,17 @@ private constructor(
 
             fun ofYouTubePostMetricsDto(youTubePostMetricsDto: YouTubePostMetricsDto) =
                 Metrics(youTubePostMetricsDto = youTubePostMetricsDto)
+
+            fun ofFacebookPostMetricsDto(facebookPostMetricsDto: FacebookPostMetricsDto) =
+                Metrics(facebookPostMetricsDto = facebookPostMetricsDto)
+
+            fun ofTwitterPostMetricsDto(twitterPostMetricsDto: TwitterPostMetricsDto) =
+                Metrics(twitterPostMetricsDto = twitterPostMetricsDto)
+
+            fun ofThreadsPostMetricsDto(threadsPostMetricsDto: ThreadsPostMetricsDto) =
+                Metrics(threadsPostMetricsDto = threadsPostMetricsDto)
+
+            fun ofJsonValue(jsonValue: JsonValue) = Metrics(jsonValue = jsonValue)
         }
 
         /**
@@ -890,6 +1012,14 @@ private constructor(
             fun visitInstagramPostMetricsDto(instagramPostMetricsDto: InstagramPostMetricsDto): T
 
             fun visitYouTubePostMetricsDto(youTubePostMetricsDto: YouTubePostMetricsDto): T
+
+            fun visitFacebookPostMetricsDto(facebookPostMetricsDto: FacebookPostMetricsDto): T
+
+            fun visitTwitterPostMetricsDto(twitterPostMetricsDto: TwitterPostMetricsDto): T
+
+            fun visitThreadsPostMetricsDto(threadsPostMetricsDto: ThreadsPostMetricsDto): T
+
+            fun visitJsonValue(jsonValue: JsonValue): T
 
             /**
              * Maps an unknown variant of [Metrics] to a value of type [T].
@@ -925,13 +1055,25 @@ private constructor(
                             tryDeserialize(node, jacksonTypeRef<YouTubePostMetricsDto>())?.let {
                                 Metrics(youTubePostMetricsDto = it, _json = json)
                             },
+                            tryDeserialize(node, jacksonTypeRef<FacebookPostMetricsDto>())?.let {
+                                Metrics(facebookPostMetricsDto = it, _json = json)
+                            },
+                            tryDeserialize(node, jacksonTypeRef<TwitterPostMetricsDto>())?.let {
+                                Metrics(twitterPostMetricsDto = it, _json = json)
+                            },
+                            tryDeserialize(node, jacksonTypeRef<ThreadsPostMetricsDto>())?.let {
+                                Metrics(threadsPostMetricsDto = it, _json = json)
+                            },
+                            tryDeserialize(node, jacksonTypeRef<JsonValue>())?.let {
+                                Metrics(jsonValue = it, _json = json)
+                            },
                         )
                         .filterNotNull()
                         .allMaxBy { it.validity() }
                         .toList()
                 return when (bestMatches.size) {
                     // This can happen if what we're deserializing is completely incompatible with
-                    // all the possible variants (e.g. deserializing from boolean).
+                    // all the possible variants.
                     0 -> Metrics(_json = json)
                     1 -> bestMatches.single()
                     // If there's more than one match with the highest validity, then use the first
@@ -958,6 +1100,13 @@ private constructor(
                         generator.writeObject(value.instagramPostMetricsDto)
                     value.youTubePostMetricsDto != null ->
                         generator.writeObject(value.youTubePostMetricsDto)
+                    value.facebookPostMetricsDto != null ->
+                        generator.writeObject(value.facebookPostMetricsDto)
+                    value.twitterPostMetricsDto != null ->
+                        generator.writeObject(value.twitterPostMetricsDto)
+                    value.threadsPostMetricsDto != null ->
+                        generator.writeObject(value.threadsPostMetricsDto)
+                    value.jsonValue != null -> generator.writeObject(value.jsonValue)
                     value._json != null -> generator.writeObject(value._json)
                     else -> throw IllegalStateException("Invalid Metrics")
                 }
@@ -6204,6 +6353,5498 @@ private constructor(
 
             override fun toString() =
                 "YouTubePostMetricsDto{comments=$comments, dislikes=$dislikes, likes=$likes, views=$views, annotationClickableImpressions=$annotationClickableImpressions, annotationClicks=$annotationClicks, annotationClickThroughRate=$annotationClickThroughRate, annotationClosableImpressions=$annotationClosableImpressions, annotationCloseRate=$annotationCloseRate, annotationCloses=$annotationCloses, annotationImpressions=$annotationImpressions, averageViewDuration=$averageViewDuration, averageViewPercentage=$averageViewPercentage, cardClickRate=$cardClickRate, cardClicks=$cardClicks, cardImpressions=$cardImpressions, cardTeaserClickRate=$cardTeaserClickRate, cardTeaserClicks=$cardTeaserClicks, cardTeaserImpressions=$cardTeaserImpressions, engagedViews=$engagedViews, estimatedMinutesWatched=$estimatedMinutesWatched, estimatedRedMinutesWatched=$estimatedRedMinutesWatched, redViews=$redViews, shares=$shares, subscribersGained=$subscribersGained, subscribersLost=$subscribersLost, videosAddedToPlaylists=$videosAddedToPlaylists, videosRemovedFromPlaylists=$videosRemovedFromPlaylists, additionalProperties=$additionalProperties}"
+        }
+
+        class FacebookPostMetricsDto
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+        private constructor(
+            private val activityByActionType: JsonField<List<ActivityByActionType>>,
+            private val activityByActionTypeUnique: JsonField<List<ActivityByActionTypeUnique>>,
+            private val comments: JsonField<Double>,
+            private val fanReach: JsonField<Double>,
+            private val mediaViews: JsonField<Double>,
+            private val nonviralReach: JsonField<Double>,
+            private val organicReach: JsonField<Double>,
+            private val paidReach: JsonField<Double>,
+            private val reach: JsonField<Double>,
+            private val reactionsAnger: JsonField<Double>,
+            private val reactionsByType: JsonValue,
+            private val reactionsHaha: JsonField<Double>,
+            private val reactionsLike: JsonField<Double>,
+            private val reactionsLove: JsonField<Double>,
+            private val reactionsSorry: JsonField<Double>,
+            private val reactionsTotal: JsonField<Double>,
+            private val reactionsWow: JsonField<Double>,
+            private val shares: JsonField<Double>,
+            private val videoAvgTimeWatched: JsonField<Double>,
+            private val videoCompleteViewsOrganic: JsonField<Double>,
+            private val videoCompleteViewsOrganicUnique: JsonField<Double>,
+            private val videoCompleteViewsPaid: JsonField<Double>,
+            private val videoCompleteViewsPaidUnique: JsonField<Double>,
+            private val videoLength: JsonField<Double>,
+            private val videoRetentionGraphAutoplayed:
+                JsonField<List<VideoRetentionGraphAutoplayed>>,
+            private val videoRetentionGraphClickedToPlay:
+                JsonField<List<VideoRetentionGraphClickedToPlay>>,
+            private val videoSocialActionsUnique: JsonField<Double>,
+            private val videoViewTime: JsonField<Double>,
+            private val videoViewTimeByAgeGender: JsonField<List<VideoViewTimeByAgeGender>>,
+            private val videoViewTimeByCountry: JsonField<List<VideoViewTimeByCountry>>,
+            private val videoViewTimeByDistributionType: JsonValue,
+            private val videoViewTimeByRegion: JsonField<List<VideoViewTimeByRegion>>,
+            private val videoViewTimeOrganic: JsonField<Double>,
+            private val videoViews: JsonField<Double>,
+            private val videoViews15s: JsonField<Double>,
+            private val videoViews60s: JsonField<Double>,
+            private val videoViewsAutoplayed: JsonField<Double>,
+            private val videoViewsByDistributionType: JsonValue,
+            private val videoViewsClickedToPlay: JsonField<Double>,
+            private val videoViewsOrganic: JsonField<Double>,
+            private val videoViewsOrganicUnique: JsonField<Double>,
+            private val videoViewsPaid: JsonField<Double>,
+            private val videoViewsPaidUnique: JsonField<Double>,
+            private val videoViewsSoundOn: JsonField<Double>,
+            private val videoViewsUnique: JsonField<Double>,
+            private val viralReach: JsonField<Double>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("activity_by_action_type")
+                @ExcludeMissing
+                activityByActionType: JsonField<List<ActivityByActionType>> = JsonMissing.of(),
+                @JsonProperty("activity_by_action_type_unique")
+                @ExcludeMissing
+                activityByActionTypeUnique: JsonField<List<ActivityByActionTypeUnique>> =
+                    JsonMissing.of(),
+                @JsonProperty("comments")
+                @ExcludeMissing
+                comments: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("fan_reach")
+                @ExcludeMissing
+                fanReach: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("media_views")
+                @ExcludeMissing
+                mediaViews: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("nonviral_reach")
+                @ExcludeMissing
+                nonviralReach: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("organic_reach")
+                @ExcludeMissing
+                organicReach: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("paid_reach")
+                @ExcludeMissing
+                paidReach: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reach") @ExcludeMissing reach: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_anger")
+                @ExcludeMissing
+                reactionsAnger: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_by_type")
+                @ExcludeMissing
+                reactionsByType: JsonValue = JsonMissing.of(),
+                @JsonProperty("reactions_haha")
+                @ExcludeMissing
+                reactionsHaha: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_like")
+                @ExcludeMissing
+                reactionsLike: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_love")
+                @ExcludeMissing
+                reactionsLove: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_sorry")
+                @ExcludeMissing
+                reactionsSorry: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_total")
+                @ExcludeMissing
+                reactionsTotal: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reactions_wow")
+                @ExcludeMissing
+                reactionsWow: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("shares")
+                @ExcludeMissing
+                shares: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_avg_time_watched")
+                @ExcludeMissing
+                videoAvgTimeWatched: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_complete_views_organic")
+                @ExcludeMissing
+                videoCompleteViewsOrganic: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_complete_views_organic_unique")
+                @ExcludeMissing
+                videoCompleteViewsOrganicUnique: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_complete_views_paid")
+                @ExcludeMissing
+                videoCompleteViewsPaid: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_complete_views_paid_unique")
+                @ExcludeMissing
+                videoCompleteViewsPaidUnique: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_length")
+                @ExcludeMissing
+                videoLength: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_retention_graph_autoplayed")
+                @ExcludeMissing
+                videoRetentionGraphAutoplayed: JsonField<List<VideoRetentionGraphAutoplayed>> =
+                    JsonMissing.of(),
+                @JsonProperty("video_retention_graph_clicked_to_play")
+                @ExcludeMissing
+                videoRetentionGraphClickedToPlay:
+                    JsonField<List<VideoRetentionGraphClickedToPlay>> =
+                    JsonMissing.of(),
+                @JsonProperty("video_social_actions_unique")
+                @ExcludeMissing
+                videoSocialActionsUnique: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_view_time")
+                @ExcludeMissing
+                videoViewTime: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_view_time_by_age_gender")
+                @ExcludeMissing
+                videoViewTimeByAgeGender: JsonField<List<VideoViewTimeByAgeGender>> =
+                    JsonMissing.of(),
+                @JsonProperty("video_view_time_by_country")
+                @ExcludeMissing
+                videoViewTimeByCountry: JsonField<List<VideoViewTimeByCountry>> = JsonMissing.of(),
+                @JsonProperty("video_view_time_by_distribution_type")
+                @ExcludeMissing
+                videoViewTimeByDistributionType: JsonValue = JsonMissing.of(),
+                @JsonProperty("video_view_time_by_region")
+                @ExcludeMissing
+                videoViewTimeByRegion: JsonField<List<VideoViewTimeByRegion>> = JsonMissing.of(),
+                @JsonProperty("video_view_time_organic")
+                @ExcludeMissing
+                videoViewTimeOrganic: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views")
+                @ExcludeMissing
+                videoViews: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_15s")
+                @ExcludeMissing
+                videoViews15s: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_60s")
+                @ExcludeMissing
+                videoViews60s: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_autoplayed")
+                @ExcludeMissing
+                videoViewsAutoplayed: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_by_distribution_type")
+                @ExcludeMissing
+                videoViewsByDistributionType: JsonValue = JsonMissing.of(),
+                @JsonProperty("video_views_clicked_to_play")
+                @ExcludeMissing
+                videoViewsClickedToPlay: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_organic")
+                @ExcludeMissing
+                videoViewsOrganic: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_organic_unique")
+                @ExcludeMissing
+                videoViewsOrganicUnique: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_paid")
+                @ExcludeMissing
+                videoViewsPaid: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_paid_unique")
+                @ExcludeMissing
+                videoViewsPaidUnique: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_sound_on")
+                @ExcludeMissing
+                videoViewsSoundOn: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("video_views_unique")
+                @ExcludeMissing
+                videoViewsUnique: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("viral_reach")
+                @ExcludeMissing
+                viralReach: JsonField<Double> = JsonMissing.of(),
+            ) : this(
+                activityByActionType,
+                activityByActionTypeUnique,
+                comments,
+                fanReach,
+                mediaViews,
+                nonviralReach,
+                organicReach,
+                paidReach,
+                reach,
+                reactionsAnger,
+                reactionsByType,
+                reactionsHaha,
+                reactionsLike,
+                reactionsLove,
+                reactionsSorry,
+                reactionsTotal,
+                reactionsWow,
+                shares,
+                videoAvgTimeWatched,
+                videoCompleteViewsOrganic,
+                videoCompleteViewsOrganicUnique,
+                videoCompleteViewsPaid,
+                videoCompleteViewsPaidUnique,
+                videoLength,
+                videoRetentionGraphAutoplayed,
+                videoRetentionGraphClickedToPlay,
+                videoSocialActionsUnique,
+                videoViewTime,
+                videoViewTimeByAgeGender,
+                videoViewTimeByCountry,
+                videoViewTimeByDistributionType,
+                videoViewTimeByRegion,
+                videoViewTimeOrganic,
+                videoViews,
+                videoViews15s,
+                videoViews60s,
+                videoViewsAutoplayed,
+                videoViewsByDistributionType,
+                videoViewsClickedToPlay,
+                videoViewsOrganic,
+                videoViewsOrganicUnique,
+                videoViewsPaid,
+                videoViewsPaidUnique,
+                videoViewsSoundOn,
+                videoViewsUnique,
+                viralReach,
+                mutableMapOf(),
+            )
+
+            /**
+             * Total activity breakdown by action type
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun activityByActionType(): List<ActivityByActionType>? =
+                activityByActionType.getNullable("activity_by_action_type")
+
+            /**
+             * Unique users activity breakdown by action type
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun activityByActionTypeUnique(): List<ActivityByActionTypeUnique>? =
+                activityByActionTypeUnique.getNullable("activity_by_action_type_unique")
+
+            /**
+             * Number of comments (from post object)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun comments(): Double? = comments.getNullable("comments")
+
+            /**
+             * Number of fans who saw the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun fanReach(): Double? = fanReach.getNullable("fan_reach")
+
+            /**
+             * Number of times the photo or video was viewed
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun mediaViews(): Double? = mediaViews.getNullable("media_views")
+
+            /**
+             * Number of people who saw the post via non-viral distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun nonviralReach(): Double? = nonviralReach.getNullable("nonviral_reach")
+
+            /**
+             * Number of people who saw the post via organic distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun organicReach(): Double? = organicReach.getNullable("organic_reach")
+
+            /**
+             * Number of people who saw the post via paid distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun paidReach(): Double? = paidReach.getNullable("paid_reach")
+
+            /**
+             * Total number of unique people who saw the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reach(): Double? = reach.getNullable("reach")
+
+            /**
+             * Number of anger reactions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsAnger(): Double? = reactionsAnger.getNullable("reactions_anger")
+
+            /**
+             * Breakdown of all reaction types
+             *
+             * This arbitrary value can be deserialized into a custom type using the `convert`
+             * method:
+             * ```kotlin
+             * val myObject: MyClass = facebookPostMetricsDto.reactionsByType().convert(MyClass::class.java)
+             * ```
+             */
+            @JsonProperty("reactions_by_type")
+            @ExcludeMissing
+            fun _reactionsByType(): JsonValue = reactionsByType
+
+            /**
+             * Number of haha reactions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsHaha(): Double? = reactionsHaha.getNullable("reactions_haha")
+
+            /**
+             * Number of like reactions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsLike(): Double? = reactionsLike.getNullable("reactions_like")
+
+            /**
+             * Number of love reactions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsLove(): Double? = reactionsLove.getNullable("reactions_love")
+
+            /**
+             * Number of sad reactions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsSorry(): Double? = reactionsSorry.getNullable("reactions_sorry")
+
+            /**
+             * Total number of reactions (all types)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsTotal(): Double? = reactionsTotal.getNullable("reactions_total")
+
+            /**
+             * Number of wow reactions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun reactionsWow(): Double? = reactionsWow.getNullable("reactions_wow")
+
+            /**
+             * Number of shares (from post object)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun shares(): Double? = shares.getNullable("shares")
+
+            /**
+             * Average time video was viewed in milliseconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoAvgTimeWatched(): Double? =
+                videoAvgTimeWatched.getNullable("video_avg_time_watched")
+
+            /**
+             * Number of times video was viewed to 95% organically
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoCompleteViewsOrganic(): Double? =
+                videoCompleteViewsOrganic.getNullable("video_complete_views_organic")
+
+            /**
+             * Number of unique people who viewed video to 95% organically
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoCompleteViewsOrganicUnique(): Double? =
+                videoCompleteViewsOrganicUnique.getNullable("video_complete_views_organic_unique")
+
+            /**
+             * Number of times video was viewed to 95% via paid distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoCompleteViewsPaid(): Double? =
+                videoCompleteViewsPaid.getNullable("video_complete_views_paid")
+
+            /**
+             * Number of unique people who viewed video to 95% via paid distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoCompleteViewsPaidUnique(): Double? =
+                videoCompleteViewsPaidUnique.getNullable("video_complete_views_paid_unique")
+
+            /**
+             * Length of the video in milliseconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoLength(): Double? = videoLength.getNullable("video_length")
+
+            /**
+             * Video retention graph for autoplayed views
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoRetentionGraphAutoplayed(): List<VideoRetentionGraphAutoplayed>? =
+                videoRetentionGraphAutoplayed.getNullable("video_retention_graph_autoplayed")
+
+            /**
+             * Video retention graph for clicked-to-play views
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoRetentionGraphClickedToPlay(): List<VideoRetentionGraphClickedToPlay>? =
+                videoRetentionGraphClickedToPlay.getNullable(
+                    "video_retention_graph_clicked_to_play"
+                )
+
+            /**
+             * Number of unique people who performed social actions on the video
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoSocialActionsUnique(): Double? =
+                videoSocialActionsUnique.getNullable("video_social_actions_unique")
+
+            /**
+             * Total time video was viewed in milliseconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewTime(): Double? = videoViewTime.getNullable("video_view_time")
+
+            /**
+             * Video view time breakdown by age and gender
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewTimeByAgeGender(): List<VideoViewTimeByAgeGender>? =
+                videoViewTimeByAgeGender.getNullable("video_view_time_by_age_gender")
+
+            /**
+             * Video view time breakdown by country
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewTimeByCountry(): List<VideoViewTimeByCountry>? =
+                videoViewTimeByCountry.getNullable("video_view_time_by_country")
+
+            /**
+             * Video view time breakdown by distribution type
+             *
+             * This arbitrary value can be deserialized into a custom type using the `convert`
+             * method:
+             * ```kotlin
+             * val myObject: MyClass = facebookPostMetricsDto.videoViewTimeByDistributionType().convert(MyClass::class.java)
+             * ```
+             */
+            @JsonProperty("video_view_time_by_distribution_type")
+            @ExcludeMissing
+            fun _videoViewTimeByDistributionType(): JsonValue = videoViewTimeByDistributionType
+
+            /**
+             * Video view time breakdown by region
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewTimeByRegion(): List<VideoViewTimeByRegion>? =
+                videoViewTimeByRegion.getNullable("video_view_time_by_region")
+
+            /**
+             * Total time video was viewed in milliseconds via organic distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewTimeOrganic(): Double? =
+                videoViewTimeOrganic.getNullable("video_view_time_organic")
+
+            /**
+             * Number of times video was viewed for 3+ seconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViews(): Double? = videoViews.getNullable("video_views")
+
+            /**
+             * Number of times video was viewed for 15+ seconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViews15s(): Double? = videoViews15s.getNullable("video_views_15s")
+
+            /**
+             * Number of times video was viewed for 60+ seconds (excludes videos shorter than 60s)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViews60s(): Double? = videoViews60s.getNullable("video_views_60s")
+
+            /**
+             * Number of times video was autoplayed for 3+ seconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsAutoplayed(): Double? =
+                videoViewsAutoplayed.getNullable("video_views_autoplayed")
+
+            /**
+             * Video views breakdown by distribution type
+             *
+             * This arbitrary value can be deserialized into a custom type using the `convert`
+             * method:
+             * ```kotlin
+             * val myObject: MyClass = facebookPostMetricsDto.videoViewsByDistributionType().convert(MyClass::class.java)
+             * ```
+             */
+            @JsonProperty("video_views_by_distribution_type")
+            @ExcludeMissing
+            fun _videoViewsByDistributionType(): JsonValue = videoViewsByDistributionType
+
+            /**
+             * Number of times video was clicked to play for 3+ seconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsClickedToPlay(): Double? =
+                videoViewsClickedToPlay.getNullable("video_views_clicked_to_play")
+
+            /**
+             * Number of times video was viewed for 3+ seconds organically
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsOrganic(): Double? = videoViewsOrganic.getNullable("video_views_organic")
+
+            /**
+             * Number of unique people who viewed the video for 3+ seconds organically
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsOrganicUnique(): Double? =
+                videoViewsOrganicUnique.getNullable("video_views_organic_unique")
+
+            /**
+             * Number of times video was viewed for 3+ seconds via paid distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsPaid(): Double? = videoViewsPaid.getNullable("video_views_paid")
+
+            /**
+             * Number of unique people who viewed the video for 3+ seconds via paid distribution
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsPaidUnique(): Double? =
+                videoViewsPaidUnique.getNullable("video_views_paid_unique")
+
+            /**
+             * Number of times video was viewed with sound on
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsSoundOn(): Double? = videoViewsSoundOn.getNullable("video_views_sound_on")
+
+            /**
+             * Number of unique people who viewed the video for 3+ seconds
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoViewsUnique(): Double? = videoViewsUnique.getNullable("video_views_unique")
+
+            /**
+             * Number of people who saw the post in News Feed via viral reach
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun viralReach(): Double? = viralReach.getNullable("viral_reach")
+
+            /**
+             * Returns the raw JSON value of [activityByActionType].
+             *
+             * Unlike [activityByActionType], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("activity_by_action_type")
+            @ExcludeMissing
+            fun _activityByActionType(): JsonField<List<ActivityByActionType>> =
+                activityByActionType
+
+            /**
+             * Returns the raw JSON value of [activityByActionTypeUnique].
+             *
+             * Unlike [activityByActionTypeUnique], this method doesn't throw if the JSON field has
+             * an unexpected type.
+             */
+            @JsonProperty("activity_by_action_type_unique")
+            @ExcludeMissing
+            fun _activityByActionTypeUnique(): JsonField<List<ActivityByActionTypeUnique>> =
+                activityByActionTypeUnique
+
+            /**
+             * Returns the raw JSON value of [comments].
+             *
+             * Unlike [comments], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("comments") @ExcludeMissing fun _comments(): JsonField<Double> = comments
+
+            /**
+             * Returns the raw JSON value of [fanReach].
+             *
+             * Unlike [fanReach], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("fan_reach") @ExcludeMissing fun _fanReach(): JsonField<Double> = fanReach
+
+            /**
+             * Returns the raw JSON value of [mediaViews].
+             *
+             * Unlike [mediaViews], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("media_views")
+            @ExcludeMissing
+            fun _mediaViews(): JsonField<Double> = mediaViews
+
+            /**
+             * Returns the raw JSON value of [nonviralReach].
+             *
+             * Unlike [nonviralReach], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("nonviral_reach")
+            @ExcludeMissing
+            fun _nonviralReach(): JsonField<Double> = nonviralReach
+
+            /**
+             * Returns the raw JSON value of [organicReach].
+             *
+             * Unlike [organicReach], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("organic_reach")
+            @ExcludeMissing
+            fun _organicReach(): JsonField<Double> = organicReach
+
+            /**
+             * Returns the raw JSON value of [paidReach].
+             *
+             * Unlike [paidReach], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("paid_reach")
+            @ExcludeMissing
+            fun _paidReach(): JsonField<Double> = paidReach
+
+            /**
+             * Returns the raw JSON value of [reach].
+             *
+             * Unlike [reach], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("reach") @ExcludeMissing fun _reach(): JsonField<Double> = reach
+
+            /**
+             * Returns the raw JSON value of [reactionsAnger].
+             *
+             * Unlike [reactionsAnger], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("reactions_anger")
+            @ExcludeMissing
+            fun _reactionsAnger(): JsonField<Double> = reactionsAnger
+
+            /**
+             * Returns the raw JSON value of [reactionsHaha].
+             *
+             * Unlike [reactionsHaha], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("reactions_haha")
+            @ExcludeMissing
+            fun _reactionsHaha(): JsonField<Double> = reactionsHaha
+
+            /**
+             * Returns the raw JSON value of [reactionsLike].
+             *
+             * Unlike [reactionsLike], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("reactions_like")
+            @ExcludeMissing
+            fun _reactionsLike(): JsonField<Double> = reactionsLike
+
+            /**
+             * Returns the raw JSON value of [reactionsLove].
+             *
+             * Unlike [reactionsLove], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("reactions_love")
+            @ExcludeMissing
+            fun _reactionsLove(): JsonField<Double> = reactionsLove
+
+            /**
+             * Returns the raw JSON value of [reactionsSorry].
+             *
+             * Unlike [reactionsSorry], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("reactions_sorry")
+            @ExcludeMissing
+            fun _reactionsSorry(): JsonField<Double> = reactionsSorry
+
+            /**
+             * Returns the raw JSON value of [reactionsTotal].
+             *
+             * Unlike [reactionsTotal], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("reactions_total")
+            @ExcludeMissing
+            fun _reactionsTotal(): JsonField<Double> = reactionsTotal
+
+            /**
+             * Returns the raw JSON value of [reactionsWow].
+             *
+             * Unlike [reactionsWow], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("reactions_wow")
+            @ExcludeMissing
+            fun _reactionsWow(): JsonField<Double> = reactionsWow
+
+            /**
+             * Returns the raw JSON value of [shares].
+             *
+             * Unlike [shares], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("shares") @ExcludeMissing fun _shares(): JsonField<Double> = shares
+
+            /**
+             * Returns the raw JSON value of [videoAvgTimeWatched].
+             *
+             * Unlike [videoAvgTimeWatched], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_avg_time_watched")
+            @ExcludeMissing
+            fun _videoAvgTimeWatched(): JsonField<Double> = videoAvgTimeWatched
+
+            /**
+             * Returns the raw JSON value of [videoCompleteViewsOrganic].
+             *
+             * Unlike [videoCompleteViewsOrganic], this method doesn't throw if the JSON field has
+             * an unexpected type.
+             */
+            @JsonProperty("video_complete_views_organic")
+            @ExcludeMissing
+            fun _videoCompleteViewsOrganic(): JsonField<Double> = videoCompleteViewsOrganic
+
+            /**
+             * Returns the raw JSON value of [videoCompleteViewsOrganicUnique].
+             *
+             * Unlike [videoCompleteViewsOrganicUnique], this method doesn't throw if the JSON field
+             * has an unexpected type.
+             */
+            @JsonProperty("video_complete_views_organic_unique")
+            @ExcludeMissing
+            fun _videoCompleteViewsOrganicUnique(): JsonField<Double> =
+                videoCompleteViewsOrganicUnique
+
+            /**
+             * Returns the raw JSON value of [videoCompleteViewsPaid].
+             *
+             * Unlike [videoCompleteViewsPaid], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_complete_views_paid")
+            @ExcludeMissing
+            fun _videoCompleteViewsPaid(): JsonField<Double> = videoCompleteViewsPaid
+
+            /**
+             * Returns the raw JSON value of [videoCompleteViewsPaidUnique].
+             *
+             * Unlike [videoCompleteViewsPaidUnique], this method doesn't throw if the JSON field
+             * has an unexpected type.
+             */
+            @JsonProperty("video_complete_views_paid_unique")
+            @ExcludeMissing
+            fun _videoCompleteViewsPaidUnique(): JsonField<Double> = videoCompleteViewsPaidUnique
+
+            /**
+             * Returns the raw JSON value of [videoLength].
+             *
+             * Unlike [videoLength], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("video_length")
+            @ExcludeMissing
+            fun _videoLength(): JsonField<Double> = videoLength
+
+            /**
+             * Returns the raw JSON value of [videoRetentionGraphAutoplayed].
+             *
+             * Unlike [videoRetentionGraphAutoplayed], this method doesn't throw if the JSON field
+             * has an unexpected type.
+             */
+            @JsonProperty("video_retention_graph_autoplayed")
+            @ExcludeMissing
+            fun _videoRetentionGraphAutoplayed(): JsonField<List<VideoRetentionGraphAutoplayed>> =
+                videoRetentionGraphAutoplayed
+
+            /**
+             * Returns the raw JSON value of [videoRetentionGraphClickedToPlay].
+             *
+             * Unlike [videoRetentionGraphClickedToPlay], this method doesn't throw if the JSON
+             * field has an unexpected type.
+             */
+            @JsonProperty("video_retention_graph_clicked_to_play")
+            @ExcludeMissing
+            fun _videoRetentionGraphClickedToPlay():
+                JsonField<List<VideoRetentionGraphClickedToPlay>> = videoRetentionGraphClickedToPlay
+
+            /**
+             * Returns the raw JSON value of [videoSocialActionsUnique].
+             *
+             * Unlike [videoSocialActionsUnique], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_social_actions_unique")
+            @ExcludeMissing
+            fun _videoSocialActionsUnique(): JsonField<Double> = videoSocialActionsUnique
+
+            /**
+             * Returns the raw JSON value of [videoViewTime].
+             *
+             * Unlike [videoViewTime], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("video_view_time")
+            @ExcludeMissing
+            fun _videoViewTime(): JsonField<Double> = videoViewTime
+
+            /**
+             * Returns the raw JSON value of [videoViewTimeByAgeGender].
+             *
+             * Unlike [videoViewTimeByAgeGender], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_view_time_by_age_gender")
+            @ExcludeMissing
+            fun _videoViewTimeByAgeGender(): JsonField<List<VideoViewTimeByAgeGender>> =
+                videoViewTimeByAgeGender
+
+            /**
+             * Returns the raw JSON value of [videoViewTimeByCountry].
+             *
+             * Unlike [videoViewTimeByCountry], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_view_time_by_country")
+            @ExcludeMissing
+            fun _videoViewTimeByCountry(): JsonField<List<VideoViewTimeByCountry>> =
+                videoViewTimeByCountry
+
+            /**
+             * Returns the raw JSON value of [videoViewTimeByRegion].
+             *
+             * Unlike [videoViewTimeByRegion], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_view_time_by_region")
+            @ExcludeMissing
+            fun _videoViewTimeByRegion(): JsonField<List<VideoViewTimeByRegion>> =
+                videoViewTimeByRegion
+
+            /**
+             * Returns the raw JSON value of [videoViewTimeOrganic].
+             *
+             * Unlike [videoViewTimeOrganic], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_view_time_organic")
+            @ExcludeMissing
+            fun _videoViewTimeOrganic(): JsonField<Double> = videoViewTimeOrganic
+
+            /**
+             * Returns the raw JSON value of [videoViews].
+             *
+             * Unlike [videoViews], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("video_views")
+            @ExcludeMissing
+            fun _videoViews(): JsonField<Double> = videoViews
+
+            /**
+             * Returns the raw JSON value of [videoViews15s].
+             *
+             * Unlike [videoViews15s], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("video_views_15s")
+            @ExcludeMissing
+            fun _videoViews15s(): JsonField<Double> = videoViews15s
+
+            /**
+             * Returns the raw JSON value of [videoViews60s].
+             *
+             * Unlike [videoViews60s], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("video_views_60s")
+            @ExcludeMissing
+            fun _videoViews60s(): JsonField<Double> = videoViews60s
+
+            /**
+             * Returns the raw JSON value of [videoViewsAutoplayed].
+             *
+             * Unlike [videoViewsAutoplayed], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_autoplayed")
+            @ExcludeMissing
+            fun _videoViewsAutoplayed(): JsonField<Double> = videoViewsAutoplayed
+
+            /**
+             * Returns the raw JSON value of [videoViewsClickedToPlay].
+             *
+             * Unlike [videoViewsClickedToPlay], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_clicked_to_play")
+            @ExcludeMissing
+            fun _videoViewsClickedToPlay(): JsonField<Double> = videoViewsClickedToPlay
+
+            /**
+             * Returns the raw JSON value of [videoViewsOrganic].
+             *
+             * Unlike [videoViewsOrganic], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_organic")
+            @ExcludeMissing
+            fun _videoViewsOrganic(): JsonField<Double> = videoViewsOrganic
+
+            /**
+             * Returns the raw JSON value of [videoViewsOrganicUnique].
+             *
+             * Unlike [videoViewsOrganicUnique], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_organic_unique")
+            @ExcludeMissing
+            fun _videoViewsOrganicUnique(): JsonField<Double> = videoViewsOrganicUnique
+
+            /**
+             * Returns the raw JSON value of [videoViewsPaid].
+             *
+             * Unlike [videoViewsPaid], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_paid")
+            @ExcludeMissing
+            fun _videoViewsPaid(): JsonField<Double> = videoViewsPaid
+
+            /**
+             * Returns the raw JSON value of [videoViewsPaidUnique].
+             *
+             * Unlike [videoViewsPaidUnique], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_paid_unique")
+            @ExcludeMissing
+            fun _videoViewsPaidUnique(): JsonField<Double> = videoViewsPaidUnique
+
+            /**
+             * Returns the raw JSON value of [videoViewsSoundOn].
+             *
+             * Unlike [videoViewsSoundOn], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_sound_on")
+            @ExcludeMissing
+            fun _videoViewsSoundOn(): JsonField<Double> = videoViewsSoundOn
+
+            /**
+             * Returns the raw JSON value of [videoViewsUnique].
+             *
+             * Unlike [videoViewsUnique], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("video_views_unique")
+            @ExcludeMissing
+            fun _videoViewsUnique(): JsonField<Double> = videoViewsUnique
+
+            /**
+             * Returns the raw JSON value of [viralReach].
+             *
+             * Unlike [viralReach], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("viral_reach")
+            @ExcludeMissing
+            fun _viralReach(): JsonField<Double> = viralReach
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of
+                 * [FacebookPostMetricsDto].
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [FacebookPostMetricsDto]. */
+            class Builder internal constructor() {
+
+                private var activityByActionType: JsonField<MutableList<ActivityByActionType>>? =
+                    null
+                private var activityByActionTypeUnique:
+                    JsonField<MutableList<ActivityByActionTypeUnique>>? =
+                    null
+                private var comments: JsonField<Double> = JsonMissing.of()
+                private var fanReach: JsonField<Double> = JsonMissing.of()
+                private var mediaViews: JsonField<Double> = JsonMissing.of()
+                private var nonviralReach: JsonField<Double> = JsonMissing.of()
+                private var organicReach: JsonField<Double> = JsonMissing.of()
+                private var paidReach: JsonField<Double> = JsonMissing.of()
+                private var reach: JsonField<Double> = JsonMissing.of()
+                private var reactionsAnger: JsonField<Double> = JsonMissing.of()
+                private var reactionsByType: JsonValue = JsonMissing.of()
+                private var reactionsHaha: JsonField<Double> = JsonMissing.of()
+                private var reactionsLike: JsonField<Double> = JsonMissing.of()
+                private var reactionsLove: JsonField<Double> = JsonMissing.of()
+                private var reactionsSorry: JsonField<Double> = JsonMissing.of()
+                private var reactionsTotal: JsonField<Double> = JsonMissing.of()
+                private var reactionsWow: JsonField<Double> = JsonMissing.of()
+                private var shares: JsonField<Double> = JsonMissing.of()
+                private var videoAvgTimeWatched: JsonField<Double> = JsonMissing.of()
+                private var videoCompleteViewsOrganic: JsonField<Double> = JsonMissing.of()
+                private var videoCompleteViewsOrganicUnique: JsonField<Double> = JsonMissing.of()
+                private var videoCompleteViewsPaid: JsonField<Double> = JsonMissing.of()
+                private var videoCompleteViewsPaidUnique: JsonField<Double> = JsonMissing.of()
+                private var videoLength: JsonField<Double> = JsonMissing.of()
+                private var videoRetentionGraphAutoplayed:
+                    JsonField<MutableList<VideoRetentionGraphAutoplayed>>? =
+                    null
+                private var videoRetentionGraphClickedToPlay:
+                    JsonField<MutableList<VideoRetentionGraphClickedToPlay>>? =
+                    null
+                private var videoSocialActionsUnique: JsonField<Double> = JsonMissing.of()
+                private var videoViewTime: JsonField<Double> = JsonMissing.of()
+                private var videoViewTimeByAgeGender:
+                    JsonField<MutableList<VideoViewTimeByAgeGender>>? =
+                    null
+                private var videoViewTimeByCountry:
+                    JsonField<MutableList<VideoViewTimeByCountry>>? =
+                    null
+                private var videoViewTimeByDistributionType: JsonValue = JsonMissing.of()
+                private var videoViewTimeByRegion: JsonField<MutableList<VideoViewTimeByRegion>>? =
+                    null
+                private var videoViewTimeOrganic: JsonField<Double> = JsonMissing.of()
+                private var videoViews: JsonField<Double> = JsonMissing.of()
+                private var videoViews15s: JsonField<Double> = JsonMissing.of()
+                private var videoViews60s: JsonField<Double> = JsonMissing.of()
+                private var videoViewsAutoplayed: JsonField<Double> = JsonMissing.of()
+                private var videoViewsByDistributionType: JsonValue = JsonMissing.of()
+                private var videoViewsClickedToPlay: JsonField<Double> = JsonMissing.of()
+                private var videoViewsOrganic: JsonField<Double> = JsonMissing.of()
+                private var videoViewsOrganicUnique: JsonField<Double> = JsonMissing.of()
+                private var videoViewsPaid: JsonField<Double> = JsonMissing.of()
+                private var videoViewsPaidUnique: JsonField<Double> = JsonMissing.of()
+                private var videoViewsSoundOn: JsonField<Double> = JsonMissing.of()
+                private var videoViewsUnique: JsonField<Double> = JsonMissing.of()
+                private var viralReach: JsonField<Double> = JsonMissing.of()
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(facebookPostMetricsDto: FacebookPostMetricsDto) = apply {
+                    activityByActionType =
+                        facebookPostMetricsDto.activityByActionType.map { it.toMutableList() }
+                    activityByActionTypeUnique =
+                        facebookPostMetricsDto.activityByActionTypeUnique.map { it.toMutableList() }
+                    comments = facebookPostMetricsDto.comments
+                    fanReach = facebookPostMetricsDto.fanReach
+                    mediaViews = facebookPostMetricsDto.mediaViews
+                    nonviralReach = facebookPostMetricsDto.nonviralReach
+                    organicReach = facebookPostMetricsDto.organicReach
+                    paidReach = facebookPostMetricsDto.paidReach
+                    reach = facebookPostMetricsDto.reach
+                    reactionsAnger = facebookPostMetricsDto.reactionsAnger
+                    reactionsByType = facebookPostMetricsDto.reactionsByType
+                    reactionsHaha = facebookPostMetricsDto.reactionsHaha
+                    reactionsLike = facebookPostMetricsDto.reactionsLike
+                    reactionsLove = facebookPostMetricsDto.reactionsLove
+                    reactionsSorry = facebookPostMetricsDto.reactionsSorry
+                    reactionsTotal = facebookPostMetricsDto.reactionsTotal
+                    reactionsWow = facebookPostMetricsDto.reactionsWow
+                    shares = facebookPostMetricsDto.shares
+                    videoAvgTimeWatched = facebookPostMetricsDto.videoAvgTimeWatched
+                    videoCompleteViewsOrganic = facebookPostMetricsDto.videoCompleteViewsOrganic
+                    videoCompleteViewsOrganicUnique =
+                        facebookPostMetricsDto.videoCompleteViewsOrganicUnique
+                    videoCompleteViewsPaid = facebookPostMetricsDto.videoCompleteViewsPaid
+                    videoCompleteViewsPaidUnique =
+                        facebookPostMetricsDto.videoCompleteViewsPaidUnique
+                    videoLength = facebookPostMetricsDto.videoLength
+                    videoRetentionGraphAutoplayed =
+                        facebookPostMetricsDto.videoRetentionGraphAutoplayed.map {
+                            it.toMutableList()
+                        }
+                    videoRetentionGraphClickedToPlay =
+                        facebookPostMetricsDto.videoRetentionGraphClickedToPlay.map {
+                            it.toMutableList()
+                        }
+                    videoSocialActionsUnique = facebookPostMetricsDto.videoSocialActionsUnique
+                    videoViewTime = facebookPostMetricsDto.videoViewTime
+                    videoViewTimeByAgeGender =
+                        facebookPostMetricsDto.videoViewTimeByAgeGender.map { it.toMutableList() }
+                    videoViewTimeByCountry =
+                        facebookPostMetricsDto.videoViewTimeByCountry.map { it.toMutableList() }
+                    videoViewTimeByDistributionType =
+                        facebookPostMetricsDto.videoViewTimeByDistributionType
+                    videoViewTimeByRegion =
+                        facebookPostMetricsDto.videoViewTimeByRegion.map { it.toMutableList() }
+                    videoViewTimeOrganic = facebookPostMetricsDto.videoViewTimeOrganic
+                    videoViews = facebookPostMetricsDto.videoViews
+                    videoViews15s = facebookPostMetricsDto.videoViews15s
+                    videoViews60s = facebookPostMetricsDto.videoViews60s
+                    videoViewsAutoplayed = facebookPostMetricsDto.videoViewsAutoplayed
+                    videoViewsByDistributionType =
+                        facebookPostMetricsDto.videoViewsByDistributionType
+                    videoViewsClickedToPlay = facebookPostMetricsDto.videoViewsClickedToPlay
+                    videoViewsOrganic = facebookPostMetricsDto.videoViewsOrganic
+                    videoViewsOrganicUnique = facebookPostMetricsDto.videoViewsOrganicUnique
+                    videoViewsPaid = facebookPostMetricsDto.videoViewsPaid
+                    videoViewsPaidUnique = facebookPostMetricsDto.videoViewsPaidUnique
+                    videoViewsSoundOn = facebookPostMetricsDto.videoViewsSoundOn
+                    videoViewsUnique = facebookPostMetricsDto.videoViewsUnique
+                    viralReach = facebookPostMetricsDto.viralReach
+                    additionalProperties =
+                        facebookPostMetricsDto.additionalProperties.toMutableMap()
+                }
+
+                /** Total activity breakdown by action type */
+                fun activityByActionType(activityByActionType: List<ActivityByActionType>) =
+                    activityByActionType(JsonField.of(activityByActionType))
+
+                /**
+                 * Sets [Builder.activityByActionType] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.activityByActionType] with a well-typed
+                 * `List<ActivityByActionType>` value instead. This method is primarily for setting
+                 * the field to an undocumented or not yet supported value.
+                 */
+                fun activityByActionType(
+                    activityByActionType: JsonField<List<ActivityByActionType>>
+                ) = apply {
+                    this.activityByActionType = activityByActionType.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [ActivityByActionType] to [Builder.activityByActionType].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addActivityByActionType(activityByActionType: ActivityByActionType) = apply {
+                    this.activityByActionType =
+                        (this.activityByActionType ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("activityByActionType", it).add(activityByActionType)
+                        }
+                }
+
+                /** Unique users activity breakdown by action type */
+                fun activityByActionTypeUnique(
+                    activityByActionTypeUnique: List<ActivityByActionTypeUnique>
+                ) = activityByActionTypeUnique(JsonField.of(activityByActionTypeUnique))
+
+                /**
+                 * Sets [Builder.activityByActionTypeUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.activityByActionTypeUnique] with a well-typed
+                 * `List<ActivityByActionTypeUnique>` value instead. This method is primarily for
+                 * setting the field to an undocumented or not yet supported value.
+                 */
+                fun activityByActionTypeUnique(
+                    activityByActionTypeUnique: JsonField<List<ActivityByActionTypeUnique>>
+                ) = apply {
+                    this.activityByActionTypeUnique =
+                        activityByActionTypeUnique.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [ActivityByActionTypeUnique] to
+                 * [Builder.activityByActionTypeUnique].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addActivityByActionTypeUnique(
+                    activityByActionTypeUnique: ActivityByActionTypeUnique
+                ) = apply {
+                    this.activityByActionTypeUnique =
+                        (this.activityByActionTypeUnique ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("activityByActionTypeUnique", it)
+                                .add(activityByActionTypeUnique)
+                        }
+                }
+
+                /** Number of comments (from post object) */
+                fun comments(comments: Double) = comments(JsonField.of(comments))
+
+                /**
+                 * Sets [Builder.comments] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.comments] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun comments(comments: JsonField<Double>) = apply { this.comments = comments }
+
+                /** Number of fans who saw the post */
+                fun fanReach(fanReach: Double) = fanReach(JsonField.of(fanReach))
+
+                /**
+                 * Sets [Builder.fanReach] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.fanReach] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun fanReach(fanReach: JsonField<Double>) = apply { this.fanReach = fanReach }
+
+                /** Number of times the photo or video was viewed */
+                fun mediaViews(mediaViews: Double) = mediaViews(JsonField.of(mediaViews))
+
+                /**
+                 * Sets [Builder.mediaViews] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.mediaViews] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun mediaViews(mediaViews: JsonField<Double>) = apply {
+                    this.mediaViews = mediaViews
+                }
+
+                /** Number of people who saw the post via non-viral distribution */
+                fun nonviralReach(nonviralReach: Double) =
+                    nonviralReach(JsonField.of(nonviralReach))
+
+                /**
+                 * Sets [Builder.nonviralReach] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.nonviralReach] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun nonviralReach(nonviralReach: JsonField<Double>) = apply {
+                    this.nonviralReach = nonviralReach
+                }
+
+                /** Number of people who saw the post via organic distribution */
+                fun organicReach(organicReach: Double) = organicReach(JsonField.of(organicReach))
+
+                /**
+                 * Sets [Builder.organicReach] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.organicReach] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun organicReach(organicReach: JsonField<Double>) = apply {
+                    this.organicReach = organicReach
+                }
+
+                /** Number of people who saw the post via paid distribution */
+                fun paidReach(paidReach: Double) = paidReach(JsonField.of(paidReach))
+
+                /**
+                 * Sets [Builder.paidReach] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.paidReach] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun paidReach(paidReach: JsonField<Double>) = apply { this.paidReach = paidReach }
+
+                /** Total number of unique people who saw the post */
+                fun reach(reach: Double) = reach(JsonField.of(reach))
+
+                /**
+                 * Sets [Builder.reach] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reach] with a well-typed [Double] value instead.
+                 * This method is primarily for setting the field to an undocumented or not yet
+                 * supported value.
+                 */
+                fun reach(reach: JsonField<Double>) = apply { this.reach = reach }
+
+                /** Number of anger reactions */
+                fun reactionsAnger(reactionsAnger: Double) =
+                    reactionsAnger(JsonField.of(reactionsAnger))
+
+                /**
+                 * Sets [Builder.reactionsAnger] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsAnger] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsAnger(reactionsAnger: JsonField<Double>) = apply {
+                    this.reactionsAnger = reactionsAnger
+                }
+
+                /** Breakdown of all reaction types */
+                fun reactionsByType(reactionsByType: JsonValue) = apply {
+                    this.reactionsByType = reactionsByType
+                }
+
+                /** Number of haha reactions */
+                fun reactionsHaha(reactionsHaha: Double) =
+                    reactionsHaha(JsonField.of(reactionsHaha))
+
+                /**
+                 * Sets [Builder.reactionsHaha] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsHaha] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsHaha(reactionsHaha: JsonField<Double>) = apply {
+                    this.reactionsHaha = reactionsHaha
+                }
+
+                /** Number of like reactions */
+                fun reactionsLike(reactionsLike: Double) =
+                    reactionsLike(JsonField.of(reactionsLike))
+
+                /**
+                 * Sets [Builder.reactionsLike] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsLike] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsLike(reactionsLike: JsonField<Double>) = apply {
+                    this.reactionsLike = reactionsLike
+                }
+
+                /** Number of love reactions */
+                fun reactionsLove(reactionsLove: Double) =
+                    reactionsLove(JsonField.of(reactionsLove))
+
+                /**
+                 * Sets [Builder.reactionsLove] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsLove] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsLove(reactionsLove: JsonField<Double>) = apply {
+                    this.reactionsLove = reactionsLove
+                }
+
+                /** Number of sad reactions */
+                fun reactionsSorry(reactionsSorry: Double) =
+                    reactionsSorry(JsonField.of(reactionsSorry))
+
+                /**
+                 * Sets [Builder.reactionsSorry] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsSorry] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsSorry(reactionsSorry: JsonField<Double>) = apply {
+                    this.reactionsSorry = reactionsSorry
+                }
+
+                /** Total number of reactions (all types) */
+                fun reactionsTotal(reactionsTotal: Double) =
+                    reactionsTotal(JsonField.of(reactionsTotal))
+
+                /**
+                 * Sets [Builder.reactionsTotal] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsTotal] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsTotal(reactionsTotal: JsonField<Double>) = apply {
+                    this.reactionsTotal = reactionsTotal
+                }
+
+                /** Number of wow reactions */
+                fun reactionsWow(reactionsWow: Double) = reactionsWow(JsonField.of(reactionsWow))
+
+                /**
+                 * Sets [Builder.reactionsWow] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reactionsWow] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reactionsWow(reactionsWow: JsonField<Double>) = apply {
+                    this.reactionsWow = reactionsWow
+                }
+
+                /** Number of shares (from post object) */
+                fun shares(shares: Double) = shares(JsonField.of(shares))
+
+                /**
+                 * Sets [Builder.shares] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.shares] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun shares(shares: JsonField<Double>) = apply { this.shares = shares }
+
+                /** Average time video was viewed in milliseconds */
+                fun videoAvgTimeWatched(videoAvgTimeWatched: Double) =
+                    videoAvgTimeWatched(JsonField.of(videoAvgTimeWatched))
+
+                /**
+                 * Sets [Builder.videoAvgTimeWatched] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoAvgTimeWatched] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoAvgTimeWatched(videoAvgTimeWatched: JsonField<Double>) = apply {
+                    this.videoAvgTimeWatched = videoAvgTimeWatched
+                }
+
+                /** Number of times video was viewed to 95% organically */
+                fun videoCompleteViewsOrganic(videoCompleteViewsOrganic: Double) =
+                    videoCompleteViewsOrganic(JsonField.of(videoCompleteViewsOrganic))
+
+                /**
+                 * Sets [Builder.videoCompleteViewsOrganic] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoCompleteViewsOrganic] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun videoCompleteViewsOrganic(videoCompleteViewsOrganic: JsonField<Double>) =
+                    apply {
+                        this.videoCompleteViewsOrganic = videoCompleteViewsOrganic
+                    }
+
+                /** Number of unique people who viewed video to 95% organically */
+                fun videoCompleteViewsOrganicUnique(videoCompleteViewsOrganicUnique: Double) =
+                    videoCompleteViewsOrganicUnique(JsonField.of(videoCompleteViewsOrganicUnique))
+
+                /**
+                 * Sets [Builder.videoCompleteViewsOrganicUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoCompleteViewsOrganicUnique] with a
+                 * well-typed [Double] value instead. This method is primarily for setting the field
+                 * to an undocumented or not yet supported value.
+                 */
+                fun videoCompleteViewsOrganicUnique(
+                    videoCompleteViewsOrganicUnique: JsonField<Double>
+                ) = apply { this.videoCompleteViewsOrganicUnique = videoCompleteViewsOrganicUnique }
+
+                /** Number of times video was viewed to 95% via paid distribution */
+                fun videoCompleteViewsPaid(videoCompleteViewsPaid: Double) =
+                    videoCompleteViewsPaid(JsonField.of(videoCompleteViewsPaid))
+
+                /**
+                 * Sets [Builder.videoCompleteViewsPaid] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoCompleteViewsPaid] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun videoCompleteViewsPaid(videoCompleteViewsPaid: JsonField<Double>) = apply {
+                    this.videoCompleteViewsPaid = videoCompleteViewsPaid
+                }
+
+                /** Number of unique people who viewed video to 95% via paid distribution */
+                fun videoCompleteViewsPaidUnique(videoCompleteViewsPaidUnique: Double) =
+                    videoCompleteViewsPaidUnique(JsonField.of(videoCompleteViewsPaidUnique))
+
+                /**
+                 * Sets [Builder.videoCompleteViewsPaidUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoCompleteViewsPaidUnique] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun videoCompleteViewsPaidUnique(videoCompleteViewsPaidUnique: JsonField<Double>) =
+                    apply {
+                        this.videoCompleteViewsPaidUnique = videoCompleteViewsPaidUnique
+                    }
+
+                /** Length of the video in milliseconds */
+                fun videoLength(videoLength: Double) = videoLength(JsonField.of(videoLength))
+
+                /**
+                 * Sets [Builder.videoLength] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoLength] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoLength(videoLength: JsonField<Double>) = apply {
+                    this.videoLength = videoLength
+                }
+
+                /** Video retention graph for autoplayed views */
+                fun videoRetentionGraphAutoplayed(
+                    videoRetentionGraphAutoplayed: List<VideoRetentionGraphAutoplayed>
+                ) = videoRetentionGraphAutoplayed(JsonField.of(videoRetentionGraphAutoplayed))
+
+                /**
+                 * Sets [Builder.videoRetentionGraphAutoplayed] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoRetentionGraphAutoplayed] with a well-typed
+                 * `List<VideoRetentionGraphAutoplayed>` value instead. This method is primarily for
+                 * setting the field to an undocumented or not yet supported value.
+                 */
+                fun videoRetentionGraphAutoplayed(
+                    videoRetentionGraphAutoplayed: JsonField<List<VideoRetentionGraphAutoplayed>>
+                ) = apply {
+                    this.videoRetentionGraphAutoplayed =
+                        videoRetentionGraphAutoplayed.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [VideoRetentionGraphAutoplayed] to
+                 * [Builder.videoRetentionGraphAutoplayed].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addVideoRetentionGraphAutoplayed(
+                    videoRetentionGraphAutoplayed: VideoRetentionGraphAutoplayed
+                ) = apply {
+                    this.videoRetentionGraphAutoplayed =
+                        (this.videoRetentionGraphAutoplayed ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("videoRetentionGraphAutoplayed", it)
+                                .add(videoRetentionGraphAutoplayed)
+                        }
+                }
+
+                /** Video retention graph for clicked-to-play views */
+                fun videoRetentionGraphClickedToPlay(
+                    videoRetentionGraphClickedToPlay: List<VideoRetentionGraphClickedToPlay>
+                ) = videoRetentionGraphClickedToPlay(JsonField.of(videoRetentionGraphClickedToPlay))
+
+                /**
+                 * Sets [Builder.videoRetentionGraphClickedToPlay] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoRetentionGraphClickedToPlay] with a
+                 * well-typed `List<VideoRetentionGraphClickedToPlay>` value instead. This method is
+                 * primarily for setting the field to an undocumented or not yet supported value.
+                 */
+                fun videoRetentionGraphClickedToPlay(
+                    videoRetentionGraphClickedToPlay:
+                        JsonField<List<VideoRetentionGraphClickedToPlay>>
+                ) = apply {
+                    this.videoRetentionGraphClickedToPlay =
+                        videoRetentionGraphClickedToPlay.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [VideoRetentionGraphClickedToPlay] to
+                 * [Builder.videoRetentionGraphClickedToPlay].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addVideoRetentionGraphClickedToPlay(
+                    videoRetentionGraphClickedToPlay: VideoRetentionGraphClickedToPlay
+                ) = apply {
+                    this.videoRetentionGraphClickedToPlay =
+                        (this.videoRetentionGraphClickedToPlay ?: JsonField.of(mutableListOf()))
+                            .also {
+                                checkKnown("videoRetentionGraphClickedToPlay", it)
+                                    .add(videoRetentionGraphClickedToPlay)
+                            }
+                }
+
+                /** Number of unique people who performed social actions on the video */
+                fun videoSocialActionsUnique(videoSocialActionsUnique: Double) =
+                    videoSocialActionsUnique(JsonField.of(videoSocialActionsUnique))
+
+                /**
+                 * Sets [Builder.videoSocialActionsUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoSocialActionsUnique] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun videoSocialActionsUnique(videoSocialActionsUnique: JsonField<Double>) = apply {
+                    this.videoSocialActionsUnique = videoSocialActionsUnique
+                }
+
+                /** Total time video was viewed in milliseconds */
+                fun videoViewTime(videoViewTime: Double) =
+                    videoViewTime(JsonField.of(videoViewTime))
+
+                /**
+                 * Sets [Builder.videoViewTime] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewTime] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoViewTime(videoViewTime: JsonField<Double>) = apply {
+                    this.videoViewTime = videoViewTime
+                }
+
+                /** Video view time breakdown by age and gender */
+                fun videoViewTimeByAgeGender(
+                    videoViewTimeByAgeGender: List<VideoViewTimeByAgeGender>
+                ) = videoViewTimeByAgeGender(JsonField.of(videoViewTimeByAgeGender))
+
+                /**
+                 * Sets [Builder.videoViewTimeByAgeGender] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewTimeByAgeGender] with a well-typed
+                 * `List<VideoViewTimeByAgeGender>` value instead. This method is primarily for
+                 * setting the field to an undocumented or not yet supported value.
+                 */
+                fun videoViewTimeByAgeGender(
+                    videoViewTimeByAgeGender: JsonField<List<VideoViewTimeByAgeGender>>
+                ) = apply {
+                    this.videoViewTimeByAgeGender =
+                        videoViewTimeByAgeGender.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [VideoViewTimeByAgeGender] to [Builder.videoViewTimeByAgeGender].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addVideoViewTimeByAgeGender(
+                    videoViewTimeByAgeGender: VideoViewTimeByAgeGender
+                ) = apply {
+                    this.videoViewTimeByAgeGender =
+                        (this.videoViewTimeByAgeGender ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("videoViewTimeByAgeGender", it).add(videoViewTimeByAgeGender)
+                        }
+                }
+
+                /** Video view time breakdown by country */
+                fun videoViewTimeByCountry(videoViewTimeByCountry: List<VideoViewTimeByCountry>) =
+                    videoViewTimeByCountry(JsonField.of(videoViewTimeByCountry))
+
+                /**
+                 * Sets [Builder.videoViewTimeByCountry] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewTimeByCountry] with a well-typed
+                 * `List<VideoViewTimeByCountry>` value instead. This method is primarily for
+                 * setting the field to an undocumented or not yet supported value.
+                 */
+                fun videoViewTimeByCountry(
+                    videoViewTimeByCountry: JsonField<List<VideoViewTimeByCountry>>
+                ) = apply {
+                    this.videoViewTimeByCountry = videoViewTimeByCountry.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [VideoViewTimeByCountry] to [Builder.videoViewTimeByCountry].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addVideoViewTimeByCountry(videoViewTimeByCountry: VideoViewTimeByCountry) =
+                    apply {
+                        this.videoViewTimeByCountry =
+                            (this.videoViewTimeByCountry ?: JsonField.of(mutableListOf())).also {
+                                checkKnown("videoViewTimeByCountry", it).add(videoViewTimeByCountry)
+                            }
+                    }
+
+                /** Video view time breakdown by distribution type */
+                fun videoViewTimeByDistributionType(videoViewTimeByDistributionType: JsonValue) =
+                    apply {
+                        this.videoViewTimeByDistributionType = videoViewTimeByDistributionType
+                    }
+
+                /** Video view time breakdown by region */
+                fun videoViewTimeByRegion(videoViewTimeByRegion: List<VideoViewTimeByRegion>) =
+                    videoViewTimeByRegion(JsonField.of(videoViewTimeByRegion))
+
+                /**
+                 * Sets [Builder.videoViewTimeByRegion] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewTimeByRegion] with a well-typed
+                 * `List<VideoViewTimeByRegion>` value instead. This method is primarily for setting
+                 * the field to an undocumented or not yet supported value.
+                 */
+                fun videoViewTimeByRegion(
+                    videoViewTimeByRegion: JsonField<List<VideoViewTimeByRegion>>
+                ) = apply {
+                    this.videoViewTimeByRegion = videoViewTimeByRegion.map { it.toMutableList() }
+                }
+
+                /**
+                 * Adds a single [VideoViewTimeByRegion] to [Builder.videoViewTimeByRegion].
+                 *
+                 * @throws IllegalStateException if the field was previously set to a non-list.
+                 */
+                fun addVideoViewTimeByRegion(videoViewTimeByRegion: VideoViewTimeByRegion) = apply {
+                    this.videoViewTimeByRegion =
+                        (this.videoViewTimeByRegion ?: JsonField.of(mutableListOf())).also {
+                            checkKnown("videoViewTimeByRegion", it).add(videoViewTimeByRegion)
+                        }
+                }
+
+                /** Total time video was viewed in milliseconds via organic distribution */
+                fun videoViewTimeOrganic(videoViewTimeOrganic: Double) =
+                    videoViewTimeOrganic(JsonField.of(videoViewTimeOrganic))
+
+                /**
+                 * Sets [Builder.videoViewTimeOrganic] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewTimeOrganic] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoViewTimeOrganic(videoViewTimeOrganic: JsonField<Double>) = apply {
+                    this.videoViewTimeOrganic = videoViewTimeOrganic
+                }
+
+                /** Number of times video was viewed for 3+ seconds */
+                fun videoViews(videoViews: Double) = videoViews(JsonField.of(videoViews))
+
+                /**
+                 * Sets [Builder.videoViews] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViews] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoViews(videoViews: JsonField<Double>) = apply {
+                    this.videoViews = videoViews
+                }
+
+                /** Number of times video was viewed for 15+ seconds */
+                fun videoViews15s(videoViews15s: Double) =
+                    videoViews15s(JsonField.of(videoViews15s))
+
+                /**
+                 * Sets [Builder.videoViews15s] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViews15s] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoViews15s(videoViews15s: JsonField<Double>) = apply {
+                    this.videoViews15s = videoViews15s
+                }
+
+                /**
+                 * Number of times video was viewed for 60+ seconds (excludes videos shorter than
+                 * 60s)
+                 */
+                fun videoViews60s(videoViews60s: Double) =
+                    videoViews60s(JsonField.of(videoViews60s))
+
+                /**
+                 * Sets [Builder.videoViews60s] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViews60s] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoViews60s(videoViews60s: JsonField<Double>) = apply {
+                    this.videoViews60s = videoViews60s
+                }
+
+                /** Number of times video was autoplayed for 3+ seconds */
+                fun videoViewsAutoplayed(videoViewsAutoplayed: Double) =
+                    videoViewsAutoplayed(JsonField.of(videoViewsAutoplayed))
+
+                /**
+                 * Sets [Builder.videoViewsAutoplayed] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsAutoplayed] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoViewsAutoplayed(videoViewsAutoplayed: JsonField<Double>) = apply {
+                    this.videoViewsAutoplayed = videoViewsAutoplayed
+                }
+
+                /** Video views breakdown by distribution type */
+                fun videoViewsByDistributionType(videoViewsByDistributionType: JsonValue) = apply {
+                    this.videoViewsByDistributionType = videoViewsByDistributionType
+                }
+
+                /** Number of times video was clicked to play for 3+ seconds */
+                fun videoViewsClickedToPlay(videoViewsClickedToPlay: Double) =
+                    videoViewsClickedToPlay(JsonField.of(videoViewsClickedToPlay))
+
+                /**
+                 * Sets [Builder.videoViewsClickedToPlay] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsClickedToPlay] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun videoViewsClickedToPlay(videoViewsClickedToPlay: JsonField<Double>) = apply {
+                    this.videoViewsClickedToPlay = videoViewsClickedToPlay
+                }
+
+                /** Number of times video was viewed for 3+ seconds organically */
+                fun videoViewsOrganic(videoViewsOrganic: Double) =
+                    videoViewsOrganic(JsonField.of(videoViewsOrganic))
+
+                /**
+                 * Sets [Builder.videoViewsOrganic] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsOrganic] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoViewsOrganic(videoViewsOrganic: JsonField<Double>) = apply {
+                    this.videoViewsOrganic = videoViewsOrganic
+                }
+
+                /** Number of unique people who viewed the video for 3+ seconds organically */
+                fun videoViewsOrganicUnique(videoViewsOrganicUnique: Double) =
+                    videoViewsOrganicUnique(JsonField.of(videoViewsOrganicUnique))
+
+                /**
+                 * Sets [Builder.videoViewsOrganicUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsOrganicUnique] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun videoViewsOrganicUnique(videoViewsOrganicUnique: JsonField<Double>) = apply {
+                    this.videoViewsOrganicUnique = videoViewsOrganicUnique
+                }
+
+                /** Number of times video was viewed for 3+ seconds via paid distribution */
+                fun videoViewsPaid(videoViewsPaid: Double) =
+                    videoViewsPaid(JsonField.of(videoViewsPaid))
+
+                /**
+                 * Sets [Builder.videoViewsPaid] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsPaid] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoViewsPaid(videoViewsPaid: JsonField<Double>) = apply {
+                    this.videoViewsPaid = videoViewsPaid
+                }
+
+                /**
+                 * Number of unique people who viewed the video for 3+ seconds via paid distribution
+                 */
+                fun videoViewsPaidUnique(videoViewsPaidUnique: Double) =
+                    videoViewsPaidUnique(JsonField.of(videoViewsPaidUnique))
+
+                /**
+                 * Sets [Builder.videoViewsPaidUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsPaidUnique] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoViewsPaidUnique(videoViewsPaidUnique: JsonField<Double>) = apply {
+                    this.videoViewsPaidUnique = videoViewsPaidUnique
+                }
+
+                /** Number of times video was viewed with sound on */
+                fun videoViewsSoundOn(videoViewsSoundOn: Double) =
+                    videoViewsSoundOn(JsonField.of(videoViewsSoundOn))
+
+                /**
+                 * Sets [Builder.videoViewsSoundOn] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsSoundOn] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoViewsSoundOn(videoViewsSoundOn: JsonField<Double>) = apply {
+                    this.videoViewsSoundOn = videoViewsSoundOn
+                }
+
+                /** Number of unique people who viewed the video for 3+ seconds */
+                fun videoViewsUnique(videoViewsUnique: Double) =
+                    videoViewsUnique(JsonField.of(videoViewsUnique))
+
+                /**
+                 * Sets [Builder.videoViewsUnique] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoViewsUnique] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun videoViewsUnique(videoViewsUnique: JsonField<Double>) = apply {
+                    this.videoViewsUnique = videoViewsUnique
+                }
+
+                /** Number of people who saw the post in News Feed via viral reach */
+                fun viralReach(viralReach: Double) = viralReach(JsonField.of(viralReach))
+
+                /**
+                 * Sets [Builder.viralReach] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.viralReach] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun viralReach(viralReach: JsonField<Double>) = apply {
+                    this.viralReach = viralReach
+                }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [FacebookPostMetricsDto].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 */
+                fun build(): FacebookPostMetricsDto =
+                    FacebookPostMetricsDto(
+                        (activityByActionType ?: JsonMissing.of()).map { it.toImmutable() },
+                        (activityByActionTypeUnique ?: JsonMissing.of()).map { it.toImmutable() },
+                        comments,
+                        fanReach,
+                        mediaViews,
+                        nonviralReach,
+                        organicReach,
+                        paidReach,
+                        reach,
+                        reactionsAnger,
+                        reactionsByType,
+                        reactionsHaha,
+                        reactionsLike,
+                        reactionsLove,
+                        reactionsSorry,
+                        reactionsTotal,
+                        reactionsWow,
+                        shares,
+                        videoAvgTimeWatched,
+                        videoCompleteViewsOrganic,
+                        videoCompleteViewsOrganicUnique,
+                        videoCompleteViewsPaid,
+                        videoCompleteViewsPaidUnique,
+                        videoLength,
+                        (videoRetentionGraphAutoplayed ?: JsonMissing.of()).map {
+                            it.toImmutable()
+                        },
+                        (videoRetentionGraphClickedToPlay ?: JsonMissing.of()).map {
+                            it.toImmutable()
+                        },
+                        videoSocialActionsUnique,
+                        videoViewTime,
+                        (videoViewTimeByAgeGender ?: JsonMissing.of()).map { it.toImmutable() },
+                        (videoViewTimeByCountry ?: JsonMissing.of()).map { it.toImmutable() },
+                        videoViewTimeByDistributionType,
+                        (videoViewTimeByRegion ?: JsonMissing.of()).map { it.toImmutable() },
+                        videoViewTimeOrganic,
+                        videoViews,
+                        videoViews15s,
+                        videoViews60s,
+                        videoViewsAutoplayed,
+                        videoViewsByDistributionType,
+                        videoViewsClickedToPlay,
+                        videoViewsOrganic,
+                        videoViewsOrganicUnique,
+                        videoViewsPaid,
+                        videoViewsPaidUnique,
+                        videoViewsSoundOn,
+                        videoViewsUnique,
+                        viralReach,
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): FacebookPostMetricsDto = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                activityByActionType()?.forEach { it.validate() }
+                activityByActionTypeUnique()?.forEach { it.validate() }
+                comments()
+                fanReach()
+                mediaViews()
+                nonviralReach()
+                organicReach()
+                paidReach()
+                reach()
+                reactionsAnger()
+                reactionsHaha()
+                reactionsLike()
+                reactionsLove()
+                reactionsSorry()
+                reactionsTotal()
+                reactionsWow()
+                shares()
+                videoAvgTimeWatched()
+                videoCompleteViewsOrganic()
+                videoCompleteViewsOrganicUnique()
+                videoCompleteViewsPaid()
+                videoCompleteViewsPaidUnique()
+                videoLength()
+                videoRetentionGraphAutoplayed()?.forEach { it.validate() }
+                videoRetentionGraphClickedToPlay()?.forEach { it.validate() }
+                videoSocialActionsUnique()
+                videoViewTime()
+                videoViewTimeByAgeGender()?.forEach { it.validate() }
+                videoViewTimeByCountry()?.forEach { it.validate() }
+                videoViewTimeByRegion()?.forEach { it.validate() }
+                videoViewTimeOrganic()
+                videoViews()
+                videoViews15s()
+                videoViews60s()
+                videoViewsAutoplayed()
+                videoViewsClickedToPlay()
+                videoViewsOrganic()
+                videoViewsOrganicUnique()
+                videoViewsPaid()
+                videoViewsPaidUnique()
+                videoViewsSoundOn()
+                videoViewsUnique()
+                viralReach()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (activityByActionType.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+                    (activityByActionTypeUnique.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+                    (if (comments.asKnown() == null) 0 else 1) +
+                    (if (fanReach.asKnown() == null) 0 else 1) +
+                    (if (mediaViews.asKnown() == null) 0 else 1) +
+                    (if (nonviralReach.asKnown() == null) 0 else 1) +
+                    (if (organicReach.asKnown() == null) 0 else 1) +
+                    (if (paidReach.asKnown() == null) 0 else 1) +
+                    (if (reach.asKnown() == null) 0 else 1) +
+                    (if (reactionsAnger.asKnown() == null) 0 else 1) +
+                    (if (reactionsHaha.asKnown() == null) 0 else 1) +
+                    (if (reactionsLike.asKnown() == null) 0 else 1) +
+                    (if (reactionsLove.asKnown() == null) 0 else 1) +
+                    (if (reactionsSorry.asKnown() == null) 0 else 1) +
+                    (if (reactionsTotal.asKnown() == null) 0 else 1) +
+                    (if (reactionsWow.asKnown() == null) 0 else 1) +
+                    (if (shares.asKnown() == null) 0 else 1) +
+                    (if (videoAvgTimeWatched.asKnown() == null) 0 else 1) +
+                    (if (videoCompleteViewsOrganic.asKnown() == null) 0 else 1) +
+                    (if (videoCompleteViewsOrganicUnique.asKnown() == null) 0 else 1) +
+                    (if (videoCompleteViewsPaid.asKnown() == null) 0 else 1) +
+                    (if (videoCompleteViewsPaidUnique.asKnown() == null) 0 else 1) +
+                    (if (videoLength.asKnown() == null) 0 else 1) +
+                    (videoRetentionGraphAutoplayed.asKnown()?.sumOf { it.validity().toInt() }
+                        ?: 0) +
+                    (videoRetentionGraphClickedToPlay.asKnown()?.sumOf { it.validity().toInt() }
+                        ?: 0) +
+                    (if (videoSocialActionsUnique.asKnown() == null) 0 else 1) +
+                    (if (videoViewTime.asKnown() == null) 0 else 1) +
+                    (videoViewTimeByAgeGender.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+                    (videoViewTimeByCountry.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+                    (videoViewTimeByRegion.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+                    (if (videoViewTimeOrganic.asKnown() == null) 0 else 1) +
+                    (if (videoViews.asKnown() == null) 0 else 1) +
+                    (if (videoViews15s.asKnown() == null) 0 else 1) +
+                    (if (videoViews60s.asKnown() == null) 0 else 1) +
+                    (if (videoViewsAutoplayed.asKnown() == null) 0 else 1) +
+                    (if (videoViewsClickedToPlay.asKnown() == null) 0 else 1) +
+                    (if (videoViewsOrganic.asKnown() == null) 0 else 1) +
+                    (if (videoViewsOrganicUnique.asKnown() == null) 0 else 1) +
+                    (if (videoViewsPaid.asKnown() == null) 0 else 1) +
+                    (if (videoViewsPaidUnique.asKnown() == null) 0 else 1) +
+                    (if (videoViewsSoundOn.asKnown() == null) 0 else 1) +
+                    (if (videoViewsUnique.asKnown() == null) 0 else 1) +
+                    (if (viralReach.asKnown() == null) 0 else 1)
+
+            class ActivityByActionType
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val actionType: JsonField<String>,
+                private val value: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("action_type")
+                    @ExcludeMissing
+                    actionType: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("value")
+                    @ExcludeMissing
+                    value: JsonField<Double> = JsonMissing.of(),
+                ) : this(actionType, value, mutableMapOf())
+
+                /**
+                 * Action type (e.g., like, comment, share)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun actionType(): String = actionType.getRequired("action_type")
+
+                /**
+                 * Number of actions
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun value(): Double = value.getRequired("value")
+
+                /**
+                 * Returns the raw JSON value of [actionType].
+                 *
+                 * Unlike [actionType], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("action_type")
+                @ExcludeMissing
+                fun _actionType(): JsonField<String> = actionType
+
+                /**
+                 * Returns the raw JSON value of [value].
+                 *
+                 * Unlike [value], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("value") @ExcludeMissing fun _value(): JsonField<Double> = value
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [ActivityByActionType].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .actionType()
+                     * .value()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [ActivityByActionType]. */
+                class Builder internal constructor() {
+
+                    private var actionType: JsonField<String>? = null
+                    private var value: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(activityByActionType: ActivityByActionType) = apply {
+                        actionType = activityByActionType.actionType
+                        value = activityByActionType.value
+                        additionalProperties =
+                            activityByActionType.additionalProperties.toMutableMap()
+                    }
+
+                    /** Action type (e.g., like, comment, share) */
+                    fun actionType(actionType: String) = actionType(JsonField.of(actionType))
+
+                    /**
+                     * Sets [Builder.actionType] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.actionType] with a well-typed [String] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun actionType(actionType: JsonField<String>) = apply {
+                        this.actionType = actionType
+                    }
+
+                    /** Number of actions */
+                    fun value(value: Double) = value(JsonField.of(value))
+
+                    /**
+                     * Sets [Builder.value] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.value] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun value(value: JsonField<Double>) = apply { this.value = value }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [ActivityByActionType].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .actionType()
+                     * .value()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): ActivityByActionType =
+                        ActivityByActionType(
+                            checkRequired("actionType", actionType),
+                            checkRequired("value", value),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): ActivityByActionType = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    actionType()
+                    value()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (actionType.asKnown() == null) 0 else 1) +
+                        (if (value.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is ActivityByActionType &&
+                        actionType == other.actionType &&
+                        value == other.value &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(actionType, value, additionalProperties)
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "ActivityByActionType{actionType=$actionType, value=$value, additionalProperties=$additionalProperties}"
+            }
+
+            class ActivityByActionTypeUnique
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val actionType: JsonField<String>,
+                private val value: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("action_type")
+                    @ExcludeMissing
+                    actionType: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("value")
+                    @ExcludeMissing
+                    value: JsonField<Double> = JsonMissing.of(),
+                ) : this(actionType, value, mutableMapOf())
+
+                /**
+                 * Action type (e.g., like, comment, share)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun actionType(): String = actionType.getRequired("action_type")
+
+                /**
+                 * Number of actions
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun value(): Double = value.getRequired("value")
+
+                /**
+                 * Returns the raw JSON value of [actionType].
+                 *
+                 * Unlike [actionType], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("action_type")
+                @ExcludeMissing
+                fun _actionType(): JsonField<String> = actionType
+
+                /**
+                 * Returns the raw JSON value of [value].
+                 *
+                 * Unlike [value], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("value") @ExcludeMissing fun _value(): JsonField<Double> = value
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [ActivityByActionTypeUnique].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .actionType()
+                     * .value()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [ActivityByActionTypeUnique]. */
+                class Builder internal constructor() {
+
+                    private var actionType: JsonField<String>? = null
+                    private var value: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(activityByActionTypeUnique: ActivityByActionTypeUnique) =
+                        apply {
+                            actionType = activityByActionTypeUnique.actionType
+                            value = activityByActionTypeUnique.value
+                            additionalProperties =
+                                activityByActionTypeUnique.additionalProperties.toMutableMap()
+                        }
+
+                    /** Action type (e.g., like, comment, share) */
+                    fun actionType(actionType: String) = actionType(JsonField.of(actionType))
+
+                    /**
+                     * Sets [Builder.actionType] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.actionType] with a well-typed [String] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun actionType(actionType: JsonField<String>) = apply {
+                        this.actionType = actionType
+                    }
+
+                    /** Number of actions */
+                    fun value(value: Double) = value(JsonField.of(value))
+
+                    /**
+                     * Sets [Builder.value] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.value] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun value(value: JsonField<Double>) = apply { this.value = value }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [ActivityByActionTypeUnique].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .actionType()
+                     * .value()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): ActivityByActionTypeUnique =
+                        ActivityByActionTypeUnique(
+                            checkRequired("actionType", actionType),
+                            checkRequired("value", value),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): ActivityByActionTypeUnique = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    actionType()
+                    value()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (actionType.asKnown() == null) 0 else 1) +
+                        (if (value.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is ActivityByActionTypeUnique &&
+                        actionType == other.actionType &&
+                        value == other.value &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(actionType, value, additionalProperties)
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "ActivityByActionTypeUnique{actionType=$actionType, value=$value, additionalProperties=$additionalProperties}"
+            }
+
+            class VideoRetentionGraphAutoplayed
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val rate: JsonField<Double>,
+                private val time: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("rate")
+                    @ExcludeMissing
+                    rate: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("time") @ExcludeMissing time: JsonField<Double> = JsonMissing.of(),
+                ) : this(rate, time, mutableMapOf())
+
+                /**
+                 * Percentage of viewers at this time
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun rate(): Double = rate.getRequired("rate")
+
+                /**
+                 * Time in seconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun time(): Double = time.getRequired("time")
+
+                /**
+                 * Returns the raw JSON value of [rate].
+                 *
+                 * Unlike [rate], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("rate") @ExcludeMissing fun _rate(): JsonField<Double> = rate
+
+                /**
+                 * Returns the raw JSON value of [time].
+                 *
+                 * Unlike [time], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("time") @ExcludeMissing fun _time(): JsonField<Double> = time
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [VideoRetentionGraphAutoplayed].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .rate()
+                     * .time()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [VideoRetentionGraphAutoplayed]. */
+                class Builder internal constructor() {
+
+                    private var rate: JsonField<Double>? = null
+                    private var time: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(
+                        videoRetentionGraphAutoplayed: VideoRetentionGraphAutoplayed
+                    ) = apply {
+                        rate = videoRetentionGraphAutoplayed.rate
+                        time = videoRetentionGraphAutoplayed.time
+                        additionalProperties =
+                            videoRetentionGraphAutoplayed.additionalProperties.toMutableMap()
+                    }
+
+                    /** Percentage of viewers at this time */
+                    fun rate(rate: Double) = rate(JsonField.of(rate))
+
+                    /**
+                     * Sets [Builder.rate] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.rate] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun rate(rate: JsonField<Double>) = apply { this.rate = rate }
+
+                    /** Time in seconds */
+                    fun time(time: Double) = time(JsonField.of(time))
+
+                    /**
+                     * Sets [Builder.time] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.time] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun time(time: JsonField<Double>) = apply { this.time = time }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [VideoRetentionGraphAutoplayed].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .rate()
+                     * .time()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): VideoRetentionGraphAutoplayed =
+                        VideoRetentionGraphAutoplayed(
+                            checkRequired("rate", rate),
+                            checkRequired("time", time),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): VideoRetentionGraphAutoplayed = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    rate()
+                    time()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (rate.asKnown() == null) 0 else 1) + (if (time.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is VideoRetentionGraphAutoplayed &&
+                        rate == other.rate &&
+                        time == other.time &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy { Objects.hash(rate, time, additionalProperties) }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "VideoRetentionGraphAutoplayed{rate=$rate, time=$time, additionalProperties=$additionalProperties}"
+            }
+
+            class VideoRetentionGraphClickedToPlay
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val rate: JsonField<Double>,
+                private val time: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("rate")
+                    @ExcludeMissing
+                    rate: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("time") @ExcludeMissing time: JsonField<Double> = JsonMissing.of(),
+                ) : this(rate, time, mutableMapOf())
+
+                /**
+                 * Percentage of viewers at this time
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun rate(): Double = rate.getRequired("rate")
+
+                /**
+                 * Time in seconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun time(): Double = time.getRequired("time")
+
+                /**
+                 * Returns the raw JSON value of [rate].
+                 *
+                 * Unlike [rate], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("rate") @ExcludeMissing fun _rate(): JsonField<Double> = rate
+
+                /**
+                 * Returns the raw JSON value of [time].
+                 *
+                 * Unlike [time], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("time") @ExcludeMissing fun _time(): JsonField<Double> = time
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [VideoRetentionGraphClickedToPlay].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .rate()
+                     * .time()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [VideoRetentionGraphClickedToPlay]. */
+                class Builder internal constructor() {
+
+                    private var rate: JsonField<Double>? = null
+                    private var time: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(
+                        videoRetentionGraphClickedToPlay: VideoRetentionGraphClickedToPlay
+                    ) = apply {
+                        rate = videoRetentionGraphClickedToPlay.rate
+                        time = videoRetentionGraphClickedToPlay.time
+                        additionalProperties =
+                            videoRetentionGraphClickedToPlay.additionalProperties.toMutableMap()
+                    }
+
+                    /** Percentage of viewers at this time */
+                    fun rate(rate: Double) = rate(JsonField.of(rate))
+
+                    /**
+                     * Sets [Builder.rate] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.rate] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun rate(rate: JsonField<Double>) = apply { this.rate = rate }
+
+                    /** Time in seconds */
+                    fun time(time: Double) = time(JsonField.of(time))
+
+                    /**
+                     * Sets [Builder.time] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.time] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun time(time: JsonField<Double>) = apply { this.time = time }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [VideoRetentionGraphClickedToPlay].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .rate()
+                     * .time()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): VideoRetentionGraphClickedToPlay =
+                        VideoRetentionGraphClickedToPlay(
+                            checkRequired("rate", rate),
+                            checkRequired("time", time),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): VideoRetentionGraphClickedToPlay = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    rate()
+                    time()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (rate.asKnown() == null) 0 else 1) + (if (time.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is VideoRetentionGraphClickedToPlay &&
+                        rate == other.rate &&
+                        time == other.time &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy { Objects.hash(rate, time, additionalProperties) }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "VideoRetentionGraphClickedToPlay{rate=$rate, time=$time, additionalProperties=$additionalProperties}"
+            }
+
+            class VideoViewTimeByAgeGender
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val key: JsonField<String>,
+                private val value: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("key") @ExcludeMissing key: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("value")
+                    @ExcludeMissing
+                    value: JsonField<Double> = JsonMissing.of(),
+                ) : this(key, value, mutableMapOf())
+
+                /**
+                 * Demographic key (e.g., age_gender, region, country)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun key(): String = key.getRequired("key")
+
+                /**
+                 * Total view time in milliseconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun value(): Double = value.getRequired("value")
+
+                /**
+                 * Returns the raw JSON value of [key].
+                 *
+                 * Unlike [key], this method doesn't throw if the JSON field has an unexpected type.
+                 */
+                @JsonProperty("key") @ExcludeMissing fun _key(): JsonField<String> = key
+
+                /**
+                 * Returns the raw JSON value of [value].
+                 *
+                 * Unlike [value], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("value") @ExcludeMissing fun _value(): JsonField<Double> = value
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [VideoViewTimeByAgeGender].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .key()
+                     * .value()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [VideoViewTimeByAgeGender]. */
+                class Builder internal constructor() {
+
+                    private var key: JsonField<String>? = null
+                    private var value: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(videoViewTimeByAgeGender: VideoViewTimeByAgeGender) = apply {
+                        key = videoViewTimeByAgeGender.key
+                        value = videoViewTimeByAgeGender.value
+                        additionalProperties =
+                            videoViewTimeByAgeGender.additionalProperties.toMutableMap()
+                    }
+
+                    /** Demographic key (e.g., age_gender, region, country) */
+                    fun key(key: String) = key(JsonField.of(key))
+
+                    /**
+                     * Sets [Builder.key] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.key] with a well-typed [String] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun key(key: JsonField<String>) = apply { this.key = key }
+
+                    /** Total view time in milliseconds */
+                    fun value(value: Double) = value(JsonField.of(value))
+
+                    /**
+                     * Sets [Builder.value] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.value] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun value(value: JsonField<Double>) = apply { this.value = value }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [VideoViewTimeByAgeGender].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .key()
+                     * .value()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): VideoViewTimeByAgeGender =
+                        VideoViewTimeByAgeGender(
+                            checkRequired("key", key),
+                            checkRequired("value", value),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): VideoViewTimeByAgeGender = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    key()
+                    value()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (key.asKnown() == null) 0 else 1) + (if (value.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is VideoViewTimeByAgeGender &&
+                        key == other.key &&
+                        value == other.value &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy { Objects.hash(key, value, additionalProperties) }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "VideoViewTimeByAgeGender{key=$key, value=$value, additionalProperties=$additionalProperties}"
+            }
+
+            class VideoViewTimeByCountry
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val key: JsonField<String>,
+                private val value: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("key") @ExcludeMissing key: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("value")
+                    @ExcludeMissing
+                    value: JsonField<Double> = JsonMissing.of(),
+                ) : this(key, value, mutableMapOf())
+
+                /**
+                 * Demographic key (e.g., age_gender, region, country)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun key(): String = key.getRequired("key")
+
+                /**
+                 * Total view time in milliseconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun value(): Double = value.getRequired("value")
+
+                /**
+                 * Returns the raw JSON value of [key].
+                 *
+                 * Unlike [key], this method doesn't throw if the JSON field has an unexpected type.
+                 */
+                @JsonProperty("key") @ExcludeMissing fun _key(): JsonField<String> = key
+
+                /**
+                 * Returns the raw JSON value of [value].
+                 *
+                 * Unlike [value], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("value") @ExcludeMissing fun _value(): JsonField<Double> = value
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [VideoViewTimeByCountry].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .key()
+                     * .value()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [VideoViewTimeByCountry]. */
+                class Builder internal constructor() {
+
+                    private var key: JsonField<String>? = null
+                    private var value: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(videoViewTimeByCountry: VideoViewTimeByCountry) = apply {
+                        key = videoViewTimeByCountry.key
+                        value = videoViewTimeByCountry.value
+                        additionalProperties =
+                            videoViewTimeByCountry.additionalProperties.toMutableMap()
+                    }
+
+                    /** Demographic key (e.g., age_gender, region, country) */
+                    fun key(key: String) = key(JsonField.of(key))
+
+                    /**
+                     * Sets [Builder.key] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.key] with a well-typed [String] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun key(key: JsonField<String>) = apply { this.key = key }
+
+                    /** Total view time in milliseconds */
+                    fun value(value: Double) = value(JsonField.of(value))
+
+                    /**
+                     * Sets [Builder.value] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.value] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun value(value: JsonField<Double>) = apply { this.value = value }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [VideoViewTimeByCountry].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .key()
+                     * .value()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): VideoViewTimeByCountry =
+                        VideoViewTimeByCountry(
+                            checkRequired("key", key),
+                            checkRequired("value", value),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): VideoViewTimeByCountry = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    key()
+                    value()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (key.asKnown() == null) 0 else 1) + (if (value.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is VideoViewTimeByCountry &&
+                        key == other.key &&
+                        value == other.value &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy { Objects.hash(key, value, additionalProperties) }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "VideoViewTimeByCountry{key=$key, value=$value, additionalProperties=$additionalProperties}"
+            }
+
+            class VideoViewTimeByRegion
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val key: JsonField<String>,
+                private val value: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("key") @ExcludeMissing key: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("value")
+                    @ExcludeMissing
+                    value: JsonField<Double> = JsonMissing.of(),
+                ) : this(key, value, mutableMapOf())
+
+                /**
+                 * Demographic key (e.g., age_gender, region, country)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun key(): String = key.getRequired("key")
+
+                /**
+                 * Total view time in milliseconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun value(): Double = value.getRequired("value")
+
+                /**
+                 * Returns the raw JSON value of [key].
+                 *
+                 * Unlike [key], this method doesn't throw if the JSON field has an unexpected type.
+                 */
+                @JsonProperty("key") @ExcludeMissing fun _key(): JsonField<String> = key
+
+                /**
+                 * Returns the raw JSON value of [value].
+                 *
+                 * Unlike [value], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("value") @ExcludeMissing fun _value(): JsonField<Double> = value
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of
+                     * [VideoViewTimeByRegion].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .key()
+                     * .value()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [VideoViewTimeByRegion]. */
+                class Builder internal constructor() {
+
+                    private var key: JsonField<String>? = null
+                    private var value: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(videoViewTimeByRegion: VideoViewTimeByRegion) = apply {
+                        key = videoViewTimeByRegion.key
+                        value = videoViewTimeByRegion.value
+                        additionalProperties =
+                            videoViewTimeByRegion.additionalProperties.toMutableMap()
+                    }
+
+                    /** Demographic key (e.g., age_gender, region, country) */
+                    fun key(key: String) = key(JsonField.of(key))
+
+                    /**
+                     * Sets [Builder.key] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.key] with a well-typed [String] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun key(key: JsonField<String>) = apply { this.key = key }
+
+                    /** Total view time in milliseconds */
+                    fun value(value: Double) = value(JsonField.of(value))
+
+                    /**
+                     * Sets [Builder.value] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.value] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun value(value: JsonField<Double>) = apply { this.value = value }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [VideoViewTimeByRegion].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .key()
+                     * .value()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): VideoViewTimeByRegion =
+                        VideoViewTimeByRegion(
+                            checkRequired("key", key),
+                            checkRequired("value", value),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): VideoViewTimeByRegion = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    key()
+                    value()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (key.asKnown() == null) 0 else 1) + (if (value.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is VideoViewTimeByRegion &&
+                        key == other.key &&
+                        value == other.value &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy { Objects.hash(key, value, additionalProperties) }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "VideoViewTimeByRegion{key=$key, value=$value, additionalProperties=$additionalProperties}"
+            }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is FacebookPostMetricsDto &&
+                    activityByActionType == other.activityByActionType &&
+                    activityByActionTypeUnique == other.activityByActionTypeUnique &&
+                    comments == other.comments &&
+                    fanReach == other.fanReach &&
+                    mediaViews == other.mediaViews &&
+                    nonviralReach == other.nonviralReach &&
+                    organicReach == other.organicReach &&
+                    paidReach == other.paidReach &&
+                    reach == other.reach &&
+                    reactionsAnger == other.reactionsAnger &&
+                    reactionsByType == other.reactionsByType &&
+                    reactionsHaha == other.reactionsHaha &&
+                    reactionsLike == other.reactionsLike &&
+                    reactionsLove == other.reactionsLove &&
+                    reactionsSorry == other.reactionsSorry &&
+                    reactionsTotal == other.reactionsTotal &&
+                    reactionsWow == other.reactionsWow &&
+                    shares == other.shares &&
+                    videoAvgTimeWatched == other.videoAvgTimeWatched &&
+                    videoCompleteViewsOrganic == other.videoCompleteViewsOrganic &&
+                    videoCompleteViewsOrganicUnique == other.videoCompleteViewsOrganicUnique &&
+                    videoCompleteViewsPaid == other.videoCompleteViewsPaid &&
+                    videoCompleteViewsPaidUnique == other.videoCompleteViewsPaidUnique &&
+                    videoLength == other.videoLength &&
+                    videoRetentionGraphAutoplayed == other.videoRetentionGraphAutoplayed &&
+                    videoRetentionGraphClickedToPlay == other.videoRetentionGraphClickedToPlay &&
+                    videoSocialActionsUnique == other.videoSocialActionsUnique &&
+                    videoViewTime == other.videoViewTime &&
+                    videoViewTimeByAgeGender == other.videoViewTimeByAgeGender &&
+                    videoViewTimeByCountry == other.videoViewTimeByCountry &&
+                    videoViewTimeByDistributionType == other.videoViewTimeByDistributionType &&
+                    videoViewTimeByRegion == other.videoViewTimeByRegion &&
+                    videoViewTimeOrganic == other.videoViewTimeOrganic &&
+                    videoViews == other.videoViews &&
+                    videoViews15s == other.videoViews15s &&
+                    videoViews60s == other.videoViews60s &&
+                    videoViewsAutoplayed == other.videoViewsAutoplayed &&
+                    videoViewsByDistributionType == other.videoViewsByDistributionType &&
+                    videoViewsClickedToPlay == other.videoViewsClickedToPlay &&
+                    videoViewsOrganic == other.videoViewsOrganic &&
+                    videoViewsOrganicUnique == other.videoViewsOrganicUnique &&
+                    videoViewsPaid == other.videoViewsPaid &&
+                    videoViewsPaidUnique == other.videoViewsPaidUnique &&
+                    videoViewsSoundOn == other.videoViewsSoundOn &&
+                    videoViewsUnique == other.videoViewsUnique &&
+                    viralReach == other.viralReach &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(
+                    activityByActionType,
+                    activityByActionTypeUnique,
+                    comments,
+                    fanReach,
+                    mediaViews,
+                    nonviralReach,
+                    organicReach,
+                    paidReach,
+                    reach,
+                    reactionsAnger,
+                    reactionsByType,
+                    reactionsHaha,
+                    reactionsLike,
+                    reactionsLove,
+                    reactionsSorry,
+                    reactionsTotal,
+                    reactionsWow,
+                    shares,
+                    videoAvgTimeWatched,
+                    videoCompleteViewsOrganic,
+                    videoCompleteViewsOrganicUnique,
+                    videoCompleteViewsPaid,
+                    videoCompleteViewsPaidUnique,
+                    videoLength,
+                    videoRetentionGraphAutoplayed,
+                    videoRetentionGraphClickedToPlay,
+                    videoSocialActionsUnique,
+                    videoViewTime,
+                    videoViewTimeByAgeGender,
+                    videoViewTimeByCountry,
+                    videoViewTimeByDistributionType,
+                    videoViewTimeByRegion,
+                    videoViewTimeOrganic,
+                    videoViews,
+                    videoViews15s,
+                    videoViews60s,
+                    videoViewsAutoplayed,
+                    videoViewsByDistributionType,
+                    videoViewsClickedToPlay,
+                    videoViewsOrganic,
+                    videoViewsOrganicUnique,
+                    videoViewsPaid,
+                    videoViewsPaidUnique,
+                    videoViewsSoundOn,
+                    videoViewsUnique,
+                    viralReach,
+                    additionalProperties,
+                )
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "FacebookPostMetricsDto{activityByActionType=$activityByActionType, activityByActionTypeUnique=$activityByActionTypeUnique, comments=$comments, fanReach=$fanReach, mediaViews=$mediaViews, nonviralReach=$nonviralReach, organicReach=$organicReach, paidReach=$paidReach, reach=$reach, reactionsAnger=$reactionsAnger, reactionsByType=$reactionsByType, reactionsHaha=$reactionsHaha, reactionsLike=$reactionsLike, reactionsLove=$reactionsLove, reactionsSorry=$reactionsSorry, reactionsTotal=$reactionsTotal, reactionsWow=$reactionsWow, shares=$shares, videoAvgTimeWatched=$videoAvgTimeWatched, videoCompleteViewsOrganic=$videoCompleteViewsOrganic, videoCompleteViewsOrganicUnique=$videoCompleteViewsOrganicUnique, videoCompleteViewsPaid=$videoCompleteViewsPaid, videoCompleteViewsPaidUnique=$videoCompleteViewsPaidUnique, videoLength=$videoLength, videoRetentionGraphAutoplayed=$videoRetentionGraphAutoplayed, videoRetentionGraphClickedToPlay=$videoRetentionGraphClickedToPlay, videoSocialActionsUnique=$videoSocialActionsUnique, videoViewTime=$videoViewTime, videoViewTimeByAgeGender=$videoViewTimeByAgeGender, videoViewTimeByCountry=$videoViewTimeByCountry, videoViewTimeByDistributionType=$videoViewTimeByDistributionType, videoViewTimeByRegion=$videoViewTimeByRegion, videoViewTimeOrganic=$videoViewTimeOrganic, videoViews=$videoViews, videoViews15s=$videoViews15s, videoViews60s=$videoViews60s, videoViewsAutoplayed=$videoViewsAutoplayed, videoViewsByDistributionType=$videoViewsByDistributionType, videoViewsClickedToPlay=$videoViewsClickedToPlay, videoViewsOrganic=$videoViewsOrganic, videoViewsOrganicUnique=$videoViewsOrganicUnique, videoViewsPaid=$videoViewsPaid, videoViewsPaidUnique=$videoViewsPaidUnique, videoViewsSoundOn=$videoViewsSoundOn, videoViewsUnique=$videoViewsUnique, viralReach=$viralReach, additionalProperties=$additionalProperties}"
+        }
+
+        class TwitterPostMetricsDto
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+        private constructor(
+            private val nonPublicMetrics: JsonField<NonPublicMetrics>,
+            private val organicMetrics: JsonField<OrganicMetrics>,
+            private val publicMetrics: JsonField<PublicMetrics>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("non_public_metrics")
+                @ExcludeMissing
+                nonPublicMetrics: JsonField<NonPublicMetrics> = JsonMissing.of(),
+                @JsonProperty("organic_metrics")
+                @ExcludeMissing
+                organicMetrics: JsonField<OrganicMetrics> = JsonMissing.of(),
+                @JsonProperty("public_metrics")
+                @ExcludeMissing
+                publicMetrics: JsonField<PublicMetrics> = JsonMissing.of(),
+            ) : this(nonPublicMetrics, organicMetrics, publicMetrics, mutableMapOf())
+
+            /**
+             * Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun nonPublicMetrics(): NonPublicMetrics? =
+                nonPublicMetrics.getNullable("non_public_metrics")
+
+            /**
+             * Organic metrics for the Tweet (available to the Tweet owner)
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun organicMetrics(): OrganicMetrics? = organicMetrics.getNullable("organic_metrics")
+
+            /**
+             * Publicly available metrics for the Tweet
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun publicMetrics(): PublicMetrics? = publicMetrics.getNullable("public_metrics")
+
+            /**
+             * Returns the raw JSON value of [nonPublicMetrics].
+             *
+             * Unlike [nonPublicMetrics], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("non_public_metrics")
+            @ExcludeMissing
+            fun _nonPublicMetrics(): JsonField<NonPublicMetrics> = nonPublicMetrics
+
+            /**
+             * Returns the raw JSON value of [organicMetrics].
+             *
+             * Unlike [organicMetrics], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("organic_metrics")
+            @ExcludeMissing
+            fun _organicMetrics(): JsonField<OrganicMetrics> = organicMetrics
+
+            /**
+             * Returns the raw JSON value of [publicMetrics].
+             *
+             * Unlike [publicMetrics], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("public_metrics")
+            @ExcludeMissing
+            fun _publicMetrics(): JsonField<PublicMetrics> = publicMetrics
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of
+                 * [TwitterPostMetricsDto].
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [TwitterPostMetricsDto]. */
+            class Builder internal constructor() {
+
+                private var nonPublicMetrics: JsonField<NonPublicMetrics> = JsonMissing.of()
+                private var organicMetrics: JsonField<OrganicMetrics> = JsonMissing.of()
+                private var publicMetrics: JsonField<PublicMetrics> = JsonMissing.of()
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(twitterPostMetricsDto: TwitterPostMetricsDto) = apply {
+                    nonPublicMetrics = twitterPostMetricsDto.nonPublicMetrics
+                    organicMetrics = twitterPostMetricsDto.organicMetrics
+                    publicMetrics = twitterPostMetricsDto.publicMetrics
+                    additionalProperties = twitterPostMetricsDto.additionalProperties.toMutableMap()
+                }
+
+                /**
+                 * Non-public metrics for the Tweet (available to the Tweet owner or advertisers)
+                 */
+                fun nonPublicMetrics(nonPublicMetrics: NonPublicMetrics) =
+                    nonPublicMetrics(JsonField.of(nonPublicMetrics))
+
+                /**
+                 * Sets [Builder.nonPublicMetrics] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.nonPublicMetrics] with a well-typed
+                 * [NonPublicMetrics] value instead. This method is primarily for setting the field
+                 * to an undocumented or not yet supported value.
+                 */
+                fun nonPublicMetrics(nonPublicMetrics: JsonField<NonPublicMetrics>) = apply {
+                    this.nonPublicMetrics = nonPublicMetrics
+                }
+
+                /** Organic metrics for the Tweet (available to the Tweet owner) */
+                fun organicMetrics(organicMetrics: OrganicMetrics) =
+                    organicMetrics(JsonField.of(organicMetrics))
+
+                /**
+                 * Sets [Builder.organicMetrics] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.organicMetrics] with a well-typed
+                 * [OrganicMetrics] value instead. This method is primarily for setting the field to
+                 * an undocumented or not yet supported value.
+                 */
+                fun organicMetrics(organicMetrics: JsonField<OrganicMetrics>) = apply {
+                    this.organicMetrics = organicMetrics
+                }
+
+                /** Publicly available metrics for the Tweet */
+                fun publicMetrics(publicMetrics: PublicMetrics) =
+                    publicMetrics(JsonField.of(publicMetrics))
+
+                /**
+                 * Sets [Builder.publicMetrics] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.publicMetrics] with a well-typed [PublicMetrics]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun publicMetrics(publicMetrics: JsonField<PublicMetrics>) = apply {
+                    this.publicMetrics = publicMetrics
+                }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [TwitterPostMetricsDto].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 */
+                fun build(): TwitterPostMetricsDto =
+                    TwitterPostMetricsDto(
+                        nonPublicMetrics,
+                        organicMetrics,
+                        publicMetrics,
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): TwitterPostMetricsDto = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                nonPublicMetrics()?.validate()
+                organicMetrics()?.validate()
+                publicMetrics()?.validate()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (nonPublicMetrics.asKnown()?.validity() ?: 0) +
+                    (organicMetrics.asKnown()?.validity() ?: 0) +
+                    (publicMetrics.asKnown()?.validity() ?: 0)
+
+            /** Non-public metrics for the Tweet (available to the Tweet owner or advertisers) */
+            class NonPublicMetrics
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val impressionCount: JsonField<Double>,
+                private val urlLinkClicks: JsonField<Double>,
+                private val userProfileClicks: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("impression_count")
+                    @ExcludeMissing
+                    impressionCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("url_link_clicks")
+                    @ExcludeMissing
+                    urlLinkClicks: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("user_profile_clicks")
+                    @ExcludeMissing
+                    userProfileClicks: JsonField<Double> = JsonMissing.of(),
+                ) : this(impressionCount, urlLinkClicks, userProfileClicks, mutableMapOf())
+
+                /**
+                 * Number of times this Tweet has been viewed via promoted distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun impressionCount(): Double = impressionCount.getRequired("impression_count")
+
+                /**
+                 * Number of clicks on links in this Tweet via promoted distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun urlLinkClicks(): Double = urlLinkClicks.getRequired("url_link_clicks")
+
+                /**
+                 * Number of clicks on the author's profile via promoted distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun userProfileClicks(): Double =
+                    userProfileClicks.getRequired("user_profile_clicks")
+
+                /**
+                 * Returns the raw JSON value of [impressionCount].
+                 *
+                 * Unlike [impressionCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("impression_count")
+                @ExcludeMissing
+                fun _impressionCount(): JsonField<Double> = impressionCount
+
+                /**
+                 * Returns the raw JSON value of [urlLinkClicks].
+                 *
+                 * Unlike [urlLinkClicks], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("url_link_clicks")
+                @ExcludeMissing
+                fun _urlLinkClicks(): JsonField<Double> = urlLinkClicks
+
+                /**
+                 * Returns the raw JSON value of [userProfileClicks].
+                 *
+                 * Unlike [userProfileClicks], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("user_profile_clicks")
+                @ExcludeMissing
+                fun _userProfileClicks(): JsonField<Double> = userProfileClicks
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of [NonPublicMetrics].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .impressionCount()
+                     * .urlLinkClicks()
+                     * .userProfileClicks()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [NonPublicMetrics]. */
+                class Builder internal constructor() {
+
+                    private var impressionCount: JsonField<Double>? = null
+                    private var urlLinkClicks: JsonField<Double>? = null
+                    private var userProfileClicks: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(nonPublicMetrics: NonPublicMetrics) = apply {
+                        impressionCount = nonPublicMetrics.impressionCount
+                        urlLinkClicks = nonPublicMetrics.urlLinkClicks
+                        userProfileClicks = nonPublicMetrics.userProfileClicks
+                        additionalProperties = nonPublicMetrics.additionalProperties.toMutableMap()
+                    }
+
+                    /** Number of times this Tweet has been viewed via promoted distribution */
+                    fun impressionCount(impressionCount: Double) =
+                        impressionCount(JsonField.of(impressionCount))
+
+                    /**
+                     * Sets [Builder.impressionCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.impressionCount] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun impressionCount(impressionCount: JsonField<Double>) = apply {
+                        this.impressionCount = impressionCount
+                    }
+
+                    /** Number of clicks on links in this Tweet via promoted distribution */
+                    fun urlLinkClicks(urlLinkClicks: Double) =
+                        urlLinkClicks(JsonField.of(urlLinkClicks))
+
+                    /**
+                     * Sets [Builder.urlLinkClicks] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.urlLinkClicks] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun urlLinkClicks(urlLinkClicks: JsonField<Double>) = apply {
+                        this.urlLinkClicks = urlLinkClicks
+                    }
+
+                    /** Number of clicks on the author's profile via promoted distribution */
+                    fun userProfileClicks(userProfileClicks: Double) =
+                        userProfileClicks(JsonField.of(userProfileClicks))
+
+                    /**
+                     * Sets [Builder.userProfileClicks] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.userProfileClicks] with a well-typed
+                     * [Double] value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun userProfileClicks(userProfileClicks: JsonField<Double>) = apply {
+                        this.userProfileClicks = userProfileClicks
+                    }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [NonPublicMetrics].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .impressionCount()
+                     * .urlLinkClicks()
+                     * .userProfileClicks()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): NonPublicMetrics =
+                        NonPublicMetrics(
+                            checkRequired("impressionCount", impressionCount),
+                            checkRequired("urlLinkClicks", urlLinkClicks),
+                            checkRequired("userProfileClicks", userProfileClicks),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): NonPublicMetrics = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    impressionCount()
+                    urlLinkClicks()
+                    userProfileClicks()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (impressionCount.asKnown() == null) 0 else 1) +
+                        (if (urlLinkClicks.asKnown() == null) 0 else 1) +
+                        (if (userProfileClicks.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is NonPublicMetrics &&
+                        impressionCount == other.impressionCount &&
+                        urlLinkClicks == other.urlLinkClicks &&
+                        userProfileClicks == other.userProfileClicks &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(
+                        impressionCount,
+                        urlLinkClicks,
+                        userProfileClicks,
+                        additionalProperties,
+                    )
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "NonPublicMetrics{impressionCount=$impressionCount, urlLinkClicks=$urlLinkClicks, userProfileClicks=$userProfileClicks, additionalProperties=$additionalProperties}"
+            }
+
+            /** Organic metrics for the Tweet (available to the Tweet owner) */
+            class OrganicMetrics
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val impressionCount: JsonField<Double>,
+                private val likeCount: JsonField<Double>,
+                private val replyCount: JsonField<Double>,
+                private val retweetCount: JsonField<Double>,
+                private val urlLinkClicks: JsonField<Double>,
+                private val userProfileClicks: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("impression_count")
+                    @ExcludeMissing
+                    impressionCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("like_count")
+                    @ExcludeMissing
+                    likeCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("reply_count")
+                    @ExcludeMissing
+                    replyCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("retweet_count")
+                    @ExcludeMissing
+                    retweetCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("url_link_clicks")
+                    @ExcludeMissing
+                    urlLinkClicks: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("user_profile_clicks")
+                    @ExcludeMissing
+                    userProfileClicks: JsonField<Double> = JsonMissing.of(),
+                ) : this(
+                    impressionCount,
+                    likeCount,
+                    replyCount,
+                    retweetCount,
+                    urlLinkClicks,
+                    userProfileClicks,
+                    mutableMapOf(),
+                )
+
+                /**
+                 * Number of times this Tweet has been viewed organically
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun impressionCount(): Double = impressionCount.getRequired("impression_count")
+
+                /**
+                 * Number of Likes of this Tweet from organic distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun likeCount(): Double = likeCount.getRequired("like_count")
+
+                /**
+                 * Number of Replies of this Tweet from organic distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun replyCount(): Double = replyCount.getRequired("reply_count")
+
+                /**
+                 * Number of Retweets of this Tweet from organic distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun retweetCount(): Double = retweetCount.getRequired("retweet_count")
+
+                /**
+                 * Number of clicks on links in this Tweet from organic distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun urlLinkClicks(): Double = urlLinkClicks.getRequired("url_link_clicks")
+
+                /**
+                 * Number of clicks on the author's profile from organic distribution
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun userProfileClicks(): Double =
+                    userProfileClicks.getRequired("user_profile_clicks")
+
+                /**
+                 * Returns the raw JSON value of [impressionCount].
+                 *
+                 * Unlike [impressionCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("impression_count")
+                @ExcludeMissing
+                fun _impressionCount(): JsonField<Double> = impressionCount
+
+                /**
+                 * Returns the raw JSON value of [likeCount].
+                 *
+                 * Unlike [likeCount], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("like_count")
+                @ExcludeMissing
+                fun _likeCount(): JsonField<Double> = likeCount
+
+                /**
+                 * Returns the raw JSON value of [replyCount].
+                 *
+                 * Unlike [replyCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("reply_count")
+                @ExcludeMissing
+                fun _replyCount(): JsonField<Double> = replyCount
+
+                /**
+                 * Returns the raw JSON value of [retweetCount].
+                 *
+                 * Unlike [retweetCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("retweet_count")
+                @ExcludeMissing
+                fun _retweetCount(): JsonField<Double> = retweetCount
+
+                /**
+                 * Returns the raw JSON value of [urlLinkClicks].
+                 *
+                 * Unlike [urlLinkClicks], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("url_link_clicks")
+                @ExcludeMissing
+                fun _urlLinkClicks(): JsonField<Double> = urlLinkClicks
+
+                /**
+                 * Returns the raw JSON value of [userProfileClicks].
+                 *
+                 * Unlike [userProfileClicks], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("user_profile_clicks")
+                @ExcludeMissing
+                fun _userProfileClicks(): JsonField<Double> = userProfileClicks
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of [OrganicMetrics].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .impressionCount()
+                     * .likeCount()
+                     * .replyCount()
+                     * .retweetCount()
+                     * .urlLinkClicks()
+                     * .userProfileClicks()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [OrganicMetrics]. */
+                class Builder internal constructor() {
+
+                    private var impressionCount: JsonField<Double>? = null
+                    private var likeCount: JsonField<Double>? = null
+                    private var replyCount: JsonField<Double>? = null
+                    private var retweetCount: JsonField<Double>? = null
+                    private var urlLinkClicks: JsonField<Double>? = null
+                    private var userProfileClicks: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(organicMetrics: OrganicMetrics) = apply {
+                        impressionCount = organicMetrics.impressionCount
+                        likeCount = organicMetrics.likeCount
+                        replyCount = organicMetrics.replyCount
+                        retweetCount = organicMetrics.retweetCount
+                        urlLinkClicks = organicMetrics.urlLinkClicks
+                        userProfileClicks = organicMetrics.userProfileClicks
+                        additionalProperties = organicMetrics.additionalProperties.toMutableMap()
+                    }
+
+                    /** Number of times this Tweet has been viewed organically */
+                    fun impressionCount(impressionCount: Double) =
+                        impressionCount(JsonField.of(impressionCount))
+
+                    /**
+                     * Sets [Builder.impressionCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.impressionCount] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun impressionCount(impressionCount: JsonField<Double>) = apply {
+                        this.impressionCount = impressionCount
+                    }
+
+                    /** Number of Likes of this Tweet from organic distribution */
+                    fun likeCount(likeCount: Double) = likeCount(JsonField.of(likeCount))
+
+                    /**
+                     * Sets [Builder.likeCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.likeCount] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun likeCount(likeCount: JsonField<Double>) = apply {
+                        this.likeCount = likeCount
+                    }
+
+                    /** Number of Replies of this Tweet from organic distribution */
+                    fun replyCount(replyCount: Double) = replyCount(JsonField.of(replyCount))
+
+                    /**
+                     * Sets [Builder.replyCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.replyCount] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun replyCount(replyCount: JsonField<Double>) = apply {
+                        this.replyCount = replyCount
+                    }
+
+                    /** Number of Retweets of this Tweet from organic distribution */
+                    fun retweetCount(retweetCount: Double) =
+                        retweetCount(JsonField.of(retweetCount))
+
+                    /**
+                     * Sets [Builder.retweetCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.retweetCount] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun retweetCount(retweetCount: JsonField<Double>) = apply {
+                        this.retweetCount = retweetCount
+                    }
+
+                    /** Number of clicks on links in this Tweet from organic distribution */
+                    fun urlLinkClicks(urlLinkClicks: Double) =
+                        urlLinkClicks(JsonField.of(urlLinkClicks))
+
+                    /**
+                     * Sets [Builder.urlLinkClicks] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.urlLinkClicks] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun urlLinkClicks(urlLinkClicks: JsonField<Double>) = apply {
+                        this.urlLinkClicks = urlLinkClicks
+                    }
+
+                    /** Number of clicks on the author's profile from organic distribution */
+                    fun userProfileClicks(userProfileClicks: Double) =
+                        userProfileClicks(JsonField.of(userProfileClicks))
+
+                    /**
+                     * Sets [Builder.userProfileClicks] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.userProfileClicks] with a well-typed
+                     * [Double] value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun userProfileClicks(userProfileClicks: JsonField<Double>) = apply {
+                        this.userProfileClicks = userProfileClicks
+                    }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [OrganicMetrics].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .impressionCount()
+                     * .likeCount()
+                     * .replyCount()
+                     * .retweetCount()
+                     * .urlLinkClicks()
+                     * .userProfileClicks()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): OrganicMetrics =
+                        OrganicMetrics(
+                            checkRequired("impressionCount", impressionCount),
+                            checkRequired("likeCount", likeCount),
+                            checkRequired("replyCount", replyCount),
+                            checkRequired("retweetCount", retweetCount),
+                            checkRequired("urlLinkClicks", urlLinkClicks),
+                            checkRequired("userProfileClicks", userProfileClicks),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): OrganicMetrics = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    impressionCount()
+                    likeCount()
+                    replyCount()
+                    retweetCount()
+                    urlLinkClicks()
+                    userProfileClicks()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (impressionCount.asKnown() == null) 0 else 1) +
+                        (if (likeCount.asKnown() == null) 0 else 1) +
+                        (if (replyCount.asKnown() == null) 0 else 1) +
+                        (if (retweetCount.asKnown() == null) 0 else 1) +
+                        (if (urlLinkClicks.asKnown() == null) 0 else 1) +
+                        (if (userProfileClicks.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is OrganicMetrics &&
+                        impressionCount == other.impressionCount &&
+                        likeCount == other.likeCount &&
+                        replyCount == other.replyCount &&
+                        retweetCount == other.retweetCount &&
+                        urlLinkClicks == other.urlLinkClicks &&
+                        userProfileClicks == other.userProfileClicks &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(
+                        impressionCount,
+                        likeCount,
+                        replyCount,
+                        retweetCount,
+                        urlLinkClicks,
+                        userProfileClicks,
+                        additionalProperties,
+                    )
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "OrganicMetrics{impressionCount=$impressionCount, likeCount=$likeCount, replyCount=$replyCount, retweetCount=$retweetCount, urlLinkClicks=$urlLinkClicks, userProfileClicks=$userProfileClicks, additionalProperties=$additionalProperties}"
+            }
+
+            /** Publicly available metrics for the Tweet */
+            class PublicMetrics
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val bookmarkCount: JsonField<Double>,
+                private val impressionCount: JsonField<Double>,
+                private val likeCount: JsonField<Double>,
+                private val quoteCount: JsonField<Double>,
+                private val replyCount: JsonField<Double>,
+                private val retweetCount: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("bookmark_count")
+                    @ExcludeMissing
+                    bookmarkCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("impression_count")
+                    @ExcludeMissing
+                    impressionCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("like_count")
+                    @ExcludeMissing
+                    likeCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("quote_count")
+                    @ExcludeMissing
+                    quoteCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("reply_count")
+                    @ExcludeMissing
+                    replyCount: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("retweet_count")
+                    @ExcludeMissing
+                    retweetCount: JsonField<Double> = JsonMissing.of(),
+                ) : this(
+                    bookmarkCount,
+                    impressionCount,
+                    likeCount,
+                    quoteCount,
+                    replyCount,
+                    retweetCount,
+                    mutableMapOf(),
+                )
+
+                /**
+                 * Number of times this Tweet has been bookmarked
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun bookmarkCount(): Double = bookmarkCount.getRequired("bookmark_count")
+
+                /**
+                 * Number of times this Tweet has been viewed
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun impressionCount(): Double = impressionCount.getRequired("impression_count")
+
+                /**
+                 * Number of Likes of this Tweet
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun likeCount(): Double = likeCount.getRequired("like_count")
+
+                /**
+                 * Number of Quotes of this Tweet
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun quoteCount(): Double = quoteCount.getRequired("quote_count")
+
+                /**
+                 * Number of Replies of this Tweet
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun replyCount(): Double = replyCount.getRequired("reply_count")
+
+                /**
+                 * Number of Retweets of this Tweet
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or
+                 *   is unexpectedly missing or null (e.g. if the server responded with an
+                 *   unexpected value).
+                 */
+                fun retweetCount(): Double = retweetCount.getRequired("retweet_count")
+
+                /**
+                 * Returns the raw JSON value of [bookmarkCount].
+                 *
+                 * Unlike [bookmarkCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("bookmark_count")
+                @ExcludeMissing
+                fun _bookmarkCount(): JsonField<Double> = bookmarkCount
+
+                /**
+                 * Returns the raw JSON value of [impressionCount].
+                 *
+                 * Unlike [impressionCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("impression_count")
+                @ExcludeMissing
+                fun _impressionCount(): JsonField<Double> = impressionCount
+
+                /**
+                 * Returns the raw JSON value of [likeCount].
+                 *
+                 * Unlike [likeCount], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("like_count")
+                @ExcludeMissing
+                fun _likeCount(): JsonField<Double> = likeCount
+
+                /**
+                 * Returns the raw JSON value of [quoteCount].
+                 *
+                 * Unlike [quoteCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("quote_count")
+                @ExcludeMissing
+                fun _quoteCount(): JsonField<Double> = quoteCount
+
+                /**
+                 * Returns the raw JSON value of [replyCount].
+                 *
+                 * Unlike [replyCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("reply_count")
+                @ExcludeMissing
+                fun _replyCount(): JsonField<Double> = replyCount
+
+                /**
+                 * Returns the raw JSON value of [retweetCount].
+                 *
+                 * Unlike [retweetCount], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("retweet_count")
+                @ExcludeMissing
+                fun _retweetCount(): JsonField<Double> = retweetCount
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of [PublicMetrics].
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .bookmarkCount()
+                     * .impressionCount()
+                     * .likeCount()
+                     * .quoteCount()
+                     * .replyCount()
+                     * .retweetCount()
+                     * ```
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [PublicMetrics]. */
+                class Builder internal constructor() {
+
+                    private var bookmarkCount: JsonField<Double>? = null
+                    private var impressionCount: JsonField<Double>? = null
+                    private var likeCount: JsonField<Double>? = null
+                    private var quoteCount: JsonField<Double>? = null
+                    private var replyCount: JsonField<Double>? = null
+                    private var retweetCount: JsonField<Double>? = null
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(publicMetrics: PublicMetrics) = apply {
+                        bookmarkCount = publicMetrics.bookmarkCount
+                        impressionCount = publicMetrics.impressionCount
+                        likeCount = publicMetrics.likeCount
+                        quoteCount = publicMetrics.quoteCount
+                        replyCount = publicMetrics.replyCount
+                        retweetCount = publicMetrics.retweetCount
+                        additionalProperties = publicMetrics.additionalProperties.toMutableMap()
+                    }
+
+                    /** Number of times this Tweet has been bookmarked */
+                    fun bookmarkCount(bookmarkCount: Double) =
+                        bookmarkCount(JsonField.of(bookmarkCount))
+
+                    /**
+                     * Sets [Builder.bookmarkCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.bookmarkCount] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun bookmarkCount(bookmarkCount: JsonField<Double>) = apply {
+                        this.bookmarkCount = bookmarkCount
+                    }
+
+                    /** Number of times this Tweet has been viewed */
+                    fun impressionCount(impressionCount: Double) =
+                        impressionCount(JsonField.of(impressionCount))
+
+                    /**
+                     * Sets [Builder.impressionCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.impressionCount] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun impressionCount(impressionCount: JsonField<Double>) = apply {
+                        this.impressionCount = impressionCount
+                    }
+
+                    /** Number of Likes of this Tweet */
+                    fun likeCount(likeCount: Double) = likeCount(JsonField.of(likeCount))
+
+                    /**
+                     * Sets [Builder.likeCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.likeCount] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun likeCount(likeCount: JsonField<Double>) = apply {
+                        this.likeCount = likeCount
+                    }
+
+                    /** Number of Quotes of this Tweet */
+                    fun quoteCount(quoteCount: Double) = quoteCount(JsonField.of(quoteCount))
+
+                    /**
+                     * Sets [Builder.quoteCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.quoteCount] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun quoteCount(quoteCount: JsonField<Double>) = apply {
+                        this.quoteCount = quoteCount
+                    }
+
+                    /** Number of Replies of this Tweet */
+                    fun replyCount(replyCount: Double) = replyCount(JsonField.of(replyCount))
+
+                    /**
+                     * Sets [Builder.replyCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.replyCount] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun replyCount(replyCount: JsonField<Double>) = apply {
+                        this.replyCount = replyCount
+                    }
+
+                    /** Number of Retweets of this Tweet */
+                    fun retweetCount(retweetCount: Double) =
+                        retweetCount(JsonField.of(retweetCount))
+
+                    /**
+                     * Sets [Builder.retweetCount] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.retweetCount] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun retweetCount(retweetCount: JsonField<Double>) = apply {
+                        this.retweetCount = retweetCount
+                    }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [PublicMetrics].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     *
+                     * The following fields are required:
+                     * ```kotlin
+                     * .bookmarkCount()
+                     * .impressionCount()
+                     * .likeCount()
+                     * .quoteCount()
+                     * .replyCount()
+                     * .retweetCount()
+                     * ```
+                     *
+                     * @throws IllegalStateException if any required field is unset.
+                     */
+                    fun build(): PublicMetrics =
+                        PublicMetrics(
+                            checkRequired("bookmarkCount", bookmarkCount),
+                            checkRequired("impressionCount", impressionCount),
+                            checkRequired("likeCount", likeCount),
+                            checkRequired("quoteCount", quoteCount),
+                            checkRequired("replyCount", replyCount),
+                            checkRequired("retweetCount", retweetCount),
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): PublicMetrics = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    bookmarkCount()
+                    impressionCount()
+                    likeCount()
+                    quoteCount()
+                    replyCount()
+                    retweetCount()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (bookmarkCount.asKnown() == null) 0 else 1) +
+                        (if (impressionCount.asKnown() == null) 0 else 1) +
+                        (if (likeCount.asKnown() == null) 0 else 1) +
+                        (if (quoteCount.asKnown() == null) 0 else 1) +
+                        (if (replyCount.asKnown() == null) 0 else 1) +
+                        (if (retweetCount.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is PublicMetrics &&
+                        bookmarkCount == other.bookmarkCount &&
+                        impressionCount == other.impressionCount &&
+                        likeCount == other.likeCount &&
+                        quoteCount == other.quoteCount &&
+                        replyCount == other.replyCount &&
+                        retweetCount == other.retweetCount &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(
+                        bookmarkCount,
+                        impressionCount,
+                        likeCount,
+                        quoteCount,
+                        replyCount,
+                        retweetCount,
+                        additionalProperties,
+                    )
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "PublicMetrics{bookmarkCount=$bookmarkCount, impressionCount=$impressionCount, likeCount=$likeCount, quoteCount=$quoteCount, replyCount=$replyCount, retweetCount=$retweetCount, additionalProperties=$additionalProperties}"
+            }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is TwitterPostMetricsDto &&
+                    nonPublicMetrics == other.nonPublicMetrics &&
+                    organicMetrics == other.organicMetrics &&
+                    publicMetrics == other.publicMetrics &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(nonPublicMetrics, organicMetrics, publicMetrics, additionalProperties)
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "TwitterPostMetricsDto{nonPublicMetrics=$nonPublicMetrics, organicMetrics=$organicMetrics, publicMetrics=$publicMetrics, additionalProperties=$additionalProperties}"
+        }
+
+        class ThreadsPostMetricsDto
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+        private constructor(
+            private val likes: JsonField<Double>,
+            private val quotes: JsonField<Double>,
+            private val replies: JsonField<Double>,
+            private val reposts: JsonField<Double>,
+            private val shares: JsonField<Double>,
+            private val views: JsonField<Double>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("likes") @ExcludeMissing likes: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("quotes")
+                @ExcludeMissing
+                quotes: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("replies")
+                @ExcludeMissing
+                replies: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("reposts")
+                @ExcludeMissing
+                reposts: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("shares")
+                @ExcludeMissing
+                shares: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("views") @ExcludeMissing views: JsonField<Double> = JsonMissing.of(),
+            ) : this(likes, quotes, replies, reposts, shares, views, mutableMapOf())
+
+            /**
+             * Number of likes on the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun likes(): Double = likes.getRequired("likes")
+
+            /**
+             * Number of quotes of the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun quotes(): Double = quotes.getRequired("quotes")
+
+            /**
+             * Number of replies on the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun replies(): Double = replies.getRequired("replies")
+
+            /**
+             * Number of reposts of the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun reposts(): Double = reposts.getRequired("reposts")
+
+            /**
+             * Number of shares of the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun shares(): Double = shares.getRequired("shares")
+
+            /**
+             * Number of views on the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun views(): Double = views.getRequired("views")
+
+            /**
+             * Returns the raw JSON value of [likes].
+             *
+             * Unlike [likes], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("likes") @ExcludeMissing fun _likes(): JsonField<Double> = likes
+
+            /**
+             * Returns the raw JSON value of [quotes].
+             *
+             * Unlike [quotes], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("quotes") @ExcludeMissing fun _quotes(): JsonField<Double> = quotes
+
+            /**
+             * Returns the raw JSON value of [replies].
+             *
+             * Unlike [replies], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("replies") @ExcludeMissing fun _replies(): JsonField<Double> = replies
+
+            /**
+             * Returns the raw JSON value of [reposts].
+             *
+             * Unlike [reposts], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("reposts") @ExcludeMissing fun _reposts(): JsonField<Double> = reposts
+
+            /**
+             * Returns the raw JSON value of [shares].
+             *
+             * Unlike [shares], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("shares") @ExcludeMissing fun _shares(): JsonField<Double> = shares
+
+            /**
+             * Returns the raw JSON value of [views].
+             *
+             * Unlike [views], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("views") @ExcludeMissing fun _views(): JsonField<Double> = views
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of
+                 * [ThreadsPostMetricsDto].
+                 *
+                 * The following fields are required:
+                 * ```kotlin
+                 * .likes()
+                 * .quotes()
+                 * .replies()
+                 * .reposts()
+                 * .shares()
+                 * .views()
+                 * ```
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [ThreadsPostMetricsDto]. */
+            class Builder internal constructor() {
+
+                private var likes: JsonField<Double>? = null
+                private var quotes: JsonField<Double>? = null
+                private var replies: JsonField<Double>? = null
+                private var reposts: JsonField<Double>? = null
+                private var shares: JsonField<Double>? = null
+                private var views: JsonField<Double>? = null
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(threadsPostMetricsDto: ThreadsPostMetricsDto) = apply {
+                    likes = threadsPostMetricsDto.likes
+                    quotes = threadsPostMetricsDto.quotes
+                    replies = threadsPostMetricsDto.replies
+                    reposts = threadsPostMetricsDto.reposts
+                    shares = threadsPostMetricsDto.shares
+                    views = threadsPostMetricsDto.views
+                    additionalProperties = threadsPostMetricsDto.additionalProperties.toMutableMap()
+                }
+
+                /** Number of likes on the post */
+                fun likes(likes: Double) = likes(JsonField.of(likes))
+
+                /**
+                 * Sets [Builder.likes] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.likes] with a well-typed [Double] value instead.
+                 * This method is primarily for setting the field to an undocumented or not yet
+                 * supported value.
+                 */
+                fun likes(likes: JsonField<Double>) = apply { this.likes = likes }
+
+                /** Number of quotes of the post */
+                fun quotes(quotes: Double) = quotes(JsonField.of(quotes))
+
+                /**
+                 * Sets [Builder.quotes] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.quotes] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun quotes(quotes: JsonField<Double>) = apply { this.quotes = quotes }
+
+                /** Number of replies on the post */
+                fun replies(replies: Double) = replies(JsonField.of(replies))
+
+                /**
+                 * Sets [Builder.replies] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.replies] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun replies(replies: JsonField<Double>) = apply { this.replies = replies }
+
+                /** Number of reposts of the post */
+                fun reposts(reposts: Double) = reposts(JsonField.of(reposts))
+
+                /**
+                 * Sets [Builder.reposts] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.reposts] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun reposts(reposts: JsonField<Double>) = apply { this.reposts = reposts }
+
+                /** Number of shares of the post */
+                fun shares(shares: Double) = shares(JsonField.of(shares))
+
+                /**
+                 * Sets [Builder.shares] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.shares] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun shares(shares: JsonField<Double>) = apply { this.shares = shares }
+
+                /** Number of views on the post */
+                fun views(views: Double) = views(JsonField.of(views))
+
+                /**
+                 * Sets [Builder.views] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.views] with a well-typed [Double] value instead.
+                 * This method is primarily for setting the field to an undocumented or not yet
+                 * supported value.
+                 */
+                fun views(views: JsonField<Double>) = apply { this.views = views }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [ThreadsPostMetricsDto].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 *
+                 * The following fields are required:
+                 * ```kotlin
+                 * .likes()
+                 * .quotes()
+                 * .replies()
+                 * .reposts()
+                 * .shares()
+                 * .views()
+                 * ```
+                 *
+                 * @throws IllegalStateException if any required field is unset.
+                 */
+                fun build(): ThreadsPostMetricsDto =
+                    ThreadsPostMetricsDto(
+                        checkRequired("likes", likes),
+                        checkRequired("quotes", quotes),
+                        checkRequired("replies", replies),
+                        checkRequired("reposts", reposts),
+                        checkRequired("shares", shares),
+                        checkRequired("views", views),
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): ThreadsPostMetricsDto = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                likes()
+                quotes()
+                replies()
+                reposts()
+                shares()
+                views()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (if (likes.asKnown() == null) 0 else 1) +
+                    (if (quotes.asKnown() == null) 0 else 1) +
+                    (if (replies.asKnown() == null) 0 else 1) +
+                    (if (reposts.asKnown() == null) 0 else 1) +
+                    (if (shares.asKnown() == null) 0 else 1) +
+                    (if (views.asKnown() == null) 0 else 1)
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is ThreadsPostMetricsDto &&
+                    likes == other.likes &&
+                    quotes == other.quotes &&
+                    replies == other.replies &&
+                    reposts == other.reposts &&
+                    shares == other.shares &&
+                    views == other.views &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(likes, quotes, replies, reposts, shares, views, additionalProperties)
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "ThreadsPostMetricsDto{likes=$likes, quotes=$quotes, replies=$replies, reposts=$reposts, shares=$shares, views=$views, additionalProperties=$additionalProperties}"
         }
     }
 
