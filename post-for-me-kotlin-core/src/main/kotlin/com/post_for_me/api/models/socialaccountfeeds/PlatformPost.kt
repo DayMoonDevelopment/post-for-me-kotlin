@@ -573,8 +573,26 @@ private constructor(
         fun metrics(threadsPostMetricsDto: Metrics.ThreadsPostMetricsDto) =
             metrics(Metrics.ofThreadsPostMetricsDto(threadsPostMetricsDto))
 
-        /** Alias for calling [metrics] with `Metrics.ofJsonValue(jsonValue)`. */
-        fun metrics(jsonValue: JsonValue) = metrics(Metrics.ofJsonValue(jsonValue))
+        /**
+         * Alias for calling [metrics] with
+         * `Metrics.ofLinkedInPostMetricsDto(linkedInPostMetricsDto)`.
+         */
+        fun metrics(linkedInPostMetricsDto: Metrics.LinkedInPostMetricsDto) =
+            metrics(Metrics.ofLinkedInPostMetricsDto(linkedInPostMetricsDto))
+
+        /**
+         * Alias for calling [metrics] with
+         * `Metrics.ofBlueskyPostMetricsDto(blueskyPostMetricsDto)`.
+         */
+        fun metrics(blueskyPostMetricsDto: Metrics.BlueskyPostMetricsDto) =
+            metrics(Metrics.ofBlueskyPostMetricsDto(blueskyPostMetricsDto))
+
+        /**
+         * Alias for calling [metrics] with
+         * `Metrics.ofPinterestPostMetricsDto(pinterestPostMetricsDto)`.
+         */
+        fun metrics(pinterestPostMetricsDto: Metrics.PinterestPostMetricsDto) =
+            metrics(Metrics.ofPinterestPostMetricsDto(pinterestPostMetricsDto))
 
         /** Date the post was published */
         fun postedAt(postedAt: OffsetDateTime) = postedAt(JsonField.of(postedAt))
@@ -736,7 +754,9 @@ private constructor(
         private val facebookPostMetricsDto: FacebookPostMetricsDto? = null,
         private val twitterPostMetricsDto: TwitterPostMetricsDto? = null,
         private val threadsPostMetricsDto: ThreadsPostMetricsDto? = null,
-        private val jsonValue: JsonValue? = null,
+        private val linkedInPostMetricsDto: LinkedInPostMetricsDto? = null,
+        private val blueskyPostMetricsDto: BlueskyPostMetricsDto? = null,
+        private val pinterestPostMetricsDto: PinterestPostMetricsDto? = null,
         private val _json: JsonValue? = null,
     ) {
 
@@ -754,7 +774,11 @@ private constructor(
 
         fun threadsPostMetricsDto(): ThreadsPostMetricsDto? = threadsPostMetricsDto
 
-        fun jsonValue(): JsonValue? = jsonValue
+        fun linkedInPostMetricsDto(): LinkedInPostMetricsDto? = linkedInPostMetricsDto
+
+        fun blueskyPostMetricsDto(): BlueskyPostMetricsDto? = blueskyPostMetricsDto
+
+        fun pinterestPostMetricsDto(): PinterestPostMetricsDto? = pinterestPostMetricsDto
 
         fun isTikTokBusinessMetricsDto(): Boolean = tikTokBusinessMetricsDto != null
 
@@ -770,7 +794,11 @@ private constructor(
 
         fun isThreadsPostMetricsDto(): Boolean = threadsPostMetricsDto != null
 
-        fun isJsonValue(): Boolean = jsonValue != null
+        fun isLinkedInPostMetricsDto(): Boolean = linkedInPostMetricsDto != null
+
+        fun isBlueskyPostMetricsDto(): Boolean = blueskyPostMetricsDto != null
+
+        fun isPinterestPostMetricsDto(): Boolean = pinterestPostMetricsDto != null
 
         fun asTikTokBusinessMetricsDto(): TikTokBusinessMetricsDto =
             tikTokBusinessMetricsDto.getOrThrow("tikTokBusinessMetricsDto")
@@ -793,7 +821,14 @@ private constructor(
         fun asThreadsPostMetricsDto(): ThreadsPostMetricsDto =
             threadsPostMetricsDto.getOrThrow("threadsPostMetricsDto")
 
-        fun asJsonValue(): JsonValue = jsonValue.getOrThrow("jsonValue")
+        fun asLinkedInPostMetricsDto(): LinkedInPostMetricsDto =
+            linkedInPostMetricsDto.getOrThrow("linkedInPostMetricsDto")
+
+        fun asBlueskyPostMetricsDto(): BlueskyPostMetricsDto =
+            blueskyPostMetricsDto.getOrThrow("blueskyPostMetricsDto")
+
+        fun asPinterestPostMetricsDto(): PinterestPostMetricsDto =
+            pinterestPostMetricsDto.getOrThrow("pinterestPostMetricsDto")
 
         fun _json(): JsonValue? = _json
 
@@ -813,7 +848,12 @@ private constructor(
                     visitor.visitTwitterPostMetricsDto(twitterPostMetricsDto)
                 threadsPostMetricsDto != null ->
                     visitor.visitThreadsPostMetricsDto(threadsPostMetricsDto)
-                jsonValue != null -> visitor.visitJsonValue(jsonValue)
+                linkedInPostMetricsDto != null ->
+                    visitor.visitLinkedInPostMetricsDto(linkedInPostMetricsDto)
+                blueskyPostMetricsDto != null ->
+                    visitor.visitBlueskyPostMetricsDto(blueskyPostMetricsDto)
+                pinterestPostMetricsDto != null ->
+                    visitor.visitPinterestPostMetricsDto(pinterestPostMetricsDto)
                 else -> visitor.unknown(_json)
             }
 
@@ -868,7 +908,23 @@ private constructor(
                         threadsPostMetricsDto.validate()
                     }
 
-                    override fun visitJsonValue(jsonValue: JsonValue) {}
+                    override fun visitLinkedInPostMetricsDto(
+                        linkedInPostMetricsDto: LinkedInPostMetricsDto
+                    ) {
+                        linkedInPostMetricsDto.validate()
+                    }
+
+                    override fun visitBlueskyPostMetricsDto(
+                        blueskyPostMetricsDto: BlueskyPostMetricsDto
+                    ) {
+                        blueskyPostMetricsDto.validate()
+                    }
+
+                    override fun visitPinterestPostMetricsDto(
+                        pinterestPostMetricsDto: PinterestPostMetricsDto
+                    ) {
+                        pinterestPostMetricsDto.validate()
+                    }
                 }
             )
             validated = true
@@ -919,7 +975,17 @@ private constructor(
                         threadsPostMetricsDto: ThreadsPostMetricsDto
                     ) = threadsPostMetricsDto.validity()
 
-                    override fun visitJsonValue(jsonValue: JsonValue) = 1
+                    override fun visitLinkedInPostMetricsDto(
+                        linkedInPostMetricsDto: LinkedInPostMetricsDto
+                    ) = linkedInPostMetricsDto.validity()
+
+                    override fun visitBlueskyPostMetricsDto(
+                        blueskyPostMetricsDto: BlueskyPostMetricsDto
+                    ) = blueskyPostMetricsDto.validity()
+
+                    override fun visitPinterestPostMetricsDto(
+                        pinterestPostMetricsDto: PinterestPostMetricsDto
+                    ) = pinterestPostMetricsDto.validity()
 
                     override fun unknown(json: JsonValue?) = 0
                 }
@@ -938,7 +1004,9 @@ private constructor(
                 facebookPostMetricsDto == other.facebookPostMetricsDto &&
                 twitterPostMetricsDto == other.twitterPostMetricsDto &&
                 threadsPostMetricsDto == other.threadsPostMetricsDto &&
-                jsonValue == other.jsonValue
+                linkedInPostMetricsDto == other.linkedInPostMetricsDto &&
+                blueskyPostMetricsDto == other.blueskyPostMetricsDto &&
+                pinterestPostMetricsDto == other.pinterestPostMetricsDto
         }
 
         override fun hashCode(): Int =
@@ -950,7 +1018,9 @@ private constructor(
                 facebookPostMetricsDto,
                 twitterPostMetricsDto,
                 threadsPostMetricsDto,
-                jsonValue,
+                linkedInPostMetricsDto,
+                blueskyPostMetricsDto,
+                pinterestPostMetricsDto,
             )
 
         override fun toString(): String =
@@ -969,7 +1039,12 @@ private constructor(
                     "Metrics{twitterPostMetricsDto=$twitterPostMetricsDto}"
                 threadsPostMetricsDto != null ->
                     "Metrics{threadsPostMetricsDto=$threadsPostMetricsDto}"
-                jsonValue != null -> "Metrics{jsonValue=$jsonValue}"
+                linkedInPostMetricsDto != null ->
+                    "Metrics{linkedInPostMetricsDto=$linkedInPostMetricsDto}"
+                blueskyPostMetricsDto != null ->
+                    "Metrics{blueskyPostMetricsDto=$blueskyPostMetricsDto}"
+                pinterestPostMetricsDto != null ->
+                    "Metrics{pinterestPostMetricsDto=$pinterestPostMetricsDto}"
                 _json != null -> "Metrics{_unknown=$_json}"
                 else -> throw IllegalStateException("Invalid Metrics")
             }
@@ -997,7 +1072,14 @@ private constructor(
             fun ofThreadsPostMetricsDto(threadsPostMetricsDto: ThreadsPostMetricsDto) =
                 Metrics(threadsPostMetricsDto = threadsPostMetricsDto)
 
-            fun ofJsonValue(jsonValue: JsonValue) = Metrics(jsonValue = jsonValue)
+            fun ofLinkedInPostMetricsDto(linkedInPostMetricsDto: LinkedInPostMetricsDto) =
+                Metrics(linkedInPostMetricsDto = linkedInPostMetricsDto)
+
+            fun ofBlueskyPostMetricsDto(blueskyPostMetricsDto: BlueskyPostMetricsDto) =
+                Metrics(blueskyPostMetricsDto = blueskyPostMetricsDto)
+
+            fun ofPinterestPostMetricsDto(pinterestPostMetricsDto: PinterestPostMetricsDto) =
+                Metrics(pinterestPostMetricsDto = pinterestPostMetricsDto)
         }
 
         /**
@@ -1019,7 +1101,11 @@ private constructor(
 
             fun visitThreadsPostMetricsDto(threadsPostMetricsDto: ThreadsPostMetricsDto): T
 
-            fun visitJsonValue(jsonValue: JsonValue): T
+            fun visitLinkedInPostMetricsDto(linkedInPostMetricsDto: LinkedInPostMetricsDto): T
+
+            fun visitBlueskyPostMetricsDto(blueskyPostMetricsDto: BlueskyPostMetricsDto): T
+
+            fun visitPinterestPostMetricsDto(pinterestPostMetricsDto: PinterestPostMetricsDto): T
 
             /**
              * Maps an unknown variant of [Metrics] to a value of type [T].
@@ -1064,8 +1150,14 @@ private constructor(
                             tryDeserialize(node, jacksonTypeRef<ThreadsPostMetricsDto>())?.let {
                                 Metrics(threadsPostMetricsDto = it, _json = json)
                             },
-                            tryDeserialize(node, jacksonTypeRef<JsonValue>())?.let {
-                                Metrics(jsonValue = it, _json = json)
+                            tryDeserialize(node, jacksonTypeRef<LinkedInPostMetricsDto>())?.let {
+                                Metrics(linkedInPostMetricsDto = it, _json = json)
+                            },
+                            tryDeserialize(node, jacksonTypeRef<BlueskyPostMetricsDto>())?.let {
+                                Metrics(blueskyPostMetricsDto = it, _json = json)
+                            },
+                            tryDeserialize(node, jacksonTypeRef<PinterestPostMetricsDto>())?.let {
+                                Metrics(pinterestPostMetricsDto = it, _json = json)
                             },
                         )
                         .filterNotNull()
@@ -1073,7 +1165,7 @@ private constructor(
                         .toList()
                 return when (bestMatches.size) {
                     // This can happen if what we're deserializing is completely incompatible with
-                    // all the possible variants.
+                    // all the possible variants (e.g. deserializing from boolean).
                     0 -> Metrics(_json = json)
                     1 -> bestMatches.single()
                     // If there's more than one match with the highest validity, then use the first
@@ -1106,7 +1198,12 @@ private constructor(
                         generator.writeObject(value.twitterPostMetricsDto)
                     value.threadsPostMetricsDto != null ->
                         generator.writeObject(value.threadsPostMetricsDto)
-                    value.jsonValue != null -> generator.writeObject(value.jsonValue)
+                    value.linkedInPostMetricsDto != null ->
+                        generator.writeObject(value.linkedInPostMetricsDto)
+                    value.blueskyPostMetricsDto != null ->
+                        generator.writeObject(value.blueskyPostMetricsDto)
+                    value.pinterestPostMetricsDto != null ->
+                        generator.writeObject(value.pinterestPostMetricsDto)
                     value._json != null -> generator.writeObject(value._json)
                     else -> throw IllegalStateException("Invalid Metrics")
                 }
@@ -11845,6 +11942,2486 @@ private constructor(
 
             override fun toString() =
                 "ThreadsPostMetricsDto{likes=$likes, quotes=$quotes, replies=$replies, reposts=$reposts, shares=$shares, views=$views, additionalProperties=$additionalProperties}"
+        }
+
+        class LinkedInPostMetricsDto
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+        private constructor(
+            private val clickCount: JsonField<Double>,
+            private val commentCount: JsonField<Double>,
+            private val engagement: JsonField<Double>,
+            private val impressionCount: JsonField<Double>,
+            private val likeCount: JsonField<Double>,
+            private val shareCount: JsonField<Double>,
+            private val timeWatched: JsonField<Double>,
+            private val timeWatchedForVideoViews: JsonField<Double>,
+            private val videoView: JsonField<Double>,
+            private val viewer: JsonField<Double>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("clickCount")
+                @ExcludeMissing
+                clickCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("commentCount")
+                @ExcludeMissing
+                commentCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("engagement")
+                @ExcludeMissing
+                engagement: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("impressionCount")
+                @ExcludeMissing
+                impressionCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("likeCount")
+                @ExcludeMissing
+                likeCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("shareCount")
+                @ExcludeMissing
+                shareCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("timeWatched")
+                @ExcludeMissing
+                timeWatched: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("timeWatchedForVideoViews")
+                @ExcludeMissing
+                timeWatchedForVideoViews: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("videoView")
+                @ExcludeMissing
+                videoView: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("viewer") @ExcludeMissing viewer: JsonField<Double> = JsonMissing.of(),
+            ) : this(
+                clickCount,
+                commentCount,
+                engagement,
+                impressionCount,
+                likeCount,
+                shareCount,
+                timeWatched,
+                timeWatchedForVideoViews,
+                videoView,
+                viewer,
+                mutableMapOf(),
+            )
+
+            /**
+             * Number of clicks
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun clickCount(): Double? = clickCount.getNullable("clickCount")
+
+            /**
+             * Number of comments
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun commentCount(): Double? = commentCount.getNullable("commentCount")
+
+            /**
+             * Engagement rate
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun engagement(): Double? = engagement.getNullable("engagement")
+
+            /**
+             * Number of impressions
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun impressionCount(): Double? = impressionCount.getNullable("impressionCount")
+
+            /**
+             * Number of likes
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun likeCount(): Double? = likeCount.getNullable("likeCount")
+
+            /**
+             * Number of shares
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun shareCount(): Double? = shareCount.getNullable("shareCount")
+
+            /**
+             * TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping will
+             * continue to increase this metric for each subsequent play
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun timeWatched(): Double? = timeWatched.getNullable("timeWatched")
+
+            /**
+             * TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video play-pause
+             * cycles that are at least 3 seconds. Video auto-looping will continue to increase this
+             * metric for each subsequent play. Analytics data for this metric will be available for
+             * six months
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun timeWatchedForVideoViews(): Double? =
+                timeWatchedForVideoViews.getNullable("timeWatchedForVideoViews")
+
+            /**
+             * VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds. Auto-looping
+             * videos are counted as one when loaded. Each subsequent auto-looped play doesn't
+             * increase this metric. Analytics data for this metric won't be available after six
+             * months
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun videoView(): Double? = videoView.getNullable("videoView")
+
+            /**
+             * VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos are
+             * counted as one when loaded. Each subsequent auto-looped play doesn't increase this
+             * metric. Analytics data for this metric won't be available after six months
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun viewer(): Double? = viewer.getNullable("viewer")
+
+            /**
+             * Returns the raw JSON value of [clickCount].
+             *
+             * Unlike [clickCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("clickCount")
+            @ExcludeMissing
+            fun _clickCount(): JsonField<Double> = clickCount
+
+            /**
+             * Returns the raw JSON value of [commentCount].
+             *
+             * Unlike [commentCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("commentCount")
+            @ExcludeMissing
+            fun _commentCount(): JsonField<Double> = commentCount
+
+            /**
+             * Returns the raw JSON value of [engagement].
+             *
+             * Unlike [engagement], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("engagement")
+            @ExcludeMissing
+            fun _engagement(): JsonField<Double> = engagement
+
+            /**
+             * Returns the raw JSON value of [impressionCount].
+             *
+             * Unlike [impressionCount], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("impressionCount")
+            @ExcludeMissing
+            fun _impressionCount(): JsonField<Double> = impressionCount
+
+            /**
+             * Returns the raw JSON value of [likeCount].
+             *
+             * Unlike [likeCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("likeCount")
+            @ExcludeMissing
+            fun _likeCount(): JsonField<Double> = likeCount
+
+            /**
+             * Returns the raw JSON value of [shareCount].
+             *
+             * Unlike [shareCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("shareCount")
+            @ExcludeMissing
+            fun _shareCount(): JsonField<Double> = shareCount
+
+            /**
+             * Returns the raw JSON value of [timeWatched].
+             *
+             * Unlike [timeWatched], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("timeWatched")
+            @ExcludeMissing
+            fun _timeWatched(): JsonField<Double> = timeWatched
+
+            /**
+             * Returns the raw JSON value of [timeWatchedForVideoViews].
+             *
+             * Unlike [timeWatchedForVideoViews], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("timeWatchedForVideoViews")
+            @ExcludeMissing
+            fun _timeWatchedForVideoViews(): JsonField<Double> = timeWatchedForVideoViews
+
+            /**
+             * Returns the raw JSON value of [videoView].
+             *
+             * Unlike [videoView], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("videoView")
+            @ExcludeMissing
+            fun _videoView(): JsonField<Double> = videoView
+
+            /**
+             * Returns the raw JSON value of [viewer].
+             *
+             * Unlike [viewer], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("viewer") @ExcludeMissing fun _viewer(): JsonField<Double> = viewer
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of
+                 * [LinkedInPostMetricsDto].
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [LinkedInPostMetricsDto]. */
+            class Builder internal constructor() {
+
+                private var clickCount: JsonField<Double> = JsonMissing.of()
+                private var commentCount: JsonField<Double> = JsonMissing.of()
+                private var engagement: JsonField<Double> = JsonMissing.of()
+                private var impressionCount: JsonField<Double> = JsonMissing.of()
+                private var likeCount: JsonField<Double> = JsonMissing.of()
+                private var shareCount: JsonField<Double> = JsonMissing.of()
+                private var timeWatched: JsonField<Double> = JsonMissing.of()
+                private var timeWatchedForVideoViews: JsonField<Double> = JsonMissing.of()
+                private var videoView: JsonField<Double> = JsonMissing.of()
+                private var viewer: JsonField<Double> = JsonMissing.of()
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(linkedInPostMetricsDto: LinkedInPostMetricsDto) = apply {
+                    clickCount = linkedInPostMetricsDto.clickCount
+                    commentCount = linkedInPostMetricsDto.commentCount
+                    engagement = linkedInPostMetricsDto.engagement
+                    impressionCount = linkedInPostMetricsDto.impressionCount
+                    likeCount = linkedInPostMetricsDto.likeCount
+                    shareCount = linkedInPostMetricsDto.shareCount
+                    timeWatched = linkedInPostMetricsDto.timeWatched
+                    timeWatchedForVideoViews = linkedInPostMetricsDto.timeWatchedForVideoViews
+                    videoView = linkedInPostMetricsDto.videoView
+                    viewer = linkedInPostMetricsDto.viewer
+                    additionalProperties =
+                        linkedInPostMetricsDto.additionalProperties.toMutableMap()
+                }
+
+                /** Number of clicks */
+                fun clickCount(clickCount: Double) = clickCount(JsonField.of(clickCount))
+
+                /**
+                 * Sets [Builder.clickCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.clickCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun clickCount(clickCount: JsonField<Double>) = apply {
+                    this.clickCount = clickCount
+                }
+
+                /** Number of comments */
+                fun commentCount(commentCount: Double) = commentCount(JsonField.of(commentCount))
+
+                /**
+                 * Sets [Builder.commentCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.commentCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun commentCount(commentCount: JsonField<Double>) = apply {
+                    this.commentCount = commentCount
+                }
+
+                /** Engagement rate */
+                fun engagement(engagement: Double) = engagement(JsonField.of(engagement))
+
+                /**
+                 * Sets [Builder.engagement] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.engagement] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun engagement(engagement: JsonField<Double>) = apply {
+                    this.engagement = engagement
+                }
+
+                /** Number of impressions */
+                fun impressionCount(impressionCount: Double) =
+                    impressionCount(JsonField.of(impressionCount))
+
+                /**
+                 * Sets [Builder.impressionCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.impressionCount] with a well-typed [Double]
+                 * value instead. This method is primarily for setting the field to an undocumented
+                 * or not yet supported value.
+                 */
+                fun impressionCount(impressionCount: JsonField<Double>) = apply {
+                    this.impressionCount = impressionCount
+                }
+
+                /** Number of likes */
+                fun likeCount(likeCount: Double) = likeCount(JsonField.of(likeCount))
+
+                /**
+                 * Sets [Builder.likeCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.likeCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun likeCount(likeCount: JsonField<Double>) = apply { this.likeCount = likeCount }
+
+                /** Number of shares */
+                fun shareCount(shareCount: Double) = shareCount(JsonField.of(shareCount))
+
+                /**
+                 * Sets [Builder.shareCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.shareCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun shareCount(shareCount: JsonField<Double>) = apply {
+                    this.shareCount = shareCount
+                }
+
+                /**
+                 * TIME_WATCHED: The time the video was watched in milliseconds. Video auto-looping
+                 * will continue to increase this metric for each subsequent play
+                 */
+                fun timeWatched(timeWatched: Double) = timeWatched(JsonField.of(timeWatched))
+
+                /**
+                 * Sets [Builder.timeWatched] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.timeWatched] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun timeWatched(timeWatched: JsonField<Double>) = apply {
+                    this.timeWatched = timeWatched
+                }
+
+                /**
+                 * TIME_WATCHED_FOR_VIDEO_VIEWS: The time watched in milliseconds for video
+                 * play-pause cycles that are at least 3 seconds. Video auto-looping will continue
+                 * to increase this metric for each subsequent play. Analytics data for this metric
+                 * will be available for six months
+                 */
+                fun timeWatchedForVideoViews(timeWatchedForVideoViews: Double) =
+                    timeWatchedForVideoViews(JsonField.of(timeWatchedForVideoViews))
+
+                /**
+                 * Sets [Builder.timeWatchedForVideoViews] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.timeWatchedForVideoViews] with a well-typed
+                 * [Double] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun timeWatchedForVideoViews(timeWatchedForVideoViews: JsonField<Double>) = apply {
+                    this.timeWatchedForVideoViews = timeWatchedForVideoViews
+                }
+
+                /**
+                 * VIDEO_VIEW: Video views with play-pause cycles for at least 3 seconds.
+                 * Auto-looping videos are counted as one when loaded. Each subsequent auto-looped
+                 * play doesn't increase this metric. Analytics data for this metric won't be
+                 * available after six months
+                 */
+                fun videoView(videoView: Double) = videoView(JsonField.of(videoView))
+
+                /**
+                 * Sets [Builder.videoView] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.videoView] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun videoView(videoView: JsonField<Double>) = apply { this.videoView = videoView }
+
+                /**
+                 * VIEWER: Unique viewers who made engaged plays on the video. Auto-looping videos
+                 * are counted as one when loaded. Each subsequent auto-looped play doesn't increase
+                 * this metric. Analytics data for this metric won't be available after six months
+                 */
+                fun viewer(viewer: Double) = viewer(JsonField.of(viewer))
+
+                /**
+                 * Sets [Builder.viewer] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.viewer] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun viewer(viewer: JsonField<Double>) = apply { this.viewer = viewer }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [LinkedInPostMetricsDto].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 */
+                fun build(): LinkedInPostMetricsDto =
+                    LinkedInPostMetricsDto(
+                        clickCount,
+                        commentCount,
+                        engagement,
+                        impressionCount,
+                        likeCount,
+                        shareCount,
+                        timeWatched,
+                        timeWatchedForVideoViews,
+                        videoView,
+                        viewer,
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): LinkedInPostMetricsDto = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                clickCount()
+                commentCount()
+                engagement()
+                impressionCount()
+                likeCount()
+                shareCount()
+                timeWatched()
+                timeWatchedForVideoViews()
+                videoView()
+                viewer()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (if (clickCount.asKnown() == null) 0 else 1) +
+                    (if (commentCount.asKnown() == null) 0 else 1) +
+                    (if (engagement.asKnown() == null) 0 else 1) +
+                    (if (impressionCount.asKnown() == null) 0 else 1) +
+                    (if (likeCount.asKnown() == null) 0 else 1) +
+                    (if (shareCount.asKnown() == null) 0 else 1) +
+                    (if (timeWatched.asKnown() == null) 0 else 1) +
+                    (if (timeWatchedForVideoViews.asKnown() == null) 0 else 1) +
+                    (if (videoView.asKnown() == null) 0 else 1) +
+                    (if (viewer.asKnown() == null) 0 else 1)
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is LinkedInPostMetricsDto &&
+                    clickCount == other.clickCount &&
+                    commentCount == other.commentCount &&
+                    engagement == other.engagement &&
+                    impressionCount == other.impressionCount &&
+                    likeCount == other.likeCount &&
+                    shareCount == other.shareCount &&
+                    timeWatched == other.timeWatched &&
+                    timeWatchedForVideoViews == other.timeWatchedForVideoViews &&
+                    videoView == other.videoView &&
+                    viewer == other.viewer &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(
+                    clickCount,
+                    commentCount,
+                    engagement,
+                    impressionCount,
+                    likeCount,
+                    shareCount,
+                    timeWatched,
+                    timeWatchedForVideoViews,
+                    videoView,
+                    viewer,
+                    additionalProperties,
+                )
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "LinkedInPostMetricsDto{clickCount=$clickCount, commentCount=$commentCount, engagement=$engagement, impressionCount=$impressionCount, likeCount=$likeCount, shareCount=$shareCount, timeWatched=$timeWatched, timeWatchedForVideoViews=$timeWatchedForVideoViews, videoView=$videoView, viewer=$viewer, additionalProperties=$additionalProperties}"
+        }
+
+        class BlueskyPostMetricsDto
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+        private constructor(
+            private val likeCount: JsonField<Double>,
+            private val quoteCount: JsonField<Double>,
+            private val replyCount: JsonField<Double>,
+            private val repostCount: JsonField<Double>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("likeCount")
+                @ExcludeMissing
+                likeCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("quoteCount")
+                @ExcludeMissing
+                quoteCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("replyCount")
+                @ExcludeMissing
+                replyCount: JsonField<Double> = JsonMissing.of(),
+                @JsonProperty("repostCount")
+                @ExcludeMissing
+                repostCount: JsonField<Double> = JsonMissing.of(),
+            ) : this(likeCount, quoteCount, replyCount, repostCount, mutableMapOf())
+
+            /**
+             * Number of likes on the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun likeCount(): Double = likeCount.getRequired("likeCount")
+
+            /**
+             * Number of quotes of the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun quoteCount(): Double = quoteCount.getRequired("quoteCount")
+
+            /**
+             * Number of replies on the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun replyCount(): Double = replyCount.getRequired("replyCount")
+
+            /**
+             * Number of reposts of the post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+             *   unexpectedly missing or null (e.g. if the server responded with an unexpected
+             *   value).
+             */
+            fun repostCount(): Double = repostCount.getRequired("repostCount")
+
+            /**
+             * Returns the raw JSON value of [likeCount].
+             *
+             * Unlike [likeCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("likeCount")
+            @ExcludeMissing
+            fun _likeCount(): JsonField<Double> = likeCount
+
+            /**
+             * Returns the raw JSON value of [quoteCount].
+             *
+             * Unlike [quoteCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("quoteCount")
+            @ExcludeMissing
+            fun _quoteCount(): JsonField<Double> = quoteCount
+
+            /**
+             * Returns the raw JSON value of [replyCount].
+             *
+             * Unlike [replyCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("replyCount")
+            @ExcludeMissing
+            fun _replyCount(): JsonField<Double> = replyCount
+
+            /**
+             * Returns the raw JSON value of [repostCount].
+             *
+             * Unlike [repostCount], this method doesn't throw if the JSON field has an unexpected
+             * type.
+             */
+            @JsonProperty("repostCount")
+            @ExcludeMissing
+            fun _repostCount(): JsonField<Double> = repostCount
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of
+                 * [BlueskyPostMetricsDto].
+                 *
+                 * The following fields are required:
+                 * ```kotlin
+                 * .likeCount()
+                 * .quoteCount()
+                 * .replyCount()
+                 * .repostCount()
+                 * ```
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [BlueskyPostMetricsDto]. */
+            class Builder internal constructor() {
+
+                private var likeCount: JsonField<Double>? = null
+                private var quoteCount: JsonField<Double>? = null
+                private var replyCount: JsonField<Double>? = null
+                private var repostCount: JsonField<Double>? = null
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(blueskyPostMetricsDto: BlueskyPostMetricsDto) = apply {
+                    likeCount = blueskyPostMetricsDto.likeCount
+                    quoteCount = blueskyPostMetricsDto.quoteCount
+                    replyCount = blueskyPostMetricsDto.replyCount
+                    repostCount = blueskyPostMetricsDto.repostCount
+                    additionalProperties = blueskyPostMetricsDto.additionalProperties.toMutableMap()
+                }
+
+                /** Number of likes on the post */
+                fun likeCount(likeCount: Double) = likeCount(JsonField.of(likeCount))
+
+                /**
+                 * Sets [Builder.likeCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.likeCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun likeCount(likeCount: JsonField<Double>) = apply { this.likeCount = likeCount }
+
+                /** Number of quotes of the post */
+                fun quoteCount(quoteCount: Double) = quoteCount(JsonField.of(quoteCount))
+
+                /**
+                 * Sets [Builder.quoteCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.quoteCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun quoteCount(quoteCount: JsonField<Double>) = apply {
+                    this.quoteCount = quoteCount
+                }
+
+                /** Number of replies on the post */
+                fun replyCount(replyCount: Double) = replyCount(JsonField.of(replyCount))
+
+                /**
+                 * Sets [Builder.replyCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.replyCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun replyCount(replyCount: JsonField<Double>) = apply {
+                    this.replyCount = replyCount
+                }
+
+                /** Number of reposts of the post */
+                fun repostCount(repostCount: Double) = repostCount(JsonField.of(repostCount))
+
+                /**
+                 * Sets [Builder.repostCount] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.repostCount] with a well-typed [Double] value
+                 * instead. This method is primarily for setting the field to an undocumented or not
+                 * yet supported value.
+                 */
+                fun repostCount(repostCount: JsonField<Double>) = apply {
+                    this.repostCount = repostCount
+                }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [BlueskyPostMetricsDto].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 *
+                 * The following fields are required:
+                 * ```kotlin
+                 * .likeCount()
+                 * .quoteCount()
+                 * .replyCount()
+                 * .repostCount()
+                 * ```
+                 *
+                 * @throws IllegalStateException if any required field is unset.
+                 */
+                fun build(): BlueskyPostMetricsDto =
+                    BlueskyPostMetricsDto(
+                        checkRequired("likeCount", likeCount),
+                        checkRequired("quoteCount", quoteCount),
+                        checkRequired("replyCount", replyCount),
+                        checkRequired("repostCount", repostCount),
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): BlueskyPostMetricsDto = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                likeCount()
+                quoteCount()
+                replyCount()
+                repostCount()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (if (likeCount.asKnown() == null) 0 else 1) +
+                    (if (quoteCount.asKnown() == null) 0 else 1) +
+                    (if (replyCount.asKnown() == null) 0 else 1) +
+                    (if (repostCount.asKnown() == null) 0 else 1)
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is BlueskyPostMetricsDto &&
+                    likeCount == other.likeCount &&
+                    quoteCount == other.quoteCount &&
+                    replyCount == other.replyCount &&
+                    repostCount == other.repostCount &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(likeCount, quoteCount, replyCount, repostCount, additionalProperties)
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "BlueskyPostMetricsDto{likeCount=$likeCount, quoteCount=$quoteCount, replyCount=$replyCount, repostCount=$repostCount, additionalProperties=$additionalProperties}"
+        }
+
+        class PinterestPostMetricsDto
+        @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+        private constructor(
+            private val _90d: JsonField<_90d>,
+            private val lifetimeMetrics: JsonField<LifetimeMetrics>,
+            private val additionalProperties: MutableMap<String, JsonValue>,
+        ) {
+
+            @JsonCreator
+            private constructor(
+                @JsonProperty("90d") @ExcludeMissing _90d: JsonField<_90d> = JsonMissing.of(),
+                @JsonProperty("lifetime_metrics")
+                @ExcludeMissing
+                lifetimeMetrics: JsonField<LifetimeMetrics> = JsonMissing.of(),
+            ) : this(_90d, lifetimeMetrics, mutableMapOf())
+
+            /**
+             * Last 90 days of Pin metrics
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun _90d(): _90d? = _90d.getNullable("90d")
+
+            /**
+             * Lifetime Pin metrics
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun lifetimeMetrics(): LifetimeMetrics? =
+                lifetimeMetrics.getNullable("lifetime_metrics")
+
+            /**
+             * Returns the raw JSON value of [_90d].
+             *
+             * Unlike [_90d], this method doesn't throw if the JSON field has an unexpected type.
+             */
+            @JsonProperty("90d") @ExcludeMissing fun __90d(): JsonField<_90d> = _90d
+
+            /**
+             * Returns the raw JSON value of [lifetimeMetrics].
+             *
+             * Unlike [lifetimeMetrics], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("lifetime_metrics")
+            @ExcludeMissing
+            fun _lifetimeMetrics(): JsonField<LifetimeMetrics> = lifetimeMetrics
+
+            @JsonAnySetter
+            private fun putAdditionalProperty(key: String, value: JsonValue) {
+                additionalProperties.put(key, value)
+            }
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> =
+                Collections.unmodifiableMap(additionalProperties)
+
+            fun toBuilder() = Builder().from(this)
+
+            companion object {
+
+                /**
+                 * Returns a mutable builder for constructing an instance of
+                 * [PinterestPostMetricsDto].
+                 */
+                fun builder() = Builder()
+            }
+
+            /** A builder for [PinterestPostMetricsDto]. */
+            class Builder internal constructor() {
+
+                private var _90d: JsonField<_90d> = JsonMissing.of()
+                private var lifetimeMetrics: JsonField<LifetimeMetrics> = JsonMissing.of()
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                internal fun from(pinterestPostMetricsDto: PinterestPostMetricsDto) = apply {
+                    _90d = pinterestPostMetricsDto._90d
+                    lifetimeMetrics = pinterestPostMetricsDto.lifetimeMetrics
+                    additionalProperties =
+                        pinterestPostMetricsDto.additionalProperties.toMutableMap()
+                }
+
+                /** Last 90 days of Pin metrics */
+                fun _90d(_90d: _90d) = _90d(JsonField.of(_90d))
+
+                /**
+                 * Sets [Builder._90d] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder._90d] with a well-typed [_90d] value instead.
+                 * This method is primarily for setting the field to an undocumented or not yet
+                 * supported value.
+                 */
+                fun _90d(_90d: JsonField<_90d>) = apply { this._90d = _90d }
+
+                /** Lifetime Pin metrics */
+                fun lifetimeMetrics(lifetimeMetrics: LifetimeMetrics) =
+                    lifetimeMetrics(JsonField.of(lifetimeMetrics))
+
+                /**
+                 * Sets [Builder.lifetimeMetrics] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.lifetimeMetrics] with a well-typed
+                 * [LifetimeMetrics] value instead. This method is primarily for setting the field
+                 * to an undocumented or not yet supported value.
+                 */
+                fun lifetimeMetrics(lifetimeMetrics: JsonField<LifetimeMetrics>) = apply {
+                    this.lifetimeMetrics = lifetimeMetrics
+                }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    putAllAdditionalProperties(additionalProperties)
+                }
+
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun removeAdditionalProperty(key: String) = apply {
+                    additionalProperties.remove(key)
+                }
+
+                fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                    keys.forEach(::removeAdditionalProperty)
+                }
+
+                /**
+                 * Returns an immutable instance of [PinterestPostMetricsDto].
+                 *
+                 * Further updates to this [Builder] will not mutate the returned instance.
+                 */
+                fun build(): PinterestPostMetricsDto =
+                    PinterestPostMetricsDto(
+                        _90d,
+                        lifetimeMetrics,
+                        additionalProperties.toMutableMap(),
+                    )
+            }
+
+            private var validated: Boolean = false
+
+            fun validate(): PinterestPostMetricsDto = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                _90d()?.validate()
+                lifetimeMetrics()?.validate()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: PostForMeInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            internal fun validity(): Int =
+                (_90d.asKnown()?.validity() ?: 0) + (lifetimeMetrics.asKnown()?.validity() ?: 0)
+
+            /** Last 90 days of Pin metrics */
+            class _90d
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val comment: JsonField<Double>,
+                private val impression: JsonField<Double>,
+                private val lastUpdated: JsonField<String>,
+                private val outboundClick: JsonField<Double>,
+                private val pinClick: JsonField<Double>,
+                private val profileVisit: JsonValue,
+                private val reaction: JsonField<Double>,
+                private val save: JsonField<Double>,
+                private val userFollow: JsonValue,
+                private val video10sViews: JsonField<Double>,
+                private val videoAverageTime: JsonField<Double>,
+                private val videoP95Views: JsonField<Double>,
+                private val videoTotalTime: JsonField<Double>,
+                private val videoViews: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("comment")
+                    @ExcludeMissing
+                    comment: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("impression")
+                    @ExcludeMissing
+                    impression: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("last_updated")
+                    @ExcludeMissing
+                    lastUpdated: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("outbound_click")
+                    @ExcludeMissing
+                    outboundClick: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("pin_click")
+                    @ExcludeMissing
+                    pinClick: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("profile_visit")
+                    @ExcludeMissing
+                    profileVisit: JsonValue = JsonMissing.of(),
+                    @JsonProperty("reaction")
+                    @ExcludeMissing
+                    reaction: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("save")
+                    @ExcludeMissing
+                    save: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("user_follow")
+                    @ExcludeMissing
+                    userFollow: JsonValue = JsonMissing.of(),
+                    @JsonProperty("video_10s_views")
+                    @ExcludeMissing
+                    video10sViews: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_average_time")
+                    @ExcludeMissing
+                    videoAverageTime: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_p95_views")
+                    @ExcludeMissing
+                    videoP95Views: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_total_time")
+                    @ExcludeMissing
+                    videoTotalTime: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_views")
+                    @ExcludeMissing
+                    videoViews: JsonField<Double> = JsonMissing.of(),
+                ) : this(
+                    comment,
+                    impression,
+                    lastUpdated,
+                    outboundClick,
+                    pinClick,
+                    profileVisit,
+                    reaction,
+                    save,
+                    userFollow,
+                    video10sViews,
+                    videoAverageTime,
+                    videoP95Views,
+                    videoTotalTime,
+                    videoViews,
+                    mutableMapOf(),
+                )
+
+                /**
+                 * Number of comments on the Pin
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun comment(): Double? = comment.getNullable("comment")
+
+                /**
+                 * Number of times the Pin was shown (impressions)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun impression(): Double? = impression.getNullable("impression")
+
+                /**
+                 * The last time Pinterest updated these metrics
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun lastUpdated(): String? = lastUpdated.getNullable("last_updated")
+
+                /**
+                 * Number of clicks from the Pin to an external destination (outbound clicks)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun outboundClick(): Double? = outboundClick.getNullable("outbound_click")
+
+                /**
+                 * Number of clicks on the Pin to view it in closeup (Pin clicks)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun pinClick(): Double? = pinClick.getNullable("pin_click")
+
+                /**
+                 * Number of visits to the author's profile driven from the Pin
+                 *
+                 * This arbitrary value can be deserialized into a custom type using the `convert`
+                 * method:
+                 * ```kotlin
+                 * val myObject: MyClass = _90d.profileVisit().convert(MyClass::class.java)
+                 * ```
+                 */
+                @JsonProperty("profile_visit")
+                @ExcludeMissing
+                fun _profileVisit(): JsonValue = profileVisit
+
+                /**
+                 * Total number of reactions on the Pin
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun reaction(): Double? = reaction.getNullable("reaction")
+
+                /**
+                 * Number of saves of the Pin
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun save(): Double? = save.getNullable("save")
+
+                /**
+                 * Number of follows driven from the Pin
+                 *
+                 * This arbitrary value can be deserialized into a custom type using the `convert`
+                 * method:
+                 * ```kotlin
+                 * val myObject: MyClass = _90d.userFollow().convert(MyClass::class.java)
+                 * ```
+                 */
+                @JsonProperty("user_follow")
+                @ExcludeMissing
+                fun _userFollow(): JsonValue = userFollow
+
+                /**
+                 * Number of video views of at least 10 seconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun video10sViews(): Double? = video10sViews.getNullable("video_10s_views")
+
+                /**
+                 * Average watch time for the video
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoAverageTime(): Double? = videoAverageTime.getNullable("video_average_time")
+
+                /**
+                 * Number of video views that reached 95% completion
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoP95Views(): Double? = videoP95Views.getNullable("video_p95_views")
+
+                /**
+                 * Total watch time for the video
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoTotalTime(): Double? = videoTotalTime.getNullable("video_total_time")
+
+                /**
+                 * Number of video views
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoViews(): Double? = videoViews.getNullable("video_views")
+
+                /**
+                 * Returns the raw JSON value of [comment].
+                 *
+                 * Unlike [comment], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("comment") @ExcludeMissing fun _comment(): JsonField<Double> = comment
+
+                /**
+                 * Returns the raw JSON value of [impression].
+                 *
+                 * Unlike [impression], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("impression")
+                @ExcludeMissing
+                fun _impression(): JsonField<Double> = impression
+
+                /**
+                 * Returns the raw JSON value of [lastUpdated].
+                 *
+                 * Unlike [lastUpdated], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("last_updated")
+                @ExcludeMissing
+                fun _lastUpdated(): JsonField<String> = lastUpdated
+
+                /**
+                 * Returns the raw JSON value of [outboundClick].
+                 *
+                 * Unlike [outboundClick], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("outbound_click")
+                @ExcludeMissing
+                fun _outboundClick(): JsonField<Double> = outboundClick
+
+                /**
+                 * Returns the raw JSON value of [pinClick].
+                 *
+                 * Unlike [pinClick], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("pin_click")
+                @ExcludeMissing
+                fun _pinClick(): JsonField<Double> = pinClick
+
+                /**
+                 * Returns the raw JSON value of [reaction].
+                 *
+                 * Unlike [reaction], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("reaction")
+                @ExcludeMissing
+                fun _reaction(): JsonField<Double> = reaction
+
+                /**
+                 * Returns the raw JSON value of [save].
+                 *
+                 * Unlike [save], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("save") @ExcludeMissing fun _save(): JsonField<Double> = save
+
+                /**
+                 * Returns the raw JSON value of [video10sViews].
+                 *
+                 * Unlike [video10sViews], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_10s_views")
+                @ExcludeMissing
+                fun _video10sViews(): JsonField<Double> = video10sViews
+
+                /**
+                 * Returns the raw JSON value of [videoAverageTime].
+                 *
+                 * Unlike [videoAverageTime], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_average_time")
+                @ExcludeMissing
+                fun _videoAverageTime(): JsonField<Double> = videoAverageTime
+
+                /**
+                 * Returns the raw JSON value of [videoP95Views].
+                 *
+                 * Unlike [videoP95Views], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_p95_views")
+                @ExcludeMissing
+                fun _videoP95Views(): JsonField<Double> = videoP95Views
+
+                /**
+                 * Returns the raw JSON value of [videoTotalTime].
+                 *
+                 * Unlike [videoTotalTime], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_total_time")
+                @ExcludeMissing
+                fun _videoTotalTime(): JsonField<Double> = videoTotalTime
+
+                /**
+                 * Returns the raw JSON value of [videoViews].
+                 *
+                 * Unlike [videoViews], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_views")
+                @ExcludeMissing
+                fun _videoViews(): JsonField<Double> = videoViews
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /** Returns a mutable builder for constructing an instance of [_90d]. */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [_90d]. */
+                class Builder internal constructor() {
+
+                    private var comment: JsonField<Double> = JsonMissing.of()
+                    private var impression: JsonField<Double> = JsonMissing.of()
+                    private var lastUpdated: JsonField<String> = JsonMissing.of()
+                    private var outboundClick: JsonField<Double> = JsonMissing.of()
+                    private var pinClick: JsonField<Double> = JsonMissing.of()
+                    private var profileVisit: JsonValue = JsonMissing.of()
+                    private var reaction: JsonField<Double> = JsonMissing.of()
+                    private var save: JsonField<Double> = JsonMissing.of()
+                    private var userFollow: JsonValue = JsonMissing.of()
+                    private var video10sViews: JsonField<Double> = JsonMissing.of()
+                    private var videoAverageTime: JsonField<Double> = JsonMissing.of()
+                    private var videoP95Views: JsonField<Double> = JsonMissing.of()
+                    private var videoTotalTime: JsonField<Double> = JsonMissing.of()
+                    private var videoViews: JsonField<Double> = JsonMissing.of()
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(_90d: _90d) = apply {
+                        comment = _90d.comment
+                        impression = _90d.impression
+                        lastUpdated = _90d.lastUpdated
+                        outboundClick = _90d.outboundClick
+                        pinClick = _90d.pinClick
+                        profileVisit = _90d.profileVisit
+                        reaction = _90d.reaction
+                        save = _90d.save
+                        userFollow = _90d.userFollow
+                        video10sViews = _90d.video10sViews
+                        videoAverageTime = _90d.videoAverageTime
+                        videoP95Views = _90d.videoP95Views
+                        videoTotalTime = _90d.videoTotalTime
+                        videoViews = _90d.videoViews
+                        additionalProperties = _90d.additionalProperties.toMutableMap()
+                    }
+
+                    /** Number of comments on the Pin */
+                    fun comment(comment: Double) = comment(JsonField.of(comment))
+
+                    /**
+                     * Sets [Builder.comment] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.comment] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun comment(comment: JsonField<Double>) = apply { this.comment = comment }
+
+                    /** Number of times the Pin was shown (impressions) */
+                    fun impression(impression: Double) = impression(JsonField.of(impression))
+
+                    /**
+                     * Sets [Builder.impression] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.impression] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun impression(impression: JsonField<Double>) = apply {
+                        this.impression = impression
+                    }
+
+                    /** The last time Pinterest updated these metrics */
+                    fun lastUpdated(lastUpdated: String) = lastUpdated(JsonField.of(lastUpdated))
+
+                    /**
+                     * Sets [Builder.lastUpdated] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.lastUpdated] with a well-typed [String]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun lastUpdated(lastUpdated: JsonField<String>) = apply {
+                        this.lastUpdated = lastUpdated
+                    }
+
+                    /**
+                     * Number of clicks from the Pin to an external destination (outbound clicks)
+                     */
+                    fun outboundClick(outboundClick: Double) =
+                        outboundClick(JsonField.of(outboundClick))
+
+                    /**
+                     * Sets [Builder.outboundClick] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.outboundClick] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun outboundClick(outboundClick: JsonField<Double>) = apply {
+                        this.outboundClick = outboundClick
+                    }
+
+                    /** Number of clicks on the Pin to view it in closeup (Pin clicks) */
+                    fun pinClick(pinClick: Double) = pinClick(JsonField.of(pinClick))
+
+                    /**
+                     * Sets [Builder.pinClick] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.pinClick] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun pinClick(pinClick: JsonField<Double>) = apply { this.pinClick = pinClick }
+
+                    /** Number of visits to the author's profile driven from the Pin */
+                    fun profileVisit(profileVisit: JsonValue) = apply {
+                        this.profileVisit = profileVisit
+                    }
+
+                    /** Total number of reactions on the Pin */
+                    fun reaction(reaction: Double) = reaction(JsonField.of(reaction))
+
+                    /**
+                     * Sets [Builder.reaction] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.reaction] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun reaction(reaction: JsonField<Double>) = apply { this.reaction = reaction }
+
+                    /** Number of saves of the Pin */
+                    fun save(save: Double) = save(JsonField.of(save))
+
+                    /**
+                     * Sets [Builder.save] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.save] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun save(save: JsonField<Double>) = apply { this.save = save }
+
+                    /** Number of follows driven from the Pin */
+                    fun userFollow(userFollow: JsonValue) = apply { this.userFollow = userFollow }
+
+                    /** Number of video views of at least 10 seconds */
+                    fun video10sViews(video10sViews: Double) =
+                        video10sViews(JsonField.of(video10sViews))
+
+                    /**
+                     * Sets [Builder.video10sViews] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.video10sViews] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun video10sViews(video10sViews: JsonField<Double>) = apply {
+                        this.video10sViews = video10sViews
+                    }
+
+                    /** Average watch time for the video */
+                    fun videoAverageTime(videoAverageTime: Double) =
+                        videoAverageTime(JsonField.of(videoAverageTime))
+
+                    /**
+                     * Sets [Builder.videoAverageTime] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoAverageTime] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun videoAverageTime(videoAverageTime: JsonField<Double>) = apply {
+                        this.videoAverageTime = videoAverageTime
+                    }
+
+                    /** Number of video views that reached 95% completion */
+                    fun videoP95Views(videoP95Views: Double) =
+                        videoP95Views(JsonField.of(videoP95Views))
+
+                    /**
+                     * Sets [Builder.videoP95Views] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoP95Views] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun videoP95Views(videoP95Views: JsonField<Double>) = apply {
+                        this.videoP95Views = videoP95Views
+                    }
+
+                    /** Total watch time for the video */
+                    fun videoTotalTime(videoTotalTime: Double) =
+                        videoTotalTime(JsonField.of(videoTotalTime))
+
+                    /**
+                     * Sets [Builder.videoTotalTime] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoTotalTime] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun videoTotalTime(videoTotalTime: JsonField<Double>) = apply {
+                        this.videoTotalTime = videoTotalTime
+                    }
+
+                    /** Number of video views */
+                    fun videoViews(videoViews: Double) = videoViews(JsonField.of(videoViews))
+
+                    /**
+                     * Sets [Builder.videoViews] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoViews] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun videoViews(videoViews: JsonField<Double>) = apply {
+                        this.videoViews = videoViews
+                    }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [_90d].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     */
+                    fun build(): _90d =
+                        _90d(
+                            comment,
+                            impression,
+                            lastUpdated,
+                            outboundClick,
+                            pinClick,
+                            profileVisit,
+                            reaction,
+                            save,
+                            userFollow,
+                            video10sViews,
+                            videoAverageTime,
+                            videoP95Views,
+                            videoTotalTime,
+                            videoViews,
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): _90d = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    comment()
+                    impression()
+                    lastUpdated()
+                    outboundClick()
+                    pinClick()
+                    reaction()
+                    save()
+                    video10sViews()
+                    videoAverageTime()
+                    videoP95Views()
+                    videoTotalTime()
+                    videoViews()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (comment.asKnown() == null) 0 else 1) +
+                        (if (impression.asKnown() == null) 0 else 1) +
+                        (if (lastUpdated.asKnown() == null) 0 else 1) +
+                        (if (outboundClick.asKnown() == null) 0 else 1) +
+                        (if (pinClick.asKnown() == null) 0 else 1) +
+                        (if (reaction.asKnown() == null) 0 else 1) +
+                        (if (save.asKnown() == null) 0 else 1) +
+                        (if (video10sViews.asKnown() == null) 0 else 1) +
+                        (if (videoAverageTime.asKnown() == null) 0 else 1) +
+                        (if (videoP95Views.asKnown() == null) 0 else 1) +
+                        (if (videoTotalTime.asKnown() == null) 0 else 1) +
+                        (if (videoViews.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is _90d &&
+                        comment == other.comment &&
+                        impression == other.impression &&
+                        lastUpdated == other.lastUpdated &&
+                        outboundClick == other.outboundClick &&
+                        pinClick == other.pinClick &&
+                        profileVisit == other.profileVisit &&
+                        reaction == other.reaction &&
+                        save == other.save &&
+                        userFollow == other.userFollow &&
+                        video10sViews == other.video10sViews &&
+                        videoAverageTime == other.videoAverageTime &&
+                        videoP95Views == other.videoP95Views &&
+                        videoTotalTime == other.videoTotalTime &&
+                        videoViews == other.videoViews &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(
+                        comment,
+                        impression,
+                        lastUpdated,
+                        outboundClick,
+                        pinClick,
+                        profileVisit,
+                        reaction,
+                        save,
+                        userFollow,
+                        video10sViews,
+                        videoAverageTime,
+                        videoP95Views,
+                        videoTotalTime,
+                        videoViews,
+                        additionalProperties,
+                    )
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "_90d{comment=$comment, impression=$impression, lastUpdated=$lastUpdated, outboundClick=$outboundClick, pinClick=$pinClick, profileVisit=$profileVisit, reaction=$reaction, save=$save, userFollow=$userFollow, video10sViews=$video10sViews, videoAverageTime=$videoAverageTime, videoP95Views=$videoP95Views, videoTotalTime=$videoTotalTime, videoViews=$videoViews, additionalProperties=$additionalProperties}"
+            }
+
+            /** Lifetime Pin metrics */
+            class LifetimeMetrics
+            @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+            private constructor(
+                private val comment: JsonField<Double>,
+                private val impression: JsonField<Double>,
+                private val lastUpdated: JsonField<String>,
+                private val outboundClick: JsonField<Double>,
+                private val pinClick: JsonField<Double>,
+                private val profileVisit: JsonValue,
+                private val reaction: JsonField<Double>,
+                private val save: JsonField<Double>,
+                private val userFollow: JsonValue,
+                private val video10sViews: JsonField<Double>,
+                private val videoAverageTime: JsonField<Double>,
+                private val videoP95Views: JsonField<Double>,
+                private val videoTotalTime: JsonField<Double>,
+                private val videoViews: JsonField<Double>,
+                private val additionalProperties: MutableMap<String, JsonValue>,
+            ) {
+
+                @JsonCreator
+                private constructor(
+                    @JsonProperty("comment")
+                    @ExcludeMissing
+                    comment: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("impression")
+                    @ExcludeMissing
+                    impression: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("last_updated")
+                    @ExcludeMissing
+                    lastUpdated: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("outbound_click")
+                    @ExcludeMissing
+                    outboundClick: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("pin_click")
+                    @ExcludeMissing
+                    pinClick: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("profile_visit")
+                    @ExcludeMissing
+                    profileVisit: JsonValue = JsonMissing.of(),
+                    @JsonProperty("reaction")
+                    @ExcludeMissing
+                    reaction: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("save")
+                    @ExcludeMissing
+                    save: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("user_follow")
+                    @ExcludeMissing
+                    userFollow: JsonValue = JsonMissing.of(),
+                    @JsonProperty("video_10s_views")
+                    @ExcludeMissing
+                    video10sViews: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_average_time")
+                    @ExcludeMissing
+                    videoAverageTime: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_p95_views")
+                    @ExcludeMissing
+                    videoP95Views: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_total_time")
+                    @ExcludeMissing
+                    videoTotalTime: JsonField<Double> = JsonMissing.of(),
+                    @JsonProperty("video_views")
+                    @ExcludeMissing
+                    videoViews: JsonField<Double> = JsonMissing.of(),
+                ) : this(
+                    comment,
+                    impression,
+                    lastUpdated,
+                    outboundClick,
+                    pinClick,
+                    profileVisit,
+                    reaction,
+                    save,
+                    userFollow,
+                    video10sViews,
+                    videoAverageTime,
+                    videoP95Views,
+                    videoTotalTime,
+                    videoViews,
+                    mutableMapOf(),
+                )
+
+                /**
+                 * Number of comments on the Pin
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun comment(): Double? = comment.getNullable("comment")
+
+                /**
+                 * Number of times the Pin was shown (impressions)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun impression(): Double? = impression.getNullable("impression")
+
+                /**
+                 * The last time Pinterest updated these metrics
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun lastUpdated(): String? = lastUpdated.getNullable("last_updated")
+
+                /**
+                 * Number of clicks from the Pin to an external destination (outbound clicks)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun outboundClick(): Double? = outboundClick.getNullable("outbound_click")
+
+                /**
+                 * Number of clicks on the Pin to view it in closeup (Pin clicks)
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun pinClick(): Double? = pinClick.getNullable("pin_click")
+
+                /**
+                 * Number of visits to the author's profile driven from the Pin
+                 *
+                 * This arbitrary value can be deserialized into a custom type using the `convert`
+                 * method:
+                 * ```kotlin
+                 * val myObject: MyClass = lifetimeMetrics.profileVisit().convert(MyClass::class.java)
+                 * ```
+                 */
+                @JsonProperty("profile_visit")
+                @ExcludeMissing
+                fun _profileVisit(): JsonValue = profileVisit
+
+                /**
+                 * Total number of reactions on the Pin
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun reaction(): Double? = reaction.getNullable("reaction")
+
+                /**
+                 * Number of saves of the Pin
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun save(): Double? = save.getNullable("save")
+
+                /**
+                 * Number of follows driven from the Pin
+                 *
+                 * This arbitrary value can be deserialized into a custom type using the `convert`
+                 * method:
+                 * ```kotlin
+                 * val myObject: MyClass = lifetimeMetrics.userFollow().convert(MyClass::class.java)
+                 * ```
+                 */
+                @JsonProperty("user_follow")
+                @ExcludeMissing
+                fun _userFollow(): JsonValue = userFollow
+
+                /**
+                 * Number of video views of at least 10 seconds
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun video10sViews(): Double? = video10sViews.getNullable("video_10s_views")
+
+                /**
+                 * Average watch time for the video
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoAverageTime(): Double? = videoAverageTime.getNullable("video_average_time")
+
+                /**
+                 * Number of video views that reached 95% completion
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoP95Views(): Double? = videoP95Views.getNullable("video_p95_views")
+
+                /**
+                 * Total watch time for the video
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoTotalTime(): Double? = videoTotalTime.getNullable("video_total_time")
+
+                /**
+                 * Number of video views
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun videoViews(): Double? = videoViews.getNullable("video_views")
+
+                /**
+                 * Returns the raw JSON value of [comment].
+                 *
+                 * Unlike [comment], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("comment") @ExcludeMissing fun _comment(): JsonField<Double> = comment
+
+                /**
+                 * Returns the raw JSON value of [impression].
+                 *
+                 * Unlike [impression], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("impression")
+                @ExcludeMissing
+                fun _impression(): JsonField<Double> = impression
+
+                /**
+                 * Returns the raw JSON value of [lastUpdated].
+                 *
+                 * Unlike [lastUpdated], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("last_updated")
+                @ExcludeMissing
+                fun _lastUpdated(): JsonField<String> = lastUpdated
+
+                /**
+                 * Returns the raw JSON value of [outboundClick].
+                 *
+                 * Unlike [outboundClick], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("outbound_click")
+                @ExcludeMissing
+                fun _outboundClick(): JsonField<Double> = outboundClick
+
+                /**
+                 * Returns the raw JSON value of [pinClick].
+                 *
+                 * Unlike [pinClick], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("pin_click")
+                @ExcludeMissing
+                fun _pinClick(): JsonField<Double> = pinClick
+
+                /**
+                 * Returns the raw JSON value of [reaction].
+                 *
+                 * Unlike [reaction], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("reaction")
+                @ExcludeMissing
+                fun _reaction(): JsonField<Double> = reaction
+
+                /**
+                 * Returns the raw JSON value of [save].
+                 *
+                 * Unlike [save], this method doesn't throw if the JSON field has an unexpected
+                 * type.
+                 */
+                @JsonProperty("save") @ExcludeMissing fun _save(): JsonField<Double> = save
+
+                /**
+                 * Returns the raw JSON value of [video10sViews].
+                 *
+                 * Unlike [video10sViews], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_10s_views")
+                @ExcludeMissing
+                fun _video10sViews(): JsonField<Double> = video10sViews
+
+                /**
+                 * Returns the raw JSON value of [videoAverageTime].
+                 *
+                 * Unlike [videoAverageTime], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_average_time")
+                @ExcludeMissing
+                fun _videoAverageTime(): JsonField<Double> = videoAverageTime
+
+                /**
+                 * Returns the raw JSON value of [videoP95Views].
+                 *
+                 * Unlike [videoP95Views], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_p95_views")
+                @ExcludeMissing
+                fun _videoP95Views(): JsonField<Double> = videoP95Views
+
+                /**
+                 * Returns the raw JSON value of [videoTotalTime].
+                 *
+                 * Unlike [videoTotalTime], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_total_time")
+                @ExcludeMissing
+                fun _videoTotalTime(): JsonField<Double> = videoTotalTime
+
+                /**
+                 * Returns the raw JSON value of [videoViews].
+                 *
+                 * Unlike [videoViews], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("video_views")
+                @ExcludeMissing
+                fun _videoViews(): JsonField<Double> = videoViews
+
+                @JsonAnySetter
+                private fun putAdditionalProperty(key: String, value: JsonValue) {
+                    additionalProperties.put(key, value)
+                }
+
+                @JsonAnyGetter
+                @ExcludeMissing
+                fun _additionalProperties(): Map<String, JsonValue> =
+                    Collections.unmodifiableMap(additionalProperties)
+
+                fun toBuilder() = Builder().from(this)
+
+                companion object {
+
+                    /**
+                     * Returns a mutable builder for constructing an instance of [LifetimeMetrics].
+                     */
+                    fun builder() = Builder()
+                }
+
+                /** A builder for [LifetimeMetrics]. */
+                class Builder internal constructor() {
+
+                    private var comment: JsonField<Double> = JsonMissing.of()
+                    private var impression: JsonField<Double> = JsonMissing.of()
+                    private var lastUpdated: JsonField<String> = JsonMissing.of()
+                    private var outboundClick: JsonField<Double> = JsonMissing.of()
+                    private var pinClick: JsonField<Double> = JsonMissing.of()
+                    private var profileVisit: JsonValue = JsonMissing.of()
+                    private var reaction: JsonField<Double> = JsonMissing.of()
+                    private var save: JsonField<Double> = JsonMissing.of()
+                    private var userFollow: JsonValue = JsonMissing.of()
+                    private var video10sViews: JsonField<Double> = JsonMissing.of()
+                    private var videoAverageTime: JsonField<Double> = JsonMissing.of()
+                    private var videoP95Views: JsonField<Double> = JsonMissing.of()
+                    private var videoTotalTime: JsonField<Double> = JsonMissing.of()
+                    private var videoViews: JsonField<Double> = JsonMissing.of()
+                    private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                    internal fun from(lifetimeMetrics: LifetimeMetrics) = apply {
+                        comment = lifetimeMetrics.comment
+                        impression = lifetimeMetrics.impression
+                        lastUpdated = lifetimeMetrics.lastUpdated
+                        outboundClick = lifetimeMetrics.outboundClick
+                        pinClick = lifetimeMetrics.pinClick
+                        profileVisit = lifetimeMetrics.profileVisit
+                        reaction = lifetimeMetrics.reaction
+                        save = lifetimeMetrics.save
+                        userFollow = lifetimeMetrics.userFollow
+                        video10sViews = lifetimeMetrics.video10sViews
+                        videoAverageTime = lifetimeMetrics.videoAverageTime
+                        videoP95Views = lifetimeMetrics.videoP95Views
+                        videoTotalTime = lifetimeMetrics.videoTotalTime
+                        videoViews = lifetimeMetrics.videoViews
+                        additionalProperties = lifetimeMetrics.additionalProperties.toMutableMap()
+                    }
+
+                    /** Number of comments on the Pin */
+                    fun comment(comment: Double) = comment(JsonField.of(comment))
+
+                    /**
+                     * Sets [Builder.comment] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.comment] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun comment(comment: JsonField<Double>) = apply { this.comment = comment }
+
+                    /** Number of times the Pin was shown (impressions) */
+                    fun impression(impression: Double) = impression(JsonField.of(impression))
+
+                    /**
+                     * Sets [Builder.impression] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.impression] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun impression(impression: JsonField<Double>) = apply {
+                        this.impression = impression
+                    }
+
+                    /** The last time Pinterest updated these metrics */
+                    fun lastUpdated(lastUpdated: String) = lastUpdated(JsonField.of(lastUpdated))
+
+                    /**
+                     * Sets [Builder.lastUpdated] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.lastUpdated] with a well-typed [String]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun lastUpdated(lastUpdated: JsonField<String>) = apply {
+                        this.lastUpdated = lastUpdated
+                    }
+
+                    /**
+                     * Number of clicks from the Pin to an external destination (outbound clicks)
+                     */
+                    fun outboundClick(outboundClick: Double) =
+                        outboundClick(JsonField.of(outboundClick))
+
+                    /**
+                     * Sets [Builder.outboundClick] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.outboundClick] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun outboundClick(outboundClick: JsonField<Double>) = apply {
+                        this.outboundClick = outboundClick
+                    }
+
+                    /** Number of clicks on the Pin to view it in closeup (Pin clicks) */
+                    fun pinClick(pinClick: Double) = pinClick(JsonField.of(pinClick))
+
+                    /**
+                     * Sets [Builder.pinClick] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.pinClick] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun pinClick(pinClick: JsonField<Double>) = apply { this.pinClick = pinClick }
+
+                    /** Number of visits to the author's profile driven from the Pin */
+                    fun profileVisit(profileVisit: JsonValue) = apply {
+                        this.profileVisit = profileVisit
+                    }
+
+                    /** Total number of reactions on the Pin */
+                    fun reaction(reaction: Double) = reaction(JsonField.of(reaction))
+
+                    /**
+                     * Sets [Builder.reaction] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.reaction] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun reaction(reaction: JsonField<Double>) = apply { this.reaction = reaction }
+
+                    /** Number of saves of the Pin */
+                    fun save(save: Double) = save(JsonField.of(save))
+
+                    /**
+                     * Sets [Builder.save] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.save] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun save(save: JsonField<Double>) = apply { this.save = save }
+
+                    /** Number of follows driven from the Pin */
+                    fun userFollow(userFollow: JsonValue) = apply { this.userFollow = userFollow }
+
+                    /** Number of video views of at least 10 seconds */
+                    fun video10sViews(video10sViews: Double) =
+                        video10sViews(JsonField.of(video10sViews))
+
+                    /**
+                     * Sets [Builder.video10sViews] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.video10sViews] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun video10sViews(video10sViews: JsonField<Double>) = apply {
+                        this.video10sViews = video10sViews
+                    }
+
+                    /** Average watch time for the video */
+                    fun videoAverageTime(videoAverageTime: Double) =
+                        videoAverageTime(JsonField.of(videoAverageTime))
+
+                    /**
+                     * Sets [Builder.videoAverageTime] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoAverageTime] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun videoAverageTime(videoAverageTime: JsonField<Double>) = apply {
+                        this.videoAverageTime = videoAverageTime
+                    }
+
+                    /** Number of video views that reached 95% completion */
+                    fun videoP95Views(videoP95Views: Double) =
+                        videoP95Views(JsonField.of(videoP95Views))
+
+                    /**
+                     * Sets [Builder.videoP95Views] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoP95Views] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun videoP95Views(videoP95Views: JsonField<Double>) = apply {
+                        this.videoP95Views = videoP95Views
+                    }
+
+                    /** Total watch time for the video */
+                    fun videoTotalTime(videoTotalTime: Double) =
+                        videoTotalTime(JsonField.of(videoTotalTime))
+
+                    /**
+                     * Sets [Builder.videoTotalTime] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoTotalTime] with a well-typed [Double]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun videoTotalTime(videoTotalTime: JsonField<Double>) = apply {
+                        this.videoTotalTime = videoTotalTime
+                    }
+
+                    /** Number of video views */
+                    fun videoViews(videoViews: Double) = videoViews(JsonField.of(videoViews))
+
+                    /**
+                     * Sets [Builder.videoViews] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.videoViews] with a well-typed [Double] value
+                     * instead. This method is primarily for setting the field to an undocumented or
+                     * not yet supported value.
+                     */
+                    fun videoViews(videoViews: JsonField<Double>) = apply {
+                        this.videoViews = videoViews
+                    }
+
+                    fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                        this.additionalProperties.clear()
+                        putAllAdditionalProperties(additionalProperties)
+                    }
+
+                    fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                        additionalProperties.put(key, value)
+                    }
+
+                    fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                        apply {
+                            this.additionalProperties.putAll(additionalProperties)
+                        }
+
+                    fun removeAdditionalProperty(key: String) = apply {
+                        additionalProperties.remove(key)
+                    }
+
+                    fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                        keys.forEach(::removeAdditionalProperty)
+                    }
+
+                    /**
+                     * Returns an immutable instance of [LifetimeMetrics].
+                     *
+                     * Further updates to this [Builder] will not mutate the returned instance.
+                     */
+                    fun build(): LifetimeMetrics =
+                        LifetimeMetrics(
+                            comment,
+                            impression,
+                            lastUpdated,
+                            outboundClick,
+                            pinClick,
+                            profileVisit,
+                            reaction,
+                            save,
+                            userFollow,
+                            video10sViews,
+                            videoAverageTime,
+                            videoP95Views,
+                            videoTotalTime,
+                            videoViews,
+                            additionalProperties.toMutableMap(),
+                        )
+                }
+
+                private var validated: Boolean = false
+
+                fun validate(): LifetimeMetrics = apply {
+                    if (validated) {
+                        return@apply
+                    }
+
+                    comment()
+                    impression()
+                    lastUpdated()
+                    outboundClick()
+                    pinClick()
+                    reaction()
+                    save()
+                    video10sViews()
+                    videoAverageTime()
+                    videoP95Views()
+                    videoTotalTime()
+                    videoViews()
+                    validated = true
+                }
+
+                fun isValid(): Boolean =
+                    try {
+                        validate()
+                        true
+                    } catch (e: PostForMeInvalidDataException) {
+                        false
+                    }
+
+                /**
+                 * Returns a score indicating how many valid values are contained in this object
+                 * recursively.
+                 *
+                 * Used for best match union deserialization.
+                 */
+                internal fun validity(): Int =
+                    (if (comment.asKnown() == null) 0 else 1) +
+                        (if (impression.asKnown() == null) 0 else 1) +
+                        (if (lastUpdated.asKnown() == null) 0 else 1) +
+                        (if (outboundClick.asKnown() == null) 0 else 1) +
+                        (if (pinClick.asKnown() == null) 0 else 1) +
+                        (if (reaction.asKnown() == null) 0 else 1) +
+                        (if (save.asKnown() == null) 0 else 1) +
+                        (if (video10sViews.asKnown() == null) 0 else 1) +
+                        (if (videoAverageTime.asKnown() == null) 0 else 1) +
+                        (if (videoP95Views.asKnown() == null) 0 else 1) +
+                        (if (videoTotalTime.asKnown() == null) 0 else 1) +
+                        (if (videoViews.asKnown() == null) 0 else 1)
+
+                override fun equals(other: Any?): Boolean {
+                    if (this === other) {
+                        return true
+                    }
+
+                    return other is LifetimeMetrics &&
+                        comment == other.comment &&
+                        impression == other.impression &&
+                        lastUpdated == other.lastUpdated &&
+                        outboundClick == other.outboundClick &&
+                        pinClick == other.pinClick &&
+                        profileVisit == other.profileVisit &&
+                        reaction == other.reaction &&
+                        save == other.save &&
+                        userFollow == other.userFollow &&
+                        video10sViews == other.video10sViews &&
+                        videoAverageTime == other.videoAverageTime &&
+                        videoP95Views == other.videoP95Views &&
+                        videoTotalTime == other.videoTotalTime &&
+                        videoViews == other.videoViews &&
+                        additionalProperties == other.additionalProperties
+                }
+
+                private val hashCode: Int by lazy {
+                    Objects.hash(
+                        comment,
+                        impression,
+                        lastUpdated,
+                        outboundClick,
+                        pinClick,
+                        profileVisit,
+                        reaction,
+                        save,
+                        userFollow,
+                        video10sViews,
+                        videoAverageTime,
+                        videoP95Views,
+                        videoTotalTime,
+                        videoViews,
+                        additionalProperties,
+                    )
+                }
+
+                override fun hashCode(): Int = hashCode
+
+                override fun toString() =
+                    "LifetimeMetrics{comment=$comment, impression=$impression, lastUpdated=$lastUpdated, outboundClick=$outboundClick, pinClick=$pinClick, profileVisit=$profileVisit, reaction=$reaction, save=$save, userFollow=$userFollow, video10sViews=$video10sViews, videoAverageTime=$videoAverageTime, videoP95Views=$videoP95Views, videoTotalTime=$videoTotalTime, videoViews=$videoViews, additionalProperties=$additionalProperties}"
+            }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is PinterestPostMetricsDto &&
+                    _90d == other._90d &&
+                    lifetimeMetrics == other.lifetimeMetrics &&
+                    additionalProperties == other.additionalProperties
+            }
+
+            private val hashCode: Int by lazy {
+                Objects.hash(_90d, lifetimeMetrics, additionalProperties)
+            }
+
+            override fun hashCode(): Int = hashCode
+
+            override fun toString() =
+                "PinterestPostMetricsDto{_90d=$_90d, lifetimeMetrics=$lifetimeMetrics, additionalProperties=$additionalProperties}"
         }
     }
 
