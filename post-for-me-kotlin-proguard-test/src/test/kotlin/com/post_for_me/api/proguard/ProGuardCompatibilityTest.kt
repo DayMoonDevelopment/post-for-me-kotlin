@@ -66,6 +66,7 @@ internal class ProGuardCompatibilityTest {
                 .addMedia(
                     BlueskyConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             BlueskyConfigurationDto.Media.Tag.builder()
                                 .id("id")

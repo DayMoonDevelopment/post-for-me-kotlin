@@ -20,6 +20,7 @@ internal class PinterestConfigurationDtoTest {
                 .addMedia(
                     PinterestConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             PinterestConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -43,6 +44,7 @@ internal class PinterestConfigurationDtoTest {
             .containsExactly(
                 PinterestConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         PinterestConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -69,6 +71,7 @@ internal class PinterestConfigurationDtoTest {
                 .addMedia(
                     PinterestConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             PinterestConfigurationDto.Media.Tag.builder()
                                 .id("id")

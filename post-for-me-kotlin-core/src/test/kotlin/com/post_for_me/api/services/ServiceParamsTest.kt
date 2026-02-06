@@ -85,6 +85,7 @@ internal class ServiceParamsTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -165,6 +166,7 @@ internal class ServiceParamsTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -186,6 +188,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -220,6 +223,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -253,6 +257,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -288,6 +293,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -320,6 +326,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -350,6 +357,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -389,6 +397,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -427,6 +436,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -458,6 +468,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -503,6 +514,7 @@ internal class ServiceParamsTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")

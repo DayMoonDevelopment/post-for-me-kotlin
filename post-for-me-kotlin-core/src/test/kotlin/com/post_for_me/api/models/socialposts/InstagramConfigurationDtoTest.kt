@@ -20,6 +20,7 @@ internal class InstagramConfigurationDtoTest {
                 .addMedia(
                     InstagramConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             InstagramConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -46,6 +47,7 @@ internal class InstagramConfigurationDtoTest {
             .containsExactly(
                 InstagramConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         InstagramConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -77,6 +79,7 @@ internal class InstagramConfigurationDtoTest {
                 .addMedia(
                     InstagramConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             InstagramConfigurationDto.Media.Tag.builder()
                                 .id("id")

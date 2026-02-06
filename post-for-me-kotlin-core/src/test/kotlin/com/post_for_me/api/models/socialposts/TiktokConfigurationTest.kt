@@ -26,6 +26,7 @@ internal class TiktokConfigurationTest {
                 .addMedia(
                     TiktokConfiguration.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             TiktokConfiguration.Media.Tag.builder()
                                 .id("id")
@@ -56,6 +57,7 @@ internal class TiktokConfigurationTest {
             .containsExactly(
                 TiktokConfiguration.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         TiktokConfiguration.Media.Tag.builder()
                             .id("id")
@@ -90,6 +92,7 @@ internal class TiktokConfigurationTest {
                 .addMedia(
                     TiktokConfiguration.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             TiktokConfiguration.Media.Tag.builder()
                                 .id("id")

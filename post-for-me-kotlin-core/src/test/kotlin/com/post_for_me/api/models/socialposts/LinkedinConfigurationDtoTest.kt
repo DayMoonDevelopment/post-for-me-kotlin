@@ -18,6 +18,7 @@ internal class LinkedinConfigurationDtoTest {
                 .addMedia(
                     LinkedinConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             LinkedinConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -39,6 +40,7 @@ internal class LinkedinConfigurationDtoTest {
             .containsExactly(
                 LinkedinConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         LinkedinConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -63,6 +65,7 @@ internal class LinkedinConfigurationDtoTest {
                 .addMedia(
                     LinkedinConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             LinkedinConfigurationDto.Media.Tag.builder()
                                 .id("id")
