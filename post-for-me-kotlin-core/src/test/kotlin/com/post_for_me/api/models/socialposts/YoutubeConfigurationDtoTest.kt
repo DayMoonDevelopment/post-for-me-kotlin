@@ -19,6 +19,7 @@ internal class YoutubeConfigurationDtoTest {
                 .addMedia(
                     YoutubeConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             YoutubeConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -43,6 +44,7 @@ internal class YoutubeConfigurationDtoTest {
             .containsExactly(
                 YoutubeConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         YoutubeConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -71,6 +73,7 @@ internal class YoutubeConfigurationDtoTest {
                 .addMedia(
                     YoutubeConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             YoutubeConfigurationDto.Media.Tag.builder()
                                 .id("id")

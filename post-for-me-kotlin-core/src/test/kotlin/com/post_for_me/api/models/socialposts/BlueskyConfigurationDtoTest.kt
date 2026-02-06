@@ -18,6 +18,7 @@ internal class BlueskyConfigurationDtoTest {
                 .addMedia(
                     BlueskyConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             BlueskyConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -39,6 +40,7 @@ internal class BlueskyConfigurationDtoTest {
             .containsExactly(
                 BlueskyConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         BlueskyConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -63,6 +65,7 @@ internal class BlueskyConfigurationDtoTest {
                 .addMedia(
                     BlueskyConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             BlueskyConfigurationDto.Media.Tag.builder()
                                 .id("id")

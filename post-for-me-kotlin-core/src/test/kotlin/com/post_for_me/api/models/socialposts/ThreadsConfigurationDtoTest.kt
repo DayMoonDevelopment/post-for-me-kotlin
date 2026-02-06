@@ -18,6 +18,7 @@ internal class ThreadsConfigurationDtoTest {
                 .addMedia(
                     ThreadsConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             ThreadsConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -40,6 +41,7 @@ internal class ThreadsConfigurationDtoTest {
             .containsExactly(
                 ThreadsConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         ThreadsConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -66,6 +68,7 @@ internal class ThreadsConfigurationDtoTest {
                 .addMedia(
                     ThreadsConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             ThreadsConfigurationDto.Media.Tag.builder()
                                 .id("id")

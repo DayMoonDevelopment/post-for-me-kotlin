@@ -19,6 +19,7 @@ internal class TwitterConfigurationDtoTest {
                 .addMedia(
                     TwitterConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             TwitterConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -50,6 +51,7 @@ internal class TwitterConfigurationDtoTest {
             .containsExactly(
                 TwitterConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         TwitterConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -86,6 +88,7 @@ internal class TwitterConfigurationDtoTest {
                 .addMedia(
                     TwitterConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             TwitterConfigurationDto.Media.Tag.builder()
                                 .id("id")

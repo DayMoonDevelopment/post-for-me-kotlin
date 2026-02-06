@@ -40,6 +40,7 @@ internal class SocialPostUpdateParamsTest {
                                         CreateSocialPost.AccountConfiguration.Configuration.Media
                                             .builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 CreateSocialPost.AccountConfiguration.Configuration
                                                     .Media
@@ -118,6 +119,7 @@ internal class SocialPostUpdateParamsTest {
                     .addMedia(
                         CreateSocialPost.Media.builder()
                             .url("url")
+                            .skipProcessing(true)
                             .addTag(
                                 CreateSocialPost.Media.Tag.builder()
                                     .id("id")
@@ -139,6 +141,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         BlueskyConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 BlueskyConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -169,6 +172,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         FacebookConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 FacebookConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -200,6 +204,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         InstagramConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 InstagramConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -232,6 +237,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         LinkedinConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 LinkedinConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -262,6 +268,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         PinterestConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 PinterestConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -291,6 +298,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         ThreadsConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 ThreadsConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -328,6 +336,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         TiktokConfiguration.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 TiktokConfiguration.Media.Tag.builder()
                                                     .id("id")
@@ -364,6 +373,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         TiktokConfiguration.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 TiktokConfiguration.Media.Tag.builder()
                                                     .id("id")
@@ -393,6 +403,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         TwitterConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 TwitterConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -433,6 +444,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         YoutubeConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 YoutubeConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -515,6 +527,7 @@ internal class SocialPostUpdateParamsTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -595,6 +608,7 @@ internal class SocialPostUpdateParamsTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -616,6 +630,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -650,6 +665,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -683,6 +699,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -718,6 +735,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -750,6 +768,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -780,6 +799,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -819,6 +839,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -857,6 +878,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -888,6 +910,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -933,6 +956,7 @@ internal class SocialPostUpdateParamsTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -996,6 +1020,7 @@ internal class SocialPostUpdateParamsTest {
                                         CreateSocialPost.AccountConfiguration.Configuration.Media
                                             .builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 CreateSocialPost.AccountConfiguration.Configuration
                                                     .Media
@@ -1074,6 +1099,7 @@ internal class SocialPostUpdateParamsTest {
                     .addMedia(
                         CreateSocialPost.Media.builder()
                             .url("url")
+                            .skipProcessing(true)
                             .addTag(
                                 CreateSocialPost.Media.Tag.builder()
                                     .id("id")
@@ -1095,6 +1121,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         BlueskyConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 BlueskyConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1125,6 +1152,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         FacebookConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 FacebookConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1156,6 +1184,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         InstagramConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 InstagramConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1188,6 +1217,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         LinkedinConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 LinkedinConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1218,6 +1248,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         PinterestConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 PinterestConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1247,6 +1278,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         ThreadsConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 ThreadsConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1284,6 +1316,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         TiktokConfiguration.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 TiktokConfiguration.Media.Tag.builder()
                                                     .id("id")
@@ -1320,6 +1353,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         TiktokConfiguration.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 TiktokConfiguration.Media.Tag.builder()
                                                     .id("id")
@@ -1349,6 +1383,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         TwitterConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 TwitterConfigurationDto.Media.Tag.builder()
                                                     .id("id")
@@ -1389,6 +1424,7 @@ internal class SocialPostUpdateParamsTest {
                                     .addMedia(
                                         YoutubeConfigurationDto.Media.builder()
                                             .url("url")
+                                            .skipProcessing(true)
                                             .addTag(
                                                 YoutubeConfigurationDto.Media.Tag.builder()
                                                     .id("id")

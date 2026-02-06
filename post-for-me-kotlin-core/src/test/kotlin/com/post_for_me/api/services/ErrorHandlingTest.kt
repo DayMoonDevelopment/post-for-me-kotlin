@@ -111,6 +111,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -191,6 +192,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -212,6 +214,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -246,6 +249,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -279,6 +283,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -314,6 +319,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -346,6 +352,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -376,6 +383,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -415,6 +423,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -453,6 +462,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -484,6 +494,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -529,6 +540,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -609,6 +621,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -689,6 +702,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -710,6 +724,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -744,6 +759,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -777,6 +793,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -812,6 +829,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -844,6 +862,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -874,6 +893,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -913,6 +933,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -951,6 +972,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -982,6 +1004,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1027,6 +1050,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1107,6 +1131,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -1187,6 +1212,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -1208,6 +1234,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1242,6 +1269,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1275,6 +1303,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1310,6 +1339,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1342,6 +1372,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1372,6 +1403,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1411,6 +1443,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -1449,6 +1482,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -1480,6 +1514,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1525,6 +1560,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1605,6 +1641,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -1685,6 +1722,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -1706,6 +1744,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1740,6 +1779,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1773,6 +1813,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1808,6 +1849,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1840,6 +1882,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1870,6 +1913,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -1909,6 +1953,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -1947,6 +1992,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -1978,6 +2024,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2023,6 +2070,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2103,6 +2151,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -2183,6 +2232,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -2204,6 +2254,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2238,6 +2289,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2271,6 +2323,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2306,6 +2359,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2338,6 +2392,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2368,6 +2423,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2407,6 +2463,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -2445,6 +2502,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -2476,6 +2534,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2521,6 +2580,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2601,6 +2661,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -2681,6 +2742,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -2702,6 +2764,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2736,6 +2799,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2769,6 +2833,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2804,6 +2869,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2836,6 +2902,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2866,6 +2933,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -2905,6 +2973,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -2943,6 +3012,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -2974,6 +3044,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3019,6 +3090,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3099,6 +3171,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -3179,6 +3252,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -3200,6 +3274,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3234,6 +3309,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3267,6 +3343,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3302,6 +3379,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3334,6 +3412,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3364,6 +3443,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3403,6 +3483,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -3441,6 +3522,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -3472,6 +3554,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3517,6 +3600,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3597,6 +3681,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -3677,6 +3762,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -3698,6 +3784,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3732,6 +3819,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3765,6 +3853,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3800,6 +3889,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3832,6 +3922,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3862,6 +3953,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -3901,6 +3993,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -3939,6 +4032,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -3970,6 +4064,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4015,6 +4110,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4095,6 +4191,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -4175,6 +4272,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -4196,6 +4294,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4230,6 +4329,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4263,6 +4363,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4298,6 +4399,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4330,6 +4432,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4360,6 +4463,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4399,6 +4503,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -4437,6 +4542,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -4468,6 +4574,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4513,6 +4620,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4593,6 +4701,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -4673,6 +4782,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -4694,6 +4804,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4728,6 +4839,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4761,6 +4873,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4796,6 +4909,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4828,6 +4942,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4858,6 +4973,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -4897,6 +5013,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -4935,6 +5052,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -4966,6 +5084,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5011,6 +5130,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5091,6 +5211,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -5171,6 +5292,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -5192,6 +5314,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5226,6 +5349,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5259,6 +5383,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5294,6 +5419,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5326,6 +5452,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5356,6 +5483,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5395,6 +5523,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -5433,6 +5562,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -5464,6 +5594,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5509,6 +5640,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5589,6 +5721,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -5669,6 +5802,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -5690,6 +5824,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5724,6 +5859,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5757,6 +5893,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5792,6 +5929,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5824,6 +5962,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5854,6 +5993,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -5893,6 +6033,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -5931,6 +6072,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -5962,6 +6104,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6007,6 +6150,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6087,6 +6231,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -6167,6 +6312,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -6188,6 +6334,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6222,6 +6369,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6255,6 +6403,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6290,6 +6439,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6322,6 +6472,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6352,6 +6503,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6391,6 +6543,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -6429,6 +6582,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -6460,6 +6614,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6505,6 +6660,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6585,6 +6741,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -6665,6 +6822,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -6686,6 +6844,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6720,6 +6879,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6753,6 +6913,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6788,6 +6949,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6820,6 +6982,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6850,6 +7013,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -6889,6 +7053,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -6927,6 +7092,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -6958,6 +7124,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7003,6 +7170,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7083,6 +7251,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -7163,6 +7332,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -7184,6 +7354,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7218,6 +7389,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7251,6 +7423,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7286,6 +7459,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7318,6 +7492,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7348,6 +7523,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7387,6 +7563,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -7425,6 +7602,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -7456,6 +7634,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7501,6 +7680,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7581,6 +7761,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -7661,6 +7842,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -7682,6 +7864,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7716,6 +7899,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7749,6 +7933,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7784,6 +7969,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7816,6 +8002,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7846,6 +8033,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7885,6 +8073,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -7923,6 +8112,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -7954,6 +8144,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -7999,6 +8190,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8077,6 +8269,7 @@ internal class ErrorHandlingTest {
                                                 .Media
                                                 .builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     CreateSocialPost.AccountConfiguration
                                                         .Configuration
@@ -8157,6 +8350,7 @@ internal class ErrorHandlingTest {
                         .addMedia(
                             CreateSocialPost.Media.builder()
                                 .url("url")
+                                .skipProcessing(true)
                                 .addTag(
                                     CreateSocialPost.Media.Tag.builder()
                                         .id("id")
@@ -8178,6 +8372,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             BlueskyConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     BlueskyConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8212,6 +8407,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             FacebookConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     FacebookConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8245,6 +8441,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             InstagramConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     InstagramConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8280,6 +8477,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             LinkedinConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     LinkedinConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8312,6 +8510,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             PinterestConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     PinterestConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8342,6 +8541,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             ThreadsConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     ThreadsConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8381,6 +8581,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -8419,6 +8620,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TiktokConfiguration.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TiktokConfiguration.Media.Tag.builder()
                                                         .id("id")
@@ -8450,6 +8652,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             TwitterConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     TwitterConfigurationDto.Media.Tag.builder()
                                                         .id("id")
@@ -8495,6 +8698,7 @@ internal class ErrorHandlingTest {
                                         .addMedia(
                                             YoutubeConfigurationDto.Media.builder()
                                                 .url("url")
+                                                .skipProcessing(true)
                                                 .addTag(
                                                     YoutubeConfigurationDto.Media.Tag.builder()
                                                         .id("id")

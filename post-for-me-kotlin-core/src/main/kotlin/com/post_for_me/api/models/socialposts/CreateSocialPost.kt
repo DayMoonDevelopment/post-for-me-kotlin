@@ -1881,6 +1881,7 @@ private constructor(
             @JsonCreator(mode = JsonCreator.Mode.DISABLED)
             private constructor(
                 private val url: JsonField<String>,
+                private val skipProcessing: JsonField<Boolean>,
                 private val tags: JsonField<List<Tag>>,
                 private val thumbnailTimestampMs: JsonValue,
                 private val thumbnailUrl: JsonValue,
@@ -1890,6 +1891,9 @@ private constructor(
                 @JsonCreator
                 private constructor(
                     @JsonProperty("url") @ExcludeMissing url: JsonField<String> = JsonMissing.of(),
+                    @JsonProperty("skip_processing")
+                    @ExcludeMissing
+                    skipProcessing: JsonField<Boolean> = JsonMissing.of(),
                     @JsonProperty("tags")
                     @ExcludeMissing
                     tags: JsonField<List<Tag>> = JsonMissing.of(),
@@ -1899,7 +1903,14 @@ private constructor(
                     @JsonProperty("thumbnail_url")
                     @ExcludeMissing
                     thumbnailUrl: JsonValue = JsonMissing.of(),
-                ) : this(url, tags, thumbnailTimestampMs, thumbnailUrl, mutableMapOf())
+                ) : this(
+                    url,
+                    skipProcessing,
+                    tags,
+                    thumbnailTimestampMs,
+                    thumbnailUrl,
+                    mutableMapOf(),
+                )
 
                 /**
                  * Public URL of the media
@@ -1909,6 +1920,16 @@ private constructor(
                  *   unexpected value).
                  */
                 fun url(): String = url.getRequired("url")
+
+                /**
+                 * If true the media will not be processed at all and instead be posted as is, this
+                 * may increase chance of post failure if media does not meet platform's
+                 * requirements. Best used for larger files.
+                 *
+                 * @throws PostForMeInvalidDataException if the JSON field has an unexpected type
+                 *   (e.g. if the server responded with an unexpected value).
+                 */
+                fun skipProcessing(): Boolean? = skipProcessing.getNullable("skip_processing")
 
                 /**
                  * List of tags to attach to the media
@@ -1952,6 +1973,16 @@ private constructor(
                 @JsonProperty("url") @ExcludeMissing fun _url(): JsonField<String> = url
 
                 /**
+                 * Returns the raw JSON value of [skipProcessing].
+                 *
+                 * Unlike [skipProcessing], this method doesn't throw if the JSON field has an
+                 * unexpected type.
+                 */
+                @JsonProperty("skip_processing")
+                @ExcludeMissing
+                fun _skipProcessing(): JsonField<Boolean> = skipProcessing
+
+                /**
                  * Returns the raw JSON value of [tags].
                  *
                  * Unlike [tags], this method doesn't throw if the JSON field has an unexpected
@@ -1988,6 +2019,7 @@ private constructor(
                 class Builder internal constructor() {
 
                     private var url: JsonField<String>? = null
+                    private var skipProcessing: JsonField<Boolean> = JsonMissing.of()
                     private var tags: JsonField<MutableList<Tag>>? = null
                     private var thumbnailTimestampMs: JsonValue = JsonMissing.of()
                     private var thumbnailUrl: JsonValue = JsonMissing.of()
@@ -1995,6 +2027,7 @@ private constructor(
 
                     internal fun from(media: Media) = apply {
                         url = media.url
+                        skipProcessing = media.skipProcessing
                         tags = media.tags.map { it.toMutableList() }
                         thumbnailTimestampMs = media.thumbnailTimestampMs
                         thumbnailUrl = media.thumbnailUrl
@@ -2012,6 +2045,33 @@ private constructor(
                      * not yet supported value.
                      */
                     fun url(url: JsonField<String>) = apply { this.url = url }
+
+                    /**
+                     * If true the media will not be processed at all and instead be posted as is,
+                     * this may increase chance of post failure if media does not meet platform's
+                     * requirements. Best used for larger files.
+                     */
+                    fun skipProcessing(skipProcessing: Boolean?) =
+                        skipProcessing(JsonField.ofNullable(skipProcessing))
+
+                    /**
+                     * Alias for [Builder.skipProcessing].
+                     *
+                     * This unboxed primitive overload exists for backwards compatibility.
+                     */
+                    fun skipProcessing(skipProcessing: Boolean) =
+                        skipProcessing(skipProcessing as Boolean?)
+
+                    /**
+                     * Sets [Builder.skipProcessing] to an arbitrary JSON value.
+                     *
+                     * You should usually call [Builder.skipProcessing] with a well-typed [Boolean]
+                     * value instead. This method is primarily for setting the field to an
+                     * undocumented or not yet supported value.
+                     */
+                    fun skipProcessing(skipProcessing: JsonField<Boolean>) = apply {
+                        this.skipProcessing = skipProcessing
+                    }
 
                     /** List of tags to attach to the media */
                     fun tags(tags: List<Tag>?) = tags(JsonField.ofNullable(tags))
@@ -2086,6 +2146,7 @@ private constructor(
                     fun build(): Media =
                         Media(
                             checkRequired("url", url),
+                            skipProcessing,
                             (tags ?: JsonMissing.of()).map { it.toImmutable() },
                             thumbnailTimestampMs,
                             thumbnailUrl,
@@ -2101,6 +2162,7 @@ private constructor(
                     }
 
                     url()
+                    skipProcessing()
                     tags()?.forEach { it.validate() }
                     validated = true
                 }
@@ -2121,6 +2183,7 @@ private constructor(
                  */
                 internal fun validity(): Int =
                     (if (url.asKnown() == null) 0 else 1) +
+                        (if (skipProcessing.asKnown() == null) 0 else 1) +
                         (tags.asKnown()?.sumOf { it.validity().toInt() } ?: 0)
 
                 class Tag
@@ -2742,6 +2805,7 @@ private constructor(
 
                     return other is Media &&
                         url == other.url &&
+                        skipProcessing == other.skipProcessing &&
                         tags == other.tags &&
                         thumbnailTimestampMs == other.thumbnailTimestampMs &&
                         thumbnailUrl == other.thumbnailUrl &&
@@ -2751,6 +2815,7 @@ private constructor(
                 private val hashCode: Int by lazy {
                     Objects.hash(
                         url,
+                        skipProcessing,
                         tags,
                         thumbnailTimestampMs,
                         thumbnailUrl,
@@ -2761,7 +2826,7 @@ private constructor(
                 override fun hashCode(): Int = hashCode
 
                 override fun toString() =
-                    "Media{url=$url, tags=$tags, thumbnailTimestampMs=$thumbnailTimestampMs, thumbnailUrl=$thumbnailUrl, additionalProperties=$additionalProperties}"
+                    "Media{url=$url, skipProcessing=$skipProcessing, tags=$tags, thumbnailTimestampMs=$thumbnailTimestampMs, thumbnailUrl=$thumbnailUrl, additionalProperties=$additionalProperties}"
             }
 
             /** Post placement for Facebook/Instagram/Threads */
@@ -3841,6 +3906,7 @@ private constructor(
     @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val url: JsonField<String>,
+        private val skipProcessing: JsonField<Boolean>,
         private val tags: JsonField<List<Tag>>,
         private val thumbnailTimestampMs: JsonValue,
         private val thumbnailUrl: JsonValue,
@@ -3850,6 +3916,9 @@ private constructor(
         @JsonCreator
         private constructor(
             @JsonProperty("url") @ExcludeMissing url: JsonField<String> = JsonMissing.of(),
+            @JsonProperty("skip_processing")
+            @ExcludeMissing
+            skipProcessing: JsonField<Boolean> = JsonMissing.of(),
             @JsonProperty("tags") @ExcludeMissing tags: JsonField<List<Tag>> = JsonMissing.of(),
             @JsonProperty("thumbnail_timestamp_ms")
             @ExcludeMissing
@@ -3857,7 +3926,7 @@ private constructor(
             @JsonProperty("thumbnail_url")
             @ExcludeMissing
             thumbnailUrl: JsonValue = JsonMissing.of(),
-        ) : this(url, tags, thumbnailTimestampMs, thumbnailUrl, mutableMapOf())
+        ) : this(url, skipProcessing, tags, thumbnailTimestampMs, thumbnailUrl, mutableMapOf())
 
         /**
          * Public URL of the media
@@ -3866,6 +3935,16 @@ private constructor(
          *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
          */
         fun url(): String = url.getRequired("url")
+
+        /**
+         * If true the media will not be processed at all and instead be posted as is, this may
+         * increase chance of post failure if media does not meet platform's requirements. Best used
+         * for larger files.
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if
+         *   the server responded with an unexpected value).
+         */
+        fun skipProcessing(): Boolean? = skipProcessing.getNullable("skip_processing")
 
         /**
          * List of tags to attach to the media
@@ -3905,6 +3984,16 @@ private constructor(
         @JsonProperty("url") @ExcludeMissing fun _url(): JsonField<String> = url
 
         /**
+         * Returns the raw JSON value of [skipProcessing].
+         *
+         * Unlike [skipProcessing], this method doesn't throw if the JSON field has an unexpected
+         * type.
+         */
+        @JsonProperty("skip_processing")
+        @ExcludeMissing
+        fun _skipProcessing(): JsonField<Boolean> = skipProcessing
+
+        /**
          * Returns the raw JSON value of [tags].
          *
          * Unlike [tags], this method doesn't throw if the JSON field has an unexpected type.
@@ -3940,6 +4029,7 @@ private constructor(
         class Builder internal constructor() {
 
             private var url: JsonField<String>? = null
+            private var skipProcessing: JsonField<Boolean> = JsonMissing.of()
             private var tags: JsonField<MutableList<Tag>>? = null
             private var thumbnailTimestampMs: JsonValue = JsonMissing.of()
             private var thumbnailUrl: JsonValue = JsonMissing.of()
@@ -3947,6 +4037,7 @@ private constructor(
 
             internal fun from(media: Media) = apply {
                 url = media.url
+                skipProcessing = media.skipProcessing
                 tags = media.tags.map { it.toMutableList() }
                 thumbnailTimestampMs = media.thumbnailTimestampMs
                 thumbnailUrl = media.thumbnailUrl
@@ -3964,6 +4055,32 @@ private constructor(
              * value.
              */
             fun url(url: JsonField<String>) = apply { this.url = url }
+
+            /**
+             * If true the media will not be processed at all and instead be posted as is, this may
+             * increase chance of post failure if media does not meet platform's requirements. Best
+             * used for larger files.
+             */
+            fun skipProcessing(skipProcessing: Boolean?) =
+                skipProcessing(JsonField.ofNullable(skipProcessing))
+
+            /**
+             * Alias for [Builder.skipProcessing].
+             *
+             * This unboxed primitive overload exists for backwards compatibility.
+             */
+            fun skipProcessing(skipProcessing: Boolean) = skipProcessing(skipProcessing as Boolean?)
+
+            /**
+             * Sets [Builder.skipProcessing] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.skipProcessing] with a well-typed [Boolean] value
+             * instead. This method is primarily for setting the field to an undocumented or not yet
+             * supported value.
+             */
+            fun skipProcessing(skipProcessing: JsonField<Boolean>) = apply {
+                this.skipProcessing = skipProcessing
+            }
 
             /** List of tags to attach to the media */
             fun tags(tags: List<Tag>?) = tags(JsonField.ofNullable(tags))
@@ -4031,6 +4148,7 @@ private constructor(
             fun build(): Media =
                 Media(
                     checkRequired("url", url),
+                    skipProcessing,
                     (tags ?: JsonMissing.of()).map { it.toImmutable() },
                     thumbnailTimestampMs,
                     thumbnailUrl,
@@ -4046,6 +4164,7 @@ private constructor(
             }
 
             url()
+            skipProcessing()
             tags()?.forEach { it.validate() }
             validated = true
         }
@@ -4066,6 +4185,7 @@ private constructor(
          */
         internal fun validity(): Int =
             (if (url.asKnown() == null) 0 else 1) +
+                (if (skipProcessing.asKnown() == null) 0 else 1) +
                 (tags.asKnown()?.sumOf { it.validity().toInt() } ?: 0)
 
         class Tag
@@ -4665,6 +4785,7 @@ private constructor(
 
             return other is Media &&
                 url == other.url &&
+                skipProcessing == other.skipProcessing &&
                 tags == other.tags &&
                 thumbnailTimestampMs == other.thumbnailTimestampMs &&
                 thumbnailUrl == other.thumbnailUrl &&
@@ -4672,13 +4793,20 @@ private constructor(
         }
 
         private val hashCode: Int by lazy {
-            Objects.hash(url, tags, thumbnailTimestampMs, thumbnailUrl, additionalProperties)
+            Objects.hash(
+                url,
+                skipProcessing,
+                tags,
+                thumbnailTimestampMs,
+                thumbnailUrl,
+                additionalProperties,
+            )
         }
 
         override fun hashCode(): Int = hashCode
 
         override fun toString() =
-            "Media{url=$url, tags=$tags, thumbnailTimestampMs=$thumbnailTimestampMs, thumbnailUrl=$thumbnailUrl, additionalProperties=$additionalProperties}"
+            "Media{url=$url, skipProcessing=$skipProcessing, tags=$tags, thumbnailTimestampMs=$thumbnailTimestampMs, thumbnailUrl=$thumbnailUrl, additionalProperties=$additionalProperties}"
     }
 
     override fun equals(other: Any?): Boolean {

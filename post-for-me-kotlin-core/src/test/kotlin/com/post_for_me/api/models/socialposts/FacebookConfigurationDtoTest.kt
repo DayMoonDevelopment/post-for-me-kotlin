@@ -20,6 +20,7 @@ internal class FacebookConfigurationDtoTest {
                 .addMedia(
                     FacebookConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             FacebookConfigurationDto.Media.Tag.builder()
                                 .id("id")
@@ -45,6 +46,7 @@ internal class FacebookConfigurationDtoTest {
             .containsExactly(
                 FacebookConfigurationDto.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
                     .addTag(
                         FacebookConfigurationDto.Media.Tag.builder()
                             .id("id")
@@ -73,6 +75,7 @@ internal class FacebookConfigurationDtoTest {
                 .addMedia(
                     FacebookConfigurationDto.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
                         .addTag(
                             FacebookConfigurationDto.Media.Tag.builder()
                                 .id("id")
