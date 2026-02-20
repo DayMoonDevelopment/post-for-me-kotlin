@@ -2,7 +2,6 @@
 
 package com.post_for_me.api.services.blocking
 
-import com.post_for_me.api.TestServerExtension
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
 import com.post_for_me.api.core.JsonValue
 import com.post_for_me.api.models.socialposts.BlueskyConfigurationDto
@@ -21,19 +20,13 @@ import com.post_for_me.api.models.socialposts.YoutubeConfigurationDto
 import java.time.OffsetDateTime
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class SocialPostServiceTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     fun create() {
-        val client =
-            PostForMeOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
         val socialPostService = client.socialPosts()
 
         val socialPost =
@@ -505,11 +498,7 @@ internal class SocialPostServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun retrieve() {
-        val client =
-            PostForMeOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
         val socialPostService = client.socialPosts()
 
         val socialPost = socialPostService.retrieve("id")
@@ -520,11 +509,7 @@ internal class SocialPostServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun update() {
-        val client =
-            PostForMeOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
         val socialPostService = client.socialPosts()
 
         val socialPost =
@@ -1073,11 +1058,7 @@ internal class SocialPostServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun list() {
-        val client =
-            PostForMeOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
         val socialPostService = client.socialPosts()
 
         val socialPosts =
@@ -1098,11 +1079,7 @@ internal class SocialPostServiceTest {
     @Disabled("Prism tests are disabled")
     @Test
     fun delete() {
-        val client =
-            PostForMeOkHttpClient.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
         val socialPostService = client.socialPosts()
 
         val socialPost = socialPostService.delete("id")
