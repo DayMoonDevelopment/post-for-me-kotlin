@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 
 internal class SocialPostResultServiceTest {
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun retrieve() {
         val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
@@ -20,7 +20,7 @@ internal class SocialPostResultServiceTest {
         socialPostResult.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun list() {
         val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()

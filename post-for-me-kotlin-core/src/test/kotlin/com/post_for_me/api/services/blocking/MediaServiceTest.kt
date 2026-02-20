@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 
 internal class MediaServiceTest {
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     fun createUploadUrl() {
         val client = PostForMeOkHttpClient.builder().apiKey("My API Key").build()
