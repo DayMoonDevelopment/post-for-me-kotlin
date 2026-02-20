@@ -2,7 +2,6 @@
 
 package com.post_for_me.api.services.async
 
-import com.post_for_me.api.TestServerExtension
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClientAsync
 import com.post_for_me.api.core.JsonValue
 import com.post_for_me.api.models.socialaccounts.SocialAccountCreateAuthUrlParams
@@ -12,19 +11,13 @@ import com.post_for_me.api.models.socialaccounts.SocialAccountUpdateParams
 import java.time.OffsetDateTime
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(TestServerExtension::class)
 internal class SocialAccountServiceAsyncTest {
 
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun create() {
-        val client =
-            PostForMeOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
         val socialAccountServiceAsync = client.socialAccounts()
 
         val socialAccount =
@@ -48,11 +41,7 @@ internal class SocialAccountServiceAsyncTest {
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun retrieve() {
-        val client =
-            PostForMeOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
         val socialAccountServiceAsync = client.socialAccounts()
 
         val socialAccount = socialAccountServiceAsync.retrieve("id")
@@ -63,11 +52,7 @@ internal class SocialAccountServiceAsyncTest {
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun update() {
-        val client =
-            PostForMeOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
         val socialAccountServiceAsync = client.socialAccounts()
 
         val socialAccount =
@@ -85,11 +70,7 @@ internal class SocialAccountServiceAsyncTest {
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun list() {
-        val client =
-            PostForMeOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
         val socialAccountServiceAsync = client.socialAccounts()
 
         val socialAccounts =
@@ -110,11 +91,7 @@ internal class SocialAccountServiceAsyncTest {
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun createAuthUrl() {
-        val client =
-            PostForMeOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
         val socialAccountServiceAsync = client.socialAccounts()
 
         val response =
@@ -211,11 +188,7 @@ internal class SocialAccountServiceAsyncTest {
     @Disabled("Prism tests are disabled")
     @Test
     suspend fun disconnect() {
-        val client =
-            PostForMeOkHttpClientAsync.builder()
-                .baseUrl(TestServerExtension.BASE_URL)
-                .apiKey("My API Key")
-                .build()
+        val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
         val socialAccountServiceAsync = client.socialAccounts()
 
         val response = socialAccountServiceAsync.disconnect("id")
