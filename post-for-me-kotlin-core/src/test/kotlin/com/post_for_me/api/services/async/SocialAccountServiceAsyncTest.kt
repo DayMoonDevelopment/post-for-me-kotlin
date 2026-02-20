@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 
 internal class SocialAccountServiceAsyncTest {
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun create() {
         val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
@@ -38,7 +38,7 @@ internal class SocialAccountServiceAsyncTest {
         socialAccount.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun retrieve() {
         val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
@@ -49,7 +49,7 @@ internal class SocialAccountServiceAsyncTest {
         socialAccount.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun update() {
         val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
@@ -67,7 +67,7 @@ internal class SocialAccountServiceAsyncTest {
         socialAccount.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun list() {
         val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
@@ -88,7 +88,7 @@ internal class SocialAccountServiceAsyncTest {
         socialAccounts.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun createAuthUrl() {
         val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
@@ -185,7 +185,7 @@ internal class SocialAccountServiceAsyncTest {
         response.validate()
     }
 
-    @Disabled("Prism tests are disabled")
+    @Disabled("Mock server tests are disabled")
     @Test
     suspend fun disconnect() {
         val client = PostForMeOkHttpClientAsync.builder().apiKey("My API Key").build()
