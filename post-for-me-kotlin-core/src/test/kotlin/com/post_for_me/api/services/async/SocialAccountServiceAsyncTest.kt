@@ -81,6 +81,7 @@ internal class SocialAccountServiceAsyncTest {
                     .limit(0.0)
                     .offset(0.0)
                     .addPlatform("string")
+                    .addStatus(SocialAccountListParams.Status.CONNECTED)
                     .addUsername("string")
                     .build()
             )
