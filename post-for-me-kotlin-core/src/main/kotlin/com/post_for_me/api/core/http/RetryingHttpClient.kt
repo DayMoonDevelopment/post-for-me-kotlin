@@ -1,3 +1,5 @@
+// File generated from our OpenAPI spec by Stainless.
+
 package com.post_for_me.api.core.http
 
 import com.post_for_me.api.core.DefaultSleeper
