@@ -42,6 +42,7 @@ private constructor(
     private val externalAccountId: JsonField<String>,
     private val externalPostId: JsonField<String>,
     private val metrics: JsonField<Metrics>,
+    private val platformData: JsonField<PlatformData>,
     private val postedAt: JsonField<OffsetDateTime>,
     private val socialPostId: JsonField<String>,
     private val socialPostResultId: JsonField<String>,
@@ -74,6 +75,9 @@ private constructor(
         @ExcludeMissing
         externalPostId: JsonField<String> = JsonMissing.of(),
         @JsonProperty("metrics") @ExcludeMissing metrics: JsonField<Metrics> = JsonMissing.of(),
+        @JsonProperty("platform_data")
+        @ExcludeMissing
+        platformData: JsonField<PlatformData> = JsonMissing.of(),
         @JsonProperty("posted_at")
         @ExcludeMissing
         postedAt: JsonField<OffsetDateTime> = JsonMissing.of(),
@@ -94,6 +98,7 @@ private constructor(
         externalAccountId,
         externalPostId,
         metrics,
+        platformData,
         postedAt,
         socialPostId,
         socialPostResultId,
@@ -179,6 +184,14 @@ private constructor(
      *   server responded with an unexpected value).
      */
     fun metrics(): Metrics? = metrics.getNullable("metrics")
+
+    /**
+     * Platform-specific data for the post
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun platformData(): PlatformData? = platformData.getNullable("platform_data")
 
     /**
      * Date the post was published
@@ -289,6 +302,15 @@ private constructor(
     @JsonProperty("metrics") @ExcludeMissing fun _metrics(): JsonField<Metrics> = metrics
 
     /**
+     * Returns the raw JSON value of [platformData].
+     *
+     * Unlike [platformData], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("platform_data")
+    @ExcludeMissing
+    fun _platformData(): JsonField<PlatformData> = platformData
+
+    /**
      * Returns the raw JSON value of [postedAt].
      *
      * Unlike [postedAt], this method doesn't throw if the JSON field has an unexpected type.
@@ -358,6 +380,7 @@ private constructor(
         private var externalAccountId: JsonField<String> = JsonMissing.of()
         private var externalPostId: JsonField<String> = JsonMissing.of()
         private var metrics: JsonField<Metrics> = JsonMissing.of()
+        private var platformData: JsonField<PlatformData> = JsonMissing.of()
         private var postedAt: JsonField<OffsetDateTime> = JsonMissing.of()
         private var socialPostId: JsonField<String> = JsonMissing.of()
         private var socialPostResultId: JsonField<String> = JsonMissing.of()
@@ -374,6 +397,7 @@ private constructor(
             externalAccountId = platformPost.externalAccountId
             externalPostId = platformPost.externalPostId
             metrics = platformPost.metrics
+            platformData = platformPost.platformData
             postedAt = platformPost.postedAt
             socialPostId = platformPost.socialPostId
             socialPostResultId = platformPost.socialPostResultId
@@ -594,6 +618,20 @@ private constructor(
         fun metrics(pinterestPostMetricsDto: Metrics.PinterestPostMetricsDto) =
             metrics(Metrics.ofPinterestPostMetricsDto(pinterestPostMetricsDto))
 
+        /** Platform-specific data for the post */
+        fun platformData(platformData: PlatformData) = platformData(JsonField.of(platformData))
+
+        /**
+         * Sets [Builder.platformData] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.platformData] with a well-typed [PlatformData] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun platformData(platformData: JsonField<PlatformData>) = apply {
+            this.platformData = platformData
+        }
+
         /** Date the post was published */
         fun postedAt(postedAt: OffsetDateTime) = postedAt(JsonField.of(postedAt))
 
@@ -684,6 +722,7 @@ private constructor(
                 externalAccountId,
                 externalPostId,
                 metrics,
+                platformData,
                 postedAt,
                 socialPostId,
                 socialPostResultId,
@@ -708,6 +747,7 @@ private constructor(
         externalAccountId()
         externalPostId()
         metrics()?.validate()
+        platformData()?.validate()
         postedAt()
         socialPostId()
         socialPostResultId()
@@ -738,6 +778,7 @@ private constructor(
             (if (externalAccountId.asKnown() == null) 0 else 1) +
             (if (externalPostId.asKnown() == null) 0 else 1) +
             (metrics.asKnown()?.validity() ?: 0) +
+            (platformData.asKnown()?.validity() ?: 0) +
             (if (postedAt.asKnown() == null) 0 else 1) +
             (if (socialPostId.asKnown() == null) 0 else 1) +
             (if (socialPostResultId.asKnown() == null) 0 else 1)
@@ -14425,6 +14466,162 @@ private constructor(
         }
     }
 
+    /** Platform-specific data for the post */
+    class PlatformData
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
+    private constructor(
+        private val title: JsonField<String>,
+        private val additionalProperties: MutableMap<String, JsonValue>,
+    ) {
+
+        @JsonCreator
+        private constructor(
+            @JsonProperty("title") @ExcludeMissing title: JsonField<String> = JsonMissing.of()
+        ) : this(title, mutableMapOf())
+
+        /**
+         * Title of the post
+         *
+         * @throws PostForMeInvalidDataException if the JSON field has an unexpected type or is
+         *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+         */
+        fun title(): String = title.getRequired("title")
+
+        /**
+         * Returns the raw JSON value of [title].
+         *
+         * Unlike [title], this method doesn't throw if the JSON field has an unexpected type.
+         */
+        @JsonProperty("title") @ExcludeMissing fun _title(): JsonField<String> = title
+
+        @JsonAnySetter
+        private fun putAdditionalProperty(key: String, value: JsonValue) {
+            additionalProperties.put(key, value)
+        }
+
+        @JsonAnyGetter
+        @ExcludeMissing
+        fun _additionalProperties(): Map<String, JsonValue> =
+            Collections.unmodifiableMap(additionalProperties)
+
+        fun toBuilder() = Builder().from(this)
+
+        companion object {
+
+            /**
+             * Returns a mutable builder for constructing an instance of [PlatformData].
+             *
+             * The following fields are required:
+             * ```kotlin
+             * .title()
+             * ```
+             */
+            fun builder() = Builder()
+        }
+
+        /** A builder for [PlatformData]. */
+        class Builder internal constructor() {
+
+            private var title: JsonField<String>? = null
+            private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+            internal fun from(platformData: PlatformData) = apply {
+                title = platformData.title
+                additionalProperties = platformData.additionalProperties.toMutableMap()
+            }
+
+            /** Title of the post */
+            fun title(title: String) = title(JsonField.of(title))
+
+            /**
+             * Sets [Builder.title] to an arbitrary JSON value.
+             *
+             * You should usually call [Builder.title] with a well-typed [String] value instead.
+             * This method is primarily for setting the field to an undocumented or not yet
+             * supported value.
+             */
+            fun title(title: JsonField<String>) = apply { this.title = title }
+
+            fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                this.additionalProperties.clear()
+                putAllAdditionalProperties(additionalProperties)
+            }
+
+            fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                additionalProperties.put(key, value)
+            }
+
+            fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                this.additionalProperties.putAll(additionalProperties)
+            }
+
+            fun removeAdditionalProperty(key: String) = apply { additionalProperties.remove(key) }
+
+            fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+                keys.forEach(::removeAdditionalProperty)
+            }
+
+            /**
+             * Returns an immutable instance of [PlatformData].
+             *
+             * Further updates to this [Builder] will not mutate the returned instance.
+             *
+             * The following fields are required:
+             * ```kotlin
+             * .title()
+             * ```
+             *
+             * @throws IllegalStateException if any required field is unset.
+             */
+            fun build(): PlatformData =
+                PlatformData(checkRequired("title", title), additionalProperties.toMutableMap())
+        }
+
+        private var validated: Boolean = false
+
+        fun validate(): PlatformData = apply {
+            if (validated) {
+                return@apply
+            }
+
+            title()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: PostForMeInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        internal fun validity(): Int = (if (title.asKnown() == null) 0 else 1)
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is PlatformData &&
+                title == other.title &&
+                additionalProperties == other.additionalProperties
+        }
+
+        private val hashCode: Int by lazy { Objects.hash(title, additionalProperties) }
+
+        override fun hashCode(): Int = hashCode
+
+        override fun toString() =
+            "PlatformData{title=$title, additionalProperties=$additionalProperties}"
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
@@ -14441,6 +14638,7 @@ private constructor(
             externalAccountId == other.externalAccountId &&
             externalPostId == other.externalPostId &&
             metrics == other.metrics &&
+            platformData == other.platformData &&
             postedAt == other.postedAt &&
             socialPostId == other.socialPostId &&
             socialPostResultId == other.socialPostResultId &&
@@ -14459,6 +14657,7 @@ private constructor(
             externalAccountId,
             externalPostId,
             metrics,
+            platformData,
             postedAt,
             socialPostId,
             socialPostResultId,
@@ -14469,5 +14668,5 @@ private constructor(
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "PlatformPost{caption=$caption, media=$media, platform=$platform, platformAccountId=$platformAccountId, platformPostId=$platformPostId, platformUrl=$platformUrl, socialAccountId=$socialAccountId, externalAccountId=$externalAccountId, externalPostId=$externalPostId, metrics=$metrics, postedAt=$postedAt, socialPostId=$socialPostId, socialPostResultId=$socialPostResultId, additionalProperties=$additionalProperties}"
+        "PlatformPost{caption=$caption, media=$media, platform=$platform, platformAccountId=$platformAccountId, platformPostId=$platformPostId, platformUrl=$platformUrl, socialAccountId=$socialAccountId, externalAccountId=$externalAccountId, externalPostId=$externalPostId, metrics=$metrics, platformData=$platformData, postedAt=$postedAt, socialPostId=$socialPostId, socialPostResultId=$socialPostResultId, additionalProperties=$additionalProperties}"
 }
