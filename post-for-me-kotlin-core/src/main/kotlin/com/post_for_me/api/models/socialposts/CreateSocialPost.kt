@@ -107,7 +107,8 @@ private constructor(
     fun isDraft(): Boolean? = isDraft.getNullable("isDraft")
 
     /**
-     * Array of media URLs associated with the post
+     * Array of media associated with the post. If multiple media items are provided and the
+     * placement is `stories`, individual posts are created per media item.
      *
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
      *   server responded with an unexpected value).
@@ -345,7 +346,10 @@ private constructor(
          */
         fun isDraft(isDraft: JsonField<Boolean>) = apply { this.isDraft = isDraft }
 
-        /** Array of media URLs associated with the post */
+        /**
+         * Array of media associated with the post. If multiple media items are provided and the
+         * placement is `stories`, individual posts are created per media item.
+         */
         fun media(media: List<Media>?) = media(JsonField.ofNullable(media))
 
         /**

@@ -116,7 +116,7 @@ private constructor(
     fun externalId(): String? = externalId.getNullable("external_id")
 
     /**
-     * Array of media URLs associated with the post
+     * Array of media associated with the post
      *
      * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
      *   server responded with an unexpected value).
@@ -391,7 +391,7 @@ private constructor(
          */
         fun externalId(externalId: JsonField<String>) = apply { this.externalId = externalId }
 
-        /** Array of media URLs associated with the post */
+        /** Array of media associated with the post */
         fun media(media: List<Media>?) = media(JsonField.ofNullable(media))
 
         /**
