@@ -63,6 +63,7 @@ internal class PlatformConfigurationsDtoTest {
                                 .build()
                         )
                         .placement(FacebookConfigurationDto.Placement.REELS)
+                        .setCaptionForEachImage(true)
                         .build()
                 )
                 .instagram(
@@ -343,6 +344,7 @@ internal class PlatformConfigurationsDtoTest {
                             .build()
                     )
                     .placement(FacebookConfigurationDto.Placement.REELS)
+                    .setCaptionForEachImage(true)
                     .build()
             )
         assertThat(platformConfigurationsDto.instagram())
@@ -626,6 +628,7 @@ internal class PlatformConfigurationsDtoTest {
                                 .build()
                         )
                         .placement(FacebookConfigurationDto.Placement.REELS)
+                        .setCaptionForEachImage(true)
                         .build()
                 )
                 .instagram(

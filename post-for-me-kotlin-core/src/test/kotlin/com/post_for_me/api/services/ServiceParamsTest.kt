@@ -149,6 +149,7 @@ internal class ServiceParamsTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -247,6 +248,7 @@ internal class ServiceParamsTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(

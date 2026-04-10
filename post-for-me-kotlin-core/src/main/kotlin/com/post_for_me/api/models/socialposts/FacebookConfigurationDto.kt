@@ -26,6 +26,7 @@ private constructor(
     private val location: JsonField<String>,
     private val media: JsonField<List<Media>>,
     private val placement: JsonField<Placement>,
+    private val setCaptionForEachImage: JsonField<Boolean>,
     private val additionalProperties: MutableMap<String, JsonValue>,
 ) {
 
@@ -40,7 +41,18 @@ private constructor(
         @JsonProperty("placement")
         @ExcludeMissing
         placement: JsonField<Placement> = JsonMissing.of(),
-    ) : this(caption, collaborators, location, media, placement, mutableMapOf())
+        @JsonProperty("set_caption_for_each_image")
+        @ExcludeMissing
+        setCaptionForEachImage: JsonField<Boolean> = JsonMissing.of(),
+    ) : this(
+        caption,
+        collaborators,
+        location,
+        media,
+        placement,
+        setCaptionForEachImage,
+        mutableMapOf(),
+    )
 
     /**
      * Overrides the `caption` from the post
@@ -85,6 +97,16 @@ private constructor(
     fun placement(): Placement? = placement.getNullable("placement")
 
     /**
+     * If true, include the caption on each image in a carousel upload; if false, only include it on
+     * the final carousel post
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun setCaptionForEachImage(): Boolean? =
+        setCaptionForEachImage.getNullable("set_caption_for_each_image")
+
+    /**
      * Returns the raw JSON value of [collaborators].
      *
      * Unlike [collaborators], this method doesn't throw if the JSON field has an unexpected type.
@@ -114,6 +136,16 @@ private constructor(
      */
     @JsonProperty("placement") @ExcludeMissing fun _placement(): JsonField<Placement> = placement
 
+    /**
+     * Returns the raw JSON value of [setCaptionForEachImage].
+     *
+     * Unlike [setCaptionForEachImage], this method doesn't throw if the JSON field has an
+     * unexpected type.
+     */
+    @JsonProperty("set_caption_for_each_image")
+    @ExcludeMissing
+    fun _setCaptionForEachImage(): JsonField<Boolean> = setCaptionForEachImage
+
     @JsonAnySetter
     private fun putAdditionalProperty(key: String, value: JsonValue) {
         additionalProperties.put(key, value)
@@ -140,6 +172,7 @@ private constructor(
         private var location: JsonField<String> = JsonMissing.of()
         private var media: JsonField<MutableList<Media>>? = null
         private var placement: JsonField<Placement> = JsonMissing.of()
+        private var setCaptionForEachImage: JsonField<Boolean> = JsonMissing.of()
         private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
         internal fun from(facebookConfigurationDto: FacebookConfigurationDto) = apply {
@@ -148,6 +181,7 @@ private constructor(
             location = facebookConfigurationDto.location
             media = facebookConfigurationDto.media.map { it.toMutableList() }
             placement = facebookConfigurationDto.placement
+            setCaptionForEachImage = facebookConfigurationDto.setCaptionForEachImage
             additionalProperties = facebookConfigurationDto.additionalProperties.toMutableMap()
         }
 
@@ -230,6 +264,32 @@ private constructor(
          */
         fun placement(placement: JsonField<Placement>) = apply { this.placement = placement }
 
+        /**
+         * If true, include the caption on each image in a carousel upload; if false, only include
+         * it on the final carousel post
+         */
+        fun setCaptionForEachImage(setCaptionForEachImage: Boolean?) =
+            setCaptionForEachImage(JsonField.ofNullable(setCaptionForEachImage))
+
+        /**
+         * Alias for [Builder.setCaptionForEachImage].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun setCaptionForEachImage(setCaptionForEachImage: Boolean) =
+            setCaptionForEachImage(setCaptionForEachImage as Boolean?)
+
+        /**
+         * Sets [Builder.setCaptionForEachImage] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.setCaptionForEachImage] with a well-typed [Boolean]
+         * value instead. This method is primarily for setting the field to an undocumented or not
+         * yet supported value.
+         */
+        fun setCaptionForEachImage(setCaptionForEachImage: JsonField<Boolean>) = apply {
+            this.setCaptionForEachImage = setCaptionForEachImage
+        }
+
         fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
             this.additionalProperties.clear()
             putAllAdditionalProperties(additionalProperties)
@@ -261,6 +321,7 @@ private constructor(
                 location,
                 (media ?: JsonMissing.of()).map { it.toImmutable() },
                 placement,
+                setCaptionForEachImage,
                 additionalProperties.toMutableMap(),
             )
     }
@@ -276,6 +337,7 @@ private constructor(
         location()
         media()?.forEach { it.validate() }
         placement()?.validate()
+        setCaptionForEachImage()
         validated = true
     }
 
@@ -296,7 +358,8 @@ private constructor(
         (collaborators.asKnown()?.sumOf { it.size.toInt() } ?: 0) +
             (if (location.asKnown() == null) 0 else 1) +
             (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
-            (placement.asKnown()?.validity() ?: 0)
+            (placement.asKnown()?.validity() ?: 0) +
+            (if (setCaptionForEachImage.asKnown() == null) 0 else 1)
 
     class Media
     @JsonCreator(mode = JsonCreator.Mode.DISABLED)
@@ -1350,15 +1413,24 @@ private constructor(
             location == other.location &&
             media == other.media &&
             placement == other.placement &&
+            setCaptionForEachImage == other.setCaptionForEachImage &&
             additionalProperties == other.additionalProperties
     }
 
     private val hashCode: Int by lazy {
-        Objects.hash(caption, collaborators, location, media, placement, additionalProperties)
+        Objects.hash(
+            caption,
+            collaborators,
+            location,
+            media,
+            placement,
+            setCaptionForEachImage,
+            additionalProperties,
+        )
     }
 
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "FacebookConfigurationDto{caption=$caption, collaborators=$collaborators, location=$location, media=$media, placement=$placement, additionalProperties=$additionalProperties}"
+        "FacebookConfigurationDto{caption=$caption, collaborators=$collaborators, location=$location, media=$media, placement=$placement, setCaptionForEachImage=$setCaptionForEachImage, additionalProperties=$additionalProperties}"
 }

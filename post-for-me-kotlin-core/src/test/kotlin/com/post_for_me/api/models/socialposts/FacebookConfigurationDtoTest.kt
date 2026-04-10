@@ -35,6 +35,7 @@ internal class FacebookConfigurationDtoTest {
                         .build()
                 )
                 .placement(FacebookConfigurationDto.Placement.REELS)
+                .setCaptionForEachImage(true)
                 .build()
 
         assertThat(facebookConfigurationDto._caption())
@@ -62,6 +63,7 @@ internal class FacebookConfigurationDtoTest {
             )
         assertThat(facebookConfigurationDto.placement())
             .isEqualTo(FacebookConfigurationDto.Placement.REELS)
+        assertThat(facebookConfigurationDto.setCaptionForEachImage()).isEqualTo(true)
     }
 
     @Test
@@ -90,6 +92,7 @@ internal class FacebookConfigurationDtoTest {
                         .build()
                 )
                 .placement(FacebookConfigurationDto.Placement.REELS)
+                .setCaptionForEachImage(true)
                 .build()
 
         val roundtrippedFacebookConfigurationDto =
