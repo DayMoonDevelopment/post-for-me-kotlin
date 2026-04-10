@@ -175,6 +175,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -273,6 +274,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -685,6 +687,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -783,6 +786,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -1195,6 +1199,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -1293,6 +1298,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -1705,6 +1711,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -1803,6 +1810,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -2215,6 +2223,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -2313,6 +2322,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -2725,6 +2735,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -2823,6 +2834,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -3235,6 +3247,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -3333,6 +3346,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -3745,6 +3759,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -3843,6 +3858,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -4255,6 +4271,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -4353,6 +4370,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -4765,6 +4783,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -4863,6 +4882,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -5275,6 +5295,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -5373,6 +5394,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -5785,6 +5807,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -5883,6 +5906,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -6295,6 +6319,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -6393,6 +6418,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -6805,6 +6831,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -6903,6 +6930,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -7315,6 +7343,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -7413,6 +7442,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -7825,6 +7855,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -7923,6 +7954,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -8333,6 +8365,7 @@ internal class ErrorHandlingTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -8431,6 +8464,7 @@ internal class ErrorHandlingTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(

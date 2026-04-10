@@ -820,6 +820,7 @@ private constructor(
             private val privacyStatus: JsonField<PrivacyStatus>,
             private val quoteTweetId: JsonField<String>,
             private val replySettings: JsonField<ReplySettings>,
+            private val setCaptionForEachImage: JsonField<Boolean>,
             private val shareToFeed: JsonField<Boolean>,
             private val title: JsonField<String>,
             private val trialReelType: JsonField<TrialReelType>,
@@ -885,6 +886,9 @@ private constructor(
                 @JsonProperty("reply_settings")
                 @ExcludeMissing
                 replySettings: JsonField<ReplySettings> = JsonMissing.of(),
+                @JsonProperty("set_caption_for_each_image")
+                @ExcludeMissing
+                setCaptionForEachImage: JsonField<Boolean> = JsonMissing.of(),
                 @JsonProperty("share_to_feed")
                 @ExcludeMissing
                 shareToFeed: JsonField<Boolean> = JsonMissing.of(),
@@ -914,6 +918,7 @@ private constructor(
                 privacyStatus,
                 quoteTweetId,
                 replySettings,
+                setCaptionForEachImage,
                 shareToFeed,
                 title,
                 trialReelType,
@@ -1095,6 +1100,16 @@ private constructor(
              *   if the server responded with an unexpected value).
              */
             fun replySettings(): ReplySettings? = replySettings.getNullable("reply_settings")
+
+            /**
+             * If true, include the caption on each image in a Facebook carousel upload; if false,
+             * only include it on the final carousel post
+             *
+             * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
+             *   if the server responded with an unexpected value).
+             */
+            fun setCaptionForEachImage(): Boolean? =
+                setCaptionForEachImage.getNullable("set_caption_for_each_image")
 
             /**
              * If false Instagram video posts will only be shown in the Reels tab
@@ -1309,6 +1324,16 @@ private constructor(
             fun _replySettings(): JsonField<ReplySettings> = replySettings
 
             /**
+             * Returns the raw JSON value of [setCaptionForEachImage].
+             *
+             * Unlike [setCaptionForEachImage], this method doesn't throw if the JSON field has an
+             * unexpected type.
+             */
+            @JsonProperty("set_caption_for_each_image")
+            @ExcludeMissing
+            fun _setCaptionForEachImage(): JsonField<Boolean> = setCaptionForEachImage
+
+            /**
              * Returns the raw JSON value of [shareToFeed].
              *
              * Unlike [shareToFeed], this method doesn't throw if the JSON field has an unexpected
@@ -1377,6 +1402,7 @@ private constructor(
                 private var privacyStatus: JsonField<PrivacyStatus> = JsonMissing.of()
                 private var quoteTweetId: JsonField<String> = JsonMissing.of()
                 private var replySettings: JsonField<ReplySettings> = JsonMissing.of()
+                private var setCaptionForEachImage: JsonField<Boolean> = JsonMissing.of()
                 private var shareToFeed: JsonField<Boolean> = JsonMissing.of()
                 private var title: JsonField<String> = JsonMissing.of()
                 private var trialReelType: JsonField<TrialReelType> = JsonMissing.of()
@@ -1404,6 +1430,7 @@ private constructor(
                     privacyStatus = configuration.privacyStatus
                     quoteTweetId = configuration.quoteTweetId
                     replySettings = configuration.replySettings
+                    setCaptionForEachImage = configuration.setCaptionForEachImage
                     shareToFeed = configuration.shareToFeed
                     title = configuration.title
                     trialReelType = configuration.trialReelType
@@ -1806,6 +1833,32 @@ private constructor(
                     this.replySettings = replySettings
                 }
 
+                /**
+                 * If true, include the caption on each image in a Facebook carousel upload; if
+                 * false, only include it on the final carousel post
+                 */
+                fun setCaptionForEachImage(setCaptionForEachImage: Boolean?) =
+                    setCaptionForEachImage(JsonField.ofNullable(setCaptionForEachImage))
+
+                /**
+                 * Alias for [Builder.setCaptionForEachImage].
+                 *
+                 * This unboxed primitive overload exists for backwards compatibility.
+                 */
+                fun setCaptionForEachImage(setCaptionForEachImage: Boolean) =
+                    setCaptionForEachImage(setCaptionForEachImage as Boolean?)
+
+                /**
+                 * Sets [Builder.setCaptionForEachImage] to an arbitrary JSON value.
+                 *
+                 * You should usually call [Builder.setCaptionForEachImage] with a well-typed
+                 * [Boolean] value instead. This method is primarily for setting the field to an
+                 * undocumented or not yet supported value.
+                 */
+                fun setCaptionForEachImage(setCaptionForEachImage: JsonField<Boolean>) = apply {
+                    this.setCaptionForEachImage = setCaptionForEachImage
+                }
+
                 /** If false Instagram video posts will only be shown in the Reels tab */
                 fun shareToFeed(shareToFeed: Boolean?) =
                     shareToFeed(JsonField.ofNullable(shareToFeed))
@@ -1909,6 +1962,7 @@ private constructor(
                         privacyStatus,
                         quoteTweetId,
                         replySettings,
+                        setCaptionForEachImage,
                         shareToFeed,
                         title,
                         trialReelType,
@@ -1943,6 +1997,7 @@ private constructor(
                 privacyStatus()?.validate()
                 quoteTweetId()
                 replySettings()?.validate()
+                setCaptionForEachImage()
                 shareToFeed()
                 title()
                 trialReelType()?.validate()
@@ -1984,6 +2039,7 @@ private constructor(
                     (privacyStatus.asKnown()?.validity() ?: 0) +
                     (if (quoteTweetId.asKnown() == null) 0 else 1) +
                     (replySettings.asKnown()?.validity() ?: 0) +
+                    (if (setCaptionForEachImage.asKnown() == null) 0 else 1) +
                     (if (shareToFeed.asKnown() == null) 0 else 1) +
                     (if (title.asKnown() == null) 0 else 1) +
                     (trialReelType.asKnown()?.validity() ?: 0)
@@ -3950,6 +4006,7 @@ private constructor(
                     privacyStatus == other.privacyStatus &&
                     quoteTweetId == other.quoteTweetId &&
                     replySettings == other.replySettings &&
+                    setCaptionForEachImage == other.setCaptionForEachImage &&
                     shareToFeed == other.shareToFeed &&
                     title == other.title &&
                     trialReelType == other.trialReelType &&
@@ -3979,6 +4036,7 @@ private constructor(
                     privacyStatus,
                     quoteTweetId,
                     replySettings,
+                    setCaptionForEachImage,
                     shareToFeed,
                     title,
                     trialReelType,
@@ -3989,7 +4047,7 @@ private constructor(
             override fun hashCode(): Int = hashCode
 
             override fun toString() =
-                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, collaborators=$collaborators, communityId=$communityId, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, location=$location, madeForKids=$madeForKids, media=$media, placement=$placement, poll=$poll, privacyStatus=$privacyStatus, quoteTweetId=$quoteTweetId, replySettings=$replySettings, shareToFeed=$shareToFeed, title=$title, trialReelType=$trialReelType, additionalProperties=$additionalProperties}"
+                "Configuration{allowComment=$allowComment, allowDuet=$allowDuet, allowStitch=$allowStitch, autoAddMusic=$autoAddMusic, boardIds=$boardIds, caption=$caption, collaborators=$collaborators, communityId=$communityId, discloseBrandedContent=$discloseBrandedContent, discloseYourBrand=$discloseYourBrand, isAiGenerated=$isAiGenerated, isDraft=$isDraft, link=$link, location=$location, madeForKids=$madeForKids, media=$media, placement=$placement, poll=$poll, privacyStatus=$privacyStatus, quoteTweetId=$quoteTweetId, replySettings=$replySettings, setCaptionForEachImage=$setCaptionForEachImage, shareToFeed=$shareToFeed, title=$title, trialReelType=$trialReelType, additionalProperties=$additionalProperties}"
         }
 
         override fun equals(other: Any?): Boolean {

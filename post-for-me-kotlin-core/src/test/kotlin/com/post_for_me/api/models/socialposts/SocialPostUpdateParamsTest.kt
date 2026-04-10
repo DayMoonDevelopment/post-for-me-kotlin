@@ -102,6 +102,7 @@ internal class SocialPostUpdateParamsTest {
                                             .ReplySettings
                                             .FOLLOWING
                                     )
+                                    .setCaptionForEachImage(true)
                                     .shareToFeed(true)
                                     .title("title")
                                     .trialReelType(
@@ -194,6 +195,7 @@ internal class SocialPostUpdateParamsTest {
                                             .build()
                                     )
                                     .placement(FacebookConfigurationDto.Placement.REELS)
+                                    .setCaptionForEachImage(true)
                                     .build()
                             )
                             .instagram(
@@ -591,6 +593,7 @@ internal class SocialPostUpdateParamsTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -689,6 +692,7 @@ internal class SocialPostUpdateParamsTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -1082,6 +1086,7 @@ internal class SocialPostUpdateParamsTest {
                                             .ReplySettings
                                             .FOLLOWING
                                     )
+                                    .setCaptionForEachImage(true)
                                     .shareToFeed(true)
                                     .title("title")
                                     .trialReelType(
@@ -1174,6 +1179,7 @@ internal class SocialPostUpdateParamsTest {
                                             .build()
                                     )
                                     .placement(FacebookConfigurationDto.Placement.REELS)
+                                    .setCaptionForEachImage(true)
                                     .build()
                             )
                             .instagram(

@@ -105,6 +105,7 @@ internal class SocialPostListResponseTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -204,6 +205,7 @@ internal class SocialPostListResponseTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(
@@ -618,6 +620,7 @@ internal class SocialPostListResponseTest {
                                         SocialPost.AccountConfiguration.Configuration.ReplySettings
                                             .FOLLOWING
                                     )
+                                    .setCaptionForEachImage(true)
                                     .shareToFeed(true)
                                     .title("title")
                                     .trialReelType(
@@ -710,6 +713,7 @@ internal class SocialPostListResponseTest {
                                             .build()
                                     )
                                     .placement(FacebookConfigurationDto.Placement.REELS)
+                                    .setCaptionForEachImage(true)
                                     .build()
                             )
                             .instagram(
@@ -1113,6 +1117,7 @@ internal class SocialPostListResponseTest {
                                                 .ReplySettings
                                                 .FOLLOWING
                                         )
+                                        .setCaptionForEachImage(true)
                                         .shareToFeed(true)
                                         .title("title")
                                         .trialReelType(
@@ -1212,6 +1217,7 @@ internal class SocialPostListResponseTest {
                                                 .build()
                                         )
                                         .placement(FacebookConfigurationDto.Placement.REELS)
+                                        .setCaptionForEachImage(true)
                                         .build()
                                 )
                                 .instagram(

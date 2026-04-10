@@ -119,6 +119,7 @@ internal class SocialPostServiceTest {
                                             .ReplySettings
                                             .FOLLOWING
                                     )
+                                    .setCaptionForEachImage(true)
                                     .shareToFeed(true)
                                     .title("title")
                                     .trialReelType(
@@ -211,6 +212,7 @@ internal class SocialPostServiceTest {
                                             .build()
                                     )
                                     .placement(FacebookConfigurationDto.Placement.REELS)
+                                    .setCaptionForEachImage(true)
                                     .build()
                             )
                             .instagram(
@@ -616,6 +618,7 @@ internal class SocialPostServiceTest {
                                                     .ReplySettings
                                                     .FOLLOWING
                                             )
+                                            .setCaptionForEachImage(true)
                                             .shareToFeed(true)
                                             .title("title")
                                             .trialReelType(
@@ -720,6 +723,7 @@ internal class SocialPostServiceTest {
                                                     .build()
                                             )
                                             .placement(FacebookConfigurationDto.Placement.REELS)
+                                            .setCaptionForEachImage(true)
                                             .build()
                                     )
                                     .instagram(
