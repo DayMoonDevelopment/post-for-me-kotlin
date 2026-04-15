@@ -351,6 +351,7 @@ internal class ServiceParamsTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .title("title")
                                         .build()
                                 )
                                 .threads(

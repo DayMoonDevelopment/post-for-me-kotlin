@@ -25,6 +25,7 @@ private constructor(
     private val caption: JsonValue,
     private val link: JsonField<String>,
     private val media: JsonField<List<Media>>,
+    private val title: JsonField<String>,
     private val additionalProperties: MutableMap<String, JsonValue>,
 ) {
 
@@ -36,7 +37,8 @@ private constructor(
         @JsonProperty("caption") @ExcludeMissing caption: JsonValue = JsonMissing.of(),
         @JsonProperty("link") @ExcludeMissing link: JsonField<String> = JsonMissing.of(),
         @JsonProperty("media") @ExcludeMissing media: JsonField<List<Media>> = JsonMissing.of(),
-    ) : this(boardIds, caption, link, media, mutableMapOf())
+        @JsonProperty("title") @ExcludeMissing title: JsonField<String> = JsonMissing.of(),
+    ) : this(boardIds, caption, link, media, title, mutableMapOf())
 
     /**
      * Pinterest board IDs
@@ -73,6 +75,14 @@ private constructor(
     fun media(): List<Media>? = media.getNullable("media")
 
     /**
+     * Overrides the `title` from the post for Pinterest
+     *
+     * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun title(): String? = title.getNullable("title")
+
+    /**
      * Returns the raw JSON value of [boardIds].
      *
      * Unlike [boardIds], this method doesn't throw if the JSON field has an unexpected type.
@@ -92,6 +102,13 @@ private constructor(
      * Unlike [media], this method doesn't throw if the JSON field has an unexpected type.
      */
     @JsonProperty("media") @ExcludeMissing fun _media(): JsonField<List<Media>> = media
+
+    /**
+     * Returns the raw JSON value of [title].
+     *
+     * Unlike [title], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("title") @ExcludeMissing fun _title(): JsonField<String> = title
 
     @JsonAnySetter
     private fun putAdditionalProperty(key: String, value: JsonValue) {
@@ -120,6 +137,7 @@ private constructor(
         private var caption: JsonValue = JsonMissing.of()
         private var link: JsonField<String> = JsonMissing.of()
         private var media: JsonField<MutableList<Media>>? = null
+        private var title: JsonField<String> = JsonMissing.of()
         private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
         internal fun from(pinterestConfigurationDto: PinterestConfigurationDto) = apply {
@@ -127,6 +145,7 @@ private constructor(
             caption = pinterestConfigurationDto.caption
             link = pinterestConfigurationDto.link
             media = pinterestConfigurationDto.media.map { it.toMutableList() }
+            title = pinterestConfigurationDto.title
             additionalProperties = pinterestConfigurationDto.additionalProperties.toMutableMap()
         }
 
@@ -196,6 +215,17 @@ private constructor(
                 }
         }
 
+        /** Overrides the `title` from the post for Pinterest */
+        fun title(title: String?) = title(JsonField.ofNullable(title))
+
+        /**
+         * Sets [Builder.title] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.title] with a well-typed [String] value instead. This
+         * method is primarily for setting the field to an undocumented or not yet supported value.
+         */
+        fun title(title: JsonField<String>) = apply { this.title = title }
+
         fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
             this.additionalProperties.clear()
             putAllAdditionalProperties(additionalProperties)
@@ -226,6 +256,7 @@ private constructor(
                 caption,
                 link,
                 (media ?: JsonMissing.of()).map { it.toImmutable() },
+                title,
                 additionalProperties.toMutableMap(),
             )
     }
@@ -240,6 +271,7 @@ private constructor(
         boardIds()
         link()
         media()?.forEach { it.validate() }
+        title()
         validated = true
     }
 
@@ -259,7 +291,8 @@ private constructor(
     internal fun validity(): Int =
         (boardIds.asKnown()?.size ?: 0) +
             (if (link.asKnown() == null) 0 else 1) +
-            (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0)
+            (media.asKnown()?.sumOf { it.validity().toInt() } ?: 0) +
+            (if (title.asKnown() == null) 0 else 1)
 
     class Media
     @JsonCreator(mode = JsonCreator.Mode.DISABLED)
@@ -1178,15 +1211,16 @@ private constructor(
             caption == other.caption &&
             link == other.link &&
             media == other.media &&
+            title == other.title &&
             additionalProperties == other.additionalProperties
     }
 
     private val hashCode: Int by lazy {
-        Objects.hash(boardIds, caption, link, media, additionalProperties)
+        Objects.hash(boardIds, caption, link, media, title, additionalProperties)
     }
 
     override fun hashCode(): Int = hashCode
 
     override fun toString() =
-        "PinterestConfigurationDto{boardIds=$boardIds, caption=$caption, link=$link, media=$media, additionalProperties=$additionalProperties}"
+        "PinterestConfigurationDto{boardIds=$boardIds, caption=$caption, link=$link, media=$media, title=$title, additionalProperties=$additionalProperties}"
 }

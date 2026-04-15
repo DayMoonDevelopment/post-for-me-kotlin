@@ -143,6 +143,7 @@ internal class PlatformConfigurationsDtoTest {
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
                         )
+                        .title("title")
                         .build()
                 )
                 .threads(
@@ -421,6 +422,7 @@ internal class PlatformConfigurationsDtoTest {
                             .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                             .build()
                     )
+                    .title("title")
                     .build()
             )
         assertThat(platformConfigurationsDto.threads())
@@ -708,6 +710,7 @@ internal class PlatformConfigurationsDtoTest {
                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                 .build()
                         )
+                        .title("title")
                         .build()
                 )
                 .threads(

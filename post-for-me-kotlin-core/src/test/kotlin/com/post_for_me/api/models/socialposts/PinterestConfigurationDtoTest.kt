@@ -34,6 +34,7 @@ internal class PinterestConfigurationDtoTest {
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
                 )
+                .title("title")
                 .build()
 
         assertThat(pinterestConfigurationDto.boardIds()).containsExactly("string")
@@ -58,6 +59,7 @@ internal class PinterestConfigurationDtoTest {
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
             )
+        assertThat(pinterestConfigurationDto.title()).isEqualTo("title")
     }
 
     @Test
@@ -85,6 +87,7 @@ internal class PinterestConfigurationDtoTest {
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
                 )
+                .title("title")
                 .build()
 
         val roundtrippedPinterestConfigurationDto =

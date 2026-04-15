@@ -309,6 +309,7 @@ internal class SocialPostServiceTest {
                                             .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                             .build()
                                     )
+                                    .title("title")
                                     .build()
                             )
                             .threads(
@@ -837,6 +838,7 @@ internal class SocialPostServiceTest {
                                                     )
                                                     .build()
                                             )
+                                            .title("title")
                                             .build()
                                     )
                                     .threads(
