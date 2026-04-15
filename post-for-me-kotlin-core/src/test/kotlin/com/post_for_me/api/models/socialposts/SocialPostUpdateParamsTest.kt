@@ -292,6 +292,7 @@ internal class SocialPostUpdateParamsTest {
                                             .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                             .build()
                                     )
+                                    .title("title")
                                     .build()
                             )
                             .threads(
@@ -795,6 +796,7 @@ internal class SocialPostUpdateParamsTest {
                                                 .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                                 .build()
                                         )
+                                        .title("title")
                                         .build()
                                 )
                                 .threads(
@@ -1276,6 +1278,7 @@ internal class SocialPostUpdateParamsTest {
                                             .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                                             .build()
                                     )
+                                    .title("title")
                                     .build()
                             )
                             .threads(

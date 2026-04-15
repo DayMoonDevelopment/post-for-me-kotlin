@@ -1013,7 +1013,7 @@ private constructor(
             fun shareToFeed(): Boolean? = shareToFeed.getNullable("share_to_feed")
 
             /**
-             * Overrides the `title` from the post
+             * Overrides the `title` from the post (Pinterest, TikTok, YouTube)
              *
              * @throws PostForMeInvalidDataException if the JSON field has an unexpected type (e.g.
              *   if the server responded with an unexpected value).
@@ -1774,7 +1774,7 @@ private constructor(
                     this.shareToFeed = shareToFeed
                 }
 
-                /** Overrides the `title` from the post */
+                /** Overrides the `title` from the post (Pinterest, TikTok, YouTube) */
                 fun title(title: String?) = title(JsonField.ofNullable(title))
 
                 /**
