@@ -59,7 +59,6 @@ import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
@@ -161,7 +160,6 @@ import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
@@ -181,7 +179,6 @@ import com.post_for_me.api.client.PostForMeClientAsync
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClientAsync
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
@@ -207,7 +204,6 @@ import com.post_for_me.api.core.http.Headers
 import com.post_for_me.api.core.http.HttpResponseFor
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 val params: CreateSocialPost = CreateSocialPost.builder()
     .caption("caption")
