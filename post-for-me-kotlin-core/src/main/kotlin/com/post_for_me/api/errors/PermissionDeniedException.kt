@@ -5,10 +5,14 @@ package com.post_for_me.api.errors
 import com.post_for_me.api.core.JsonValue
 import com.post_for_me.api.core.checkRequired
 import com.post_for_me.api.core.http.Headers
+import com.post_for_me.api.core.jsonMapper
 
 class PermissionDeniedException
 private constructor(private val headers: Headers, private val body: JsonValue, cause: Throwable?) :
-    PostForMeServiceException("403: $body", cause) {
+    PostForMeServiceException(
+        "403: ${if (body.isMissing()) "Unknown" else jsonMapper().writeValueAsString(body)}",
+        cause,
+    ) {
 
     override fun statusCode(): Int = 403
 
