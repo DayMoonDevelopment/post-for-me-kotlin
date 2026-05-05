@@ -732,6 +732,14 @@ private constructor(
 
     private var validated: Boolean = false
 
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws PostForMeInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
     fun validate(): PlatformPost = apply {
         if (validated) {
             return@apply
@@ -873,6 +881,30 @@ private constructor(
 
         fun _json(): JsonValue? = _json
 
+        /**
+         * Maps this instance's current variant to a value of type [T] using the given [visitor].
+         *
+         * Note that this method is _not_ forwards compatible with new variants from the API, unless
+         * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of
+         * the SDK gracefully, consider overriding [Visitor.unknown]:
+         * ```kotlin
+         * import com.post_for_me.api.core.JsonValue
+         *
+         * val result: String? = metrics.accept(object : Metrics.Visitor<String?> {
+         *     override fun visitTikTokBusinessMetricsDto(tikTokBusinessMetricsDto: TikTokBusinessMetricsDto): String? = tikTokBusinessMetricsDto.toString()
+         *
+         *     // ...
+         *
+         *     override fun unknown(json: JsonValue?): String? {
+         *         // Or inspect the `json`.
+         *         return null
+         *     }
+         * })
+         * ```
+         *
+         * @throws PostForMeInvalidDataException if [Visitor.unknown] is not overridden in [visitor]
+         *   and the current variant is unknown.
+         */
         fun <T> accept(visitor: Visitor<T>): T =
             when {
                 tikTokBusinessMetricsDto != null ->
@@ -900,6 +932,15 @@ private constructor(
 
         private var validated: Boolean = false
 
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws PostForMeInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
         fun validate(): Metrics = apply {
             if (validated) {
                 return@apply
@@ -2467,6 +2508,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): TikTokBusinessMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -2705,6 +2756,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): AudienceCity = apply {
                     if (validated) {
                         return@apply
@@ -2918,6 +2979,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): AudienceCountry = apply {
                     if (validated) {
                         return@apply
@@ -3131,6 +3202,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): AudienceGender = apply {
                     if (validated) {
                         return@apply
@@ -3342,6 +3423,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): AudienceType = apply {
                     if (validated) {
                         return@apply
@@ -3555,6 +3646,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): EngagementLike = apply {
                     if (validated) {
                         return@apply
@@ -3773,6 +3874,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): ImpressionSource = apply {
                     if (validated) {
                         return@apply
@@ -3988,6 +4099,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): VideoViewRetention = apply {
                     if (validated) {
                         return@apply
@@ -4354,6 +4475,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): TikTokPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -5008,6 +5139,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): InstagramPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -6336,6 +6477,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): YouTubePostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -8576,6 +8727,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): FacebookPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -8854,6 +9015,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): ActivityByActionType = apply {
                     if (validated) {
                         return@apply
@@ -9070,6 +9241,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): ActivityByActionTypeUnique = apply {
                     if (validated) {
                         return@apply
@@ -9281,6 +9462,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): VideoRetentionGraphAutoplayed = apply {
                     if (validated) {
                         return@apply
@@ -9489,6 +9680,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): VideoRetentionGraphClickedToPlay = apply {
                     if (validated) {
                         return@apply
@@ -9694,6 +9895,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): VideoViewTimeByAgeGender = apply {
                     if (validated) {
                         return@apply
@@ -9899,6 +10110,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): VideoViewTimeByCountry = apply {
                     if (validated) {
                         return@apply
@@ -10104,6 +10325,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): VideoViewTimeByRegion = apply {
                     if (validated) {
                         return@apply
@@ -10461,6 +10692,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): TwitterPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -10706,6 +10947,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): NonPublicMetrics = apply {
                     if (validated) {
                         return@apply
@@ -11113,6 +11364,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): OrganicMetrics = apply {
                     if (validated) {
                         return@apply
@@ -11530,6 +11791,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): PublicMetrics = apply {
                     if (validated) {
                         return@apply
@@ -11924,6 +12195,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): ThreadsPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -12481,6 +12762,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): LinkedInPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -12817,6 +13108,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): BlueskyPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -13021,6 +13322,16 @@ private constructor(
 
             private var validated: Boolean = false
 
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws PostForMeInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
             fun validate(): PinterestPostMetricsDto = apply {
                 if (validated) {
                     return@apply
@@ -13648,6 +13959,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): _90d = apply {
                     if (validated) {
                         return@apply
@@ -14347,6 +14668,16 @@ private constructor(
 
                 private var validated: Boolean = false
 
+                /**
+                 * Validates that the types of all values in this object match their expected types
+                 * recursively.
+                 *
+                 * This method is _not_ forwards compatible with new types from the API for existing
+                 * fields.
+                 *
+                 * @throws PostForMeInvalidDataException if any value type in this object doesn't
+                 *   match its expected type.
+                 */
                 fun validate(): LifetimeMetrics = apply {
                     if (validated) {
                         return@apply
@@ -14579,6 +14910,15 @@ private constructor(
 
         private var validated: Boolean = false
 
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws PostForMeInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
         fun validate(): PlatformData = apply {
             if (validated) {
                 return@apply
