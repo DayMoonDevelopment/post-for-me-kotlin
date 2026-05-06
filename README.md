@@ -358,6 +358,21 @@ val client: PostForMeClient = PostForMeOkHttpClient.builder()
     .build()
 ```
 
+If the proxy responds with `407 Proxy Authentication Required`, supply credentials by also configuring `proxyAuthenticator`:
+
+```kotlin
+import com.post_for_me.api.client.PostForMeClient
+import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
+import com.post_for_me.api.core.http.ProxyAuthenticator
+
+val client: PostForMeClient = PostForMeOkHttpClient.builder()
+    .fromEnv()
+    .proxy(...)
+    // Or a custom implementation of `ProxyAuthenticator`.
+    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))
+    .build()
+```
+
 ### Connection pooling
 
 To customize the underlying OkHttp connection pool, configure the client using the `maxIdleConnections` and `keepAliveDuration` methods:
