@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper
 import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.PostForMeClientImpl
 import com.post_for_me.api.core.ClientOptions
+import com.post_for_me.api.core.LogLevel
 import com.post_for_me.api.core.Sleeper
 import com.post_for_me.api.core.Timeout
 import com.post_for_me.api.core.http.Headers
@@ -233,6 +234,15 @@ class PostForMeOkHttpClient private constructor() {
          * Defaults to 2.
          */
         fun maxRetries(maxRetries: Int) = apply { clientOptions.maxRetries(maxRetries) }
+
+        /**
+         * The level at which to log request and response information.
+         *
+         * [fromEnv] will set the level from environment variables. See [LogLevel.fromEnv].
+         *
+         * Defaults to [LogLevel.fromEnv].
+         */
+        fun logLevel(logLevel: LogLevel) = apply { clientOptions.logLevel(logLevel) }
 
         fun apiKey(apiKey: String) = apply { clientOptions.apiKey(apiKey) }
 
