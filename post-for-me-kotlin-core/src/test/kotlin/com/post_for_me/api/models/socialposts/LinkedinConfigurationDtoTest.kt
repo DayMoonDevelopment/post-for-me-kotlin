@@ -15,12 +15,45 @@ internal class LinkedinConfigurationDtoTest {
         val linkedinConfigurationDto =
             LinkedinConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    LinkedinConfigurationDto.Media.builder()
+                        .url("url")
+                        .skipProcessing(true)
+                        .addTag(
+                            LinkedinConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         assertThat(linkedinConfigurationDto._caption())
             .isEqualTo(JsonValue.from(mapOf<String, Any>()))
-        assertThat(linkedinConfigurationDto.media()).containsExactly("string")
+        assertThat(linkedinConfigurationDto.media())
+            .containsExactly(
+                LinkedinConfigurationDto.Media.builder()
+                    .url("url")
+                    .skipProcessing(true)
+                    .addTag(
+                        LinkedinConfigurationDto.Media.Tag.builder()
+                            .id("id")
+                            .platform(LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                            .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
+                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                    .build()
+            )
     }
 
     @Test
@@ -29,7 +62,23 @@ internal class LinkedinConfigurationDtoTest {
         val linkedinConfigurationDto =
             LinkedinConfigurationDto.builder()
                 .caption(JsonValue.from(mapOf<String, Any>()))
-                .addMedia("string")
+                .addMedia(
+                    LinkedinConfigurationDto.Media.builder()
+                        .url("url")
+                        .skipProcessing(true)
+                        .addTag(
+                            LinkedinConfigurationDto.Media.Tag.builder()
+                                .id("id")
+                                .platform(LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK)
+                                .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
+                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                        .build()
+                )
                 .build()
 
         val roundtrippedLinkedinConfigurationDto =

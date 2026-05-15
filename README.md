@@ -2,8 +2,8 @@
 
 <!-- x-release-please-start-version -->
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.post_for_me.api/post-for-me-kotlin)](https://central.sonatype.com/artifact/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.4)
-[![javadoc](https://javadoc.io/badge2/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.4/javadoc.svg)](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.4)
+[![Maven Central](https://img.shields.io/maven-central/v/com.post_for_me.api/post-for-me-kotlin)](https://central.sonatype.com/artifact/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.5)
+[![javadoc](https://javadoc.io/badge2/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.5/javadoc.svg)](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.5)
 
 <!-- x-release-please-end -->
 
@@ -11,9 +11,18 @@ The Post For Me Kotlin SDK provides convenient access to the [Post For Me REST A
 
 It is generated with [Stainless](https://www.stainless.com/).
 
+## MCP Server
+
+Use the Post For Me MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
+
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=post-for-me-mcp&config=eyJuYW1lIjoicG9zdC1mb3ItbWUtbWNwIiwidHJhbnNwb3J0IjoiaHR0cCIsInVybCI6Imh0dHBzOi8vcG9zdC1mb3ItbWUuc3RsbWNwLmNvbSIsImhlYWRlcnMiOnsieC1wb3N0LWZvci1tZS1hcGkta2V5IjoiTXkgQVBJIEtleSJ9fQ)
+[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22post-for-me-mcp%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fpost-for-me.stlmcp.com%22%2C%22headers%22%3A%7B%22x-post-for-me-api-key%22%3A%22My%20API%20Key%22%7D%7D)
+
+> Note: You may need to set environment variables in your MCP client.
+
 <!-- x-release-please-start-version -->
 
-The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.4).
+The REST API documentation can be found on [api.postforme.dev](https://api.postforme.dev/docs). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.post_for_me.api/post-for-me-kotlin/0.1.0-alpha.5).
 
 <!-- x-release-please-end -->
 
@@ -24,7 +33,7 @@ The REST API documentation can be found on [api.postforme.dev](https://api.postf
 ### Gradle
 
 ```kotlin
-implementation("com.post_for_me.api:post-for-me-kotlin:0.1.0-alpha.4")
+implementation("com.post_for_me.api:post-for-me-kotlin:0.1.0-alpha.5")
 ```
 
 ### Maven
@@ -33,7 +42,7 @@ implementation("com.post_for_me.api:post-for-me-kotlin:0.1.0-alpha.4")
 <dependency>
   <groupId>com.post_for_me.api</groupId>
   <artifactId>post-for-me-kotlin</artifactId>
-  <version>0.1.0-alpha.4</version>
+  <version>0.1.0-alpha.5</version>
 </dependency>
 ```
 
@@ -50,17 +59,14 @@ import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: SocialPost = client.socialPosts().create(params)
 ```
@@ -154,17 +160,14 @@ import com.post_for_me.api.client.PostForMeClient
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClient = PostForMeOkHttpClient.fromEnv()
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: SocialPost = client.async().socialPosts().create(params)
 ```
@@ -176,17 +179,14 @@ import com.post_for_me.api.client.PostForMeClientAsync
 import com.post_for_me.api.client.okhttp.PostForMeOkHttpClientAsync
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
 // Configures using the `postforme.apiKey` and `postforme.baseUrl` system properties
 // Or configures using the `POST_FOR_ME_API_KEY` and `POST_FOR_ME_BASE_URL` environment variables
 val client: PostForMeClientAsync = PostForMeOkHttpClientAsync.fromEnv()
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: SocialPost = client.socialPosts().create(params)
 ```
@@ -204,13 +204,10 @@ import com.post_for_me.api.core.http.Headers
 import com.post_for_me.api.core.http.HttpResponseFor
 import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
-import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 
-val params: SocialPostCreateParams = SocialPostCreateParams.builder()
-    .createSocialPost(CreateSocialPost.builder()
-        .caption("caption")
-        .addSocialAccount("string")
-        .build())
+val params: CreateSocialPost = CreateSocialPost.builder()
+    .caption("caption")
+    .addSocialAccount("string")
     .build()
 val socialPost: HttpResponseFor<SocialPost> = client.socialPosts().withRawResponse().create(params)
 
@@ -253,18 +250,29 @@ The SDK throws custom unchecked exception types:
 
 ## Logging
 
-The SDK uses the standard [OkHttp logging interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor).
-
 Enable logging by setting the `POST_FOR_ME_LOG` environment variable to `info`:
 
 ```sh
-$ export POST_FOR_ME_LOG=info
+export POST_FOR_ME_LOG=info
 ```
 
 Or to `debug` for more verbose logging:
 
 ```sh
-$ export POST_FOR_ME_LOG=debug
+export POST_FOR_ME_LOG=debug
+```
+
+Or configure the client manually using the `logLevel` method:
+
+```kotlin
+import com.post_for_me.api.client.PostForMeClient
+import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
+import com.post_for_me.api.core.LogLevel
+
+val client: PostForMeClient = PostForMeOkHttpClient.builder()
+    .fromEnv()
+    .logLevel(LogLevel.INFO)
+    .build()
 ```
 
 ## ProGuard and R8
@@ -283,6 +291,8 @@ If the SDK threw an exception, but you're _certain_ the version is compatible, t
 
 > [!CAUTION]
 > We make no guarantee that the SDK works correctly when the Jackson version check is disabled.
+
+Also note that there are bugs in older Jackson versions that can affect the SDK. We don't work around all Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to upgrade Jackson for those instead.
 
 ## Network options
 
@@ -358,6 +368,40 @@ val client: PostForMeClient = PostForMeOkHttpClient.builder()
     ))
     .build()
 ```
+
+If the proxy responds with `407 Proxy Authentication Required`, supply credentials by also configuring `proxyAuthenticator`:
+
+```kotlin
+import com.post_for_me.api.client.PostForMeClient
+import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
+import com.post_for_me.api.core.http.ProxyAuthenticator
+
+val client: PostForMeClient = PostForMeOkHttpClient.builder()
+    .fromEnv()
+    .proxy(...)
+    // Or a custom implementation of `ProxyAuthenticator`.
+    .proxyAuthenticator(ProxyAuthenticator.basic("username", "password"))
+    .build()
+```
+
+### Connection pooling
+
+To customize the underlying OkHttp connection pool, configure the client using the `maxIdleConnections` and `keepAliveDuration` methods:
+
+```kotlin
+import com.post_for_me.api.client.PostForMeClient
+import com.post_for_me.api.client.okhttp.PostForMeOkHttpClient
+import java.time.Duration
+
+val client: PostForMeClient = PostForMeOkHttpClient.builder()
+    .fromEnv()
+    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.
+    .maxIdleConnections(10)
+    .keepAliveDuration(Duration.ofMinutes(2))
+    .build()
+```
+
+If both options are unset, OkHttp's default connection pool settings are used.
 
 ### HTTPS
 
@@ -553,7 +597,9 @@ In rare cases, the API may return a response that doesn't match the expected typ
 
 By default, the SDK will not throw an exception in this case. It will throw [`PostForMeInvalidDataException`](post-for-me-kotlin-core/src/main/kotlin/com/post_for_me/api/errors/PostForMeInvalidDataException.kt) only if you directly access the property.
 
-If you would prefer to check that the response is completely well-typed upfront, then either call `validate()`:
+Validating the response is _not_ forwards compatible with new types from the API for existing fields.
+
+If you would still prefer to check that the response is completely well-typed upfront, then either call `validate()`:
 
 ```kotlin
 import com.post_for_me.api.models.socialposts.SocialPost

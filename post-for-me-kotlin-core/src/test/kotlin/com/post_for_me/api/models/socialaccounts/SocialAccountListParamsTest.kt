@@ -16,6 +16,7 @@ internal class SocialAccountListParamsTest {
             .limit(0.0)
             .offset(0.0)
             .addPlatform("string")
+            .addStatus(SocialAccountListParams.Status.CONNECTED)
             .addUsername("string")
             .build()
     }
@@ -29,6 +30,7 @@ internal class SocialAccountListParamsTest {
                 .limit(0.0)
                 .offset(0.0)
                 .addPlatform("string")
+                .addStatus(SocialAccountListParams.Status.CONNECTED)
                 .addUsername("string")
                 .build()
 
@@ -42,6 +44,7 @@ internal class SocialAccountListParamsTest {
                     .put("limit", "0.0")
                     .put("offset", "0.0")
                     .put("platform", listOf("string").joinToString(","))
+                    .put("status", listOf("connected").joinToString(","))
                     .put("username", listOf("string").joinToString(","))
                     .build()
             )

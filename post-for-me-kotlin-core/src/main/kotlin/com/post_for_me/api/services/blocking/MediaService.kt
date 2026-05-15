@@ -9,6 +9,15 @@ import com.post_for_me.api.core.http.HttpResponseFor
 import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
 import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
 
+/**
+ * Media are media assets (images, videos, etc.) that can be attached to posts using the media url.
+ * These endpoints are only needed if your media is not already available on a publicly accessible
+ * URL. Media assets are stored temporarily and are automatically deleted in the following
+ * scenarios:
+ * - When the associated post is published
+ * - After 24 hours if not attached to any post
+ * - When the scheduled post is deleted
+ */
 interface MediaService {
 
     /**
@@ -38,34 +47,31 @@ interface MediaService {
      *
      * **Request an upload URL**
      *
-     * ```js
-     * // Step 1: Request an upload URL from your API
-     * const response = await fetch(
-     *   "https://api.postforme.dev/v1/media/create-upload-url",
-     *   {
-     *     method: "POST",
-     *     headers: {
-     *       "Content-Type": "application/json",
-     *     },
-     *   }
-     * );
+     *    ```js
+     *    // Step 1: Request an upload URL from your API
+     *    const response = await fetch('https://api.postforme.dev/v1/media/create-upload-url', {
+     *      method: 'POST',
+     *      headers: {
+     *        'Content-Type': 'application/json'
+     *      }
+     *    });
      *
-     * const { media_url, upload_url } = await response.json();
-     * ```
+     *    const { media_url, upload_url } = await response.json();
+     *    ```
      *
      * **Upload your file to the signed URL**
      *
-     * ```js
-     * // Step 2: Upload your file to the signed URL
-     * const file = &#47;* your File or Blob object, e.g., from an <input type="file"> *&#47;;
-     * await fetch(upload_url, {
-     *   method: 'PUT',
-     *   headers: {
-     *     'Content-Type': 'image/jpeg'
-     *   },
-     *   body: file
-     * });
-     * ```
+     *    ```js
+     *    // Step 2: Upload your file to the signed URL
+     *    const file = &#47;* your File or Blob object, e.g., from an <input type="file"> *&#47;;
+     *    await fetch(upload_url, {
+     *      method: 'PUT',
+     *      headers: {
+     *        'Content-Type': 'image/jpeg'
+     *      },
+     *      body: file
+     *    });
+     *    ```
      *
      * **Use the `media_url` when creating your post**
      *

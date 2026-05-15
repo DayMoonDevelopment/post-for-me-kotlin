@@ -16,6 +16,7 @@ import java.util.Collections
 import java.util.Objects
 
 class SocialPostDeleteResponse
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
 private constructor(
     private val success: JsonField<Boolean>,
     private val additionalProperties: MutableMap<String, JsonValue>,
@@ -128,6 +129,14 @@ private constructor(
 
     private var validated: Boolean = false
 
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws PostForMeInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
     fun validate(): SocialPostDeleteResponse = apply {
         if (validated) {
             return@apply

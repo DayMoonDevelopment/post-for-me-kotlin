@@ -6,6 +6,7 @@ import com.google.errorprone.annotations.MustBeClosed
 import com.post_for_me.api.core.ClientOptions
 import com.post_for_me.api.core.RequestOptions
 import com.post_for_me.api.core.http.HttpResponseFor
+import com.post_for_me.api.models.socialposts.CreateSocialPost
 import com.post_for_me.api.models.socialposts.SocialPost
 import com.post_for_me.api.models.socialposts.SocialPostCreateParams
 import com.post_for_me.api.models.socialposts.SocialPostDeleteParams
@@ -15,6 +16,17 @@ import com.post_for_me.api.models.socialposts.SocialPostListResponse
 import com.post_for_me.api.models.socialposts.SocialPostRetrieveParams
 import com.post_for_me.api.models.socialposts.SocialPostUpdateParams
 
+/**
+ * Posts represent content that can be published across multiple social media platforms. Each post
+ * can have platform-specific content variations, allowing customization for different platforms and
+ * accounts. Content can be defined at three levels:
+ * 1. Default content for all platforms
+ * 2. Platform-specific content overrides
+ * 3. Account-specific content overrides
+ *
+ * The system will use the most specific content override available when publishing to each platform
+ * and account.
+ */
 interface SocialPostServiceAsync {
 
     /**
@@ -34,6 +46,16 @@ interface SocialPostServiceAsync {
         params: SocialPostCreateParams,
         requestOptions: RequestOptions = RequestOptions.none(),
     ): SocialPost
+
+    /** @see create */
+    suspend fun create(
+        createSocialPost: CreateSocialPost,
+        requestOptions: RequestOptions = RequestOptions.none(),
+    ): SocialPost =
+        create(
+            SocialPostCreateParams.builder().createSocialPost(createSocialPost).build(),
+            requestOptions,
+        )
 
     /** Get Post by ID */
     suspend fun retrieve(
@@ -116,6 +138,17 @@ interface SocialPostServiceAsync {
             params: SocialPostCreateParams,
             requestOptions: RequestOptions = RequestOptions.none(),
         ): HttpResponseFor<SocialPost>
+
+        /** @see create */
+        @MustBeClosed
+        suspend fun create(
+            createSocialPost: CreateSocialPost,
+            requestOptions: RequestOptions = RequestOptions.none(),
+        ): HttpResponseFor<SocialPost> =
+            create(
+                SocialPostCreateParams.builder().createSocialPost(createSocialPost).build(),
+                requestOptions,
+            )
 
         /**
          * Returns a raw HTTP response for `get /v1/social-posts/{id}`, but is otherwise the same as

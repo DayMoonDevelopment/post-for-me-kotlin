@@ -71,7 +71,14 @@ private constructor(
      */
     fun externalId(): String? = body.externalId()
 
-    /** The metadata of the social account */
+    /**
+     * The metadata of the social account
+     *
+     * This arbitrary value can be deserialized into a custom type using the `convert` method:
+     * ```kotlin
+     * val myObject: MyClass = socialAccountCreateParams.metadata().convert(MyClass::class.java)
+     * ```
+     */
     fun _metadata(): JsonValue = body._metadata()
 
     /**
@@ -463,6 +470,7 @@ private constructor(
     override fun _queryParams(): QueryParams = additionalQueryParams
 
     class Body
+    @JsonCreator(mode = JsonCreator.Mode.DISABLED)
     private constructor(
         private val accessToken: JsonField<String>,
         private val accessTokenExpiresAt: JsonField<OffsetDateTime>,
@@ -553,7 +561,14 @@ private constructor(
          */
         fun externalId(): String? = externalId.getNullable("external_id")
 
-        /** The metadata of the social account */
+        /**
+         * The metadata of the social account
+         *
+         * This arbitrary value can be deserialized into a custom type using the `convert` method:
+         * ```kotlin
+         * val myObject: MyClass = body.metadata().convert(MyClass::class.java)
+         * ```
+         */
         @JsonProperty("metadata") @ExcludeMissing fun _metadata(): JsonValue = metadata
 
         /**
@@ -866,6 +881,15 @@ private constructor(
 
         private var validated: Boolean = false
 
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws PostForMeInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
         fun validate(): Body = apply {
             if (validated) {
                 return@apply
@@ -1081,6 +1105,15 @@ private constructor(
 
         private var validated: Boolean = false
 
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws PostForMeInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
         fun validate(): Platform = apply {
             if (validated) {
                 return@apply

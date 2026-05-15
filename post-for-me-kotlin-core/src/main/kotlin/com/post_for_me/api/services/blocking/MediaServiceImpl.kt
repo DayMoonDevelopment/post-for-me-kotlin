@@ -18,6 +18,15 @@ import com.post_for_me.api.core.prepare
 import com.post_for_me.api.models.media.MediaCreateUploadUrlParams
 import com.post_for_me.api.models.media.MediaCreateUploadUrlResponse
 
+/**
+ * Media are media assets (images, videos, etc.) that can be attached to posts using the media url.
+ * These endpoints are only needed if your media is not already available on a publicly accessible
+ * URL. Media assets are stored temporarily and are automatically deleted in the following
+ * scenarios:
+ * - When the associated post is published
+ * - After 24 hours if not attached to any post
+ * - When the scheduled post is deleted
+ */
 class MediaServiceImpl internal constructor(private val clientOptions: ClientOptions) :
     MediaService {
 

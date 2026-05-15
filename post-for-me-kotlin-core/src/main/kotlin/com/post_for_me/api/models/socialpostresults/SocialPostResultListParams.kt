@@ -15,6 +15,7 @@ private constructor(
     private val offset: Double?,
     private val platform: List<String>?,
     private val postId: List<String>?,
+    private val socialAccountId: List<String>?,
     private val additionalHeaders: Headers,
     private val additionalQueryParams: QueryParams,
 ) : Params {
@@ -32,6 +33,12 @@ private constructor(
 
     /** Filter by post IDs. Multiple values imply OR logic (e.g., ?post_id=123&post_id=456). */
     fun postId(): List<String>? = postId
+
+    /**
+     * Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+     * ?social_account_id=123&social_account_id=456).
+     */
+    fun socialAccountId(): List<String>? = socialAccountId
 
     /** Additional headers to send with the request. */
     fun _additionalHeaders(): Headers = additionalHeaders
@@ -58,6 +65,7 @@ private constructor(
         private var offset: Double? = null
         private var platform: MutableList<String>? = null
         private var postId: MutableList<String>? = null
+        private var socialAccountId: MutableList<String>? = null
         private var additionalHeaders: Headers.Builder = Headers.builder()
         private var additionalQueryParams: QueryParams.Builder = QueryParams.builder()
 
@@ -66,6 +74,7 @@ private constructor(
             offset = socialPostResultListParams.offset
             platform = socialPostResultListParams.platform?.toMutableList()
             postId = socialPostResultListParams.postId?.toMutableList()
+            socialAccountId = socialPostResultListParams.socialAccountId?.toMutableList()
             additionalHeaders = socialPostResultListParams.additionalHeaders.toBuilder()
             additionalQueryParams = socialPostResultListParams.additionalQueryParams.toBuilder()
         }
@@ -115,6 +124,24 @@ private constructor(
          */
         fun addPostId(postId: String) = apply {
             this.postId = (this.postId ?: mutableListOf()).apply { add(postId) }
+        }
+
+        /**
+         * Filter by social account ID(s). Multiple values imply OR logic (e.g.,
+         * ?social_account_id=123&social_account_id=456).
+         */
+        fun socialAccountId(socialAccountId: List<String>?) = apply {
+            this.socialAccountId = socialAccountId?.toMutableList()
+        }
+
+        /**
+         * Adds a single [String] to [Builder.socialAccountId].
+         *
+         * @throws IllegalStateException if the field was previously set to a non-list.
+         */
+        fun addSocialAccountId(socialAccountId: String) = apply {
+            this.socialAccountId =
+                (this.socialAccountId ?: mutableListOf()).apply { add(socialAccountId) }
         }
 
         fun additionalHeaders(additionalHeaders: Headers) = apply {
@@ -226,6 +253,7 @@ private constructor(
                 offset,
                 platform?.toImmutable(),
                 postId?.toImmutable(),
+                socialAccountId?.toImmutable(),
                 additionalHeaders.build(),
                 additionalQueryParams.build(),
             )
@@ -240,6 +268,7 @@ private constructor(
                 offset?.let { put("offset", it.toString()) }
                 platform?.let { put("platform", it.joinToString(",")) }
                 postId?.let { put("post_id", it.joinToString(",")) }
+                socialAccountId?.let { put("social_account_id", it.joinToString(",")) }
                 putAll(additionalQueryParams)
             }
             .build()
@@ -254,13 +283,22 @@ private constructor(
             offset == other.offset &&
             platform == other.platform &&
             postId == other.postId &&
+            socialAccountId == other.socialAccountId &&
             additionalHeaders == other.additionalHeaders &&
             additionalQueryParams == other.additionalQueryParams
     }
 
     override fun hashCode(): Int =
-        Objects.hash(limit, offset, platform, postId, additionalHeaders, additionalQueryParams)
+        Objects.hash(
+            limit,
+            offset,
+            platform,
+            postId,
+            socialAccountId,
+            additionalHeaders,
+            additionalQueryParams,
+        )
 
     override fun toString() =
-        "SocialPostResultListParams{limit=$limit, offset=$offset, platform=$platform, postId=$postId, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
+        "SocialPostResultListParams{limit=$limit, offset=$offset, platform=$platform, postId=$postId, socialAccountId=$socialAccountId, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
 }

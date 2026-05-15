@@ -24,20 +24,88 @@ internal class CreateSocialPostTest {
                                 .allowComment(true)
                                 .allowDuet(true)
                                 .allowStitch(true)
+                                .autoAddMusic(true)
                                 .addBoardId("string")
                                 .caption(JsonValue.from(mapOf<String, Any>()))
+                                .addCollaborator(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .communityId("community_id")
                                 .discloseBrandedContent(true)
                                 .discloseYourBrand(true)
                                 .isAiGenerated(true)
                                 .isDraft(true)
                                 .link("link")
-                                .addMedia("string")
+                                .location("location")
+                                .madeForKids(true)
+                                .addMedia(
+                                    CreateSocialPost.AccountConfiguration.Configuration.Media
+                                        .builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .Media
+                                                .Tag
+                                                .builder()
+                                                .id("id")
+                                                .platform(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Type
+                                                        .USER
+                                                )
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(
                                     CreateSocialPost.AccountConfiguration.Configuration.Placement
                                         .REELS
                                 )
-                                .privacyStatus("privacy_status")
+                                .poll(
+                                    CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                        .builder()
+                                        .durationMinutes(0.0)
+                                        .addOption("string")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .build()
+                                )
+                                .privacyStatus(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .PrivacyStatus
+                                        .PUBLIC
+                                )
+                                .quoteTweetId("quote_tweet_id")
+                                .replySettings(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .ReplySettings
+                                        .FOLLOWING
+                                )
+                                .setCaptionForEachImage(true)
+                                .shareToFeed(true)
                                 .title("title")
+                                .trialReelType(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .TrialReelType
+                                        .MANUAL
+                                )
                                 .build()
                         )
                         .socialAccountId("social_account_id")
@@ -48,6 +116,16 @@ internal class CreateSocialPostTest {
                 .addMedia(
                     CreateSocialPost.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
+                        .addTag(
+                            CreateSocialPost.Media.Tag.builder()
+                                .id("id")
+                                .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                .type(CreateSocialPost.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -57,28 +135,110 @@ internal class CreateSocialPostTest {
                         .bluesky(
                             BlueskyConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addMedia(
+                                    BlueskyConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            BlueskyConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    BlueskyConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(BlueskyConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .build()
                         )
                         .facebook(
                             FacebookConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addCollaborator(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .location("location")
+                                .addMedia(
+                                    FacebookConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            FacebookConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    FacebookConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(FacebookConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(FacebookConfigurationDto.Placement.REELS)
+                                .setCaptionForEachImage(true)
                                 .build()
                         )
                         .instagram(
                             InstagramConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addCollaborator("string")
-                                .addMedia("string")
+                                .location("location")
+                                .addMedia(
+                                    InstagramConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            InstagramConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    InstagramConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(InstagramConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(InstagramConfigurationDto.Placement.REELS)
+                                .shareToFeed(true)
+                                .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                                 .build()
                         )
                         .linkedin(
                             LinkedinConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addMedia(
+                                    LinkedinConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            LinkedinConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    LinkedinConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .build()
                         )
                         .pinterest(
@@ -86,13 +246,52 @@ internal class CreateSocialPostTest {
                                 .addBoardId("string")
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .link("link")
-                                .addMedia("string")
+                                .addMedia(
+                                    PinterestConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            PinterestConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    PinterestConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(PinterestConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .title("title")
                                 .build()
                         )
                         .threads(
                             ThreadsConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addMedia(
+                                    ThreadsConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            ThreadsConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    ThreadsConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(ThreadsConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                 .build()
                         )
@@ -101,12 +300,31 @@ internal class CreateSocialPostTest {
                                 .allowComment(true)
                                 .allowDuet(true)
                                 .allowStitch(true)
+                                .autoAddMusic(true)
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .discloseBrandedContent(true)
                                 .discloseYourBrand(true)
                                 .isAiGenerated(true)
                                 .isDraft(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    TiktokConfiguration.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            TiktokConfiguration.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    TiktokConfiguration.Media.Tag.Platform.FACEBOOK
+                                                )
+                                                .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .privacyStatus("privacy_status")
                                 .title("title")
                                 .build()
@@ -116,12 +334,31 @@ internal class CreateSocialPostTest {
                                 .allowComment(true)
                                 .allowDuet(true)
                                 .allowStitch(true)
+                                .autoAddMusic(true)
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .discloseBrandedContent(true)
                                 .discloseYourBrand(true)
                                 .isAiGenerated(true)
                                 .isDraft(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    TiktokConfiguration.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            TiktokConfiguration.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    TiktokConfiguration.Media.Tag.Platform.FACEBOOK
+                                                )
+                                                .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .privacyStatus("privacy_status")
                                 .title("title")
                                 .build()
@@ -129,13 +366,65 @@ internal class CreateSocialPostTest {
                         .x(
                             TwitterConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .communityId("community_id")
+                                .addMedia(
+                                    TwitterConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            TwitterConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    TwitterConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(TwitterConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .poll(
+                                    TwitterConfigurationDto.Poll.builder()
+                                        .durationMinutes(0.0)
+                                        .addOption("string")
+                                        .replySettings(
+                                            TwitterConfigurationDto.Poll.ReplySettings.FOLLOWING
+                                        )
+                                        .build()
+                                )
+                                .quoteTweetId("quote_tweet_id")
+                                .replySettings(TwitterConfigurationDto.ReplySettings.FOLLOWING)
                                 .build()
                         )
                         .youtube(
                             YoutubeConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .madeForKids(true)
+                                .addMedia(
+                                    YoutubeConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            YoutubeConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    YoutubeConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(YoutubeConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                 .title("title")
                                 .build()
                         )
@@ -154,19 +443,79 @@ internal class CreateSocialPostTest {
                             .allowComment(true)
                             .allowDuet(true)
                             .allowStitch(true)
+                            .autoAddMusic(true)
                             .addBoardId("string")
                             .caption(JsonValue.from(mapOf<String, Any>()))
+                            .addCollaborator(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .communityId("community_id")
                             .discloseBrandedContent(true)
                             .discloseYourBrand(true)
                             .isAiGenerated(true)
                             .isDraft(true)
                             .link("link")
-                            .addMedia("string")
+                            .location("location")
+                            .madeForKids(true)
+                            .addMedia(
+                                CreateSocialPost.AccountConfiguration.Configuration.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        CreateSocialPost.AccountConfiguration.Configuration.Media
+                                            .Tag
+                                            .builder()
+                                            .id("id")
+                                            .platform(
+                                                CreateSocialPost.AccountConfiguration.Configuration
+                                                    .Media
+                                                    .Tag
+                                                    .Platform
+                                                    .FACEBOOK
+                                            )
+                                            .type(
+                                                CreateSocialPost.AccountConfiguration.Configuration
+                                                    .Media
+                                                    .Tag
+                                                    .Type
+                                                    .USER
+                                            )
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .placement(
                                 CreateSocialPost.AccountConfiguration.Configuration.Placement.REELS
                             )
-                            .privacyStatus("privacy_status")
+                            .poll(
+                                CreateSocialPost.AccountConfiguration.Configuration.Poll.builder()
+                                    .durationMinutes(0.0)
+                                    .addOption("string")
+                                    .replySettings(
+                                        CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                            .ReplySettings
+                                            .FOLLOWING
+                                    )
+                                    .build()
+                            )
+                            .privacyStatus(
+                                CreateSocialPost.AccountConfiguration.Configuration.PrivacyStatus
+                                    .PUBLIC
+                            )
+                            .quoteTweetId("quote_tweet_id")
+                            .replySettings(
+                                CreateSocialPost.AccountConfiguration.Configuration.ReplySettings
+                                    .FOLLOWING
+                            )
+                            .setCaptionForEachImage(true)
+                            .shareToFeed(true)
                             .title("title")
+                            .trialReelType(
+                                CreateSocialPost.AccountConfiguration.Configuration.TrialReelType
+                                    .MANUAL
+                            )
                             .build()
                     )
                     .socialAccountId("social_account_id")
@@ -178,6 +527,16 @@ internal class CreateSocialPostTest {
             .containsExactly(
                 CreateSocialPost.Media.builder()
                     .url("url")
+                    .skipProcessing(true)
+                    .addTag(
+                        CreateSocialPost.Media.Tag.builder()
+                            .id("id")
+                            .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                            .type(CreateSocialPost.Media.Tag.Type.USER)
+                            .x(0.0)
+                            .y(0.0)
+                            .build()
+                    )
                     .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                     .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                     .build()
@@ -188,28 +547,107 @@ internal class CreateSocialPostTest {
                     .bluesky(
                         BlueskyConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
-                            .addMedia("string")
+                            .addMedia(
+                                BlueskyConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        BlueskyConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                BlueskyConfigurationDto.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(BlueskyConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .build()
                     )
                     .facebook(
                         FacebookConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
-                            .addMedia("string")
+                            .addCollaborator(listOf(JsonValue.from(mapOf<String, Any>())))
+                            .location("location")
+                            .addMedia(
+                                FacebookConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        FacebookConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                FacebookConfigurationDto.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(FacebookConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .placement(FacebookConfigurationDto.Placement.REELS)
+                            .setCaptionForEachImage(true)
                             .build()
                     )
                     .instagram(
                         InstagramConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .addCollaborator("string")
-                            .addMedia("string")
+                            .location("location")
+                            .addMedia(
+                                InstagramConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        InstagramConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                InstagramConfigurationDto.Media.Tag.Platform
+                                                    .FACEBOOK
+                                            )
+                                            .type(InstagramConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .placement(InstagramConfigurationDto.Placement.REELS)
+                            .shareToFeed(true)
+                            .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                             .build()
                     )
                     .linkedin(
                         LinkedinConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
-                            .addMedia("string")
+                            .addMedia(
+                                LinkedinConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        LinkedinConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                LinkedinConfigurationDto.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .build()
                     )
                     .pinterest(
@@ -217,13 +655,51 @@ internal class CreateSocialPostTest {
                             .addBoardId("string")
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .link("link")
-                            .addMedia("string")
+                            .addMedia(
+                                PinterestConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        PinterestConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                PinterestConfigurationDto.Media.Tag.Platform
+                                                    .FACEBOOK
+                                            )
+                                            .type(PinterestConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
+                            .title("title")
                             .build()
                     )
                     .threads(
                         ThreadsConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
-                            .addMedia("string")
+                            .addMedia(
+                                ThreadsConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        ThreadsConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                ThreadsConfigurationDto.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(ThreadsConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .placement(ThreadsConfigurationDto.Placement.REELS)
                             .build()
                     )
@@ -232,12 +708,31 @@ internal class CreateSocialPostTest {
                             .allowComment(true)
                             .allowDuet(true)
                             .allowStitch(true)
+                            .autoAddMusic(true)
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .discloseBrandedContent(true)
                             .discloseYourBrand(true)
                             .isAiGenerated(true)
                             .isDraft(true)
-                            .addMedia("string")
+                            .addMedia(
+                                TiktokConfiguration.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        TiktokConfiguration.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                TiktokConfiguration.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .privacyStatus("privacy_status")
                             .title("title")
                             .build()
@@ -247,12 +742,31 @@ internal class CreateSocialPostTest {
                             .allowComment(true)
                             .allowDuet(true)
                             .allowStitch(true)
+                            .autoAddMusic(true)
                             .caption(JsonValue.from(mapOf<String, Any>()))
                             .discloseBrandedContent(true)
                             .discloseYourBrand(true)
                             .isAiGenerated(true)
                             .isDraft(true)
-                            .addMedia("string")
+                            .addMedia(
+                                TiktokConfiguration.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        TiktokConfiguration.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                TiktokConfiguration.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
                             .privacyStatus("privacy_status")
                             .title("title")
                             .build()
@@ -260,13 +774,63 @@ internal class CreateSocialPostTest {
                     .x(
                         TwitterConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
-                            .addMedia("string")
+                            .communityId("community_id")
+                            .addMedia(
+                                TwitterConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        TwitterConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                TwitterConfigurationDto.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(TwitterConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
+                            .poll(
+                                TwitterConfigurationDto.Poll.builder()
+                                    .durationMinutes(0.0)
+                                    .addOption("string")
+                                    .replySettings(
+                                        TwitterConfigurationDto.Poll.ReplySettings.FOLLOWING
+                                    )
+                                    .build()
+                            )
+                            .quoteTweetId("quote_tweet_id")
+                            .replySettings(TwitterConfigurationDto.ReplySettings.FOLLOWING)
                             .build()
                     )
                     .youtube(
                         YoutubeConfigurationDto.builder()
                             .caption(JsonValue.from(mapOf<String, Any>()))
-                            .addMedia("string")
+                            .madeForKids(true)
+                            .addMedia(
+                                YoutubeConfigurationDto.Media.builder()
+                                    .url("url")
+                                    .skipProcessing(true)
+                                    .addTag(
+                                        YoutubeConfigurationDto.Media.Tag.builder()
+                                            .id("id")
+                                            .platform(
+                                                YoutubeConfigurationDto.Media.Tag.Platform.FACEBOOK
+                                            )
+                                            .type(YoutubeConfigurationDto.Media.Tag.Type.USER)
+                                            .x(0.0)
+                                            .y(0.0)
+                                            .build()
+                                    )
+                                    .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                    .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                    .build()
+                            )
+                            .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                             .title("title")
                             .build()
                     )
@@ -290,20 +854,88 @@ internal class CreateSocialPostTest {
                                 .allowComment(true)
                                 .allowDuet(true)
                                 .allowStitch(true)
+                                .autoAddMusic(true)
                                 .addBoardId("string")
                                 .caption(JsonValue.from(mapOf<String, Any>()))
+                                .addCollaborator(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .communityId("community_id")
                                 .discloseBrandedContent(true)
                                 .discloseYourBrand(true)
                                 .isAiGenerated(true)
                                 .isDraft(true)
                                 .link("link")
-                                .addMedia("string")
+                                .location("location")
+                                .madeForKids(true)
+                                .addMedia(
+                                    CreateSocialPost.AccountConfiguration.Configuration.Media
+                                        .builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            CreateSocialPost.AccountConfiguration.Configuration
+                                                .Media
+                                                .Tag
+                                                .builder()
+                                                .id("id")
+                                                .platform(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(
+                                                    CreateSocialPost.AccountConfiguration
+                                                        .Configuration
+                                                        .Media
+                                                        .Tag
+                                                        .Type
+                                                        .USER
+                                                )
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(
                                     CreateSocialPost.AccountConfiguration.Configuration.Placement
                                         .REELS
                                 )
-                                .privacyStatus("privacy_status")
+                                .poll(
+                                    CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                        .builder()
+                                        .durationMinutes(0.0)
+                                        .addOption("string")
+                                        .replySettings(
+                                            CreateSocialPost.AccountConfiguration.Configuration.Poll
+                                                .ReplySettings
+                                                .FOLLOWING
+                                        )
+                                        .build()
+                                )
+                                .privacyStatus(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .PrivacyStatus
+                                        .PUBLIC
+                                )
+                                .quoteTweetId("quote_tweet_id")
+                                .replySettings(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .ReplySettings
+                                        .FOLLOWING
+                                )
+                                .setCaptionForEachImage(true)
+                                .shareToFeed(true)
                                 .title("title")
+                                .trialReelType(
+                                    CreateSocialPost.AccountConfiguration.Configuration
+                                        .TrialReelType
+                                        .MANUAL
+                                )
                                 .build()
                         )
                         .socialAccountId("social_account_id")
@@ -314,6 +946,16 @@ internal class CreateSocialPostTest {
                 .addMedia(
                     CreateSocialPost.Media.builder()
                         .url("url")
+                        .skipProcessing(true)
+                        .addTag(
+                            CreateSocialPost.Media.Tag.builder()
+                                .id("id")
+                                .platform(CreateSocialPost.Media.Tag.Platform.FACEBOOK)
+                                .type(CreateSocialPost.Media.Tag.Type.USER)
+                                .x(0.0)
+                                .y(0.0)
+                                .build()
+                        )
                         .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
                         .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
                         .build()
@@ -323,28 +965,110 @@ internal class CreateSocialPostTest {
                         .bluesky(
                             BlueskyConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addMedia(
+                                    BlueskyConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            BlueskyConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    BlueskyConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(BlueskyConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .build()
                         )
                         .facebook(
                             FacebookConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addCollaborator(listOf(JsonValue.from(mapOf<String, Any>())))
+                                .location("location")
+                                .addMedia(
+                                    FacebookConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            FacebookConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    FacebookConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(FacebookConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(FacebookConfigurationDto.Placement.REELS)
+                                .setCaptionForEachImage(true)
                                 .build()
                         )
                         .instagram(
                             InstagramConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .addCollaborator("string")
-                                .addMedia("string")
+                                .location("location")
+                                .addMedia(
+                                    InstagramConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            InstagramConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    InstagramConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(InstagramConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(InstagramConfigurationDto.Placement.REELS)
+                                .shareToFeed(true)
+                                .trialReelType(InstagramConfigurationDto.TrialReelType.MANUAL)
                                 .build()
                         )
                         .linkedin(
                             LinkedinConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addMedia(
+                                    LinkedinConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            LinkedinConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    LinkedinConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(LinkedinConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .build()
                         )
                         .pinterest(
@@ -352,13 +1076,52 @@ internal class CreateSocialPostTest {
                                 .addBoardId("string")
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .link("link")
-                                .addMedia("string")
+                                .addMedia(
+                                    PinterestConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            PinterestConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    PinterestConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(PinterestConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .title("title")
                                 .build()
                         )
                         .threads(
                             ThreadsConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .addMedia(
+                                    ThreadsConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            ThreadsConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    ThreadsConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(ThreadsConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .placement(ThreadsConfigurationDto.Placement.REELS)
                                 .build()
                         )
@@ -367,12 +1130,31 @@ internal class CreateSocialPostTest {
                                 .allowComment(true)
                                 .allowDuet(true)
                                 .allowStitch(true)
+                                .autoAddMusic(true)
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .discloseBrandedContent(true)
                                 .discloseYourBrand(true)
                                 .isAiGenerated(true)
                                 .isDraft(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    TiktokConfiguration.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            TiktokConfiguration.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    TiktokConfiguration.Media.Tag.Platform.FACEBOOK
+                                                )
+                                                .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .privacyStatus("privacy_status")
                                 .title("title")
                                 .build()
@@ -382,12 +1164,31 @@ internal class CreateSocialPostTest {
                                 .allowComment(true)
                                 .allowDuet(true)
                                 .allowStitch(true)
+                                .autoAddMusic(true)
                                 .caption(JsonValue.from(mapOf<String, Any>()))
                                 .discloseBrandedContent(true)
                                 .discloseYourBrand(true)
                                 .isAiGenerated(true)
                                 .isDraft(true)
-                                .addMedia("string")
+                                .addMedia(
+                                    TiktokConfiguration.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            TiktokConfiguration.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    TiktokConfiguration.Media.Tag.Platform.FACEBOOK
+                                                )
+                                                .type(TiktokConfiguration.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
                                 .privacyStatus("privacy_status")
                                 .title("title")
                                 .build()
@@ -395,13 +1196,65 @@ internal class CreateSocialPostTest {
                         .x(
                             TwitterConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .communityId("community_id")
+                                .addMedia(
+                                    TwitterConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            TwitterConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    TwitterConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(TwitterConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .poll(
+                                    TwitterConfigurationDto.Poll.builder()
+                                        .durationMinutes(0.0)
+                                        .addOption("string")
+                                        .replySettings(
+                                            TwitterConfigurationDto.Poll.ReplySettings.FOLLOWING
+                                        )
+                                        .build()
+                                )
+                                .quoteTweetId("quote_tweet_id")
+                                .replySettings(TwitterConfigurationDto.ReplySettings.FOLLOWING)
                                 .build()
                         )
                         .youtube(
                             YoutubeConfigurationDto.builder()
                                 .caption(JsonValue.from(mapOf<String, Any>()))
-                                .addMedia("string")
+                                .madeForKids(true)
+                                .addMedia(
+                                    YoutubeConfigurationDto.Media.builder()
+                                        .url("url")
+                                        .skipProcessing(true)
+                                        .addTag(
+                                            YoutubeConfigurationDto.Media.Tag.builder()
+                                                .id("id")
+                                                .platform(
+                                                    YoutubeConfigurationDto.Media.Tag.Platform
+                                                        .FACEBOOK
+                                                )
+                                                .type(YoutubeConfigurationDto.Media.Tag.Type.USER)
+                                                .x(0.0)
+                                                .y(0.0)
+                                                .build()
+                                        )
+                                        .thumbnailTimestampMs(JsonValue.from(mapOf<String, Any>()))
+                                        .thumbnailUrl(JsonValue.from(mapOf<String, Any>()))
+                                        .build()
+                                )
+                                .privacyStatus(YoutubeConfigurationDto.PrivacyStatus.PUBLIC)
                                 .title("title")
                                 .build()
                         )

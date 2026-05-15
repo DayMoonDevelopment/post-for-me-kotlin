@@ -20,6 +20,13 @@ import com.post_for_me.api.models.socialpostresults.SocialPostResultListParams
 import com.post_for_me.api.models.socialpostresults.SocialPostResultListResponse
 import com.post_for_me.api.models.socialpostresults.SocialPostResultRetrieveParams
 
+/**
+ * Post results represent the outcome of publishing content to various social media platforms. They
+ * provide comprehensive information including:
+ * - Publication status (success/failure)
+ * - Any errors or issues encountered during posting
+ * - Platform url to view the published post
+ */
 class SocialPostResultServiceImpl internal constructor(private val clientOptions: ClientOptions) :
     SocialPostResultService {
 

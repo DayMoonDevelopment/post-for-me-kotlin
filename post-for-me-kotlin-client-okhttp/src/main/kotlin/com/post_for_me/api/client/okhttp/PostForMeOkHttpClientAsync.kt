@@ -6,14 +6,18 @@ import com.fasterxml.jackson.databind.json.JsonMapper
 import com.post_for_me.api.client.PostForMeClientAsync
 import com.post_for_me.api.client.PostForMeClientAsyncImpl
 import com.post_for_me.api.core.ClientOptions
+import com.post_for_me.api.core.LogLevel
+import com.post_for_me.api.core.Sleeper
 import com.post_for_me.api.core.Timeout
 import com.post_for_me.api.core.http.Headers
 import com.post_for_me.api.core.http.HttpClient
+import com.post_for_me.api.core.http.ProxyAuthenticator
 import com.post_for_me.api.core.http.QueryParams
 import com.post_for_me.api.core.jsonMapper
 import java.net.Proxy
 import java.time.Clock
 import java.time.Duration
+import java.util.concurrent.ExecutorService
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
@@ -41,12 +45,66 @@ class PostForMeOkHttpClientAsync private constructor() {
     class Builder internal constructor() {
 
         private var clientOptions: ClientOptions.Builder = ClientOptions.builder()
+        private var dispatcherExecutorService: ExecutorService? = null
         private var proxy: Proxy? = null
+        private var proxyAuthenticator: ProxyAuthenticator? = null
+        private var maxIdleConnections: Int? = null
+        private var keepAliveDuration: Duration? = null
         private var sslSocketFactory: SSLSocketFactory? = null
         private var trustManager: X509TrustManager? = null
         private var hostnameVerifier: HostnameVerifier? = null
 
+        /**
+         * The executor service to use for running HTTP requests.
+         *
+         * Defaults to OkHttp's
+         * [default executor service](https://github.com/square/okhttp/blob/ace792f443b2ffb17974f5c0d1cecdf589309f26/okhttp/src/commonJvmAndroid/kotlin/okhttp3/Dispatcher.kt#L98-L104).
+         *
+         * This class takes ownership of the executor service and shuts it down when closed.
+         */
+        fun dispatcherExecutorService(dispatcherExecutorService: ExecutorService?) = apply {
+            this.dispatcherExecutorService = dispatcherExecutorService
+        }
+
         fun proxy(proxy: Proxy?) = apply { this.proxy = proxy }
+
+        /**
+         * Provides credentials when an HTTP proxy responds with `407 Proxy Authentication
+         * Required`.
+         */
+        fun proxyAuthenticator(proxyAuthenticator: ProxyAuthenticator?) = apply {
+            this.proxyAuthenticator = proxyAuthenticator
+        }
+
+        /**
+         * The maximum number of idle connections kept by the underlying OkHttp connection pool.
+         *
+         * If this is set, then [keepAliveDuration] must also be set.
+         *
+         * If unset, then OkHttp's default is used.
+         */
+        fun maxIdleConnections(maxIdleConnections: Int?) = apply {
+            this.maxIdleConnections = maxIdleConnections
+        }
+
+        /**
+         * Alias for [Builder.maxIdleConnections].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun maxIdleConnections(maxIdleConnections: Int) =
+            maxIdleConnections(maxIdleConnections as Int?)
+
+        /**
+         * The keep-alive duration for idle connections in the underlying OkHttp connection pool.
+         *
+         * If this is set, then [maxIdleConnections] must also be set.
+         *
+         * If unset, then OkHttp's default is used.
+         */
+        fun keepAliveDuration(keepAliveDuration: Duration?) = apply {
+            this.keepAliveDuration = keepAliveDuration
+        }
 
         /**
          * The socket factory used to secure HTTPS connections.
@@ -104,6 +162,17 @@ class PostForMeOkHttpClientAsync private constructor() {
         fun jsonMapper(jsonMapper: JsonMapper) = apply { clientOptions.jsonMapper(jsonMapper) }
 
         /**
+         * The interface to use for delaying execution, like during retries.
+         *
+         * This is primarily useful for using fake delays in tests.
+         *
+         * Defaults to real execution delays.
+         *
+         * This class takes ownership of the sleeper and closes it when closed.
+         */
+        fun sleeper(sleeper: Sleeper) = apply { clientOptions.sleeper(sleeper) }
+
+        /**
          * The clock to use for operations that require timing, like retries.
          *
          * This is primarily useful for using a fake clock in tests.
@@ -121,6 +190,9 @@ class PostForMeOkHttpClientAsync private constructor() {
 
         /**
          * Whether to call `validate` on every response before returning it.
+         *
+         * Setting this to `true` is _not_ forwards compatible with new types from the API for
+         * existing fields.
          *
          * Defaults to false, which means the shape of the response will not be validated upfront.
          * Instead, validation will only occur for the parts of the response that are accessed.
@@ -162,6 +234,15 @@ class PostForMeOkHttpClientAsync private constructor() {
          * Defaults to 2.
          */
         fun maxRetries(maxRetries: Int) = apply { clientOptions.maxRetries(maxRetries) }
+
+        /**
+         * The level at which to log request and response information.
+         *
+         * [fromEnv] will set the level from environment variables. See [LogLevel.fromEnv].
+         *
+         * Defaults to [LogLevel.fromEnv].
+         */
+        fun logLevel(logLevel: LogLevel) = apply { clientOptions.logLevel(logLevel) }
 
         fun apiKey(apiKey: String) = apply { clientOptions.apiKey(apiKey) }
 
@@ -264,6 +345,10 @@ class PostForMeOkHttpClientAsync private constructor() {
                         OkHttpClient.builder()
                             .timeout(clientOptions.timeout())
                             .proxy(proxy)
+                            .proxyAuthenticator(proxyAuthenticator)
+                            .maxIdleConnections(maxIdleConnections)
+                            .keepAliveDuration(keepAliveDuration)
+                            .dispatcherExecutorService(dispatcherExecutorService)
                             .sslSocketFactory(sslSocketFactory)
                             .trustManager(trustManager)
                             .hostnameVerifier(hostnameVerifier)

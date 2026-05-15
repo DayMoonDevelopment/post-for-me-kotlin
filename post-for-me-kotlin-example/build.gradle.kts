@@ -4,7 +4,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":post-for-me-kotlin"))
+    implementation(project(":post-for-me-kotlin-core"))
+    implementation(project(":post-for-me-kotlin-client-okhttp"))
 }
 
 application {

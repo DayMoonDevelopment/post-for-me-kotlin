@@ -15,6 +15,7 @@ internal class SocialPostResultListParamsTest {
             .offset(0.0)
             .addPlatform("string")
             .addPostId("string")
+            .addSocialAccountId("string")
             .build()
     }
 
@@ -26,6 +27,7 @@ internal class SocialPostResultListParamsTest {
                 .offset(0.0)
                 .addPlatform("string")
                 .addPostId("string")
+                .addSocialAccountId("string")
                 .build()
 
         val queryParams = params._queryParams()
@@ -37,6 +39,7 @@ internal class SocialPostResultListParamsTest {
                     .put("offset", "0.0")
                     .put("platform", listOf("string").joinToString(","))
                     .put("post_id", listOf("string").joinToString(","))
+                    .put("social_account_id", listOf("string").joinToString(","))
                     .build()
             )
     }
